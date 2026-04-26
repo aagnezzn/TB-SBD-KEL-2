@@ -2,22 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Udemy Clone</title>
+    <title>Idemy</title>
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Icon -->
+    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="bg-gray-100">
 
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
     @include('components.navbar')
 
-    <main>
-        @yield('content')
-    </main>
+    <!-- CONTENT -->
+    @yield('content')
 
+    <!-- INIT ICON -->
     <script>
         feather.replace()
     </script>
