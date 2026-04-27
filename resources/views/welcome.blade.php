@@ -196,20 +196,48 @@
     </div>
 </section>
 
-<section class="px-10 py-16 bg-gray-50">
-    <h3 class="text-center text-lg text-gray-600 mb-8">
+<section class="bg-gray-50 py-12 md:py-16">
+    <div class="bg-gray-100 py-16 px-4">
+    <p class="text-center text-slate-700 font-light text-lg mb-8 tracking-wide">
         Dipercaya oleh lebih dari 17.000 perusahaan dan jutaan pembelajar di seluruh dunia
-    </h3>
-    <div class="flex justify-center items-center gap-12 flex-wrap opacity-60">
-        <img src="https://logo.clearbit.com/volkswagen.com" alt="VW" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="h-6 grayscale">
-        <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="h-8 grayscale">
-        <img src="https://logo.clearbit.com/vimeo.com" alt="Vimeo" class="h-6 grayscale">
-        <img src="https://logo.clearbit.com/pg.com" alt="P&G" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/hpe.com" alt="HPE" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/citi.com" alt="Citi" class="h-8 grayscale">
-        <img src="https://logo.clearbit.com/ericsson.com" alt="Ericsson" class="h-6 grayscale">
+    </p>
+
+    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 max-w-7xl mx-auto">
+        
+        <div class="flex items-center justify-center">
+            <img src="vw.png" class="h-20 w-auto grayscale opacity-70" alt="VW">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="samsung.png" class="h-20 w-auto grayscale opacity-70" alt="Samsung">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="cisco.png" class="h-14 w-auto grayscale opacity-70" alt="Cisco">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="vimeo.png" class="h-10 w-auto grayscale opacity-70" alt="Vimeo">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="pg.png" class="h-20 w-auto grayscale opacity-70" alt="P&G">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="hpe.png" class="h-14 w-auto grayscale opacity-70" alt="HPE">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="citi.png" class="h-14 w-auto grayscale opacity-70" alt="Citi">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="ericsson.png" class="h-14 w-auto grayscale opacity-70" alt="Ericsson">
+        </div>
+
     </div>
+</div>
 </section>
 
 <section class="px-10 py-16 bg-gray-50">
