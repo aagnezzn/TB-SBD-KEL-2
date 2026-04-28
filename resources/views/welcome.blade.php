@@ -3,6 +3,7 @@
 @section('content')
 
 <section class="px-10 mt-4">
+    <div class="max-w-[1350px] mx-auto">
     <div class="h-[350px] relative rounded-lg overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-right" style="background-image: url('{{ asset('udemy.jpg') }}')"></div>
         <div class="absolute inset-0 bg-black/20"></div>
@@ -11,15 +12,17 @@
                 <h2 class="text-3xl font-bold mb-3">Bangun skill yang diminati</h2>
                 <p class="text-gray-600 mb-4">Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata</p>
                 <div class="flex space-x-3">
-                    <button class="bg-purple-600 text-white px-4 py-2 rounded font-bold">Dapatkan Paket Personal</button>
+                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">Dapatkan Paket Personal</button>
                     <button class="border border-black font-bold px-4 py-2 rounded">Pelajari AI</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 
 <section class="px-10 py-16 bg-gray-100">
+    <div class="max-w-[1350px] mx-auto">
     <div class="grid grid-cols-4 gap-8 items-start">
         <div>
             <h2 class="text-3xl font-bold mb-4">
@@ -60,10 +63,12 @@
             <div class="flex justify-center mt-6 space-x-2" id="dots"></div>
         </div>
     </div>
+</div>
 </section>
 
 <section class="px-10 py-10">
-    <div class="bg-[#1c1d27] rounded-2xl p-12 flex flex-col lg:flex-row items-center gap-10">
+    <div class="max-w-[1350px] mx-auto">
+    <div class="bg-[#232433] rounded-2xl p-12 flex flex-col lg:flex-row items-center gap-10">
         <div class="w-full lg:w-1/2 text-white">
             <h2 class="text-3xl font-bold mb-4">Transformasikan karier Anda di<br>era AI</h2>
             <p class="text-gray-300 mb-8 text-sm leading-relaxed max-w-md">
@@ -105,9 +110,11 @@
             <img src="{{ asset('iklan.jpeg') }}" class="w-full h-full object-cover">
         </div>
     </div>
+    </div>
 </section>
 
 <section class="px-10 py-12">
+    <div class="max-w-[1350px] mx-auto">
     <h2 class="text-3xl font-bold mb-2">Skill yang mengubah karier dan kehidupan Anda</h2>
     <p class="text-gray-600 mb-6">Mulai dari topik dengan skill yang sangat penting hingga teknis, Udemy mendukung pengembangan profesional Anda.</p>
 
@@ -194,25 +201,55 @@
             Tampilkan semua kursus Python &rarr;
         </a>
     </div>
+</div>
 </section>
 
-<section class="px-10 py-16 bg-gray-50">
-    <h3 class="text-center text-lg text-gray-600 mb-8">
+<section class="bg-gray-50 py-12 md:py-16">
+    <div class="bg-gray-100 py-16 px-4">
+    <p class="text-center text-slate-700 font-light text-lg mb-8 tracking-wide">
         Dipercaya oleh lebih dari 17.000 perusahaan dan jutaan pembelajar di seluruh dunia
-    </h3>
-    <div class="flex justify-center items-center gap-12 flex-wrap opacity-60">
-        <img src="https://logo.clearbit.com/volkswagen.com" alt="VW" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="h-6 grayscale">
-        <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="h-8 grayscale">
-        <img src="https://logo.clearbit.com/vimeo.com" alt="Vimeo" class="h-6 grayscale">
-        <img src="https://logo.clearbit.com/pg.com" alt="P&G" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/hpe.com" alt="HPE" class="h-10 grayscale">
-        <img src="https://logo.clearbit.com/citi.com" alt="Citi" class="h-8 grayscale">
-        <img src="https://logo.clearbit.com/ericsson.com" alt="Ericsson" class="h-6 grayscale">
+    </p>
+
+    <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 max-w-7xl mx-auto">
+        
+        <div class="flex items-center justify-center">
+            <img src="vw.png" class="h-20 w-auto grayscale opacity-70" alt="VW">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="samsung.png" class="h-20 w-auto grayscale opacity-70" alt="Samsung">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="cisco.png" class="h-14 w-auto grayscale opacity-70" alt="Cisco">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="vimeo.png" class="h-10 w-auto grayscale opacity-70" alt="Vimeo">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="pg.png" class="h-20 w-auto grayscale opacity-70" alt="P&G">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="hpe.png" class="h-14 w-auto grayscale opacity-70" alt="HPE">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="citi.png" class="h-14 w-auto grayscale opacity-70" alt="Citi">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <img src="ericsson.png" class="h-14 w-auto grayscale opacity-70" alt="Ericsson">
+        </div>
+
     </div>
+</div>
 </section>
 
 <section class="px-10 py-16 bg-gray-50">
+    <div class="max-w-[1350px] mx-auto">
     <h2 class="text-3xl font-bold mb-8 max-w-2xl text-gray-900">
         Bergabung dengan orang lain untuk mengubah hidup mereka melalui pembelajaran
     </h2>
@@ -295,10 +332,12 @@
         </div>
 
     </div>
-</section><section class="px-10 py-12">
-    <div class="bg-[#1c1d27] rounded-xl p-10 flex flex-col lg:flex-row items-center gap-12">
+    </div>
+
+<section class="px-14 py-12">
+    <div class="bg-[#232433] rounded-xl p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
         
-        <div class="w-full lg:w-2/5">
+        <div class="w-full lg:w-[30%]">
             <h2 class="text-3xl font-bold text-white mb-4 leading-tight">
                 Dapatkan sertifikasi dan<br>maju dalam karier Anda
             </h2>
@@ -311,22 +350,22 @@
             </a>
         </div>
 
-        <div class="w-full lg:w-3/5 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="w-full lg:w-[60%] grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <a href="#" class="bg-[#2b2d3d] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                <img src="{{ asset('comptia_badges.png') }}" alt="CompTIA" class="w-full h-auto rounded-md mb-4 object-cover">
+            <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
+                <img src="{{ asset('comptia.png') }}" alt="CompTIA" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">CompTIA</h3>
                 <p class="text-gray-400 text-xs">Cloud, Jejaring, Keamanan Siber</p>
             </a>
 
-            <a href="#" class="bg-[#2b2d3d] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                <img src="{{ asset('aws_badges.png') }}" alt="AWS" class="w-full h-auto rounded-md mb-4 object-cover">
+            <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
+                <img src="{{ asset('aws.png') }}" alt="AWS" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">AWS</h3>
                 <p class="text-gray-400 text-xs">Cloud, AI, Coding, Jejaring</p>
             </a>
 
-            <a href="#" class="bg-[#2b2d3d] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                <img src="{{ asset('pmi_badges.png') }}" alt="PMI" class="w-full h-auto rounded-md mb-4 object-cover">
+            <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
+                <img src="{{ asset('pmi.png') }}" alt="PMI" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">PMI</h3>
                 <p class="text-gray-400 text-xs">Manajemen Proyek & Program</p>
             </a>
@@ -335,7 +374,9 @@
     </div>
 </section>
 
-<section class="px-10 py-16 bg-gray-50">
+
+<section class="w-screen bg-gray-100 pt-16 pb-0 m-0 left-1/2 ml-[-50vw] relative">
+    <div class="max-w-full mx-auto px-10">
     <h2 class="text-3xl font-bold text-gray-900 mb-4">Skill Populer</h2>
     <hr class="border-gray-300 mb-10">
 
@@ -438,237 +479,5 @@
 
     </div>
 </section>
-
-<footer class="text-gray-300 font-sans">
-    
-    <div class="bg-[#1c1d27] py-16 px-10">
-        <h2 class="text-2xl font-bold text-white mb-10">Jelajahi skill dan sertifikasi teratas</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
-            
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Sertifikasi berdasarkan Penerbit</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Sertifikasi Amazon Web Services (AWS)</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Six Sigma</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Microsoft</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Cisco</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Tableau</a></li>
-                    <li><a href="#" class="hover:underline">Lihat semua Sertifikasi</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Pengembangan Web</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Pengembangan Web</a></li>
-                    <li><a href="#" class="hover:underline">JavaScript</a></li>
-                    <li><a href="#" class="hover:underline">React JS</a></li>
-                    <li><a href="#" class="hover:underline">Angular</a></li>
-                    <li><a href="#" class="hover:underline">Java</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Sertifikasi TI</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Amazon AWS</a></li>
-                    <li><a href="#" class="hover:underline">AWS Certified Cloud Practitioner</a></li>
-                    <li><a href="#" class="hover:underline">AZ-900: Microsoft Azure Fundamentals</a></li>
-                    <li><a href="#" class="hover:underline">AWS Certified Solutions Architect - Associate</a></li>
-                    <li><a href="#" class="hover:underline">Kubernetes</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Kepemimpinan</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Kepemimpinan</a></li>
-                    <li><a href="#" class="hover:underline">Keahlian Manajemen</a></li>
-                    <li><a href="#" class="hover:underline">Manajemen Proyek</a></li>
-                    <li><a href="#" class="hover:underline">Produktivitas Pribadi</a></li>
-                    <li><a href="#" class="hover:underline">Kecerdasan Emosional</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Sertifikasi berdasarkan Skill</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Sertifikasi Keamanan Siber</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Manajemen Proyek</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Cloud</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Analisis Data</a></li>
-                    <li><a href="#" class="hover:underline">Sertifikasi Manajemen SDM</a></li>
-                    <li><a href="#" class="hover:underline">Lihat semua Sertifikasi</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Ilmu Data</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Ilmu Data</a></li>
-                    <li><a href="#" class="hover:underline">Python</a></li>
-                    <li><a href="#" class="hover:underline">Pembelajaran Mesin</a></li>
-                    <li><a href="#" class="hover:underline">ChatGPT</a></li>
-                    <li><a href="#" class="hover:underline">Pembelajaran Mendalam</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Komunikasi</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Keahlian Komunikasi</a></li>
-                    <li><a href="#" class="hover:underline">Keahlian Presentasi</a></li>
-                    <li><a href="#" class="hover:underline">Berbicara Di Depan Umum</a></li>
-                    <li><a href="#" class="hover:underline">Menulis</a></li>
-                    <li><a href="#" class="hover:underline">PowerPoint</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Analisis & Kecerdasan Bisnis</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Microsoft Excel</a></li>
-                    <li><a href="#" class="hover:underline">SQL</a></li>
-                    <li><a href="#" class="hover:underline">Microsoft Power BI</a></li>
-                    <li><a href="#" class="hover:underline">Analisis Data</a></li>
-                    <li><a href="#" class="hover:underline">Analisis Bisnis</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-black py-12 px-10 border-t border-gray-800">
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-8 mb-16">
-            
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Tentang</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Tentang kami</a></li>
-                    <li><a href="#" class="hover:underline">Karier</a></li>
-                    <li><a href="#" class="hover:underline">Hubungi kami</a></li>
-                    <li><a href="#" class="hover:underline">Blog</a></li>
-                    <li><a href="#" class="hover:underline">Investor</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Dapatkan aplikasi</a></li>
-                    <li><a href="#" class="hover:underline">Mengajar di Idemy</a></li>
-                    <li><a href="#" class="hover:underline">Paket dan Harga</a></li>
-                    <li><a href="#" class="hover:underline">Afiliasi</a></li>
-                    <li><a href="#" class="hover:underline">Bantuan dan Dukungan</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Idemy for Business</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Idemy Business</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Legal & Aksesibilitas</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:underline">Pernyataan aksesibilitas</a></li>
-                    <li><a href="#" class="hover:underline">Kebijakan privasi</a></li>
-                    <li><a href="#" class="hover:underline">Peta situs web</a></li>
-                    <li><a href="#" class="hover:underline">Persyaratan</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-center text-sm">
-            
-            <div class="flex items-center space-x-4 mb-6 md:mb-0">
-                <span class="text-3xl font-extrabold text-white tracking-tighter">idemy</span>
-                <span class="text-xs mt-1">© 2026 Idemy, Inc.</span>
-            </div>
-
-            <div class="mb-6 md:mb-0">
-                <a href="#" class="hover:underline">Pengaturan cookie</a>
-            </div>
-
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-                </svg>
-                <span>Bahasa Indonesia</span>
-            </div>
-            
-        </div>
-    </div>
-</footer>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.getElementById('slider');
-    if (!slider) return;
-
-    const totalItems = slider.children.length;
-    const itemsPerView = 3;
-    let index = 0;
-
-    function updateSlider() {
-        const width = 324;
-        slider.style.transform = `translateX(-${index * width}px)`;
-        updateDots();
-    }
-
-    window.nextSlide = function () {
-        if (index < totalItems - itemsPerView) {
-            index++;
-        } else {
-            index = 0;
-        }
-        updateSlider();
-    }
-
-    window.prevSlide = function () {
-        if (index > 0) {
-            index--;
-        } else {
-            index = totalItems - itemsPerView;
-        }
-        updateSlider();
-    }
-
-    function createDots() {
-        const dotContainer = document.getElementById('dots');
-        const totalDots = totalItems - itemsPerView + 1;
-
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('div');
-            dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 cursor-pointer transition";
-            dot.onclick = () => {
-                index = i;
-                updateSlider();
-            };
-            dotContainer.appendChild(dot);
-        }
-    }
-
-    function updateDots() {
-        const dots = document.querySelectorAll('#dots div');
-        dots.forEach((dot, i) => {
-            dot.classList.remove('bg-purple-600', 'scale-125');
-            dot.classList.add('bg-gray-300');
-
-            if (i === index) {
-                dot.classList.remove('bg-gray-300');
-                dot.classList.add('bg-purple-600', 'scale-125');
-            }
-        });
-    }
-
-    createDots();
-    updateSlider();
-});
-</script>
 
 @endsection
