@@ -1093,8 +1093,1739 @@
                     </ul>
                 </div>
             </li>
+         <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Pengembangan Personal <span>&rsaquo;</span>
+                </a>
 
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Transformasi Pribadi <span>&rsaquo;</span>
+                            </a>
 
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Bimbingan Kehidupan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemrograman Neurolinguistik (NLP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Filsafat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bimbingan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Emosional</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Produktivitas Pribadi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Waktu</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aplikasi Obsidian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ruang Kerja Notion</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Cepat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain PCB</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Agents & Agentic AI</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kepemimpinan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Manajemen</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Manajer</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Filsafat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bimbingan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Konflik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ISACA Advanced in AI Audit (AAIA)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengembangan Karier <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Wawancara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konstruksi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komununikasi Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengkodean Medis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbaikan Mobil</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemeriksaan Bangunan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dukungan TI/Teknis</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengasuhan Anak dan Hubungan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengasuhan Anak</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi Anak</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membangun Hubungan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konseling Pasangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Autisme</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cinta</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">P3K</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pernikahan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kencan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kebahagiaan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Bimbingan Kehidupan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manifestasi dan Hukum Tarik-Menarik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesadaran Mental</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cognitive Behavioral Therapy (CBT)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Meditasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi Positif</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Pribadi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Praktik Eksoterik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Reiki</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Tarot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Energi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terinspirasi Tuhan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Paranormal</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hipnoterapi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Astrologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Spiritual</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Catatan Akhasik</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Agama dan Spiritualitas <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Spiritualitas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Energi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Tarot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Reiki</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Spiritual</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kekristenan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Bimbingan Kehidupan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Alkitab</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Numerologi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Membangun Citra Pribadi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Citra Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Rapat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aplikasi Obsidian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">LinkedIn</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Presentasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Karier</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Influencer</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kreativitas <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Kreatif</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Cerita  dan Penulisan Naskah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Buku</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bercerita</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teori Warna</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Fiksi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Novel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Seni</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengaruh <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Persuasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Negosiasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Tubuh</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Mempengaruhi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Skill Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Kreatif</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Penghargaan Diri & Kepercayaan Diri <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kepercayaan Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Harga Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikoterapi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bimbingan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penerimaan Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kecemasan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengelolaan Stres <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kecemasan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Emosional</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengelolaan Amarah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bimbingan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ketangguhan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Duka</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesadaran Mental</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Skill Memori dan Belajar <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Memori</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Cepat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Belajar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Belajar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penguasaan Fokus</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aplikasi Obsidian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemetaan Pikiran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berpikir Kritis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Pribadi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Motivasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Neuroplastisitas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tata Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemrograman Neurolinguistik (NLP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bimbingan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ilmu Saraf</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Filsafat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menetapkan Sasaran</a></li>
+                                 </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengembangan Diri Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Proyek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berpikir Kritis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbaikan Mobil</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Astrologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+             <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Desain <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Web <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">WordPress</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Figma</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Aplikasi Seluler</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CSS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Web</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Antarmuka Pengguna</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Webflow</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Grafis & Ilustrasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Grafis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menggambar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Illustrator</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Photoshop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Procreate Digital Illustration App</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe InDesign</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lukisan Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Karakter</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Alat Desain <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AutoCAD</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SOLIDWORKS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Figma</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Rhino 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Procreate Digital Illustration App</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Grafis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe After Effects</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Pengalaman Pengguna <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">User Experience (UX) Design</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Figma</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Aplikasi Seluler</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">UX Writing (Penulisan Pengalaman Pengguna)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Produk</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Antarmuka Pengguna</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemikiran Desain</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aksesibilitas Web</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Web</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Game <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Seni Piksel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Unreal Engine</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Blender</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Unity</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Texturing Game</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">VFX Visual Effects</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lukisan Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan 3D</a></li>
+                                 </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            3D dan Animasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Blender</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Autodesk Fusion</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe After Effects</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pencetakan 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Grafis Gerakan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Animasi 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemahatan 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Unreal Engine</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Fashion <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menjahit</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Pola (fashion)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Perhiasan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fashion</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Illustrator</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Fashion 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Perhiasan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tekstil</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Arsitektur <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Revit</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AutoCAD</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Building Information Modeling (BIM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">LEED</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SketchUp</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ARCHICAD</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Rhino 3D</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Interior <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SketchUp</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Blender</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kelistrikan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teori Warna</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Revit</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Listrik</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Pemasaran <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Digital <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Media Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Internet</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Animasi 3D</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Iklan Facebook</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Analytics</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Saluran Penjualan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Optimasi Mesin Pencari <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Optimasi Mesin Pencari (SEO)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">WordPress</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Riset Kata Kunci</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Profile Bisnis (Google Bisnisku)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SEO Lokal</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Audit SEO</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Tautan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konsol Penelusuran Google</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Media Sosial <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Media Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Instagram</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Facebook</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Iklan Facebook</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran TikTok</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten AI</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Branding <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pertumbuhan Audiensi YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengelolaan Citra Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Merek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Citra Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">LinkedIn</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Merchandising</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Dasar-Dasar Pemasaran <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Copywriting</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Acara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">MBA</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Analitik dan Otomatisasi Pemasaran <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Analytics</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">HubSpot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Agents & Agentic AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analitik Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Tag Manager</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Otomatisasi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Gemini (Bard)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Marketo</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Hubungan Masyarakat <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Media</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bercerita</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komunikasi Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Acara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemberian Sponsor</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Iklan Berbayar <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Ads (Adwords)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Ads Certification</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Iklan Facebook</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Periklanan PPC</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Periklanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lalu Lintas Situs Web</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">LinkedIn</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Copywriting</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Periklanan Terprogram</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Video dan Seluler <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pertumbuhan Audiensi YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Media Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Produksi Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Aplikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Konten <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Copywriting</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Konten</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Blogging</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran YouTube</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kiat Pertumbuhan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Iklan Facebook</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Account-Based Marketing (ABM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Saluran Penjualan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Media Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pendapatan Pasif</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Optimasi Mesin Pencari (SEO)</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Afiliasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">TikTok Shop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Amazon Affiliate Marketing</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Optimasi Mesin Pencari (SEO)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ClickBank</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Ads (Adwords)</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Produk <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Afiliasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Amazon Kindle Direct Publishing (KDP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penjualan B2B</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Produk</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SaaS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penerbitan Mandiri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemasaran Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Copywriting</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Optimalisasi Laju Konversi (CRO)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Acara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Pemasaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Media Sosial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Penjualan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi Pemasaran</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+             <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Gaya Hidup <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Seni dan Kerajinan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menggambar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Melukis dengan Cat Air</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membuat Sketsa</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lukisan Cat Akrilik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menggambar Tokoh</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Melukis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Lilin</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Portraiture</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menggambar dengan Pensil</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kecantikan dan Makeup <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Seni Makeup</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Seni Menghias Kuku</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perawatan Kulit</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecantikan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Parfum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Kecantikan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menata Rambut</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kosmetik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengencangan Wajah</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Praktik Eksoterik<span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Reiki</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Tarot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Energi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terinspirasi Tuhan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Paranormal</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hipnoterapi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Astrologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyembuhan Spiritual</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Catatan Akhasik</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Makanan dan Minuman<span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Memasak</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kopi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Apresiasi Anggur dan Oenologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kue</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Koktail dan Bartending</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Roti Sourdough</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CakePHP</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Memanggang Roti</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Memanggang Oven</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Gaming <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Catur</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Poker</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">eSports</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Magic Tricks</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">League of Legends</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Karakter</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Twitch</a></li>
+                                   
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Mempercantik Rumah & Berkebun <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Woodworking and Carpentry</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kelistrikan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kabel Listrik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bertaman</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbaikan Rumah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Permakultur</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hidroponik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pertanian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Beternak Lebah</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Perawatan dan Pelatihan Hewan Piaraan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Anjing</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perawatan Anjing</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perilaku Anjing</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perawatan Hewan Piaraan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Hewan Piaraan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Kuda</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kedokteran Hewan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Nutrisi Hewan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Perjalanan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kiat Perjalanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Perjalanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Portugis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Perjalanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Navigasi Darat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hosting Airbnb</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penjurnalan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Digital Nomad</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Gaya Hidup Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemrograman Neurolinguistik (NLP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cognitive Behavioral Therapy (CBT)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">EFT (Emotional Freedom Techniques)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Meditasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Emosional</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Buku Komik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Bimbingan Kehidupan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penerbangan</a></li>
+                                   
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+             <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Fotografi & Video <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Fotografi Digital <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi iPhone</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fungsionalitas Kamera Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Lightroom</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Seluler</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">GIMP</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Photoshop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Affinity Photo</a></li>
+                                </ul>
+                            </div>
+                        </li>  
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Fotografi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komposisi Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Potret</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Produk</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Jalanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Seluler</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi iPhone</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Lanskap</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Fotografi Potret <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pencahayaan Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berpose</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Potret Keluarga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Photoshop Retouching</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengeditan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Photoshop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi iPhone</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Alat Fotografi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Lightroom</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fungsionalitas Kamera Digital</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Affinity Photo</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengeditan Gambar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Photoshop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Photoshop Retouching</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Darktable</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pixelmator</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Fotografi Komersial <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Real Estate</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Arsitektur</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Pernikahan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Produk</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Photoshop Retouching</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Makanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Drone dan Aerial</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Desain Video <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengeditan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DaVinci Resolve</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe Premiere Pro</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CapCut</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Produksi Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Film</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Adobe After Effects</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gradasi Warna</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten AI</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Fotografi & Video Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Konten AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pertumbuhan Audiensi YouTube</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengeditan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DaVinci Resolve</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi Drone dan Aerial</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fotografi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Video</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+             </li>
+              <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Kesehatan dan Kebugaran <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kebugaran <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pilates</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Pengajar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Anatomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Latihan Kekuatan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Pelatih Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CompTIA Network+</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Latihan Barre</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Olahraga di Rumah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Latihan Peregangan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kesehatan Umum<span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat Wajah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Herbalisme</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tai Chi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Refleksiologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Fisik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengobatan Alami</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengobatan Holistik</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Olahraga <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berenang</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi Olahraga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sepak Bola</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Golf</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembinaan Olahraga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tai Chi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berlari</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tenis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Olahraga</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Nutrisi & Diet <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Nutrisi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Pelatih Kesehatan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Diet</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mengurangi Berat Badan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Nutrisi Olahraga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan Usus</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Bahaya & Pengendalian Titik Kritis (HACCP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Herbalisme</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Yoga Wajah</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Yoga <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Pernapasan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Chair Yoga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Yoga Wajah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pranayama</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Yoga Prenatal</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kundalini</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ayurweda</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Latihan Peregangan</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kesehatan Mental <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Somatik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cognitive Behavioral Therapy (CBT)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikoterapi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Seni</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perawatan Berbasis Trauma</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Penerimaan dan Komitmen (ACT)</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Martial Arts & Pertahanan Diri <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Seni Bela Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tai Chi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Krav Maga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pertahanan Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Jujitsu Brasil</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tinju</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Wing Chun</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kung Fu</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tempur Jarak Dekat</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Keselamatan & P3K <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">P3K</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan dan Keselamatan Tempat Kerja</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">OSHA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keselamatan Kebakaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Survival</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan Masyarakat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Advanced Trauma Life Support (ATLS)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keamanan Fisik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Herbalisme</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Menari <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bermain Poi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dansa Salsa</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tari Perut</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bachata</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Somatik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menari Hip Hop</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Balet</a></li>
+                        </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Meditasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konseling</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Reiki</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Qigong</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesadaran Mental</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kundalini</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tai Chi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Somatik</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kesehatan & Kebugaran Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat Wajah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pijat Olahraga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Qigong</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perawatan Kulit</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengkodean Medis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pilates</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terminologi Medis</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+             <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Musik <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                          Instrumen <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gitar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Piano</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Alat Musik Keyboard</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gitar Bas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Drum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akor Piano</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Viola</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Harmonika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ukulele</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Produksi Musik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ableton Live</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Logic Pro</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Micing Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">FL Studio</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komposisi Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Audio</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Beat</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Dasar-Dasar Musik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teori Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komposisi Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Musik Elektronik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menciptakan Lagu</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Telinga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Harmoni (Musik)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ABRSM</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Piano</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Vokal <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menyanyi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pelatihan Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kepercayaan Diri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akting Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Musik Rap</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Musik Raga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Yoga</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Pernapasan</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Teknik Musik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DJ</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gitar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Membaca Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komposisi Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gitar Fingerstyle</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Piano</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Gitar Akustik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teori Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Improvisasi Musik</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Perangkat Lunak Musik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">FL Studio</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Logic Pro</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Produksi Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ableton Live</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DJ</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">GarageBand</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Produksi Audio</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">REAPER</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teori Musik</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Musik Lain <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DJ</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menciptakan Lagu</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Terapi Suara</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Luthiery</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Lirik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mixing Musik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Jimbe</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+             </li>
+              <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Pengajaran & Akademis <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Teknik <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sirkuit Listrik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Listrik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Elektronika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kelistrikan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Mesin</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Sipil</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Otomotif</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Energi Surya</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Rekayasa Daya</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kemanusiaan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Filsafat</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sejarah Seni</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kekristenan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sejarah Dunia</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Statistika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berpikir Kritis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sastra Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Autisme</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sejarah</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Matematika <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kalkulus</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Statistika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aljabar Linear</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Aljabar</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Model Bahasa Besar (LLM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Matematika Diskret</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Probabilitas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Trigonometri</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Sains <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Fisika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Riset Kinis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kimia</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengkodean Medis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Industri Farmasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Anatomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Biologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pharmacovigilance</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Professional Coder (CPC)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pendidikan Online <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain Intruksional</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penyusunan Kursus Online</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Proyek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Proyek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mengajar Online</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft 365 (Office)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Certified Associate in Project Management (CAPM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Online</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Ilmu Sosial <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Psikologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kriminologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konseling</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Intelijen (keamanan)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ekonomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Makroekonomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hubungan Internasional</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Metode Riset</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hukum</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pembelajaran Bahasa <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Jerman</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Spanyol</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Prancis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tata Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Jepang</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Percakapan Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Tionghoa Mandarin</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kosakata Bahasa Inggris</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pelatihan Pengajar <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan dan Keselamatan Tempat Kerja</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Melatih Pelatih</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Generative AI (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pendidikan Anak Usia Dini</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Autisme</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mengajar Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mengajar Online</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Persiapan Tes <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">IELTS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">TOEFL</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Project Management Professional (PMP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI PMBOK</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canadian English Language Proficiency Index Program (CELPIP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bahasa Inggris</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Mengikuti Tes</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Statistika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Cognitive Project Management in AI (CPMAI)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pengajaran dan Akademik Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penagihan Medis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Metode Riset</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Makalah Riset</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Astrologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengkodean Medis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Estimasi Konstruksi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Layanan Kesehatan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Praktik Manufaktur yang Baik (GMP)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+              </li>
 
     </div>
 </div>
