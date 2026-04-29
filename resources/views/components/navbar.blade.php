@@ -1099,7 +1099,7 @@
     </div>
 </div>
 
-        <a href="#" class="text-sm hover:text-purple-600 whitespace-nowrap">Berlangganan</a>
+        <a href="{{ url('/berlangganan') }}" class="text-sm hover:text-purple-600 whitespace-nowrap">Berlangganan</a>
     </div>
 
     <div class="flex-grow mx-6">
