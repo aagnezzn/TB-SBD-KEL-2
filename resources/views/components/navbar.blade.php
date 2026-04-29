@@ -316,12 +316,786 @@
                 </div>
             </li>
 
-            <li>
-                <a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
-                Bisnis
+            <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                    Bisnis <span>&rsaquo;</span>
                 </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kewirausahaan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Truck Dispatching</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Kewirausahaan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Model Bahasa Besar (LLM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Online</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bekerja Lepas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Bisnis</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Komunikasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Komunikasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Presentasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Berbicara Di Depan Umum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Komunikasi Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Fiksi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bercerita</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Layanan Pelanggan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ketegasan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Manajemen <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Project Management Professional (PMP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI PMBOK</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Produk</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kepemimpinan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Manajemen</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Strategi Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ISO 9001</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Diploma Level 4 CIPS dalam Pengadaan dan Pasokan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Penjualan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keahlian Penjualan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penjualan B2B</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Penjualan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Layanan Pelanggan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">LinkedIn</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Telepon Buta</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Hubungan Pelanggan (CRM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Prospek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kesuksesan Pelanggan (CSM)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Strategi Bisnis <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konsultasi Manajemen</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Online</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Diploma Profesional Level 6 CIPS dalam Pengadaan dan Pasokan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">The Open Group Certified: TOGAF Enterprise Architecture Foundation</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lingkungan, Sosial, dan Tata Kelola (ESG)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">TOGAF</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Operasi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sertifikasi Lean Six Sigma Green Belt</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Rantai Pasokan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">n8n</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kualitas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Logistik</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Quality Engineer (CQE)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Operasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sertifikasi Lean Six Sigma Black Belt</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Skill Asisten Virtual</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Manajemen Proyek <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Project Management Professional (PMP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI Certified Associate in Project Management (CAPM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PMI PMBOK</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Scrum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Agile</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PRINCE2</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Hukum Bisnis <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">GDPR</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Information Privacy Professional (CIPP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hukum</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kepatuhan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Undang-Undang Kecerdasan Buatan UE</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hukum Kontrak</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">HIPAA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kontrak</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Analisis & Kecerdasan Bisnis <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Power BI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SQL</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan Data</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Data</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Claude AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Bisnis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Copilot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Tableau</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ilmu Data</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Sumber Daya Manusia <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Merekrut dan Memperkerjakan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analitik SDM</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Profesional in Human Resources (PHR)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembelajaran dan Pengembangan Korporat (L&D)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Pembayaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hukum Ketenagakerjaan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Society for Human Resource Management Senior Certified Professional (SHRM-SCP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Society for Human Resource Management Certified Professional (SHRM-CP)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Industri <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Piping</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ahli Kunci</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Industri Minyak dan Gas</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Teknik Kontrol</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Perjalanan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kesehatan dan Keselamatan Tempat Kerja</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Praktik Manufaktur Baik (GMP)</a></li>
+                                </ul>
+                            </div>
+                        </li> 
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            E-Commerce <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Amazon FBA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dropshipping</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Shopify</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Shopify Dropshipping</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Etsy</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menjual di Amazon</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mercado Libre</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bisnis Online</a></li>
+                                 </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Media <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Suno AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ComfyUI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengembangan Karier</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Menulis Kreatif</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Canva</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Buku Audio</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembuatan Video</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Midjourney</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Real Estate <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Investasi Real Estate</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hipotek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Hosting Airbnb</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Konstruksi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Renovasi-Jual Real Estate</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Properti</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemasaran Real Estate</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Bisnis Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Claude AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">QuickBooks</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">GoHighLevel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Skill Entri Data</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penulisan Hibah</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ruang Kerja Notion</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </li>
-        </ul>
+                <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Keuangan & Akuntansi <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Akuntansi & Laporan Keuangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pembukuan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">QuickBooks</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">TallyPrime (Tally.ERP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Xero</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Pembayaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">International Financial Reporting Standards (IFRS)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Keuangan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Kepatuhan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Anti-Pencucian Uang (AML)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kriminologi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Lingkungan, Sosial, dan Tata Kelola (ESG)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analitik Penipuan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Kepatuhan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Anti-Money Laundering Specialist (CAMS)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kontrol Internal</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Entereprise Risk Management (ERM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sarbanes-Oxley (SOX)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Cryptocurrency & Blockchain<span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cryptocurrency</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Blockchain</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Binance</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Bitcoin</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Harian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Teknis (keuangan)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Decentralized Finance (DeFi)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Pembayaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Bitcoin</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kriptografi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Ekonomi <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Makroekonomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mikroekonomi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ekonomi Global</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Stata</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ekonomi Perilaku</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ekonometri</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Laporan Keuangan</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Keuangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keuangan Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbankan Investasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keuangan Perusahaan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbankan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Big Data</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Chartered Financial Analyst (CFA)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Sertifikasi dan Persiapan Ujian Keuangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Chartered Financial Analyst (CFA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Auditor Internal Bersertifikasi (CIA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">FINRA Securities Industry Essentials (SIE)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Management Accountant (CMA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sertifikasi ANBIMA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Association of Chartered Certified Accountants (ACCA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Certified Fraud Examiner (CFE)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pemodelan dan Analisis Keuangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Excel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perbankan Investasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Python</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Keuangan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Investasi dan Perdagangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Saham</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Investasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Jual-Beli Forex</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Harian</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Teknis (keuangan)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Algoritmis</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Opsi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pasar Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perdagangan Keuangan</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Alat Manajemen Keuangan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Quickbooks</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP FICO</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Xero</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Excel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keuangan Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analisis Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pemodelan Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Analitik Excel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perangkat Lunak Akuntansi Sage</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Pajak <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pengaturan Pajak</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pajak Pertambahan Nilai (PPN)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Pajak Barang dan Jasa (PBJ)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Harga Transfer</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keuangan Perusahaan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sistem Kontrol</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Keuangan</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Keuangan & Akuntansi Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Pembayaran</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Auditor Internal Bersertifikat (CIA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perencanaan Keuangan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keuangan Perusahaan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Asuransi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ekuitas Pribadi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Akuntansi Manajemen</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Audit Internal</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                TI & Perangkat Lunak <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Sertifikasi TI <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AWS Certified Solutions Architect Associate</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CompTIA Security+</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AWS Certified Cloud Practitioner</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CompTIA A+</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Cisco Certified Network Associate (CCNA)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">CompTIA Network+</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Amazon AWS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keamanan Informasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Artificial Intelligence Governance Professional (AIGP)</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Jaringan dan Keamanan <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ethical Hacking</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keamanan Cyber</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Keamanan Jaringan</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kubernetes</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Jaringan TI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">FortiGate</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Sumber Terbuka (OSINT)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Uji Penetrasi</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Audit TI</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Perangkat Keras <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PLC</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Sistem Tertanam</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Elektronika</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Arduino</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mikrokontroler</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Embedded C</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">KiCad</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Desain PCB</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Perangkat Keras Komputer</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Sistem Operasi dan Server <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Linux</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Administrasi Linux</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Windows Server</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Administrasi Sistem</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Proxmox VE</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PowerShell</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Active Directory</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Shell Scripting</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SQL</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            TI & Perangkat Lunak Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">DevOps</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Agents & Agentic AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kode Claude</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Python</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Claude AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">n8n</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="group/level2">
+                <a href="#" class="block px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                Produktivitas Kantor <span>&rsaquo;</span>
+                </a>
+
+                <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level2:opacity-100 group-hover/level2:visible transition-all duration-200">
+                    <ul>
+                        
+                        <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Microsoft <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Excel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Power BI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft 365 (Office)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Copilot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PowerPoint</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Formula dan Fungsi Excel</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Excel VBA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Proyek Microsoft</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft SharePoint</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Apple <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-dasar Mac</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">iMovie</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">macOS</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Apple Keynote</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Dasar-Dasar Produk Apple</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Numbers For Mac</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Mac Pages</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft 365 (Office)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Excel</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Google <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Spreadsheet</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Workspace (G Suite)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google NotebookLM</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Gemini (Bard)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Drive</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Apps Script</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Produktivitas Gmail</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Looker Studio (Data Studio)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google AppSheet</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            SAP <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP Materials Management (SAP MM)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP S/4HANA</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP ABAP</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP FICO</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP Business Technology Platform (SAP BTP)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Penjualan dan Distribusi SAP (SAP SD)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP HCM</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">SAP Business One</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                           Oracle <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle Primavera</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle Fusion HCM</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle SQL</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">PL/SQL</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Manajemen Proyek</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle ERP</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle Database</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Administrasi Database</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Oracle Data Integrator</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <li class="group/level3">
+                            <a href="#" class="px-6 py-3 flex justify-between items-center text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-700 font-medium">
+                            Produktivitas Kantor Lainnya <span>&rsaquo;</span>
+                            </a>
+
+                            <div class="absolute top-0 left-full w-[280px] min-h-full bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover/level3:opacity-100 group-hover/level3:visible transition-all duration-200">
+                                <h4 class="px-6 py-3 text-xs font-bold text-gray-400 uppercase border-b border-gray-100">Topik Populer</h4>
+                                <ul class="py-2">
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">ChatGPT</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Claude AI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Kecerdasan Buatan (AI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Power BI</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Google Gemini (Bard)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Ruang Kerja Notion</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">AI Generatif (GenAI)</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">Microsoft Copilot</a></li>
+                                    <li><a href="#" class="block px-6 py-3 text-sm text-gray-700 hover:text-purple-700">n8n</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
     </div>
 </div>
 
