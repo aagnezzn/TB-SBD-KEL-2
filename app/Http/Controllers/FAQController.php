@@ -10,7 +10,7 @@ class FAQController extends Controller
     public function index()
     {
         $faqs = FAQ::all();
-
+        
         return view('berlangganan', compact('faqs'));
     }
 }
