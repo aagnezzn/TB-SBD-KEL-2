@@ -16,3 +16,7 @@ Route::get('/berlangganan', [FAQController::class, 'index']);
 Route::get('/mengajar-di-idemy', function () {
     return view('mengajar');
 })->name('mengajar');
+
+Route::get('/keranjang', function () {
+    return view('keranjang');
+});

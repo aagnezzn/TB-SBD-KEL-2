@@ -2898,9 +2898,9 @@
 <div class="relative group inline-block">
     
     <!-- Tombol Keranjang (Kode aslimu) -->
-    <button class="p-2.5 hover:bg-gray-100 rounded-full text-gray-700 hover:text-purple-700 transition-colors">
-        <i data-feather="shopping-cart" class="w-5 h-5"></i>    
-    </button>
+    <a href="{{ url('/keranjang') }}" class="inline-flex p-2.5 hover:bg-gray-100 rounded-full text-gray-700 hover:text-purple-700 transition-colors">
+    <i data-feather="shopping-cart" class="w-5 h-5"></i>    
+</a>
 
     <!-- 2. Area Popup: Posisi absolute, tersembunyi, dan akan muncul saat "group" di-hover -->
     <div class="absolute right-0 top-full pt-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
