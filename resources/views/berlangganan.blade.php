@@ -254,36 +254,42 @@
     </div>
 </section>
 
-<section class="max-w-4xl mx-auto px-6 py-20 mt-10">
+<<section class="max-w-4xl mx-auto px-6 py-20 mt-10">
     <div class="md:ml-32">
         <h2 class="text-3xl font-bold text-gray-900 mb-10">
             Pertanyaan yang sering diajukan
         </h2>
 
-        <div class="space-y-6" x-data="{ activeFaq: null }">
-            
-            @foreach($faqs as $index => $faq)
-                <div class="border-b border-gray-200 pb-4">
+        <div class="flex flex-col"> 
+            @foreach($faqs as $faq)
+                <div class="border-t border-gray-300 w-full" x-data="{ isOpen: false }">
                     <button 
-                        @click="activeFaq === {{ $index }} ? activeFaq = null : activeFaq = {{ $index }}" 
-                        class="w-full flex justify-between items-center text-left focus:outline-none">
-                        <span class="text-lg font-bold text-gray-800">{{ $faq->question }}</span>
+                        @click="isOpen = !isOpen"
+                        type="button"
+                        class="w-full flex justify-between items-center text-left py-5 focus:outline-none group">
+                        <span class="text-lg font-semibold text-gray-800 group-hover:text-purple-700 transition-colors pr-8">
+                            {{ $faq->question }}
+                        </span>
                         <svg 
-                            class="w-5 h-5 text-gray-900 transform transition-transform duration-200" 
-                            :class="activeFaq === {{ $index }} ? 'rotate-180' : ''" 
+                            class="w-6 h-6 text-gray-900 transform transition-transform duration-300 flex-shrink-0" 
+                            :class="isOpen ? 'rotate-180' : ''" 
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
 
                     <div 
-                        x-show="activeFaq === {{ $index }}" 
-                        x-transition
-                        class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        x-show="isOpen" 
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-cloak
+                        class="pb-8 text-gray-700 leading-relaxed text-base">
                         {{ $faq->answer }}
                     </div>
                 </div>
             @endforeach
+            <div class="border-t border-gray-300"></div>
         </div>
     </div>
 </section>
