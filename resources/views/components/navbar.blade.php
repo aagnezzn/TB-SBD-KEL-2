@@ -2894,9 +2894,27 @@
     </div>
 </div>
     
-    <button class="p-2.5 hover:bg-gray-100 rounded-full text-gray-700 hover:text-purple-700">
-        <i data-feather="shopping-cart" class="w-5 h-5"></i>
+   <!-- 1. Wadah Utama: Diberi class "relative" dan "group" -->
+<div class="relative group inline-block">
+    
+    <!-- Tombol Keranjang (Kode aslimu) -->
+    <button class="p-2.5 hover:bg-gray-100 rounded-full text-gray-700 hover:text-purple-700 transition-colors">
+        <i data-feather="shopping-cart" class="w-5 h-5"></i>    
     </button>
+
+    <!-- 2. Area Popup: Posisi absolute, tersembunyi, dan akan muncul saat "group" di-hover -->
+    <div class="absolute right-0 top-full pt-4 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
+        
+        <!-- 3. Desain Kotak Putih -->
+        <div class="bg-white border border-gray-200 shadow-xl rounded-lg p-6 text-center">
+            <p class="text-gray-500 text-base mb-4">Keranjang Anda kosong.</p>
+            <a href="#" class="text-[#5624d0] font-bold text-base hover:text-purple-900 transition-colors">
+                Terus belanja
+            </a>
+        </div>
+
+    </div>
+</div>
 
     <button class="border border-purple-700 text-purple-700 px-5 py-2 font-bold text-sm rounded-lg hover:bg-purple-50 transition-all duration-200">
         Log in
