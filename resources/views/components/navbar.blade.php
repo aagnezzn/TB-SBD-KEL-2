@@ -2874,7 +2874,7 @@
      @mouseenter="open = true" 
      @mouseleave="open = false">
      
-    <a href="#" class="text-sm text-gray-800 hover:text-purple-700 hidden lg:block px-2 py-4">
+    <a href="{{ route('mengajar') }}" class="text-sm text-gray-800 hover:text-purple-700 hidden lg:block px-2 py-4">
         Mengajar di Idemy
     </a>
 
@@ -2887,9 +2887,9 @@
             Jadikan pengetahuan Anda sebagai peluang untuk menjangkau jutaan orang di seluruh dunia.
         </p>
         
-        <button class="w-full bg-purple-700 text-white font-bold py-3 text-sm hover:bg-purple-800 transition-colors">
+        <a href="{{ route('mengajar') }}" class="w-full bg-purple-700 text-white font-bold py-3 text-sm hover:bg-purple-800 transition-colors">
             Pelajari selengkapnya
-        </button>
+        </a>
         
     </div>
 </div>

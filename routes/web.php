@@ -12,3 +12,7 @@ Route::get('/berlangganan', function () {
 });
 
 Route::get('/berlangganan', [FAQController::class, 'index']);
+
+Route::get('/mengajar-di-idemy', function () {
+    return view('mengajar');
+})->name('mengajar');
