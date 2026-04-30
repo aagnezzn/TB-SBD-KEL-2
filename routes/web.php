@@ -20,3 +20,10 @@ Route::get('/mengajar-di-idemy', function () {
 Route::get('/keranjang', function () {
     return view('keranjang');
 });
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+});

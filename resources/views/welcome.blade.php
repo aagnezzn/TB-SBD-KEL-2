@@ -9,11 +9,11 @@
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative h-full flex items-center">
             <div class="bg-white p-6 rounded shadow w-[450px] ml-10">
-                <h2 class="text-3xl font-bold mb-3">Bangun skill yang diminati</h2>
-                <p class="text-gray-600 mb-4">Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata</p>
+                <h2 class="text-3xl font-bold mb-3">{{__('Build Skills')}}</h2>
+                <p class="text-gray-600 mb-4">{{ __('Course access')}}</p>
                 <div class="flex space-x-3">
-                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">Dapatkan Paket Personal</button>
-                    <button class="border border-black font-bold px-4 py-2 rounded">Pelajari AI</button>
+                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">{{__('Get')}}</button>
+                    <button class="border border-black font-bold px-4 py-2 rounded">{{__('Learn')}}</button>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="grid grid-cols-4 gap-8 items-start">
         <div>
             <h2 class="text-3xl font-bold mb-4">
-                Pelajari skill <i>penting</i><br>terkait karier dan kehidupan
+            {{__('Learn skills')}} <i>penting</i><br>terkait karier dan kehidupan
             </h2>
             <p class="text-gray-600">
                 Udemy membantu Anda membangun skill yang dibutuhkan dengan cepat dan memajukan karier Anda di pasar kerja yang terus berubah.

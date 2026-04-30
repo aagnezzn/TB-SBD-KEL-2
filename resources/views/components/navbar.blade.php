@@ -2948,7 +2948,7 @@
             </div>
 
             <div class="grid grid-cols-4 gap-y-4 gap-x-2">
-                <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">English</a>
+                <a href="/lang/en" class="text-sm p-2  rounded {{ app() -> getLocale() == 'en'? 'border border-gray-800 text-gray-900 font bold' : 'text-gray-700 hover:text-purple-700' }}">English</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">Italiano</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">Română</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">中文(繁體)</a>
@@ -2968,7 +2968,7 @@
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">Türkçe</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2"></a>
 
-                <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2 border border-gray-800 rounded">Bahasa Indonesia</a>
+                <a href="/lang/id" class="text-sm p-2  rounded {{ app() -> getLocale() == 'id'? 'border border-gray-800 text-gray-900 font bold' : 'text-gray-700 hover:text-purple-700' }}">Bahasa Indonesia</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">Português</a>
                 <a href="#" class="text-sm text-gray-700 hover:text-purple-700 p-2">中文(简体)</a>
             </div>
