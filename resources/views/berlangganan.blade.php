@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script src="https://unpkg.com/alpinejs" defer></script>
 
 @section('content')
 
@@ -253,78 +254,41 @@
     </div>
 </section>
 
-
 <section class="max-w-4xl mx-auto px-6 py-20 mt-10">
     <div class="md:ml-32">
         <h2 class="text-3xl font-bold text-gray-900 mb-10">
             Pertanyaan yang sering diajukan
         </h2>
 
-        <div class="space-y-6">
+        <div class="space-y-6" x-data="{ activeFaq: null }">
             
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Apa itu Paket Personal?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Paket Personal adalah langganan bulanan yang memberikan Anda akses ke pilihan 28.000 kursus teratas yang telah dikurasi. Koleksi ini menampilkan kursus-kursus mengenai topik-topik profesional yang diminati — termasuk pengembangan web, sertifikasi TI, ilmu data, desain web, pemasaran digital, dan kepemimpinan — bersama dengan pilihan topik pengembangan diri, seperti pembelajaran bahasa, seni dan kreativitas, dan keuangan pribadi.
-                </div>
-            </div>
+            @foreach($faqs as $index => $faq)
+                <div class="border-b border-gray-200 pb-4">
+                    <button 
+                        @click="activeFaq === {{ $index }} ? activeFaq = null : activeFaq = {{ $index }}" 
+                        class="w-full flex justify-between items-center text-left focus:outline-none">
+                        <span class="text-lg font-bold text-gray-800">{{ $faq->question }}</span>
+                        <svg 
+                            class="w-5 h-5 text-gray-900 transform transition-transform duration-200" 
+                            :class="activeFaq === {{ $index }} ? 'rotate-180' : ''" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
 
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Apa beda Paket Personal dengan membeli kursus?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Dengan Paket Personal, Anda mendapat akses bulanan ke lebih dari 28.000 kursus berperingkat teratas dan aktivitas praktik dalam kategori teknologi, bisnis, dan pribadi terpopuler. Saat membeli satu kursus Idemy, Anda mendapat akses seumur hidup hanya ke kursus tersebut dan materi kursusnya.
+                    <div 
+                        x-show="activeFaq === {{ $index }}" 
+                        x-transition
+                        class="mt-4 text-gray-600 leading-relaxed text-sm">
+                        {{ $faq->answer }}
+                    </div>
                 </div>
-            </div>
-
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Bagaimana kursus dipilih untuk Paket Personal?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Kami mengevaluasi dan menambahkan kursus baru secara berkala berdasarkan kualitas instruktur, ulasan pembelajar, dan relevansinya dengan tren industri saat ini.
-                </div>
-            </div>
-
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Bagaimana dan kapan saya akan dikenakan biaya?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Metode pembayaran Anda akan ditagih secara otomatis setiap bulan atau setiap tahun sesuai dengan paket yang Anda pilih, dihitung dari tanggal Anda pertama kali berlangganan.
-                </div>
-            </div>
-
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Bagaimana cara saya membatalkan langganan saya?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Anda dapat membatalkan kapan saja melalui halaman Pengaturan Akun Anda. Setelah dibatalkan, Anda masih memiliki akses ke Paket Personal hingga akhir periode penagihan Anda saat ini.
-                </div>
-            </div>
-
-            <div class="border-b border-gray-200 pb-4">
-                <button class="faq-button w-full flex justify-between items-center text-left focus:outline-none">
-                    <span class="text-lg font-bold text-gray-800">Apakah semua kursus Idemy tercakup dalam Paket Personal?</span>
-                    <svg class="w-5 h-5 text-gray-900 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-answer mt-4 text-gray-600 leading-relaxed text-sm hidden">
-                    Tidak semua. Paket Personal berisi koleksi 28.000+ kursus berperingkat tertinggi yang kami kurasi secara khusus. Jika ada kursus yang tidak termasuk, Anda masih bisa membelinya secara individual.
-                </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 </section>
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
