@@ -1,8 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
+<!--sub-navbar-->
+@auth
+<div class="hidden lg:block bg-white border-b border-gray-200 relative">
+    <div class="max-w-[1340px] mx-auto px-4">
+        <ul class="flex justify-between items-center py-3">
+            @foreach($navCategories as $mainCat)
+            <li class="group/subnav static">
+                <a href="/category/{{ $mainCat->slug }}" class="text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-normal px-2 capitalize">
+                    {{ $mainCat->name }}
+                </a>
+                <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-screen left-0 top-full z-[100] py-4 shadow-xl">
+                    <div class="max-w-[1340px] mx-auto px-4 flex justify-center space-x-10">
+                        @foreach($mainCat->children->take(5) as $subCat)
+                        <a href="/category/{{ $subCat->slug }}" class="text-[13px] font-normal text-white hover:text-gray-300 whitespace-nowrap transition-colors capitalize">
+                            {{ $subCat->name }}
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endauth
 
-<section class="px-10 mt-4">
+<main class="min-h-screen bg-white">
+    @auth
+        {{-- === TAMPILAN SETELAH LOGIN (DASHBOARD) === --}}
+        
+        {{-- Sapaan User --}}
+        <section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
+            <div class="w-16 h-16 bg-[#1c1d1f] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                {{ substr(Auth::user()->name, 0, 1) }}
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
+                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
+            </div>
+        </section>
+
+        {{-- Grid Kursus Rekomendasi --}}
+        <section class="max-w-[1340px] mx-auto px-4 pb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
+            <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
+                {{-- Copy-paste kode Card Kursus yang aku kasih sebelumnya di sini --}}
+            </div>
+        </section>
+
+    @else
+        {{-- === TAMPILAN SEBELUM LOGIN (GUEST) === --}}
+        <section class="px-10 mt-4">
     <div class="max-w-[1350px] mx-auto">
     <div class="h-[350px] relative rounded-lg overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-right" style="background-image: url('{{ asset('udemy.jpg') }}')"></div>
@@ -479,5 +531,9 @@
 
     </div>
 </section>
+    @endauth
+</main>
+
+
 
 @endsection
