@@ -132,7 +132,7 @@
             
             <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
                 <img src="{{ asset('python.jpg') }}" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col flex-grow">
+                <div class="p-4 flex flex-col grow">
                     <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">100 Days of Code™: The Complete Python Pro Bootcamp</h3>
                     <p class="text-xs text-gray-500 mb-2">Dr. Angela Yu, Developer and Lead Instructor</p>
                     <div class="flex items-center space-x-1 mb-2">
@@ -147,7 +147,7 @@
 
             <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
                 <img src="https://img-c.udemycdn.com/course/240x135/567828_67d0.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col flex-grow">
+                <div class="p-4 flex flex-col grow">
                     <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">The Complete Python Bootcamp From Zero to Hero in Python</h3>
                     <p class="text-xs text-gray-500 mb-2">Jose Portilla, Pierian Training</p>
                     <div class="flex items-center space-x-1 mb-2">
@@ -162,7 +162,7 @@
 
             <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
                 <img src="https://img-c.udemycdn.com/course/240x135/394676_ce3d_5.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col flex-grow">
+                <div class="p-4 flex flex-col grow">
                     <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">Python PCEP: Become Certified Entry-Level Python Programmer</h3>
                     <p class="text-xs text-gray-500 mb-2">Adrian Wiech</p>
                     <div class="flex items-center space-x-1 mb-2">
@@ -177,7 +177,7 @@
 
             <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
                 <img src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_16.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col flex-grow">
+                <div class="p-4 flex flex-col grow">
                     <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">Kelas Python Lengkap 2026: Pemula Sampai Mahir (+Projects)</h3>
                     <p class="text-xs text-gray-500 mb-2">Risdan Kristori, BAYOU DATA</p>
                     <div class="flex items-center space-x-1 mb-2 mt-4">
@@ -191,7 +191,7 @@
 
         </div>
 
-        <button class="absolute right-[-20px] top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-12 h-12 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition z-10">
+        <button class="absolute right-20px top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-12 h-12 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition z-10">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </button>
     </div>
@@ -213,35 +213,35 @@
     <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 max-w-7xl mx-auto">
         
         <div class="flex items-center justify-center">
-            <img src="vw.png" class="h-20 w-auto grayscale opacity-70" alt="VW">
+            <img src="{{ asset('vw.png') }}" class="h-20 w-auto grayscale opacity-70" alt="VW">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="samsung.png" class="h-20 w-auto grayscale opacity-70" alt="Samsung">
+            <img src="{{ asset('samsung.png') }}" class="h-20 w-auto grayscale opacity-70" alt="Samsung">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="cisco.png" class="h-14 w-auto grayscale opacity-70" alt="Cisco">
+            <img src="{{ asset('cisco.png') }}" class="h-14 w-auto grayscale opacity-70" alt="Cisco">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="vimeo.png" class="h-10 w-auto grayscale opacity-70" alt="Vimeo">
+            <img src="{{ asset('vimeo.png') }}" class="h-10 w-auto grayscale opacity-70" alt="Vimeo">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="pg.png" class="h-20 w-auto grayscale opacity-70" alt="P&G">
+            <img src="{{ asset('pg.png') }}" class="h-20 w-auto grayscale opacity-70" alt="P&G">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="hpe.png" class="h-14 w-auto grayscale opacity-70" alt="HPE">
+            <img src="{{ asset('hpe.png') }}" class="h-14 w-auto grayscale opacity-70" alt="HPE">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="citi.png" class="h-14 w-auto grayscale opacity-70" alt="Citi">
+            <img src="{{ asset('citi.png') }}" class="h-14 w-auto grayscale opacity-70" alt="Citi">
         </div>
 
         <div class="flex items-center justify-center">
-            <img src="ericsson.png" class="h-14 w-auto grayscale opacity-70" alt="Ericsson">
+            <img src="{{ asset('ericsson.png') }}" class="h-14 w-auto grayscale opacity-70" alt="Ericsson">
         </div>
 
     </div>
@@ -257,7 +257,7 @@
         
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-gray-700 mb-6 flex-grow text-sm leading-relaxed">
+            <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
                 Kursus ini menjelaskan AI dengan sangat baik, dari tahap pengembangan hingga penerapan. Beragam perspektif yang diberikan membantu saya memahami cara menggunakan AI secara bertanggung jawab sebagai alat kerja, bukan sekadar tren.
             </p>
             <div class="flex items-center gap-3 mb-4">
@@ -276,7 +276,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-gray-700 mb-6 flex-grow text-sm leading-relaxed">
+            <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
                 Udemy benar-benar <strong>pembawa perubahan dan pemandu hebat</strong> bagi saya saat Dimensional diluncurkan.
             </p>
             <div class="flex items-center gap-3 mb-4">
@@ -295,7 +295,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-gray-700 mb-6 flex-grow text-sm leading-relaxed">
+            <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
                 Udemy memberikan Anda kegigihan. Saya mempelajari hal yang benar-benar saya perlukan di dunia nyata. Ini membantu saya <strong>mendapatkan pekerjaan baru.</strong>
             </p>
             <div class="flex items-center gap-3 mb-4">
@@ -314,7 +314,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-gray-700 mb-6 flex-grow text-sm leading-relaxed">
+            <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
                 Saya sangat menyukai kursus tentang AI Studio. Awalnya saya belum mengenal alat ini, tetapi setelah mengikuti kursus, saya langsung menerapkannya untuk firma hukum saya.
             </p>
             <div class="flex items-center gap-3 mb-4">
