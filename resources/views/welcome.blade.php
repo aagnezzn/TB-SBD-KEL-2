@@ -26,10 +26,10 @@
     <div class="grid grid-cols-4 gap-8 items-start">
         <div>
             <h2 class="text-3xl font-bold mb-4">
-            {{__('Learn skills')}} <i>penting</i><br>terkait karier dan kehidupan
+            {{__('Learn skills')}} {{__('Career')}}
             </h2>
             <p class="text-gray-600">
-                Udemy membantu Anda membangun skill yang dibutuhkan dengan cepat dan memajukan karier Anda di pasar kerja yang terus berubah.
+            {{__('Udemy helps')}}
             </p>
         </div>
         <div class="col-span-3 relative">
@@ -70,40 +70,40 @@
     <div class="max-w-[1350px] mx-auto">
     <div class="bg-[#232433] rounded-2xl p-12 flex flex-col lg:flex-row items-center gap-10">
         <div class="w-full lg:w-1/2 text-white">
-            <h2 class="text-3xl font-bold mb-4">Transformasikan karier Anda di<br>era AI</h2>
+            <h2 class="text-3xl font-bold mb-4">{{__('Transform')}}<br>{{__('AI era')}}</h2>
             <p class="text-gray-300 mb-8 text-sm leading-relaxed max-w-md">
-                Siapkan skill Anda untuk masa depan dengan Paket Personal. Dapatkan akses ke berbagai konten terbaru dari para pakar dunia nyata.
+                {{__('Siapkan')}}
             </p>
             <div class="grid grid-cols-2 gap-y-5 gap-x-4 mb-8">
                 <div class="flex items-center gap-3">
                     <div class="bg-purple-900/60 p-1.5 rounded-full text-purple-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Pelajari AI dan lainnya</span>
+                    <span class="text-sm font-medium">{{__('Pelajari AI dan lainnya')}}</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-green-900/60 p-1.5 rounded-full text-green-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Persiapkan untuk sertifikasi</span>
+                    <span class="text-sm font-medium">{{__('Persiapkan untuk sertifikasi')}}</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-yellow-900/60 p-1.5 rounded-full text-yellow-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Latihan dengan bimbingan AI</span>
+                    <span class="text-sm font-medium">{{__('Latihan dengan bimbingan AI')}}</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-blue-900/60 p-1.5 rounded-full text-blue-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Majukan karier Anda</span>
+                    <span class="text-sm font-medium">{{__('Majukan karier Anda')}}</span>
                 </div>
             </div>
             <button class="bg-white text-gray-900 font-bold px-6 py-3 rounded hover:bg-gray-200 transition">
-                Pelajari selengkapnya
+                {{__('Pelajari selengkapnya')}}
             </button>
-            <p class="text-xs text-gray-400 mt-4">Mulai Rp104.000/bulan</p>
+            <p class="text-xs text-gray-400 mt-4">{{__('Mulai Rp104.000/bulan')}}</p>
         </div>
         
         <div class="w-full lg:w-1/2 h-[350px] rounded-2xl overflow-hidden">
@@ -115,11 +115,11 @@
 
 <section class="px-10 py-12">
     <div class="max-w-[1350px] mx-auto">
-    <h2 class="text-3xl font-bold mb-2">Skill yang mengubah karier dan kehidupan Anda</h2>
-    <p class="text-gray-600 mb-6">Mulai dari topik dengan skill yang sangat penting hingga teknis, Udemy mendukung pengembangan profesional Anda.</p>
+    <h2 class="text-3xl font-bold mb-2">{{__('Skill yang mengubah karier dan kehidupan Anda')}}</h2>
+    <p class="text-gray-600 mb-6">{{__('Mulai dari')}}</p>
 
     <div class="flex space-x-6 border-b border-gray-300 mb-6 text-sm font-semibold text-gray-500">
-        <button class="pb-2 border-b-2 border-black text-black">Python</button>
+        <button class="pb-2 border-b-2 border-black text-black">{{__('Python')}}</button>
         <button class="pb-2 hover:text-black">Pemasaran Digital</button>
         <button class="pb-2 hover:text-black">Ilmu Data</button>
         <button class="pb-2 hover:text-black">Microsoft Excel</button>
