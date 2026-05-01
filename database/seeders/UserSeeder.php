@@ -14,10 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run(): void
 {
+    // User::create([
+    //     'name' => 'Agnes Tester',
+    //     'email' => 'agnes@test.com',
+    //     'password' => Hash::make('12345678'), 
+    // ]);
+
     User::create([
-        'name' => 'Agnes Tester',
-        'email' => 'agnes@test.com',
-        'password' => Hash::make('12345678'), // Passwordnya 12345678
+        'name' => 'Icha Cantik',
+        'email' => 'icha@test.com',
+        'password' => Hash::make('ichaimut'), 
+    ]);
+
+    User::create([
+        'name' => 'Limjun Payung',
+        'email' => 'liliwaalittlegirl@test.com',
+        'password' => Hash::make('jenojeno'), 
+    ]);
+
+    User::create([
+        'name' => 'Nadia Kabanjahe',
+        'email' => 'nadialovepanji@test.com',
+        'password' => Hash::make('naspaddihati'), 
+    ]);
+
+    User::create([
+        'name' => 'Pitsop Anak Sabran',
+        'email' => 'fityathefirst@test.com',
+        'password' => Hash::make('pitsopbetrayal'), 
     ]);
 }
 }
