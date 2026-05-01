@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FAQController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +23,32 @@ Route::get('/keranjang', function () {
     return view('keranjang');
 });
 
+Route::get('/login', function() {
+    return view ('login');
+});
+
+use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\LoginController;
+
+// Rute untuk menampilkan halaman login (GET)
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// Rute untuk memproses data login dari form (POST)
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+
+use App\Http\Controllers\RegisterController;
+
+// Rute nampilin form daftar
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+// Rute memproses data pendaftaran
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout(); // Mengeluarkan user
+    $request->session()->invalidate(); // Menghapus sesi
+    $request->session()->regenerateToken(); // Mengamankan token CSRF
+    
+    return redirect('/'); // Mengembalikan user ke halaman utama
+})->name('logout');
