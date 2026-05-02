@@ -18,7 +18,7 @@
     
     <div class="w-full bg-[#addada] py-3 px-4 relative flex items-center justify-center border-b border-cyaan-200">
         <p class="text-center text-sm md:text-base text-gray-900">
-            <span class="font-bold">1 hari tersisa! Add cross-team skills from Rp.129.000 by tomorrow.</span>
+            <span class="font-bold">{{ __('menu.promo_banner', ['days' => 1, 'price' => 'Rp129.000']) }}</span>
         </p>
     </div>
 

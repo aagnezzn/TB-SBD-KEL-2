@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FAQController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +22,7 @@ Route::get('/mengajar-di-idemy', function () {
 
 Route::get('/keranjang', function () {
     return view('keranjang');
-});
+})->name('keranjang');
 
 Route::get('/login', function() {
     return view ('login');
@@ -52,3 +53,10 @@ Route::post('/logout', function (Request $request) {
     
     return redirect('/'); // Mengembalikan user ke halaman utama
 })->name('logout');
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'es', 'id'])) {
+        session::put('locale', $locale);
+    }
+    return redirect()->back(); 
+});
