@@ -43,41 +43,111 @@
         </section>
 
         {{-- Grid Kursus Rekomendasi --}}
+       {{-- Grid Kursus Rekomendasi & Populer --}}
         <section class="max-w-[1340px] mx-auto px-4 pb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
             <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
-                {{-- taro card disini --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
+                
+                {{-- Loop Data dari Database untuk Rekomendasi --}}
+                @foreach ($courses as $course)
+                <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
+                    <!-- Thumbnail -->
+                    <div class="border border-gray-200 mb-2 relative overflow-hidden">
+                        <img src="{{ $course->img }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    </div>
+                    
+                    <!-- Info -->
+                    <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
+                        {{ $course->title }}
+                    </h3>
+                    <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->author }}</p>
+                    
+                    <!-- Rating Pakai SVG -->
+                    <div class="flex items-center space-x-1 mb-1">
+                        <span class="text-sm font-bold text-[#b4690e]">{{ $course->rating }}</span>
+                        <div class="flex text-[#b4690e] space-x-0.5">
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
+                        </div>
+                        <span class="text-xs text-gray-500">({{ $course->reviews }})</span>
+                    </div>
+                    
+                    <!-- Harga -->
+                    <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
+                        Rp{{ number_format($course->price, 0, ',', '.') }}
+                    </div>
+
+                    <!-- Badge -->
+                    <div class="flex space-x-2">
+                        <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
+                            <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
+                        </span>
+                        <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                            Terlaris
+                        </span>
+                    </div>
+                </a>
+                @endforeach
+
             </div>
 
-            <p class="text-lg font-bold text-gray-800 mb-6">Kursus Populer</p>
+            <p class="text-lg font-bold text-gray-800 mb-6 mt-8">Kursus Populer</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
-                {{-- taro card disini --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
+                
+                {{-- Loop Data dari Database untuk Populer --}}
+                @foreach ($courses as $course)
+                <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
+                    <!-- Thumbnail -->
+                    <div class="border border-gray-200 mb-2 relative overflow-hidden">
+                        <img src="{{ $course->img }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    </div>
+                    
+                    <!-- Info -->
+                    <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
+                        {{ $course->title }}
+                    </h3>
+                    <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->author }}</p>
+                    
+                    <!-- Rating Pakai SVG -->
+                    <div class="flex items-center space-x-1 mb-1">
+                        <span class="text-sm font-bold text-[#b4690e]">{{ $course->rating }}</span>
+                        <div class="flex text-[#b4690e] space-x-0.5">
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
+                        </div>
+                        <span class="text-xs text-gray-500">({{ $course->reviews }})</span>
+                    </div>
+                    
+                    <!-- Harga -->
+                    <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
+                        Rp{{ number_format($course->price, 0, ',', '.') }}
+                    </div>
+
+                    <!-- Badge -->
+                    <div class="flex space-x-2">
+                        <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
+                            <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
+                        </span>
+                        <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                            Terlaris
+                        </span>
+                    </div>
+                </a>
+                @endforeach
+
             </div>
         </section>
-        
-    @else
-        {{-- === TAMPILAN SEBELUM LOGIN (GUEST) === --}}
-        <section class="px-10 mt-4">
-    <div class="max-w-[1350px] mx-auto">
-    <div class="h-[350px] relative rounded-lg overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-right" style="background-image: url('{{ asset('udemy.jpg') }}')"></div>
-        <div class="absolute inset-0 bg-black/20"></div>
-        <div class="relative h-full flex items-center">
-            <div class="bg-white p-6 rounded shadow w-[450px] ml-10">
-                <h2 class="text-3xl font-bold mb-3">Bangun skill yang diminati</h2>
-                <p class="text-gray-600 mb-4">Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata</p>
-                <div class="flex space-x-3">
-                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">Dapatkan paket personal</button>
-                    <button class="border border-black font-bold px-4 py-2 rounded">Pelajari AI</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
 
 <section class="px-10 py-16 bg-gray-100">
     <div class="max-w-[1350px] mx-auto">

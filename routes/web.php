@@ -5,9 +5,16 @@ use App\Http\Controllers\FAQController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\Course;
 
 Route::get('/', function () {
-    return view('welcome');
+    $courses = Course::take(5)->get(); 
+    return view('welcome', compact('courses')); 
+});
+
+Route::get('/course/{id}', function ($id) {
+    $course = Course::findOrFail($id); 
+    return view('course-detail', compact('course'));
 });
 
 Route::get('/berlangganan', function () {
