@@ -127,13 +127,67 @@
                             <div class="font-bold truncate">{{ Auth::user()->name }}</div>
                             <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
                         </div>
-                        <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">{{ __('menu.my_learning') }}</a>
-                            <form action="{{ route('logout') }}" method="POST" class="m-0">@csrf<button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50">Logout</button></form>
-                        </div>
-                    </div>
+                        <!-- 2. Belajar -->
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">{{ __('menu.my_learning') }}</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Keranjang saya</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Daftar Keinginan</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Mengajar di Idemy</a>
                 </div>
-            @endauth
+                <hr class="border-gray-200">
+
+                <!-- 3. Notifikasi -->
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Pemberitahuan</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Pesan</a>
+                </div>
+                <hr class="border-gray-200">
+
+                <!-- 4. Pengaturan -->
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Pengaturan akun</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Metode pembayaran</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Langganan</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Kredit Idemy</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Riwayat pembelian</a>
+                </div>
+                <hr class="border-gray-200">
+
+                <!-- 5. Bahasa -->
+                <div class="py-2">
+                    <a href="#" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700 transition">
+                        <span>Bahasa</span>
+                        <div class="flex items-center gap-1">
+                            <span>Bahasa Indonesia</span>
+                            <i data-feather="globe" class="w-4 h-4"></i>
+                        </div>
+                    </a>
+                </div>
+                <hr class="border-gray-200">
+
+                <!-- 6. Profil Publik -->
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Profil publik</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Edit profil</a>
+                </div>
+                <hr class="border-gray-200">
+
+                <!-- 7. Bantuan & Logout -->
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700 transition">Bantuan dan Dukungan</a>
+                    <form action="{{ route('logout') }}" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">Logout</button>
+                    </form>
+                </div>
+
+            </div>
         </div>
-    </div>
+    @endauth
+
+</div>
+</div>
+</div>
+</div>
+</div>
 </nav>

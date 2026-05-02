@@ -48,10 +48,16 @@
             <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
-                {{-- Copy-paste kode Card Kursus yang aku kasih sebelumnya di sini --}}
+                {{-- taro card disini --}}
+            </div>
+
+            <p class="text-lg font-bold text-gray-800 mb-6">Kursus Populer</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
+                {{-- taro card disini --}}
             </div>
         </section>
-
+        
     @else
         {{-- === TAMPILAN SEBELUM LOGIN (GUEST) === --}}
         <section class="px-10 mt-4">
