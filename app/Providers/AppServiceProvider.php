@@ -19,14 +19,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-{
-    // Kode ini akan mengirim data $navCategories ke SEMUA view secara otomatis
+ public function boot(): void
+  {
+    // Hanya kirim data ke file navbar dan footer, bukan ke SEMUA file.
     View::composer('*', function ($view) {
         $navCategories = Category::whereNull('parent_id')
-                            ->with('children.children')
+                            ->with('children.children') 
                             ->get();
         $view->with('navCategories', $navCategories);
     });
-}
+  }
 }

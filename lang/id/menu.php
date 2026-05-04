@@ -46,4 +46,14 @@ return [
     'privacy_policy'   => 'Kebijakan Privasi',
     'cookie_settings'  => 'Pengaturan Cookie',
     'get_the_app'      => 'Dapatkan Aplikasi',
+    'explore_title' => 'Jelajahi skill dan sertifikasi teratas',
+    'view_all' => 'Lihat semua',
+    'about' => 'Tentang',
+    'about_us' => 'Tentang kami',
+    'careers' => 'Karier',
+    'contact' => 'Hubungi kami',
+    'legal' => 'Legal & Aksesibilitas',
+    'privacy' => 'Kebijakan privasi',
+    'terms' => 'Persyaratan',
+
 ];

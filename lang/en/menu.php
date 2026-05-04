@@ -46,4 +46,13 @@ return [
     'privacy_policy'   => 'Privacy Policy',
     'cookie_settings'  => 'Cookie Settings',
     'get_the_app'      => 'Get the App',
+    'explore_title' => 'Explore top skills and certifications',
+    'view_all' => 'View all',
+    'about' => 'About',
+    'about_us' => 'About us',
+    'careers' => 'Careers',
+    'contact' => 'Contact us',
+    'legal' => 'Legal & Accessibility',
+    'privacy' => 'Privacy policy',
+    'terms' => 'Terms',
 ];

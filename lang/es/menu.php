@@ -46,4 +46,13 @@ return [
     'privacy_policy'   => 'Política de privacidad',
     'cookie_settings'  => 'Configuración de cookies',
     'get_the_app'      => 'Consigue la aplicación',
+    'explore_title' => 'Explore las principales habilidades y certificaciones',
+    'view_all' => 'Ver todo',
+    'about' => 'Acerca de',
+    'about_us' => 'Sobre nosotros',
+    'careers' => 'Carreras',
+    'contact' => 'Contáctenos',
+    'legal' => 'Legal y Accesibilidad',
+    'privacy' => 'Política de privacidad',
+    'terms' => 'Condiciones',
 ];
