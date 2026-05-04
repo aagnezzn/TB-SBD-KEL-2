@@ -97,6 +97,7 @@
 
             </div>
 
+
             <p class="text-lg font-bold text-gray-800 mb-6 mt-8">Kursus Populer</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
@@ -148,6 +149,26 @@
 
             </div>
         </section>
+        @else
+        {{-- === TAMPILAN SEBELUM LOGIN (GUEST) === --}}
+        <section class="px-10 mt-4">
+    <div class="max-w-[1350px] mx-auto">
+    <div class="h-[350px] relative rounded-lg overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-right" style="background-image: url('{{ asset('udemy.jpg') }}')"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative h-full flex items-center">
+            <div class="bg-white p-6 rounded shadow w-[450px] ml-10">
+                <h2 class="text-3xl font-bold mb-3">Bangun skill yang diminati</h2>
+                <p class="text-gray-600 mb-4">Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata</p>
+                <div class="flex space-x-3">
+                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">Dapatkan paket personal</button>
+                    <button class="border border-black font-bold px-4 py-2 rounded">Pelajari AI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 
 <section class="px-10 py-16 bg-gray-100">
     <div class="max-w-[1350px] mx-auto">
