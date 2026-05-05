@@ -3,29 +3,31 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
+use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Enrollment;
+use App\Models\Review;
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        User::factory(1000)->create();
+        
+        User::inRandomOrder()->limit(50)->update(['role' => 'instructor']);
 
         $this->call([
+            CategorySeeder::class, 
             FAQSeeder::class,
         ]);
-        
-        $this->call([
-        CategorySeeder::class,
-    ]);
+
+        Course::factory(1000)->create();
+        Lesson::factory(1000)->create();
+        Enrollment::factory(1000)->create();
+        Review::factory(1000)->create();
+        Payment::factory(1000)->create();
     }
 }
