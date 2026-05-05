@@ -17,7 +17,6 @@ return new class extends Migration
         $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
         // Foreign Key ke tabel users (untuk instruktur)
         $table->foreignId('instructor_id')->references('id')->on('users')->onDelete('cascade');
-        
         $table->string('title');
         $table->text('description');
         $table->integer('price'); // Sesuai diskusi kemarin, INT aman untuk Rupiah

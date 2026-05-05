@@ -2,38 +2,55 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Lesson;
+use App\Models\Course;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Model>
- */
 class LessonFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
-{
-    $titles = [
-        'Pendahuluan dan Instalasi', 'Dasar-dasar Pemrograman', 'Memahami Routing',
-        'Introduction to Laravel', 'Database Migration Guide', 'Mastering Blade Templates'
-    ];
+    {
+        return [
+            // Pastikan Course diambil secara acak agar sinkron[cite: 2]
+            'course_id' => Course::inRandomOrder()->first()->id ?? Course::factory(),
+            
+            'title' => function (array $attributes) {
+                $course = Course::find($attributes['course_id']);
+                $courseTitle = $course ? $course->title : '';
 
-    $contents = [
-        'Dalam materi ini kita akan mempelajari cara melakukan instalasi environment dari awal sampai jalan.',
-        'Materi ini mencakup penjelasan mendalam mengenai logika dasar dan struktur data yang efisien.',
-        'Learn how to set up your first project and understand the basic architecture of the framework.',
-        'Esta lección cubre los conceptos básicos necesarios para empezar a desarrollar aplicaciones web.'
-    ];
+                // Logika Judul Materi yang Nyambung ke Judul Kursus
+                if (Str::contains($courseTitle, ['Laravel', 'PHP', 'Web'])) {
+                    return $this->faker->randomElement(['Instalasi Lingkungan Kerja', 'Memahami Routing & Middleware', 'Eloquent ORM Mendalam', 'Controller & View Logic']);
+                } elseif (Str::contains($courseTitle, ['React', 'JavaScript', 'TypeScript'])) {
+                    return $this->faker->randomElement(['Setup React Project', 'Hooks & State Management', 'Props and Component Lifecycle', 'Integration with API']);
+                } elseif (Str::contains($courseTitle, ['English', 'Grammar', 'Bahasa', 'Tata Bahasa'])) {
+                    return $this->faker->randomElement(['Basic Vocabulary', 'English Tenses Overview', 'Daily Conversations', 'Pronunciation Practice']);
+                } elseif (Str::contains($courseTitle, ['Bisnis', 'Business', 'Kewirausahaan'])) {
+                    return $this->faker->randomElement(['Analisis SWOT Bisnis', 'Strategi Pemasaran Digital', 'Manajemen Keuangan Dasar', 'Membangun Pitch Deck']);
+                } else {
+                    // Fallback Bahasa Beragam: Inggris, Spanyol, Indonesia
+                    return $this->faker->randomElement([
+                        'Introduction to ' . $courseTitle,
+                        'Conceptos Básicos de ' . $courseTitle,
+                        'Dasar-dasar ' . $courseTitle,
+                        'Chapter 1: Getting Started'
+                    ]);
+                }
+            },
 
-    return [
-        'course_id' => \App\Models\Course::factory(),
-        'title' => $this->faker->randomElement($titles),
-        'content' => $this->faker->randomElement($contents), // GANTI INI agar tidak Latin
-        'duration' => $this->faker->numberBetween(5, 60),
-    ];
-}
+            // Konten dalam Bahasa Indonesia biar nggak Latin terus
+            'content' => 'Materi ini dirancang untuk memberikan pemahaman mendalam tentang topik kursus, mencakup teori dan praktik implementasi secara nyata.',
+            
+            // Link Video yang VALID agar tidak "Video Unavailable" lagi
+            'video_url' => $this->faker->randomElement([
+                'https://www.youtube.com/embed/63vA8F9s7Ic', // Contoh video valid
+                'https://www.youtube.com/embed/7W-T_p8m9_E',
+                'https://www.youtube.com/embed/OK_JCtrrv-c',
+                'https://www.youtube.com/embed/17XmQ_S0jBw'
+            ]),
+            
+            'duration' => $this->faker->numberBetween(15, 60),
+        ];
+    }
 }
