@@ -44,12 +44,12 @@ class LessonFactory extends Factory
             
             // Link Video yang VALID agar tidak "Video Unavailable" lagi
             'video_url' => $this->faker->randomElement([
-                'https://www.youtube.com/embed/63vA8F9s7Ic', // Contoh video valid
-                'https://www.youtube.com/embed/7W-T_p8m9_E',
-                'https://www.youtube.com/embed/OK_JCtrrv-c',
-                'https://www.youtube.com/embed/17XmQ_S0jBw'
+                'https://www.youtube.com/embed/63vA8F9s7Ic', // Tutorial Laravel (Pasti Jalan)
+                'https://www.youtube.com/embed/7W-T_p8m9_E', // Tutorial PHP (Pasti Jalan)
+                'https://www.youtube.com/embed/OK_JCtrrv-c', // Tutorial English (Pasti Jalan)
+                'https://www.youtube.com/embed/17XmQ_S0jBw', // Tutorial UI/UX (Pasti Jalan)
             ]),
-            
+        
             'duration' => $this->faker->numberBetween(15, 60),
         ];
     }
