@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         Enrollment::factory(1000)->create();
         Review::factory(1000)->create();
         Payment::factory(1000)->create();
+        // Buat 10 Course, dan tiap Course punya 5 Lesson
+        \App\Models\Course::factory(10)->hasLessons(5)->create();
     }
 }

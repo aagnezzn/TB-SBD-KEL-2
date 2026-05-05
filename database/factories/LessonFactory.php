@@ -17,14 +17,23 @@ class LessonFactory extends Factory
      */
     public function definition(): array
 {
+    $titles = [
+        'Pendahuluan dan Instalasi', 'Dasar-dasar Pemrograman', 'Memahami Routing',
+        'Introduction to Laravel', 'Database Migration Guide', 'Mastering Blade Templates'
+    ];
+
+    $contents = [
+        'Dalam materi ini kita akan mempelajari cara melakukan instalasi environment dari awal sampai jalan.',
+        'Materi ini mencakup penjelasan mendalam mengenai logika dasar dan struktur data yang efisien.',
+        'Learn how to set up your first project and understand the basic architecture of the framework.',
+        'Esta lección cubre los conceptos básicos necesarios para empezar a desarrollar aplicaciones web.'
+    ];
+
     return [
-        // Mencari ID dari tabel courses yang sudah kamu isi 1000 data tadi
-        'course_id' => \App\Models\Course::inRandomOrder()->first()->id,
-        
-        'title' => fake()->sentence(3), // Misal: "Pengenalan Dasar Database"
-        'content' => fake()->paragraphs(3, true), // Penjelasan materi teks
-        'video_url' => 'https://youtube.com/embed/' . fake()->slug(1), // Simulasi link video
-        'duration' => fake()->numberBetween(5, 45), // Durasi 5-45 menit
+        'course_id' => \App\Models\Course::factory(),
+        'title' => $this->faker->randomElement($titles),
+        'content' => $this->faker->randomElement($contents), // GANTI INI agar tidak Latin
+        'duration' => $this->faker->numberBetween(5, 60),
     ];
 }
 }
