@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->string('rating');
-            $table->string('reviews');
-            $table->integer('price');
-            $table->string('img');
-            $table->timestamps();
-        });
+    Schema::create('courses', function (Blueprint $table) {
+        $table->id();
+        // Foreign Key ke tabel categories
+        $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+        // Foreign Key ke tabel users (untuk instruktur)
+        $table->foreignId('instructor_id')->references('id')->on('users')->onDelete('cascade');
+        
+        $table->string('title');
+        $table->text('description');
+        $table->integer('price'); // Sesuai diskusi kemarin, INT aman untuk Rupiah
+        $table->string('image_url')->nullable();
+        $table->timestamps();
+    });
     }
     /**
      * Reverse the migrations.
