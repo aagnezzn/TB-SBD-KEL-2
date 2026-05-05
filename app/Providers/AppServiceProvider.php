@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
                             ->with('children.children') 
                             ->get();
         $view->with('navCategories', $navCategories);
+        view()->share('navCategories', \App\Models\Category::whereNull('parent_id')->with('children')->get());
     });
   }
 }

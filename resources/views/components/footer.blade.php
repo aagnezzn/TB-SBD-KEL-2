@@ -12,12 +12,12 @@
                     {{ $mainCat->name }}
                 </h3>
                 <ul class="space-y-2 text-sm leading-snug">
-                    <!-- Batasi hanya 5 sub-kategori agar tinggi kolom seragam (UX yang baik) -->
+                {{-- Ambil 5 anak kategori (Sub-Kategori) --}}
                     @foreach($mainCat->children->take(5) as $subCat)
                     <li>
-                        <a href="/category/{{ $subCat->slug }}" class="hover:underline transition duration-200">
-                            {{ $subCat->name }}
-                        </a>
+                <a href="{{ route('category.show', $subCat->id) }}" class="text-sm text-white hover:underline">
+                    {{ $subCat->name }}
+                </a>
                     </li>
                     @endforeach
                     

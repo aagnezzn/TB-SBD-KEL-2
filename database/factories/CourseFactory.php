@@ -17,16 +17,36 @@ class CourseFactory extends Factory
      */
     public function definition(): array
 {
+    // Kita buat daftar judul dalam berbagai bahasa
+    $judulCampur = [
+        // Bahasa Indonesia
+        'Belajar Laravel 11 dari Nol', 
+        'Mastering Database System untuk Mahasiswa',
+        // Bahasa Inggris
+        'Complete Web Development Bootcamp 2026',
+        'Data Science with Python for Professionals',
+        // Bahasa Spanyol
+        'Aprender Programación desde Cero',
+        'Curso de Diseño Gráfico Profesional',
+        // Bahasa Jepang
+        'ゼロから始めるプログラミング入門',
+        '日本語の基礎マスターコース',
+        // Bahasa Thailand
+        'เรียนรู้การสร้างเว็บไซต์ด้วยตัวเอง',
+    ];
+
+    // Kita buat daftar nama pengajar yang campur juga
+    $pengajarCampur = [
+        'Agus Pratama', 'John Doe', 'Juan Carlos', 'Akira Tanaka', 'Somchai'
+    ];
+
     return [
-        // Ambil ID kategori secara acak dari yang sudah kamu seeder tadi
+        // Kita suruh Laravel pilih secara acak dari daftar di atas
+        'title' => fake()->randomElement($judulCampur), 
+        'description' => fake()->paragraph(3), // Ini akan tetap bahasa random (latin/inggris)
+        'price' => fake()->numberBetween(100000, 2000000),
         'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
-        // Ambil user ID yang rolenya 'instructor' secara acak
-        'instructor_id' => \App\Models\User::where('role', 'instructor')->inRandomOrder()->first()->id,
-        
-        'title' => fake()->sentence(4),
-        'description' => fake()->paragraph(),
-        'price' => fake()->numberBetween(100000, 1000000), // Range harga 100rb - 1jt
-        'image_url' => 'course_default.jpg',
+        'instructor_id' => \App\Models\User::inRandomOrder()->first()->id,
     ];
 }
 }

@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Course;
 
-Route::get('/', function () {
-    $courses = Course::take(5)->get(); 
-    return view('welcome', compact('courses')); 
-});
-
 Route::get('/course/{id}', function ($id) {
     $course = Course::findOrFail($id); 
     return view('course-detail', compact('course'));
@@ -67,3 +62,20 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back(); 
 });
+
+Route::get('/category/{id}', [App\Http\Controllers\CourseController::class, 'filterByCategory'])->name('category.show');
+
+use App\Models\Category;
+
+Route::get('/', function () {
+    // Mengambil kategori induk (Level 1) beserta anak-anaknya (Level 2 & 3)
+    $navCategories = \App\Models\Category::whereNull('parent_id')
+                        ->with('children.children')
+                        ->get();
+
+    // Mengambil 10 data kursus untuk ditampilkan di halaman welcome
+    $courses = \App\Models\Course::take(10)->get(); 
+    
+    return view('welcome', compact('navCategories', 'courses'));
+});
+Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');

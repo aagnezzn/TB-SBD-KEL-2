@@ -24,11 +24,14 @@
                             <div class="absolute hidden group-hover/level3:block bg-white border border-gray-200 shadow-xl w-[300px] left-full top-0 z-[120] min-h-[550px] p-6">
                                 <h4 class="font-bold text-gray-500 mb-4 text-[15px]">Topik populer</h4>
                                 <div class="flex flex-col space-y-4">
+                                    <div class="flex flex-col space-y-4">
+                                        {{-- Mengambil topik populer berdasarkan anak dari sub-kategori (Level 3)[cite: 6] --}}
                                     @foreach($subCat->children as $topic)
-                                        <a href="/category/{{ $topic->slug }}" class="text-[14px] font-normal text-gray-700 hover:text-[#5624d0] hover:underline">
-                                            {{ $topic->name }}
+                                        <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize" href="{{ route('category.show', $topic->id) }}">
+                                        {{ $topic->name }}
                                         </a>
                                     @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -42,17 +45,22 @@
         <a href="{{ url('/berlangganan') }}" class="text-sm hover:text-purple-600 whitespace-nowrap">{{ __('menu.subscribe') }}</a>
     </div>
 
-    <!-- Search Bar -->
     <div class="flex-grow mx-6">
-        <div class="relative w-full">
-            <span class="absolute inset-y-0 left-4 flex items-center">
-                <i data-feather="search" class="w-4 h-4 text-gray-400"></i>
-            </span>
-            <input type="text"
-                placeholder="{{ __('menu.search_placeholder') }}"
-                class="w-full border border-gray-300 rounded-full pl-12 pr-4 py-2 text-sm bg-gray-50 focus:outline-none focus:bg-white focus:border-gray-500 transition-all">
-        </div>
-    </div>
+    <!-- Tambahkan FORM dengan method GET dan action ke route search -->
+    <form action="{{ route('search') }}" method="GET" class="relative w-full">
+        <span class="absolute inset-y-0 left-4 flex items-center">
+            <i data-feather="search" class="w-4 h-4 text-gray-400"></i>
+        </span>
+        <input type="text"
+            name="query" {{-- INI WAJIB ADA: Nama variabel untuk dibaca Controller --}}
+            value="{{ request('query') }}" {{-- Biar tulisan yg dicari nggak hilang pas di-refresh --}}
+            placeholder="{{ __('menu.search_placeholder') }}"
+            class="w-full border border-gray-300 rounded-full pl-12 pr-4 py-2 text-sm bg-gray-50 focus:outline-none focus:bg-white focus:border-gray-500 transition-all">
+        
+        {{-- Tombol submit tersembunyi agar bisa enter --}}
+        <button type="submit" class="hidden"></button>
+    </form>
+</div>
 
     <div class="flex items-center space-x-3 flex-shrink-0">
         <!-- Mengajar di Idemy -->
