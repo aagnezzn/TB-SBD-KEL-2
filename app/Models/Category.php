@@ -22,4 +22,10 @@ class Category extends Model
     {
         return $this->children()->with('subChildren');
     }
+
+    // Tambahkan ini di dalam class Category
+    public function getRouteKeyName()
+    {
+    return 'slug';
+    }
 }

@@ -27,7 +27,7 @@
                                     <div class="flex flex-col space-y-4">
                                         {{-- Mengambil topik populer berdasarkan anak dari sub-kategori (Level 3)[cite: 6] --}}
                                     @foreach($subCat->children as $topic)
-                                        <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize" href="{{ route('category.show', $topic->id) }}">
+                                       <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize" href="{{ route('category.show', $topic->slug) }}">
                                         {{ $topic->name }}
                                         </a>
                                     @endforeach

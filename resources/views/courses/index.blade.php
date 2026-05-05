@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @foreach($courses as $course)
         <div class="border border-gray-200 rounded-lg p-4 shadow-sm">
-            <img src="{{ $course->img }}" class="w-full h-40 object-cover rounded-md mb-4">
+           <img src="{{ $course->image_url }}" class="w-full h-40 object-cover rounded-md mb-4">
             <h3 class="font-bold text-lg mb-2">{{ $course->title }}</h3>
             <p class="text-gray-600 text-sm mb-4">Oleh: {{ $course->author }}</p>
             <div class="flex justify-between items-center">

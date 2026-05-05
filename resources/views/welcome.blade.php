@@ -55,7 +55,8 @@
                 <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
                     <!-- Thumbnail -->
                     <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                        <img src="{{ $course->img }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <!-- Ganti yang ini -->
+                        <img src="{{ $course->image_url }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     </div>
                     
@@ -107,7 +108,8 @@
                 <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
                     <!-- Thumbnail -->
                     <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                        <img src="{{ $course->img }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <!-- Ganti yang ini -->
+                        <img src="{{ $course->image_url }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     </div>
                     

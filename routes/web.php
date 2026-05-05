@@ -63,7 +63,7 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back(); 
 });
 
-Route::get('/category/{id}', [App\Http\Controllers\CourseController::class, 'filterByCategory'])->name('category.show');
+Route::get('/category/{slug}', [App\Http\Controllers\CourseController::class, 'filterByCategory'])->name('category.show');
 
 use App\Models\Category;
 

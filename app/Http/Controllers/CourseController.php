@@ -8,15 +8,14 @@ use App\Models\Category;
 
 class CourseController extends Controller
 {
-    public function filterByCategory($id)
-    {
-        $category = Category::findOrFail($id);
-        
-        $courses = Course::where('category_id', $id)->paginate(12);
+    public function filterByCategory($slug) 
+{
+    $category = Category::where('slug', $slug)->firstOrFail();
+    
+    $courses = Course::where('category_id', $category->id)->paginate(12);
 
-        return view('courses.index', compact('courses', 'category'));
-    }
-
+    return view('courses.index', compact('courses', 'category'));
+}
     public function search(Request $request)
     {
         // 1. Ambil input dan BERSIHKAN spasi

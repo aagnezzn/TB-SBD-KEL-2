@@ -15,15 +15,14 @@
                 {{-- Ambil 5 anak kategori (Sub-Kategori) --}}
                     @foreach($mainCat->children->take(5) as $subCat)
                     <li>
-                <a href="{{ route('category.show', $subCat->id) }}" class="text-sm text-white hover:underline">
-                    {{ $subCat->name }}
-                </a>
+                         <a href="{{ route('category.show', $subCat->slug) }}" class="text-sm text-white hover:underline"> {{ $subCat->name }}
+                    </a>
                     </li>
                     @endforeach
                     
                     <!-- Link tambahan jika data di DB lebih dari 5 -->
                     @if($mainCat->children->count() > 5)
-                    <li><a href="/category/{{ $mainCat->slug }}" class="hover:underline font-semibold text-white/70">{{ __('menu.view_all') }}...</a></li>
+                    <li><a href="{{ route('category.show', $mainCat->slug) }}" class="hover:underline font-semibold text-white/70">{{ __('menu.view_all') }}...</a></li>
                     @endif
                 </ul>
             </div>
