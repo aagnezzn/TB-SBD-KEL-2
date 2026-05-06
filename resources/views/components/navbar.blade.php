@@ -69,19 +69,53 @@
             </div>
         </div>
         
-        <!-- Keranjang -->
-        <div class="relative group py-4">
-            <a href="{{ route('keranjang') }}" class="text-gray-700 hover:text-purple-700 transition flex items-center h-full">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-            </a>
-            <!-- Dropdown Keranjang yang Benar -->
-            <div class="absolute right-0 top-16 w-[300px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-center p-6 cursor-default z-50">
-                <p class="text-gray-600 text-base mb-4">{{ __('menu.cart_empty') }}</p>
-                <a href="#" class="text-[#a435f0] font-bold text-sm hover:text-[#8710d8]">{{ __('menu.keep_shopping') }}</a>
+       <!-- Keranjang Dinamis -->
+<div class="relative group py-4">
+    <a href="{{ route('keranjang') }}" class="text-gray-700 hover:text-purple-700 transition flex items-center h-full relative">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        </svg>
+        {{-- BADGE ANGKA --}}
+        @if($cartCount > 0)
+            <span class="absolute -top-1 -right-2 bg-[#a435f0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-white">
+                {{ $cartCount }}
+            </span>
+        @endif
+    </a>
+
+    <!-- Dropdown Keranjang Dinamis -->
+    <div class="absolute right-0 top-16 w-[320px] bg-white border border-gray-200 shadow-xl hidden group-hover:block z-50 p-4">
+        @if($cartItems->isEmpty())
+            <div class="text-center py-6">
+                <p class="text-gray-600 text-sm mb-4">{{ __('menu.cart_empty') }}</p>
+                <a href="/" class="text-[#a435f0] font-bold text-sm hover:underline">{{ __('menu.keep_shopping') }}</a>
             </div>
-        </div>
+        @else
+            <div class="max-h-[300px] overflow-y-auto mb-4 text-left">
+                @foreach($cartItems as $item)
+                <div class="flex gap-3 border-b border-gray-100 pb-3 mb-3">
+                    <img src="https://loremflickr.com/60/60/tech?random={{ $item->course->id }}" class="w-14 h-14 object-cover">
+                    <div class="flex-grow min-w-0">
+                        <h4 class="text-[12px] font-bold text-gray-900 line-clamp-2 leading-tight">{{ $item->course->title }}</h4>
+                        <p class="text-[10px] text-gray-500 truncate">{{ $item->course->user->name ?? 'Instruktur' }}</p>
+                        <p class="text-sm font-bold text-gray-900 mt-1">Rp{{ number_format($item->course->price, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            
+            <div class="border-t pt-4">
+                <div class="flex justify-between mb-4">
+                    <span class="font-bold text-base text-gray-900">Total:</span>
+                    <span class="font-bold text-base text-gray-900">Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}</span>
+                </div>
+                <a href="{{ route('keranjang') }}" class="block w-full bg-[#1c1d1f] text-white text-center py-3 font-bold hover:bg-gray-800 transition text-sm">
+                    {{ __('Buka keranjang') }}
+                </a>
+            </div>
+        @endif
+    </div>
+</div>
 
         <!-- Auth / Login Section -->
         <div class="flex items-center space-x-4 z-50">
@@ -91,24 +125,66 @@
             @endguest
 
             @auth
-                <div class="relative group cursor-pointer py-4">
-                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                    </div>
-                    <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[15px] cursor-default z-50">
-                        <div class="p-4 border-b">
-                            <div class="font-bold truncate">{{ Auth::user()->name }}</div>
-                            <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
-                        </div>
-                        <div class="py-2">
-                            <form action="{{ route('logout') }}" method="POST" class="m-0">
-                                @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">Logout</button>
-                            </form>
-                        </div>
-                    </div>
+    <div class="relative group cursor-pointer py-4">
+        {{-- Inisial Nama dengan Titik Ungu --}}
+        <div class="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg relative">
+            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+            @if($cartCount > 0)
+                <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-[#a435f0] rounded-full border-2 border-white"></span>
+            @endif
+        </div>
+
+        {{-- DROPDOWN PROFIL LENGKAP --}}
+        <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[14px] cursor-default z-50">
+            {{-- Header: Info User --}}
+            <div class="p-4 border-b flex items-center gap-3">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
-            @endauth
+                <div class="min-w-0">
+                    <div class="font-bold text-gray-900 truncate">{{ Auth::user()->name }}</div>
+                    <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
+                </div>
+            </div>
+
+            {{-- Menu Bagian 1 --}}
+            <div class="py-2 border-b">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
+                <a href="{{ route('keranjang') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
+                    <span>Keranjang saya</span>
+                    @if($cartCount > 0)
+                        <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
+                    @endif
+                </a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
+                <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
+            </div>
+
+            {{-- Menu Bagian 2 --}}
+            <div class="py-2 border-b">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pemberitahuan</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pesan</a>
+            </div>
+
+            {{-- Menu Bagian 3 --}}
+            <div class="py-2 border-b">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Metode pembayaran</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
+            </div>
+
+            {{-- Logout --}}
+            <div class="py-2">
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
+                        Keluar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endauth
         </div>
     </div>
 </nav>

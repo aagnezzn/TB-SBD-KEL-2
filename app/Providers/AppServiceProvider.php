@@ -23,11 +23,25 @@ class AppServiceProvider extends ServiceProvider
   {
     // Hanya kirim data ke file navbar dan footer, bukan ke SEMUA file.
     View::composer('*', function ($view) {
-        $navCategories = Category::whereNull('parent_id')
-                            ->with('children.children') 
-                            ->get();
-        $view->with('navCategories', $navCategories);
-        view()->share('navCategories', \App\Models\Category::whereNull('parent_id')->with('children')->get());
-    });
-  }
-}
+    $navCategories = \App\Models\Category::whereNull('parent_id')->with('children.children')->get();
+
+    $cartCount = 0;
+    $cartItems = collect(); // Default koleksi kosong
+
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        // Ambil data item keranjang beserta info kursusnya
+        $cartData = \App\Models\Cart::where('user_id', \Illuminate\Support\Facades\Auth::id())
+                        ->with('course')
+                        ->get();
+        
+        $cartCount = $cartData->count();
+        $cartItems = $cartData;
+    }
+
+    $view->with([
+        'navCategories' => $navCategories,
+        'cartCount'     => $cartCount,
+        'cartItems'     => $cartItems
+    ]);
+});
+  }}

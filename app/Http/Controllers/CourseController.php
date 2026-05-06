@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -45,4 +46,19 @@ class CourseController extends Controller
 
         return view('search-results', compact('courses', 'keyword'));
     }
+
+   public function index()
+{
+    // Ambil semua item keranjang milik user yang sedang login
+    // Gunakan Auth::id() lebih stabil daripada helper auth()->id()
+$cartItems = \App\Models\Cart::where('user_id', Auth::id())
+                ->with('course.user')
+                ->get();
+
+    // Tetap ambil data rekomendasi kursus untuk bagian bawah
+    $courses = \App\Models\Course::take(10)->get();
+
+    return view('keranjang', compact('cartItems', 'courses'));
+}
+
 }

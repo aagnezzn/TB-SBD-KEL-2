@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Course;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CourseController;
 
 Route::get('/course/{id}', function ($id) {
     $course = Course::findOrFail($id); 
@@ -22,9 +24,7 @@ Route::get('/mengajar-di-idemy', function () {
     return view('mengajar');
 })->name('mengajar');
 
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+Route::get('/keranjang', [CourseController::class, 'index'])->name('keranjang');
 
 Route::get('/login', function() {
     return view ('login');
@@ -79,3 +79,5 @@ Route::get('/', function () {
     return view('welcome', compact('navCategories', 'courses'));
 });
 Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
+
+Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
