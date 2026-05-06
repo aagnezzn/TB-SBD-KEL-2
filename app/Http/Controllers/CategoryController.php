@@ -6,13 +6,26 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+  public function index()
 {
-    // Eager loading: ambil induk, anak, dan cucu dalam 1 query (biar nggak lemot)
-    $navCategories = Category::whereNull('parent_id')
+    // 1. Ambil kategori navigasi (Navigasi atas kamu)
+    $navCategories = \App\Models\Category::whereNull('parent_id')
                         ->with('children.children')
                         ->get();
 
-    return view('welcome', compact('navCategories'));
+    // 2. Ambil 5 kursus terbaru untuk variabel $recommendedCourses
+    $recommendedCourses = \App\Models\Course::with('category')
+                            ->latest()
+                            ->take(5)
+                            ->get();
+
+    // 3. Ambil 5 kursus acak untuk variabel $popularCourses
+    $popularCourses = \App\Models\Course::with('category')
+                        ->inRandomOrder()
+                        ->take(5)
+                        ->get();
+
+    // 4. KIRIM SEMUA VARIABEL INI KE BLADE
+    return view('welcome', compact('navCategories', 'recommendedCourses', 'popularCourses'));
 }
 }

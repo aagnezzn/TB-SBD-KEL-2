@@ -31,9 +31,11 @@
             <!-- Thumbnail Otomatis: Biar Dummy tapi Berisi -->
             <div class="w-full md:w-64 h-36 shrink-0 bg-gray-100 overflow-hidden border border-gray-200">
                 <!-- Thumbnail Dinamis: Mengikuti kategori kursus agar gambarnya nyambung -->
+                <!-- Thumbnail Dinamis dengan Anti-Gagal (Fallback) -->
                 <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'education' }}?random={{ $course->id }}" 
                 alt="{{ $course->title }}" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ $course->id }}/320/180';">
             </div>
             
             <div class="flex flex-col justify-between grow">

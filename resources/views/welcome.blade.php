@@ -61,12 +61,16 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
                 
                 {{-- Loop Data dari Database untuk Rekomendasi --}}
-                @foreach ($courses as $course)
+                @foreach ($recommendedCourses as $course)
                 <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
                     <!-- Thumbnail -->
                     <div class="border border-gray-200 mb-2 relative overflow-hidden">
                         <!-- Ganti yang ini -->
-                        <img src="{{ $course->image_url }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <!-- Bantai Gambar Card di Dashboard -->
+                        <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'tech' }}?random={{ $course->id }}" 
+                        alt="{{ $course->title }}" 
+                        class="w-full h-32 object-cover"
+                        onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ $course->id }}/320/180';">
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     </div>
                     
@@ -114,12 +118,16 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
                 
                 {{-- Loop Data dari Database untuk Populer --}}
-                @foreach ($courses as $course)
+                @foreach ($popularCourses as $course)
                 <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
                     <!-- Thumbnail -->
                     <div class="border border-gray-200 mb-2 relative overflow-hidden">
                         <!-- Ganti yang ini -->
-                        <img src="{{ $course->image_url }}" alt="{{ $course->title }}" class="w-full h-32 object-cover">
+                        <!-- Perbaikan Kursus Populer: Gunakan random ID agar tidak kembar -->
+                        <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'tech' }}?random={{ $course->id }}" 
+                        alt="{{ $course->title }}" 
+                        class="w-full h-32 object-cover"
+                        onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ $course->id }}/320/180';">
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     </div>
                     

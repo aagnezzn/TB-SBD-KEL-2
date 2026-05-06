@@ -67,17 +67,7 @@ Route::get('/category/{slug}', [App\Http\Controllers\CourseController::class, 'f
 
 use App\Models\Category;
 
-Route::get('/', function () {
-    // Mengambil kategori induk (Level 1) beserta anak-anaknya (Level 2 & 3)
-    $navCategories = \App\Models\Category::whereNull('parent_id')
-                        ->with('children.children')
-                        ->get();
-
-    // Mengambil 10 data kursus untuk ditampilkan di halaman welcome
-    $courses = \App\Models\Course::take(10)->get(); 
-    
-    return view('welcome', compact('navCategories', 'courses'));
-});
+Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
 
 Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
