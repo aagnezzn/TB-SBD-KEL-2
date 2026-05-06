@@ -3,17 +3,27 @@
 @section('content')
 <!--sub-navbar-->
 @auth
+{{-- NAVBAR PUTIH: Kita kasih 'relative' di sini sebagai JANGKAR UTAMA --}}
 <div class="hidden lg:block bg-white border-b border-gray-200 relative">
     <div class="max-w-[1340px] mx-auto px-4">
-        <ul class="flex justify-between items-center py-3">
+        <ul class="flex justify-between items-center">
             @foreach($navCategories as $mainCat)
-            <li class="group/subnav static">
-                <a href="/category/{{ $mainCat->slug }}" class="text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-normal px-2 capitalize">
+            {{-- LI harus STATIC agar kotak hitam di bawahnya bisa ambil lebar 100% dari div navbar --}}
+            <li class="group/subnav static flex justify-center"> 
+                
+                {{-- ANCHOR: Kita kasih 'relative' di sini KHUSUS untuk JANGKAR SEGITIGA --}}
+                <a href="/category/{{ $mainCat->slug }}" class="relative text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-normal px-4 py-4 capitalize transition-colors flex flex-col items-center">
                     {{ $mainCat->name }}
+
+                    {{-- SEGITIGA: Sekarang dia punya jangkar di anchor, pasti muncul tepat di bawah teks --}}
+                    <div class="hidden group-hover/subnav:block absolute -bottom-[1px] w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-b-[7px] border-b-[#1c1d1f] z-[160]"></div>
                 </a>
-                <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-screen left-0 top-full z-[100] py-4 shadow-xl">
+
+                {{-- KOTAK HITAM: Karena LI-nya static, 'left-0' dan 'w-full' akan ambil lebar dari DIV NAVBAR (Layar Penuh) --}}
+                <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-full left-0 top-full z-[150] py-4 shadow-xl 
+                    before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
                     <div class="max-w-[1340px] mx-auto px-4 flex justify-center space-x-10">
-                        @foreach($mainCat->children->take(5) as $subCat)
+                        @foreach($mainCat->children->take(8) as $subCat)
                         <a href="/category/{{ $subCat->slug }}" class="text-[13px] font-normal text-white hover:text-gray-300 whitespace-nowrap transition-colors capitalize">
                             {{ $subCat->name }}
                         </a>

@@ -24,32 +24,40 @@
         </div>
     @else
         <!-- Grid Daftar Kursus -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach($courses as $course)
-                <div class="border border-gray-200 hover:shadow-lg transition duration-200 flex flex-col h-full">
-                    <a href="/course/{{ $course->id }}" class="flex-grow">
-                        <!-- Thumbnail (Ganti dengan asset kamu) -->
-                        <img src="https://via.placeholder.com/300x150" alt="{{ $course->title }}" class="w-full h-40 object-cover">
-                        
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-900 leading-snug mb-1 line-clamp-2">
-                                {{ $course->title }}
-                            </h3>
-                            
-                            <!-- Menampilkan Nama Instruktur (Relasi User) -->
-                            <p class="text-xs text-gray-600 mb-1">
-                                {{ $course->user->name ?? 'Instruktur Anonim' }}
-                            </p>
+<!-- Daftar Hasil Pencarian (Layout List ala Udemy) -->
+<div class="flex flex-col space-y-6">
+    @foreach($courses as $course)
+        <div class="flex flex-col md:flex-row border-b border-gray-200 pb-6 gap-6 group">
+            <!-- Thumbnail Otomatis: Biar Dummy tapi Berisi -->
+            <div class="w-full md:w-64 h-36 shrink-0 bg-gray-100 overflow-hidden border border-gray-200">
+                <!-- Thumbnail Dinamis: Mengikuti kategori kursus agar gambarnya nyambung -->
+                <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'education' }}?random={{ $course->id }}" 
+                alt="{{ $course->title }}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            
+            <div class="flex flex-col justify-between grow">
+                <a href="/course/{{ $course->id }}">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#5624d0]">
+                        {{ $course->title }}
+                    </h3>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-2">
+                        {{ $course->description ?? 'Pelajari keahlian baru dengan kursus komprehensif ini.' }}
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        {{ $course->user->name ?? 'Instruktur Anonim' }}
+                    </p>
+                </a>
 
-                            <!-- Harga -->
-                            <div class="flex items-center gap-2 mt-2">
-                                <span class="font-bold text-gray-900">Rp {{ number_format($course->price, 0, ',', '.') }}</span>
-                            </div>
-                        </div>
-                    </a>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xl font-bold text-gray-900">
+                        Rp{{ number_format($course->price, 0, ',', '.') }}
+                    </span>
                 </div>
-            @endforeach
+            </div>
         </div>
+    @endforeach
+</div>
     @endif
 </div>
 @endsection
