@@ -3,42 +3,112 @@
         <h1 class="text-2xl font-bold text-black cursor-pointer">idemy</h1>
 
         <!-- Menu Jelajahi -->
-<div class="group inline-block" style="position: static;">
-    <button class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#5624d0] flex items-center gap-1">
+<div class="group relative inline-block">
+
+    <!-- BUTTON -->
+    <button
+        class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#5624d0] flex items-center gap-1 transition-all duration-200">
         {{ __('menu.explore') }}
     </button>
 
-    <div class="absolute hidden group-hover:flex left-6 top-[64px] z-[9999] pt-2">
-        
-        <div class="w-[280px] min-h-[650px] h-fit py-2 border border-gray-200 bg-white shadow-xl flex-shrink-0 relative">
-            @foreach($navCategories as $mainCat)
-            <div class="group/level2 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer">
-                <span class="text-[14px] text-gray-700 hover:text-[#5624d0] capitalize font-medium">{{ $mainCat->name }}</span>
-                <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
-                
-                <div class="absolute hidden group-hover/level2:flex left-[279px] top-[-9px] border border-gray-200 h-full w-[280px] flex-col py-2 z-20 bg-white shadow-xl">
-                    @foreach($mainCat->children as $subCat)
-                    <div class="group/level3 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer">
-                        <span class="text-[14px] text-gray-700 hover:text-[#5624d0] capitalize font-normal">{{ $subCat->name }}</span>
-                        <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
+    <!-- WRAPPER -->
+    <div class="absolute hidden group-hover:block top-full left-0 z-[9999]">
 
-                        <div class="absolute hidden group-hover/level3:block left-[279px] top-[-1px] border border-gray-200 h-full w-[300px] p-6 z-30 bg-white shadow-2xl overflow-y-auto">
-                            <h4 class="font-bold text-gray-400 mb-4 text-[11px] uppercase tracking-wider font-normal">Topik populer</h4>
-                            <div class="flex flex-col space-y-3">
-                                @foreach($subCat->children as $topic)
-                                   <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize font-normal no-underline" href="{{ route('category.show', $topic->slug) }}">
-                                    {{ $topic->name }}
-                                    </a>
-                                @endforeach
+        <!-- BASE -->
+        <div class="relative">
+
+            <!-- COLUMN 1 -->
+            <div
+                class="w-[250px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
+
+                @foreach($navCategories as $mainCat)
+
+                <div class="group/level2">
+
+                    <!-- MAIN CATEGORY -->
+                    <div
+                        class="flex items-center justify-between px-5 py-3 hover:bg-[#f7f9fa] cursor-pointer transition-all duration-150">
+
+                        <span
+                            class="text-[15px] text-gray-800 group-hover/level2:text-[#5624d0] font-medium capitalize">
+                            {{ $mainCat->name }}
+                        </span>
+
+                        <i data-feather="chevron-right"
+                            class="w-4 h-4 text-gray-400 group-hover/level2:text-[#5624d0]"></i>
+                    </div>
+
+                    <!-- COLUMN 2 -->
+                    <div
+                        class="absolute hidden group-hover/level2:block left-[250px] top-0">
+
+                        <div
+                            class="w-[360px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
+
+                            @foreach($mainCat->children as $subCat)
+
+                            <div class="group/level3">
+
+                                <!-- SUB CATEGORY -->
+                                <div
+                                    class="flex items-center justify-between px-5 py-3 hover:bg-[#f7f9fa] cursor-pointer transition-all duration-150">
+
+                                    <span
+                                        class="text-[15px] text-gray-700 group-hover/level3:text-[#5624d0]">
+                                        {{ $subCat->name }}
+                                    </span>
+
+                                    <i data-feather="chevron-right"
+                                        class="w-4 h-4 text-gray-400 group-hover/level3:text-[#5624d0]"></i>
+                                </div>
+
+                                <!-- COLUMN 3 -->
+                                <div
+                                    class="absolute hidden group-hover/level3:block left-[360px] top-0">
+
+                                    <div
+                                        class="w-[340px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl px-7 py-6">
+
+                                        <h4
+                                            class="text-[12px] font-bold tracking-widest text-gray-500 uppercase mb-5">
+                                            Topik Populer
+                                        </h4>
+
+                                        <div class="flex flex-col gap-4">
+
+                                            @foreach($subCat->children as $topic)
+
+                                            <a href="{{ route('category.show', $topic->slug) }}"
+                                                class="text-[15px] text-gray-700 hover:text-[#5624d0] transition-all duration-150 no-underline">
+
+                                                {{ $topic->name }}
+
+                                            </a>
+
+                                            @endforeach
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
+
+                            @endforeach
+
                         </div>
                     </div>
-                    @endforeach
+
                 </div>
+
+                @endforeach
+
             </div>
-            @endforeach
+
         </div>
+
     </div>
+
 </div>
         <a href="{{ url('/berlangganan') }}" class="text-sm hover:text-purple-600 whitespace-nowrap">{{ __('menu.subscribe') }}</a>
     </div>
@@ -82,37 +152,60 @@
     </a>
 
     <!-- Dropdown Keranjang Dinamis -->
-    <div class="absolute right-0 top-16 w-[320px] bg-white border border-gray-200 shadow-xl hidden group-hover:block z-50 p-4">
-        @if($cartItems->isEmpty())
-            <div class="text-center py-6">
-                <p class="text-gray-600 text-sm mb-4">{{ __('menu.cart_empty') }}</p>
-                <a href="/" class="text-[#a435f0] font-bold text-sm hover:underline">{{ __('menu.keep_shopping') }}</a>
-            </div>
-        @else
-            <div class="max-h-[300px] overflow-y-auto mb-4 text-left">
-                @foreach($cartItems as $item)
-                <div class="flex gap-3 border-b border-gray-100 pb-3 mb-3">
-                    <img src="https://loremflickr.com/60/60/tech?random={{ $item->course->id }}" class="w-14 h-14 object-cover">
-                    <div class="flex-grow min-w-0">
-                        <h4 class="text-[12px] font-bold text-gray-900 line-clamp-2 leading-tight">{{ $item->course->title }}</h4>
-                        <p class="text-[10px] text-gray-500 truncate">{{ $item->course->user->name ?? 'Instruktur' }}</p>
-                        <p class="text-sm font-bold text-gray-900 mt-1">Rp{{ number_format($item->course->price, 0, ',', '.') }}</p>
+    <div class="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[200]">
+    
+    <div class="w-[350px] bg-white border border-gray-100 shadow-[0_10px_30px_rgb(0,0,0,0.1)] rounded-xl overflow-hidden">
+        
+        <div class="p-5 max-h-[400px] overflow-y-auto custom-scrollbar">
+            @forelse($cartItems as $item)
+                <div class="flex gap-4 mb-5 last:mb-0 group/item relative">
+                    <a href="{{ route('course.show', $item->course->id) }}" class="shrink-0">
+                        <img src="https://loremflickr.com/120/80/tech?random={{ $item->course->id }}" 
+                             class="w-20 h-14 object-cover rounded-md shadow-sm group-hover/item:opacity-80 transition">
+                    </a>
+
+                    <div class="flex flex-col flex-grow">
+                        <a href="{{ route('course.show', $item->course->id) }}">
+                            <h4 class="text-[14px] font-bold text-gray-900 leading-snug hover:text-purple-700 transition line-clamp-2">
+                                {{ $item->course->title }}
+                            </h4>
+                        </a>
+                        <p class="text-[11px] text-gray-500 mt-1">Oleh {{ $item->course->user->name }}</p>
+                         <p class="text-[14px] font-extrabold text-gray-900 mt-1">Rp{{ number_format($item->course->price, 0, ',', '.') }}</p>
+                         <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-[11px] font-bold text-purple-700 hover:underline">Hapus</button>
+        </form>
                     </div>
                 </div>
-                @endforeach
-            </div>
-            
-            <div class="border-t pt-4">
-                <div class="flex justify-between mb-4">
-                    <span class="font-bold text-base text-gray-900">Total:</span>
-                    <span class="font-bold text-base text-gray-900">Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}</span>
+            @empty
+                <div class="py-10 text-center">
+                    <p class="text-gray-500 text-sm font-medium">Keranjang Anda kosong</p>
+                    <a href="/" class="text-purple-700 font-bold text-sm hover:underline mt-2 inline-block">Mulai belanja</a>
+                   
                 </div>
-                <a href="{{ route('keranjang') }}" class="block w-full bg-[#1c1d1f] text-white text-center py-3 font-bold hover:bg-gray-800 transition text-sm">
-                    {{ __('Buka keranjang') }}
+            @endforelse
+        </div>
+
+        @if($cartItems->isNotEmpty())
+            <div class="p-5 bg-gray-50 border-t border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+               
+                    <span class="text-gray-600 font-bold">Total:</span>
+                    <span class="text-xl font-black text-gray-900">
+                        Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}
+                    </span>
+                    
+                </div>
+                <a href="{{ route('keranjang') }}" class="block w-full bg-gray-900 text-white text-center py-3 font-bold rounded-lg hover:bg-gray-800 transition shadow-md">
+                    Buka Keranjang
                 </a>
+                 
             </div>
         @endif
     </div>
+</div>
 </div>
 
         <!-- Auth / Login Section -->

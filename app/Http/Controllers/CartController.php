@@ -24,4 +24,16 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Kursus berhasil ditambah!');
     }
+
+    public function removeFromCart($id)
+{
+    // Mencari item keranjang milik user yang sedang login
+    $cartItem = \App\Models\Cart::where('id', $id)
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
+
+    $cartItem->delete();
+
+    return redirect()->back()->with('success', 'Kursus berhasil dihapus dari keranjang.');
+}
 }

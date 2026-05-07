@@ -53,20 +53,19 @@
         </section>
 
         {{-- Grid Kursus Rekomendasi --}}
-       {{-- Grid Kursus Rekomendasi & Populer --}}
-        <section class="max-w-[1340px] mx-auto px-4 pb-12">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
-            <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
-                
-                {{-- Loop Data dari Database untuk Rekomendasi --}}
-                @foreach ($recommendedCourses as $course)
+      {{-- Grid Kursus Rekomendasi & Populer --}}
+<section class="max-w-[1340px] mx-auto px-4 pb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
+    <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
+    
+    {{-- Tambah 'overflow-visible' di sini agar popup tidak terpotong --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
+        
+        @foreach ($recommendedCourses as $course)
+            {{-- Tambah 'group/item' dan 'relative' agar popup tahu harus muncul di mana --}}
+            <div class="relative group/item">
                 <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
-                    <!-- Thumbnail -->
                     <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                        <!-- Ganti yang ini -->
-                        <!-- Bantai Gambar Card di Dashboard -->
                         <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'tech' }}?random={{ $course->id }}" 
                         alt="{{ $course->title }}" 
                         class="w-full h-32 object-cover"
@@ -74,15 +73,13 @@
                         <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                     </div>
                     
-                    <!-- Info -->
                     <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
                         {{ $course->title }}
                     </h3>
-                    <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->author }}</p>
+                    <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->user->name }}</p>
                     
-                    <!-- Rating Pakai SVG -->
                     <div class="flex items-center space-x-1 mb-1">
-                        <span class="text-sm font-bold text-[#b4690e]">{{ $course->rating }}</span>
+                        <span class="text-sm font-bold text-[#b4690e]">4.8</span>
                         <div class="flex text-[#b4690e] space-x-0.5">
                             <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                             <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -90,15 +87,13 @@
                             <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                             <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
                         </div>
-                        <span class="text-xs text-gray-500">({{ $course->reviews }})</span>
+                        <span class="text-xs text-gray-500">(1.234)</span>
                     </div>
                     
-                    <!-- Harga -->
                     <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
                         Rp{{ number_format($course->price, 0, ',', '.') }}
                     </div>
 
-                    <!-- Badge -->
                     <div class="flex space-x-2">
                         <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
                             <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
@@ -108,65 +103,113 @@
                         </span>
                     </div>
                 </a>
-                @endforeach
+
+                <div class="absolute top-0 left-full -ml-1 pl-4 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none group-hover/item:pointer-events-auto">
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
+                        {{-- Segitiga Penunjuk --}}
+                        <div class="absolute top-8 -left-2 w-4 h-4 bg-white border-l border-b border-gray-200 rotate-45"></div>
+                        
+                        <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
+                        <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
+                        
+                        <ul class="text-sm text-gray-600 mb-5 space-y-2">
+                            <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Akses selamanya ke materi lengkap.</span></li>
+                            <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Sertifikat penyelesaian kursus.</span></li>
+                            <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Bisa diakses dari HP maupun Laptop.</span></li>
+                        </ul>
+
+                        <form action="{{ route('cart.add', $course->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
+                                Tambahkan ke keranjang
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        
+    </div>
+
 
             </div>
 
 
             <p class="text-lg font-bold text-gray-800 mb-6 mt-8">Kursus Populer</p>
+
+{{-- Tambah 'overflow-visible' agar popup tidak terpotong ke samping --}}
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
+    
+    {{-- Loop Data dari Database untuk Populer --}}
+    @foreach ($popularCourses as $course)
+    {{-- Tambah 'group/item' dan 'relative' sebagai jangkar popup --}}
+    <div class="relative group/item">
+        <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
+            <div class="border border-gray-200 mb-2 relative overflow-hidden">
+                <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'tech' }}?random={{ $course->id }}" 
+                alt="{{ $course->title }}" 
+                class="w-full h-32 object-cover"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ $course->id }}/320/180';">
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+            </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative">
+            <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
+                {{ $course->title }}
+            </h3>
+            <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->user->name }}</p>
+            
+            <div class="flex items-center space-x-1 mb-1">
+                <span class="text-sm font-bold text-[#b4690e]">4.8</span>
+                <div class="flex text-[#b4690e] space-x-0.5">
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
+                </div>
+                <span class="text-xs text-gray-500">(1.234)</span>
+            </div>
+            
+            <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
+                Rp{{ number_format($course->price, 0, ',', '.') }}
+            </div>
+
+            <div class="flex space-x-2">
+                <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
+                    <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
+                </span>
+                <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                    Terlaris
+                </span>
+            </div>
+        </a>
+
+        <div class="absolute top-0 left-full -ml-1 pl-4 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none group-hover/item:pointer-events-auto">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
+                {{-- Segitiga Penunjuk --}}
+                <div class="absolute top-8 -left-2 w-4 h-4 bg-white border-l border-b border-gray-200 rotate-45"></div>
                 
-                {{-- Loop Data dari Database untuk Populer --}}
-                @foreach ($popularCourses as $course)
-                <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
-                    <!-- Thumbnail -->
-                    <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                        <!-- Ganti yang ini -->
-                        <!-- Perbaikan Kursus Populer: Gunakan random ID agar tidak kembar -->
-                        <img src="https://loremflickr.com/320/180/{{ $course->category->name ?? 'tech' }}?random={{ $course->id }}" 
-                        alt="{{ $course->title }}" 
-                        class="w-full h-32 object-cover"
-                        onerror="this.onerror=null;this.src='https://picsum.photos/seed/{{ $course->id }}/320/180';">
-                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                    </div>
-                    
-                    <!-- Info -->
-                    <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
-                        {{ $course->title }}
-                    </h3>
-                    <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->author }}</p>
-                    
-                    <!-- Rating Pakai SVG -->
-                    <div class="flex items-center space-x-1 mb-1">
-                        <span class="text-sm font-bold text-[#b4690e]">{{ $course->rating }}</span>
-                        <div class="flex text-[#b4690e] space-x-0.5">
-                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
-                        </div>
-                        <span class="text-xs text-gray-500">({{ $course->reviews }})</span>
-                    </div>
-                    
-                    <!-- Harga -->
-                    <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
-                        Rp{{ number_format($course->price, 0, ',', '.') }}
-                    </div>
+                <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
+                <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
+                
+                <ul class="text-sm text-gray-600 mb-5 space-y-2">
+                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Materi terpopuler dengan ulasan positif.</span></li>
+                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Akses penuh seumur hidup.</span></li>
+                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Sertifikat kursus setelah selesai.</span></li>
+                </ul>
 
-                    <!-- Badge -->
-                    <div class="flex space-x-2">
-                        <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
-                            <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
-                        </span>
-                        <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
-                            Terlaris
-                        </span>
-                    </div>
-                </a>
-                @endforeach
+                <form action="{{ route('cart.add', $course->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
+                        Tambahkan ke keranjang
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
+</div>
             </div>
         </section>
         @else

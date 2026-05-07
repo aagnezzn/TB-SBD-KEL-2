@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -48,17 +49,26 @@ class CourseController extends Controller
     }
 
    public function index()
+    {
+        // 1. Ambil data keranjang (agar daftar belanjaan muncul)
+        $cartItems = Cart::where('user_id', Auth::id())
+                        ->with('course.user')
+                        ->get();
+
+        // 2. Ambil 20 kursus secara ACAK (sesuai permintaan Anda)
+        $courses = Course::with(['user', 'category'])
+                         ->inRandomOrder() 
+                         ->limit(20) 
+                         ->get(); 
+
+        // 3. Kirim kedua data ke view
+        return view('keranjang', compact('cartItems', 'courses'));
+    }
+public function show($id)
 {
-    // Ambil semua item keranjang milik user yang sedang login
-    // Gunakan Auth::id() lebih stabil daripada helper auth()->id()
-$cartItems = \App\Models\Cart::where('user_id', Auth::id())
-                ->with('course.user')
-                ->get();
-
-    // Tetap ambil data rekomendasi kursus untuk bagian bawah
-    $courses = \App\Models\Course::take(10)->get();
-
-    return view('keranjang', compact('cartItems', 'courses'));
+    // Mengambil kursus beserta materi (lessons) agar halaman detail tidak kosong
+    $course = Course::with('lessons')->findOrFail($id);
+    return view('course-detail', compact('course'));
 }
-
+    
 }

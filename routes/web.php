@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Course;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CheckoutController;
 
+// Cari baris ini dan tambahkan ->name('course.show') di ujungnya
 Route::get('/course/{id}', function ($id) {
-    $course = Course::findOrFail($id); 
+    $course = \App\Models\Course::findOrFail($id); 
     return view('course-detail', compact('course'));
-});
+})->name('course.show');
 
 Route::get('/berlangganan', function () {
     return view('berlangganan');
@@ -71,3 +73,9 @@ Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
 
 Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
+
+// Rute untuk menghapus item dari keranjang
+Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove')->middleware('auth');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
+Route::post('/checkout/process', [CheckoutController::class, 'store'])->name('checkout.store');
