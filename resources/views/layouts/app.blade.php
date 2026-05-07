@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
-<body class="bg-gray-50 flex min-h-screen flex-col m-0 p-0 overflow-x-hidden overflow-y-auto">
+<body class="bg-gray-50 flex min-h-screen flex-col m-0 p-0  overflow-y-auto">
     
     <div class="w-full bg-[#addada] py-3 px-4 relative flex items-center justify-center border-b border-cyaan-200">
         <p class="text-center text-sm md:text-base text-gray-900">

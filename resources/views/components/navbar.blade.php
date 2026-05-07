@@ -3,45 +3,43 @@
         <h1 class="text-2xl font-bold text-black cursor-pointer">idemy</h1>
 
         <!-- Menu Jelajahi -->
-        <div class="relative group inline-block">
-            <button class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#5624d0]">
-                {{ __('menu.explore') }}
-            </button>
+<div class="group inline-block" style="position: static;">
+    <button class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#5624d0] flex items-center gap-1">
+        {{ __('menu.explore') }}
+    </button>
 
-            <!-- Level 1 -->
-            <ul class="absolute hidden group-hover:block bg-white border border-gray-200 shadow-xl w-[280px] left-0 top-full z-[100] py-2">
-                @foreach($navCategories as $mainCat)
-                <li class="group/level2 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer relative">
-                    <span class="text-[14px] text-gray-700 group-hover/level2:text-[#5624d0] capitalize">{{ $mainCat->name }}</span>
-                    <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    <div class="absolute hidden group-hover:flex left-6 top-[64px] z-[9999] pt-2">
+        
+        <div class="w-[280px] min-h-[650px] h-fit py-2 border border-gray-200 bg-white shadow-xl flex-shrink-0 relative">
+            @foreach($navCategories as $mainCat)
+            <div class="group/level2 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer">
+                <span class="text-[14px] text-gray-700 hover:text-[#5624d0] capitalize font-medium">{{ $mainCat->name }}</span>
+                <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                
+                <div class="absolute hidden group-hover/level2:flex left-[279px] top-[-9px] border border-gray-200 h-full w-[280px] flex-col py-2 z-20 bg-white shadow-xl">
+                    @foreach($mainCat->children as $subCat)
+                    <div class="group/level3 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer">
+                        <span class="text-[14px] text-gray-700 hover:text-[#5624d0] capitalize font-normal">{{ $subCat->name }}</span>
+                        <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
 
-                    <!-- Level 2 (Sub-Kategori) -->
-                    <ul class="absolute hidden group-hover/level2:block bg-white border border-gray-200 shadow-xl w-[280px] left-full top-0 z-[110] min-h-full py-2">
-                        @foreach($mainCat->children as $subCat)
-                        <li class="group/level3 px-4 py-[10px] hover:bg-gray-50 flex justify-between items-center cursor-pointer relative">
-                            <span class="text-[14px] text-gray-700 group-hover/level3:text-[#5624d0] capitalize">{{ $subCat->name }}</span>
-                            <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-
-                            <!-- Level 3 (Topik Populer) - SI PALING LENGKET -->
-                            <div class="absolute hidden group-hover/level3:block bg-white border border-gray-200 shadow-2xl w-[300px] left-[98%] top-0 z-[150] min-h-[550px] p-6 
-                                before:content-[''] before:absolute before:-left-10 before:top-0 before:w-10 before:h-full">
-                                <h4 class="font-bold text-gray-500 mb-4 text-[15px]">Topik populer</h4>
-                                <div class="flex flex-col space-y-4">
-                                    @foreach($subCat->children as $topic)
-                                       <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize" href="{{ route('category.show', $topic->slug) }}">
-                                        {{ $topic->name }}
-                                        </a>
-                                    @endforeach
-                                </div>
+                        <div class="absolute hidden group-hover/level3:block left-[279px] top-[-1px] border border-gray-200 h-full w-[300px] p-6 z-30 bg-white shadow-2xl overflow-y-auto">
+                            <h4 class="font-bold text-gray-400 mb-4 text-[11px] uppercase tracking-wider font-normal">Topik populer</h4>
+                            <div class="flex flex-col space-y-3">
+                                @foreach($subCat->children as $topic)
+                                   <a class="text-sm text-gray-600 hover:text-[#5624d0] capitalize font-normal no-underline" href="{{ route('category.show', $topic->slug) }}">
+                                    {{ $topic->name }}
+                                    </a>
+                                @endforeach
                             </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
-                @endforeach
-            </ul>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endforeach
         </div>
-
+    </div>
+</div>
         <a href="{{ url('/berlangganan') }}" class="text-sm hover:text-purple-600 whitespace-nowrap">{{ __('menu.subscribe') }}</a>
     </div>
 
