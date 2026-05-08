@@ -37,13 +37,18 @@ class CartController extends Controller
     return redirect()->back()->with('success', 'Kursus berhasil dihapus dari keranjang.');
 }
 
-    public function index()
+   public function index()
 {
-    // Mengambil item keranjang milik user yang sedang login beserta relasi data kursus dan pembuatnya (user/instructor)
+    // Item keranjang user
     $cartItems = Cart::where('user_id', Auth::id())
-                     ->with('course.user') 
+                     ->with('course.user')
                      ->get();
-    
-    return view('keranjang', compact('cartItems'));
+
+    // Course rekomendasi untuk slider bawah
+    $courses = \App\Models\Course::inRandomOrder()
+                 ->take(10)
+                 ->get();
+
+    return view('keranjang', compact('cartItems', 'courses'));
 }
 }

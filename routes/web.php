@@ -69,9 +69,10 @@ Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
 
 Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
-
-// Rute untuk menghapus item dari keranjang
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove')->middleware('auth');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
 Route::post('/checkout/process', [CheckoutController::class, 'store'])->name('checkout.store');
+
+Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('payment.success');
