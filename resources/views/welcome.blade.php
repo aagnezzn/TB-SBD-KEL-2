@@ -335,94 +335,132 @@
 </section>
 
 <section class="px-10 py-12">
-    <div class="max-w-[1350px] mx-auto">
-    <h2 class="text-3xl font-bold mb-2">Skill yang mengubah karier dan kehidupan Anda</h2>
-    <p class="text-gray-600 mb-6">Mulai dari topik dengan skill yang sangat penting hingga teknis, Udemy mendukung pengembangan profesional Anda.</p>
+    <div class="max-w-[1350px] mx-auto" 
+         x-data="{ 
+            kategoriAktif: {{ $categories->first()->id ?? 0 }},
+            scrollLeft() { $refs.sliderContent.scrollBy({ left: -300, behavior: 'smooth' }) },
+            scrollRight() { $refs.sliderContent.scrollBy({ left: 300, behavior: 'smooth' }) }
+         }">
+         
+        <h2 class="text-3xl font-bold mb-2">Skill yang mengubah karier dan kehidupan Anda</h2>
+        <p class="text-gray-600 mb-6">Mulai dari topik dengan skill yang sangat penting hingga teknis, Udemy mendukung pengembangan profesional Anda.</p>
 
-    <div class="flex space-x-6 border-b border-gray-300 mb-6 text-sm font-semibold text-gray-500">
-        <button class="pb-2 border-b-2 border-black text-black">Python</button>
-        <button class="pb-2 hover:text-black">Pemasaran Digital</button>
-        <button class="pb-2 hover:text-black">Ilmu Data</button>
-        <button class="pb-2 hover:text-black">Microsoft Excel</button>
-        <button class="pb-2 hover:text-black">JavaScript</button>
-        <button class="pb-2 hover:text-black">Perencanaan Proyek</button>
-    </div>
-
-    <div class="relative">
-        <div class="grid grid-cols-4 gap-4">
-            
-            <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
-                <img src="{{ asset('python.jpg') }}" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col grow">
-                    <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">100 Days of Code™: The Complete Python Pro Bootcamp</h3>
-                    <p class="text-xs text-gray-500 mb-2">Dr. Angela Yu, Developer and Lead Instructor</p>
-                    <div class="flex items-center space-x-1 mb-2">
-                        <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 text-[10px] font-bold rounded">Terlaris</span>
-                        <span class="text-yellow-700 font-bold text-xs ml-1">4,7</span>
-                        <svg class="w-3 h-3 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <span class="text-xs text-gray-500">(421.133)</span>
-                    </div>
-                    <div class="font-bold text-lg mt-auto">Rp169.000</div>
-                </div>
-            </div>
-
-            <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
-                <img src="https://img-c.udemycdn.com/course/240x135/567828_67d0.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col grow">
-                    <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">The Complete Python Bootcamp From Zero to Hero in Python</h3>
-                    <p class="text-xs text-gray-500 mb-2">Jose Portilla, Pierian Training</p>
-                    <div class="flex items-center space-x-1 mb-2">
-                        <span class="bg-purple-600 text-white px-1.5 py-0.5 text-[10px] font-bold rounded">Premium</span>
-                        <span class="text-yellow-700 font-bold text-xs ml-1">4,6</span>
-                        <svg class="w-3 h-3 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <span class="text-xs text-gray-500">(560.310)</span>
-                    </div>
-                    <div class="font-bold text-lg mt-auto">Rp169.000</div>
-                </div>
-            </div>
-
-            <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
-                <img src="https://img-c.udemycdn.com/course/240x135/394676_ce3d_5.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col grow">
-                    <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">Python PCEP: Become Certified Entry-Level Python Programmer</h3>
-                    <p class="text-xs text-gray-500 mb-2">Adrian Wiech</p>
-                    <div class="flex items-center space-x-1 mb-2">
-                        <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 text-[10px] font-bold rounded">Terlaris</span>
-                        <span class="text-yellow-700 font-bold text-xs ml-1">4,7</span>
-                        <svg class="w-3 h-3 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <span class="text-xs text-gray-500">(12.030)</span>
-                    </div>
-                    <div class="font-bold text-lg mt-auto">Rp159.000</div>
-                </div>
-            </div>
-
-            <div class="border border-gray-200 rounded-lg flex flex-col cursor-pointer group hover:shadow-md transition">
-                <img src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_16.jpg" class="w-full h-36 object-cover rounded-t-lg border-b border-gray-100">
-                <div class="p-4 flex flex-col grow">
-                    <h3 class="font-bold text-base leading-snug mb-1 group-hover:text-purple-700 line-clamp-2">Kelas Python Lengkap 2026: Pemula Sampai Mahir (+Projects)</h3>
-                    <p class="text-xs text-gray-500 mb-2">Risdan Kristori, BAYOU DATA</p>
-                    <div class="flex items-center space-x-1 mb-2 mt-4">
-                        <span class="text-yellow-700 font-bold text-xs ml-1">4,7</span>
-                        <svg class="w-3 h-3 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <span class="text-xs text-gray-500">(316)</span>
-                    </div>
-                    <div class="font-bold text-lg mt-auto">Rp169.000</div>
-                </div>
-            </div>
-
+        <div class="flex space-x-6 border-b border-gray-300 mb-6 text-sm font-semibold text-gray-500 overflow-x-auto hide-scrollbar">
+            @foreach($categories as $category)
+                <button @click="kategoriAktif = {{ $category->id }}" 
+                        :class="kategoriAktif === {{ $category->id }} ? 'border-b-2 border-black text-black' : 'hover:text-black'" 
+                        class="pb-2 transition-colors whitespace-nowrap capitalize">
+                    {{ $category->name }}
+                </button>
+            @endforeach
         </div>
 
-        <button class="absolute right-20px top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-12 h-12 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition z-10">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-    </div>
+        <div class="relative group">
 
-    <div class="mt-6">
-        <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm">
-            Tampilkan semua kursus Python &rarr;
-        </a>
+            <button @click="scrollLeft()" class="absolute -left-5 top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-10 h-10 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10 hover:bg-gray-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+
+            <div x-ref="sliderContent" class="flex flex-nowrap overflow-x-auto gap-4 pb-4 hide-scrollbar scroll-smooth snap-x snap-mandatory">
+                
+                @if(!empty($categoriesData))
+                    @foreach($categoriesData as $catId => $data)
+                        @foreach($data['courses'] as $course)
+                            
+                            {{-- KARTU KURSUS DENGAN HOVERCARD POPOVER --}}
+                            <div x-show="kategoriAktif === {{ $catId }}" 
+                                 x-data="{ openDetail: false }"
+                                 @mouseenter="openDetail = true"
+                                 @mouseleave="openDetail = false"
+                                 class="relative shrink-0 snap-start py-2">
+                                
+                                <div class="border border-gray-200 rounded-lg w-64 h-[280px] shrink-0 flex flex-col cursor-pointer group hover:shadow-md transition bg-white relative">
+                                    
+                                   <img src="@php $cName = strtolower($data['name']); if(str_contains($cName, 'python')){ echo asset('python.jpg'); }elseif(str_contains($cName, 'pemasaran') || str_contains($cName, 'marketing')){ echo asset('marketing.jpg'); }elseif(str_contains($cName, 'data') || str_contains($cName, 'science')){ echo asset('data.jpg'); }elseif(str_contains($cName, 'excel')){ echo asset('excel.jpg'); }elseif(str_contains($cName, 'javascript') || str_contains($cName, 'js')){ echo asset('javascript.jpg'); }elseif(str_contains($cName, 'proyek') || str_contains($cName, 'project')){ echo asset('project.jpg'); }else{ echo $course->image_url ? asset('storage/' . $course->image_url) : 'https://img-c.udemycdn.com/course/240x135/placeholder.jpg'; } @endphp" class="w-full h-32 object-cover rounded-t-lg border-b border-gray-100" alt="Course Image">
+                                    
+                                    <div class="p-3 flex flex-col grow justify-between">
+                                        <div>
+                                            <h3 class="font-bold text-xs leading-snug mb-1 group-hover:text-[#5624d0] line-clamp-2">
+                                                {{ $course->title }}
+                                            </h3>
+                                            
+                                            <p class="text-[10px] text-gray-500 mb-1">
+                                                {{ optional($course->user)->name ?? 'Instructor' }}
+                                            </p>
+                                            
+                                            <div class="flex items-center space-x-1 mb-1">
+                                                @if($course->price < 150000)
+                                                    <span class="bg-teal-100 text-teal-800 px-1 py-0.5 text-[9px] font-bold rounded">Terlaris</span>
+                                                @endif
+                                                <span class="text-yellow-700 font-bold text-[11px] ml-1">4.7</span>
+                                                <svg class="w-2.5 h-2.5 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                <span class="text-[10px] text-gray-500">({{ rand(100, 5000) }})</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="font-bold text-xs">
+                                            Rp{{ number_format($course->price, 0, ',', '.') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div x-show="openDetail"
+                                     x-transition:enter="transition ease-out duration-150"
+                                     x-transition:enter-start="opacity-0 translate-x-2"
+                                     x-transition:enter-end="opacity-100 translate-x-0"
+                                     x-transition:leave="transition ease-in duration-100"
+                                     class="absolute left-full top-0 ml-3 w-80 bg-white border border-gray-200 rounded-lg shadow-2xl z-50 p-6 text-gray-800"
+                                     style="display: none;">
+                                    
+                                    <h4 class="font-bold text-sm mb-1 text-gray-950">{{ $course->title }}</h4>
+                                    <p class="text-[10px] text-green-700 font-semibold mb-2">Terakhir Diperbarui: {{ optional($course->updated_at)->format('M Y') ?? 'Baru-baru ini' }}</p>
+                                    
+                                    <p class="text-[11px] text-gray-600 mb-4 line-clamp-4">
+                                        {{ $course->description ?? 'Tidak ada deskripsi tambahan untuk kursus ini.' }}
+                                    </p>
+
+                                    <div class="space-y-2">
+                                        <form action="/cart/add/{{ $course->id }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="w-full bg-[#a435f0] hover:bg-[#8710d8] text-white py-2 rounded text-xs font-bold transition">
+                                                Tambah ke Keranjang
+                                            </button>
+                                        </form>
+                                        <a href="/course/{{ $course->id }}" class="block text-center border border-gray-300 hover:bg-gray-50 py-2 rounded text-xs font-bold transition">
+                                            Lihat Detail Kursus
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    @endforeach
+                @endif
+
+            </div>
+
+            <button @click="scrollRight()" class="absolute -right-5 top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-10 h-10 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10 hover:bg-gray-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mt-6">
+            @if(!empty($categoriesData))
+                @foreach($categoriesData as $catId => $data)
+                    <a x-show="kategoriAktif === {{ $catId }}" 
+                       href="/category/{{ $data['slug'] }}" 
+                       class="text-purple-700 font-bold hover:text-purple-900 text-sm inline-flex items-center space-x-1">
+                        <span>Tampilkan semua kursus {{ $data['name'] }}</span>
+                        <span>&rarr;</span>
+                    </a>
+                @endforeach
+            @endif
+        </div>
     </div>
-</div>
 </section>
 
 <section class="bg-gray-50 py-12 md:py-16">
