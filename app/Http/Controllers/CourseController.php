@@ -12,10 +12,17 @@ class CourseController extends Controller
 {
     public function filterByCategory($slug) 
 {
-    $category = Category::where('slug', $slug)->firstOrFail();
+    // 1. Cari kategori berdasarkan slug (misal: 'ilmu-data')
+    // Kita panggil 'children' juga biar tahu topik-topik di bawahnya
+    $category = Category::where('slug', $slug)->with('children')->firstOrFail();
     
-    $courses = Course::where('category_id', $category->id)->paginate(12);
+    // 2. Ambil semua ID: ID kategori ini sendiri + ID semua anak-anaknya (topik populer)
+    $categoryIds = $category->children->pluck('id')->push($category->id);
+    
+    // 3. Cari kursus yang masuk dalam daftar ID tadi
+    $courses = Course::whereIn('category_id', $categoryIds)->paginate(12);
 
+    // 4. Kirim data ke view
     return view('courses.index', compact('courses', 'category'));
 }
     public function search(Request $request)
@@ -69,6 +76,7 @@ public function show($id)
     // Mengambil kursus beserta materi (lessons) agar halaman detail tidak kosong
     $course = Course::with('lessons')->findOrFail($id);
     return view('course-detail', compact('course'));
+
 }
     
 }

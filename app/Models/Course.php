@@ -15,7 +15,7 @@ class Course extends Model
     // Relasi ke Category (Sudah Benar)
     public function category() 
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     // Relasi ke User (DIREVISI)

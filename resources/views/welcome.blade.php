@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+<style>
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 @section('content')
 <!--sub-navbar-->
 @auth
@@ -247,28 +250,34 @@
         <div class="col-span-3 relative">
             <div class="overflow-hidden">
                 <div id="slider" class="flex gap-6 transition-transform duration-500">
-                    @foreach([
-                        ['ai.jpeg', 'AI Generatif'],
-                        ['sertif.jpeg', 'Sertifikasi TI'],
-                        ['ilmu_data.jpeg', 'Ilmu Data'],
-                        ['gpt.jpeg', 'ChatGPT'],
-                        ['rekayasa_prompt.jpeg', 'Rekayasa Prompt'],
-                        ['microsoft_excel.jpeg', 'Microsoft Excel'],
-                        ['model.jpeg', 'Model Bahasa Besar'],
-                        ['pembelajaran_mesin.jpeg', 'Pembelajaran Mesin'],
-                        ['agen_ai.jpeg', 'Agen AI'],
-                    ] as $item)
-                    <div class="min-w-[300px]">
-                        <div class="relative rounded-2xl overflow-hidden shadow group">
-                            <img src="{{ asset($item[0]) }}" class="w-full h-[300px] object-cover">
-                            <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-xl flex justify-between items-center cursor-pointer hover:bg-gray-50 transition">
-                                <span class="font-semibold">{{ $item[1] }}</span>
-                                <span>→</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
+    @foreach([
+        // Nah, ini perhatikan, sekarang setiap baris sudah ada 3 data: [Gambar, Judul, Slug]
+        ['ai.jpeg', 'AI Generatif', 'ai-generatif'],
+        ['sertif.jpeg', 'Sertifikasi TI', 'sertifikasi-ti'],
+        ['ilmu_data.jpeg', 'Ilmu Data', 'ilmu-data'],
+        ['gpt.jpeg', 'ChatGPT', 'chat-gpt'],
+        ['rekayasa_prompt.jpeg', 'Rekayasa Prompt', 'rekayasa-prompt'],
+        ['microsoft_excel.jpeg', 'Microsoft Excel', 'microsoft-excel'],
+        ['model.jpeg', 'Model Bahasa Besar', 'model-bahasa-besar'],
+        ['pembelajaran_mesin.jpeg', 'Pembelajaran Mesin', 'pembelajaran-mesin'],
+        ['agen_ai.jpeg', 'Agen AI', 'agen-ai'],
+    ] as $item)
+    
+    <div class="min-w-[300px]">
+        {{-- Karena di atas semua array sudah punya data ke-3 (index 2), baris ini nggak akan error lagi --}}
+        <a href="{{ route('category.show', $item[2]) }}" class="block relative rounded-2xl overflow-hidden shadow group">
+            
+            <img src="{{ asset($item[0]) }}" class="w-full h-[300px] object-cover">
+            
+            <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-xl flex justify-between items-center group-hover:bg-gray-50 transition">
+                <span class="font-semibold">{{ $item[1] }}</span>
+                <span>→</span>
+            </div>
+            
+        </a>
+    </div>
+    @endforeach
+</div>
             </div>
             <button onclick="prevSlide()" class="absolute left-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">‹</button>
             <button onclick="nextSlide()" class="absolute right-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">›</button>
@@ -695,5 +704,48 @@
 </main>
 
 
+<script>
+    let letakGeser = 0;
+    const sliderKamu = document.getElementById('slider');
+    const jarakGeser = 280; // Jarak geser per klik
 
+    function nextSlide() {
+        if(sliderKamu) {
+            // Hitung sisa ruang maksimal untuk digeser
+            // scrollWidth = panjang total semua kartu jika dibentangkan
+            // clientWidth = panjang layar/wadah yang kelihatan saat ini
+            const batasMaksimal = sliderKamu.scrollWidth - sliderKamu.parentElement.clientWidth;
+            
+            // Cek apakah posisi geser saat ini masih belum mencapai batas maksimal
+            if (Math.abs(letakGeser) < batasMaksimal) {
+                letakGeser -= jarakGeser;
+                
+                // Mencegah kebablasan: kalau hasil geser ternyata melewati batas,
+                // kita paksa posisinya berhenti pas di ujung (batas maksimal)
+                if (Math.abs(letakGeser) > batasMaksimal) {
+                    letakGeser = -batasMaksimal;
+                }
+                
+                sliderKamu.style.transform = `translateX(${letakGeser}px)`;
+            }
+        }
+    }
+
+    function prevSlide() {
+        if(sliderKamu) {
+            // Hanya geser balik ke kanan kalau posisinya tidak di titik awal (0)
+            if (letakGeser < 0) {
+                letakGeser += jarakGeser;
+                
+                // Mencegah kebablasan: kalau hasil geser bikin posisinya positif (kebablasan ke kiri),
+                // kita paksa posisinya diam di titik 0 (paling awal)
+                if (letakGeser > 0) {
+                    letakGeser = 0;
+                }
+                
+                sliderKamu.style.transform = `translateX(${letakGeser}px)`;
+            }
+        }
+    }
+</script>
 @endsection

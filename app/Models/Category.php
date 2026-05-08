@@ -16,6 +16,11 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function parent()
+    {
+    // Ini buat nyari siapa bapaknya (opsional tapi berguna)
+    return $this->belongsTo(Category::class, 'parent_id');
+    }
     // Memanggil anak dari anak (Level 3 / Topik Populer)
     // Digunakan dengan cara: $category->load('children.children')
     public function subChildren()
@@ -27,5 +32,10 @@ class Category extends Model
     public function getRouteKeyName()
     {
     return 'slug';
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'category_id', 'id');
     }
 }
