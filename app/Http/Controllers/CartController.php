@@ -36,4 +36,14 @@ class CartController extends Controller
 
     return redirect()->back()->with('success', 'Kursus berhasil dihapus dari keranjang.');
 }
+
+    public function index()
+{
+    // Mengambil item keranjang milik user yang sedang login beserta relasi data kursus dan pembuatnya (user/instructor)
+    $cartItems = Cart::where('user_id', Auth::id())
+                     ->with('course.user') 
+                     ->get();
+    
+    return view('keranjang', compact('cartItems'));
+}
 }

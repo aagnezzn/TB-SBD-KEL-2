@@ -16,10 +16,6 @@ Route::get('/course/{id}', function ($id) {
     return view('course-detail', compact('course'));
 })->name('course.show');
 
-Route::get('/berlangganan', function () {
-    return view('berlangganan');
-});
-
 Route::get('/berlangganan', [FAQController::class, 'index']);
 
 Route::get('/mengajar-di-idemy', function () {
