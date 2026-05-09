@@ -108,3 +108,11 @@ Route::middleware(['admin'])->group(function () {
 // Route untuk menampilkan halaman success yang kamu buat di awal
 Route::get('/payment/success/{id}', [TransactionController::class, 'success'])->name('transaction.success');
 
+// Rute untuk mengubah bahasa aplikasi (ID, EN, ES) secara otomatis
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en', 'es'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('change.lang');
+
