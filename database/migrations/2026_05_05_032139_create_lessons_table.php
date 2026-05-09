@@ -17,8 +17,7 @@ return new class extends Migration
         $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
         
         $table->string('title'); // Judul bab (misal: "Pengenalan Database")
-        $table->text('content'); // Isi materi atau ringkasan
-        $table->string('video_url')->nullable(); 
+        $table->text('content'); // Isi materi atau ringkasan 
         $table->integer('duration'); // Durasi dalam menit (untuk query Aggregate nanti)
         $table->timestamps();
     });

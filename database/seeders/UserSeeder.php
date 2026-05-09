@@ -15,30 +15,31 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. Akun Spesifik Tim (Admin)
         $teamUsers = [
             [
                 'name' => 'Icha Cantik',
                 'email' => 'icha@test.com',
                 'password' => Hash::make('ichaimut'),
-                'role' => 'admin', // Diubah menjadi admin
+                'role' => 'admin',
             ],
             [
                 'name' => 'Limjun Payung',
                 'email' => 'liliwaalittlegirl@test.com',
                 'password' => Hash::make('jenojeno'),
-                'role' => 'admin', // Diubah menjadi admin
+                'role' => 'admin',
             ],
             [
                 'name' => 'Nadia Kabanjahe',
                 'email' => 'nadialovepanji@test.com',
                 'password' => Hash::make('naspaddihati'),
-                'role' => 'admin', // Diubah menjadi admin
+                'role' => 'admin',
             ],
             [
                 'name' => 'Agnes',
                 'email' => 'agnes@test.com',
                 'password' => Hash::make('12345678'),
-                'role' => 'admin', // Diubah menjadi admin
+                'role' => 'admin',
             ],
         ];
 
@@ -53,11 +54,11 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        // 2. BUAT 1000 USER DUMMY (Gabungan Student & Instructor untuk pasokan data transaksional)
+        // 2. Buat 996 User Dummy (Campuran Instruktur & Siswa)
         $faker = Faker::create('id_ID');
-        
         $batchData = [];
-        for ($i = 0; $i < 1000; $i++) {
+
+        for ($i = 0; $i < 996; $i++) {
             $role = ($i % 7 === 0) ? 'instructor' : 'student';
 
             $batchData[] = [
