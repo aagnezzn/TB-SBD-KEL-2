@@ -16,23 +16,28 @@ class LoginController extends Controller
 
     // Fungsi untuk memproses data saat tombol Lanjutkan diklik
     public function login(Request $request)
-    {
-        // 1. Validasi: Pastikan user mengisi email dan password
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+{
+    // 1. Validasi input
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        // 2. Cek ke database: Apakah email dan password cocok?
-        if (Auth::attempt($credentials)) {
-            // Kalau cocok, buat sesi baru biar aman
-            $request->session()->regenerate();
-            
-            // Arahkan ke halaman utama project kamu ('/')
-            return redirect()->intended('/'); 
+    // 2. Cek apakah email & password benar
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        // --- INI KUNCINYA ---
+        // Jika yang login adalah admin, lempar ke dashboard admin
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.dashboard'); 
         }
 
-        // 3. Kalau gagal: Kembalikan ke halaman login dengan pesan error
-        return back()->with('error', 'Email atau password salah. Coba lagi.');
+        // Jika siswa, lempar ke homepage utama
+        return redirect()->intended('/'); 
     }
+
+    // 3. Jika gagal
+    return back()->with('error', 'Email atau password salah.');
+}
 }

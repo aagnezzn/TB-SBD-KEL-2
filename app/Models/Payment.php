@@ -15,7 +15,7 @@ class Payment extends Model
         'amount', 
         'payment_method', 
         'status', 
-        'paid_at'
+        'paid_at' => 'datetime',
         ];
         public $timestamps = true;
 

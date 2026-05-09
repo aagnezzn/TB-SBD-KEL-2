@@ -39,7 +39,7 @@
                                 <input type="radio" name="payment_method" value="OVO" checked class="w-4 h-4 accent-[#a435f0]">
                                 <span class="font-bold text-sm">OVO</span>
                             </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/eb/eb/Logo_ovo_purple.svg" class="h-4" alt="OVO">
+                            <img src="{{ asset('vo.png') }}" class="h-4" alt="OVO">
                         </label>
 
                         <label class="flex items-center justify-between p-4 border-b border-[#d1d7dc] bg-white cursor-pointer hover:bg-[#f7f9fa]">

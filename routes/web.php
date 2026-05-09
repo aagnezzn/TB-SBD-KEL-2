@@ -9,7 +9,7 @@ use App\Models\Course;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AdminController;
 
 // Cari baris ini dan tambahkan ->name('course.show') di ujungnya
 Route::get('/course/{id}', function ($id) {
@@ -73,14 +73,34 @@ Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove')->middleware('auth');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 
+// --- ROUTE UNTUK CHECKOUT & PEMBAYARAN ---
+
+// 1. Nampilin halaman checkout (keranjang)
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
-Route::post('/checkout/process', [CheckoutController::class, 'store'])->name('checkout.store');
 
-Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
+// 2. Memproses form saat tombol 'Selesaikan Pembayaran' diklik
 Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
-// Route untuk memproses data masuk ke database (biasanya dipanggil dari form checkout)
-Route::post('/checkout/process', [TransactionController::class, 'process'])->name('transaction.process');
 
-// Route untuk menampilkan halaman success yang kamu buat di awal
-Route::get('/payment/success/{id}', [TransactionController::class, 'success'])->name('transaction.success');
+// 3. Nampilin halaman Invoice (QR Code)
+Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
+
+// 4. Nampilin halaman Pembayaran Berhasil
+Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
+
+
+Route::get('/admin/login', function () {return view('admin.login');})->name('admin.login');
+
+// Lebih rapi karena pakai alias 'admin'
+Route::middleware(['admin'])->group(function () {
+    
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/courses', [AdminController::class, 'courses'])->name('admin.courses');
+    Route::get('/admin/courses/create', [AdminController::class, 'createCourse'])->name('admin.courses.create');
+    Route::post('/admin/courses/store', [AdminController::class, 'storeCourse'])->name('admin.courses.store');
+    Route::get('/admin/courses/edit/{id}', [AdminController::class, 'editCourse'])->name('admin.courses.edit');
+    Route::put('/admin/courses/update/{id}', [AdminController::class, 'updateCourse'])->name('admin.courses.update');
+    Route::delete('/admin/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
+    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    
+});
