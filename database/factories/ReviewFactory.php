@@ -16,21 +16,23 @@ class ReviewFactory extends Factory
      * @return array<string, mixed>
      */
    public function definition(): array
-{
-    $comments = [
-        'Materi sangat mudah dipahami, instruktur menjelaskan dengan sangat jelas!',
-        'The course content is great, but the audio quality could be improved.',
-        'Sangat membantu saya dalam mengerjakan tugas akhir kuliah. Terima kasih!',
-        'Great course! Highly recommended for beginners who want to learn web development.',
-        'Penjelasannya terlalu cepat, tapi materinya sangat lengkap dan berbobot.',
-        'Excelente curso, muy bien explicado y con ejemplos prácticos.'
-    ];
+   {
+        $comments = [
+            'Materi sangat mudah dipahami, instruktur menjelaskan dengan sangat jelas!',
+            'The course content is great, but the audio quality could be improved.',
+            'Sangat membantu saya dalam mengerjakan tugas akhir kuliah. Terima kasih!',
+            'Great course! Highly recommended for beginners who want to learn web development.',
+            'Penjelasannya terlalu cepat, tapi materinya sangat lengkap dan berbobot.',
+            'Excelente curso, muy bien explicado y con ejemplos prácticos.'
+        ];
 
-    return [
-        'course_id' => \App\Models\Course::factory(),
-        'user_id' => \App\Models\User::factory(),
-        'rating' => $this->faker->numberBetween(1, 5),
-        'comment' => $this->faker->randomElement($comments), // GANTI INI
-    ];
-}
+        return [
+            // Fakta Logika: Mengambil ID Kursus dan User yang SUDAH ADA di database secara acak
+            'course_id' => \App\Models\Course::inRandomOrder()->first()->id,
+            'user_id' => \App\Models\User::where('role', 'student')->inRandomOrder()->first()->id,
+            
+            'rating' => $this->faker->numberBetween(1, 5),
+            'comment' => $this->faker->randomElement($comments),
+        ];
+    }
 }
