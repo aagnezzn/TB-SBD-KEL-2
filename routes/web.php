@@ -104,3 +104,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     
 });
+
+// Route untuk menampilkan halaman success yang kamu buat di awal
+Route::get('/payment/success/{id}', [TransactionController::class, 'success'])->name('transaction.success');
+
