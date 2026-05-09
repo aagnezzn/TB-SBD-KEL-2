@@ -114,8 +114,8 @@
     </div>
 
     <!-- Form Cari -->
-    <div class="flex-grow mx-6">
-        <form action="{{ route('search') }}" method="GET" class="relative w-full">
+    <div class="flex-grow mx-6 flex items-center">
+        <form action="{{ route('search') }}" method="GET" class="relative w-full mb-0">
             <span class="absolute inset-y-0 left-4 flex items-center">
                 <i data-feather="search" class="w-4 h-4 text-gray-400"></i>
             </span>
