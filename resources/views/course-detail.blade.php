@@ -48,9 +48,10 @@
         <div class="p-6">
             <div class="text-3xl font-bold mb-4">Rp{{ number_format($course->price, 0, ',', '.') }}</div>
             
-            <button class="w-full bg-[#a435f0] text-white font-bold py-3 mb-2 hover:bg-[#8710d8] transition">
+            <a href="{{ route('cart.add', $course->id) }}" 
+                class="w-full bg-[#a435f0] text-white font-bold py-3 mb-2 hover:bg-[#8710d8] transition block text-center">
                 Tambahkan ke Keranjang
-            </button>
+            </a>
             <button class="w-full bg-white text-gray-900 border border-gray-900 font-bold py-3 hover:bg-gray-100 transition mb-4">
                 Beli Sekarang
             </button>

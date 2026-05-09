@@ -14,9 +14,10 @@
             <p class="text-gray-700 text-xl mb-8 leading-relaxed">
                 Melangkah maju dalam pekerjaan dan kehidupan dengan akses langganan ke koleksi kursus berperingkat teratas dalam topik teknologi, bisnis, dan lainnya.
             </p>
-            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-10 text-lg rounded transition">
-                Mulai langganan
-            </button>
+            <a href="{{ route('register') }}" 
+   class="mx-auto w-4/5 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 text-sm rounded transition mt-auto block text-center">
+    Mulai langganan
+</a>
             <p class="text-sm text-gray-500 mt-4">
                 Mulai Rp116.000 per bulan. Batalkan kapan saja.
             </p>
@@ -110,9 +111,10 @@
         </div>
         <div class="flex items-center gap-4">
             <span class="text-sm text-gray-600 hidden md:block font-medium">Mulai Rp116.000 per bulan. Batalkan kapan saja.</span>
-            <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 text-sm rounded transition">
-                Mulai langganan
-            </button>
+            <a href="{{ route('register') }}" 
+   class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-4 text-sm rounded transition block text-center">
+    Mulai langganan
+</a>
         </div>
     </div>
 </div>
@@ -225,9 +227,10 @@
                     </li>
                 </ul>
 
-                <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 text-sm rounded transition mt-auto">
-                    Mulai langganan
-                </button>
+                <a href="{{ route('register') }}" 
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 text-sm rounded transition mt-auto block text-center">
+                        Mulai langganan
+                </a>
             </div>
         </div>
 

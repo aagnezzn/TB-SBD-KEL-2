@@ -98,6 +98,9 @@
                     </table>
                 </div>
             </div>
+            <div class="mt-6">
+                    {{ $payments->links() }}
+                </div>
         </div>
     </main>
 

@@ -24,15 +24,15 @@
             <a href="{{ route('admin.transactions') }}" class="flex items-center px-4 py-3 text-[#1c1d1f] hover:bg-gray-100 rounded-lg transition-colors">
                 <i class="fas fa-receipt w-6 text-[#6a6f73]"></i> Transaksi
             </a>
-            <a href="{{ route('admin.users') }}" class="flex items-center px-4 py-3 text-[#a435f0] bg-[#f7f9fa] border border-[#d1d7dc] rounded-lg font-bold transition-colors">
-                <i class="fas fa-users w-6"></i> Pengguna
+            <a href="{{ route('admin.transactions') }}" class="flex items-center px-4 py-3 text-[#a435f0] bg-[#f7f9fa] border border-[#d1d7dc] rounded-lg font-bold transition-colors">
+                <i class="fas fa-receipt w-6"></i> Pengguna
             </a>
         </nav>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
-        <header class="h-16 bg-white border-b border-[#d1d7dc] flex items-center justify-between px-8 sticky top-0 z-10 shrink-0">
-            <h2 class="text-2xl font-bold leading-none">Pengguna</h2>
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <header class="h-16 bg-white border-b border-[#d1d7dc] flex items-center justify-between px-8 shrink-0">
+            <h1 class="text-xl font-bold">Kelola Pengguna</h1>
             <div class="flex items-center gap-6">
                 <span class="text-sm font-semibold text-[#6a6f73]">Halo, Admin!</span>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -44,48 +44,75 @@
             </div>
         </header>
 
-        <div class="p-8">
-            <h3 class="text-2xl font-bold mb-6">Daftar Siswa & Pengguna</h3>
-
-            <div class="bg-white rounded-xl border border-[#d1d7dc] shadow-sm overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-[#f7f9fa] text-[#6a6f73] text-sm border-b border-[#d1d7dc]">
-                                <th class="px-6 py-4 font-bold">Nama</th>
-                                <th class="px-6 py-4 font-bold">Email</th>
-                                <th class="px-6 py-4 font-bold">Tanggal Bergabung</th>
-                                <th class="px-6 py-4 font-bold text-center">Aksi</th>
+        <div class="flex-1 overflow-y-auto p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white border border-[#d1d7dc] rounded-sm shadow-sm overflow-hidden">
+                  <div class="max-w-6xl mx-auto mb-6">
+    <form action="{{ route('admin.users') }}" method="GET" class="flex gap-2">
+        <div class="relative flex-1">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                <i class="fas fa-search"></i>
+            </span>
+            <input type="text" name="search" value="{{ request('search') }}" 
+                placeholder="Cari nama atau email pengguna..." 
+                class="w-full pl-10 pr-4 py-2 border border-[#d1d7dc] focus:border-[#1c1d1f] outline-none rounded-sm text-sm">
+        </div>
+        <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold text-sm hover:bg-black transition-all">
+            Cari
+        </button>
+        @if(request('search'))
+            <a href="{{ route('admin.users') }}" class="bg-gray-200 text-gray-700 px-4 py-2 text-sm flex items-center">
+                Reset
+            </a>
+        @endif
+    </form>
+</div>
+                    <table class="w-full text-left">
+                        <thead class="bg-[#f7f9fa] border-b border-[#d1d7dc]">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Pengguna</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Email</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Role</th> <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Terdaftar</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="divide-y divide-[#d1d7dc]">
                             @forelse($users as $user)
-                            <tr class="border-b border-[#d1d7dc] hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                                        <div class="w-9 h-9 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0">
                                             {{ strtoupper(substr($user->name, 0, 1)) }}
                                         </div>
                                         <span class="font-bold text-sm text-[#1c1d1f]">{{ $user->name }}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-[#1c1d1f]">{{ $user->email }}</td>
+                                
+                                <td class="px-6 py-4">
+                                    @if($user->role === 'admin')
+                                        <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-purple-600 text-white uppercase">ADMIN</span>
+                                    @elseif($user->role === 'instructor')
+                                        <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-blue-600 text-white uppercase">INSTRUCTOR</span>
+                                    @else
+                                        <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-gray-200 text-gray-700 uppercase">STUDENT</span>
+                                    @endif
+                                </td>
+
                                 <td class="px-6 py-4 text-sm text-[#6a6f73]">
                                     {{ $user->created_at->format('d M Y') }}
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="bg-red-100 text-red-700 hover:bg-red-200 px-3 py-1.5 rounded text-xs font-bold transition-colors">
-                                        Suspen
-                                    </button>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="px-6 py-8 text-center text-[#6a6f73]">Belum ada pengguna terdaftar.</td>
+                                <td colspan="5" class="px-6 py-8 text-center text-[#6a6f73]">Belum ada pengguna terdaftar.</td>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                
+                <div class="mt-6">
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ class AdminController extends Controller
         $totalKelas = Course::count();
 
         // 3. Hitung total pengguna (siswa)
-        $totalSiswa = User::count();
+        $totalSiswa = \App\Models\User::where('role', 'student')->count();
 
         // 4. Ambil 5 transaksi terbaru untuk ditampilkan di tabel
         $transaksiTerbaru = Payment::latest()->take(5)->get();
@@ -46,18 +46,26 @@ class AdminController extends Controller
     // Ambil data payment, sertakan relasi enrollment, user, dan course agar tidak berat (Eager Loading)
     $payments = Payment::with(['enrollment.user', 'enrollment.course'])
                 ->latest()
-                ->get();
-
+                ->paginate(10);
+            
     return view('admin.transactions', compact('payments'));
     }
 
-    public function users()
-    {
-    // Ambil semua user kecuali admin (opsional, tapi biasanya admin nggak perlu masuk daftar)
-    $users = \App\Models\User::where('role', 'student')->latest()->get();
+    public function users(Request $request)
+{
+    $search = $request->input('search');
+
+    $users = \App\Models\User::query()
+        ->when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%")
+                         ->orWhere('email', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->paginate(10)
+        ->withQueryString(); // Penting: Biar pas pindah halaman, hasil pencarian nggak hilang
 
     return view('admin.users', compact('users'));
-    }
+}
 
     public function createCourse()
     {

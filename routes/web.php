@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SubscriptionController;
 
 // Cari baris ini dan tambahkan ->name('course.show') di ujungnya
 Route::get('/course/{id}', function ($id) {
@@ -70,6 +71,7 @@ Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
 
 Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
+Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove')->middleware('auth');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 
@@ -105,6 +107,10 @@ Route::middleware(['admin'])->group(function () {
     
 });
 
-// Route untuk menampilkan halaman success yang kamu buat di awal
-Route::get('/payment/success/{id}', [TransactionController::class, 'success'])->name('transaction.success');
+
+// Route ini akan mengecek: "Sudah login belum?"
+// Jika belum, user akan dilempar ke login. Jika sudah, lanjut ke controller.
+Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])
+    ->middleware('auth') 
+    ->name('subscribe.start');
 
