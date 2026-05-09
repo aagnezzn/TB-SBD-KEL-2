@@ -77,36 +77,52 @@ class CourseSeeder extends Seeder
         $titleLower = strtolower($title);
         $subjectLower = strtolower($subject);
 
-        // A. DETEKSI SYSTEM & SECURITY (IT & Software)
-        if (Str::contains($titleLower, ['powershell', 'linux', 'bash', 'windows server', 'server', 'ubuntu', 'cyber security', 'ethical hacking', 'network', 'ccna', 'security+', 'hack'])) {
+        // ==========================================
+        // 1. IT & SOFTWARE (SYSTEM, SECURITY, CCNA)
+        // ==========================================
+        if (Str::contains($titleLower, ['powershell', 'linux', 'bash', 'windows server', 'server', 'ubuntu', 'cyber', 'security', 'ethical', 'hacking', 'network', 'ccna', 'security+', 'hack', 'wireshark', 'ip addressing', 'routing', 'switch', 'firewall', 'shell'])) {
             if (Str::contains($titleLower, ['powershell'])) {
                 return $categories->firstWhere('name', 'PowerShell')->id;
             }
-            if (Str::contains($titleLower, ['linux', 'bash', 'ubuntu'])) {
+            if (Str::contains($titleLower, ['shell', 'bash', 'scripting']) && !Str::contains($titleLower, ['powershell'])) {
+                return $categories->firstWhere('name', 'Shell Scripting')->id ?? $categories->firstWhere('name', 'PowerShell')->id;
+            }
+            if (Str::contains($titleLower, ['linux', 'ubuntu', 'redhat'])) {
                 return $categories->firstWhere('name', 'Linux Administration')->id;
             }
-            if (Str::contains($titleLower, ['windows server', 'server'])) {
+            if (Str::contains($titleLower, ['windows server', 'active directory'])) {
                 return $categories->firstWhere('name', 'Windows Server')->id;
             }
-            if (Str::contains($titleLower, ['hack', 'ethical hacking', 'penetration'])) {
+            if (Str::contains($titleLower, ['hack', 'ethical', 'penetration', 'wireshark', 'metasploit', 'exploit'])) {
                 return $categories->firstWhere('name', 'Ethical Hacking')->id;
             }
-            if (Str::contains($titleLower, ['cyber', 'security'])) {
+            if (Str::contains($titleLower, ['ccna', 'ccent', 'routing', 'switching', 'cisco', 'subnetting'])) {
+                return $categories->firstWhere('name', 'CCNA')->id;
+            }
+            if (Str::contains($titleLower, ['cyber', 'security', 'firewall', 'cryptography'])) {
                 return $categories->firstWhere('name', 'Cyber Security')->id;
             }
             return $categories->firstWhere('name', 'Computer Networks')->id;
         }
 
-        // B. DETEKSI PRODUCTIVITY TOOLS (Office Productivity)
-        if (Str::contains($titleLower, ['excel', 'vba', 'word', 'powerpoint', 'google sheets', 'spreadsheet', 'google drive'])) {
-            if (Str::contains($titleLower, ['vba'])) {
+        // ==========================================
+        // 2. OFFICE PRODUCTIVITY TOOLS (EXCEL VBA, GOOGLE SUITE)
+        // ==========================================
+        if (Str::contains($titleLower, ['excel', 'vba', 'macro', 'word', 'powerpoint', 'google sheets', 'spreadsheet', 'google drive', 'workspace', 'gmail', 'google docs'])) {
+            if (Str::contains($titleLower, ['vba', 'macro'])) {
                 return $categories->firstWhere('name', 'Excel VBA')->id;
             }
-            if (Str::contains($titleLower, ['excel'])) {
+            if (Str::contains($titleLower, ['excel']) && !Str::contains($titleLower, ['vba', 'macro'])) {
                 return $categories->firstWhere('name', 'Excel Basic')->id;
             }
-            if (Str::contains($titleLower, ['sheets', 'spreadsheet'])) {
+            if (Str::contains($titleLower, ['sheets', 'spreadsheet']) && Str::contains($titleLower, ['google'])) {
                 return $categories->firstWhere('name', 'Google Sheets')->id;
+            }
+            if (Str::contains($titleLower, ['drive', 'cloud storage']) && Str::contains($titleLower, ['google'])) {
+                return $categories->firstWhere('name', 'Google Drive')->id;
+            }
+            if (Str::contains($titleLower, ['workspace', 'gmail', 'docs', 'google suite', 'g suite'])) {
+                return $categories->firstWhere('name', 'Google Workspace')->id;
             }
             if (Str::contains($titleLower, ['powerpoint'])) {
                 return $categories->firstWhere('name', 'PowerPoint')->id;
@@ -114,33 +130,46 @@ class CourseSeeder extends Seeder
             return $categories->firstWhere('name', 'Microsoft Word')->id;
         }
 
-        // C. DETEKSI PERSONAL DEVELOPMENT
-        if (Str::contains($titleLower, ['public speaking', 'interview', 'resume', 'time management', 'memory', 'speed reading', 'motivation', 'career', 'write business'])) {
-            if (Str::contains($titleLower, ['time management'])) {
+        // ==========================================
+        // 3. PERSONAL DEVELOPMENT (TIME, MOTIVATION, WRITING, RESUME)
+        // ==========================================
+        if (Str::contains($titleLower, ['public speaking', 'interview', 'resume', 'cv', 'time management', 'memory', 'speed reading', 'motivation', 'career', 'write business', 'focus', 'business writing', 'productivity', 'procrastination', 'leadership', 'job search'])) {
+            if (Str::contains($titleLower, ['time management', 'procrastination', 'productivity'])) {
                 return $categories->firstWhere('name', 'Time Management')->id;
+            }
+            if (Str::contains($titleLower, ['motivation', 'focus', 'self discipline', 'mindset', 'habits'])) {
+                return $categories->firstWhere('name', 'Focus & Motivation')->id;
             }
             if (Str::contains($titleLower, ['memory', 'speed reading'])) {
                 return $categories->firstWhere('name', 'Memory & Speed Reading')->id;
             }
-            if (Str::contains($titleLower, ['interview'])) {
+            if (Str::contains($titleLower, ['interview', 'job search', 'get hired'])) {
                 return $categories->firstWhere('name', 'Interview Skills')->id;
             }
-            if (Str::contains($titleLower, ['public speaking'])) {
+            if (Str::contains($titleLower, ['resume', 'cv', 'linkedin profile'])) {
+                return $categories->firstWhere('name', 'Resume Guide')->id;
+            }
+            if (Str::contains($titleLower, ['business writing', 'write business', 'email writing'])) {
+                return $categories->firstWhere('name', 'Business Writing')->id;
+            }
+            if (Str::contains($titleLower, ['public speaking', 'presentation'])) {
                 return $categories->firstWhere('name', 'Public Speaking')->id;
             }
             return $categories->firstWhere('name', 'Career Development')->id;
         }
 
-        // D. KATEGORI UTAMA: WEB DEVELOPMENT
+        // ==========================================
+        // 4. DEVELOPMENT (WEB DEVELOPMENT)
+        // ==========================================
         if (Str::contains($subjectLower, ['web development', 'development'])) {
             if (Str::contains($titleLower, ['react'])) {
-                return $categories->firstWhere('name', 'React JS')->id ?? $categories->firstWhere('name', 'JavaScript')->id;
+                return $categories->firstWhere('name', 'React JS')->id;
             }
             if (Str::contains($titleLower, ['angular'])) {
-                return $categories->firstWhere('name', 'Angular')->id ?? $categories->firstWhere('name', 'JavaScript')->id;
+                return $categories->firstWhere('name', 'Angular')->id;
             }
             if (Str::contains($titleLower, ['node', 'express'])) {
-                return $categories->firstWhere('name', 'Node.js')->id ?? $categories->firstWhere('name', 'JavaScript')->id;
+                return $categories->firstWhere('name', 'Node.js')->id;
             }
             if (Str::contains($titleLower, ['javascript', 'js', 'typescript'])) {
                 return $categories->firstWhere('name', 'JavaScript')->id;
@@ -157,27 +186,40 @@ class CourseSeeder extends Seeder
             return $categories->firstWhere('name', 'HTML & CSS')->id;
         }
 
-        // E. KATEGORI UTAMA: BUSINESS FINANCE
+        // ==========================================
+        // 5. BUSINESS & FINANCE (ACCOUNTING & OPTIONS TRADING)
+        // ==========================================
         if (Str::contains($subjectLower, ['business finance', 'finance', 'accounting'])) {
-            if (Str::contains($titleLower, ['accounting', 'bookkeeping', 'accountant', 'tally'])) {
-                return $categories->firstWhere('name', 'Financial Accounting')->id ?? $categories->firstWhere('name', 'Bookkeeping')->id;
-            }
-            if (Str::contains($titleLower, ['tax'])) {
-                return $categories->firstWhere('name', 'Taxes')->id;
+            if (Str::contains($titleLower, ['accounting', 'bookkeeping', 'accountant', 'tally', 'statement', 'tax'])) {
+                $rand = rand(1, 4);
+                if ($rand === 1) {
+                    return $categories->firstWhere('name', 'Bookkeeping')->id;
+                } elseif ($rand === 2) {
+                    return $categories->firstWhere('name', 'Financial Statements')->id;
+                } elseif ($rand === 3) {
+                    return $categories->firstWhere('name', 'Taxes')->id;
+                } else {
+                    return $categories->firstWhere('name', 'Financial Accounting')->id;
+                }
             }
             if (Str::contains($titleLower, ['forex', 'currency'])) {
                 return $categories->firstWhere('name', 'Forex Trading')->id;
             }
+            if (Str::contains($titleLower, ['option', 'options trading', 'call put', 'options selling'])) {
+                return $categories->firstWhere('name', 'Options Trading')->id;
+            }
+            if (Str::contains($titleLower, ['day trade', 'day trading', 'scalping'])) {
+                return $categories->firstWhere('name', 'Day Trading')->id;
+            }
             if (Str::contains($titleLower, ['stock', 'share', 'saham', 'trading'])) {
                 return $categories->firstWhere('name', 'Stock Trading')->id;
-            }
-            if (Str::contains($titleLower, ['day trade', 'option'])) {
-                return $categories->firstWhere('name', 'Day Trading')->id ?? $categories->firstWhere('name', 'Options Trading')->id;
             }
             return $categories->firstWhere('name', 'Investing')->id;
         }
 
-        // F. KATEGORI UTAMA: GRAPHIC DESIGN
+        // ==========================================
+        // 6. DESIGN (GRAPHIC DESIGN, SKETCHUP, TOOLS)
+        // ==========================================
         if (Str::contains($subjectLower, ['graphic design', 'design'])) {
             if (Str::contains($titleLower, ['photoshop'])) {
                 return $categories->firstWhere('name', 'Adobe Photoshop')->id;
@@ -194,19 +236,21 @@ class CourseSeeder extends Seeder
             if (Str::contains($titleLower, ['solidworks'])) {
                 return $categories->firstWhere('name', 'SOLIDWORKS')->id;
             }
+            if (Str::contains($titleLower, ['sketchup', 'sketch up'])) {
+                return $categories->firstWhere('name', 'SketchUp')->id;
+            }
             if (Str::contains($titleLower, ['figma', 'ui', 'ux'])) {
                 return $categories->firstWhere('name', 'Figma')->id;
             }
-            if (Str::contains($titleLower, ['sketchup'])) {
-                return $categories->firstWhere('name', 'SketchUp')->id;
-            }
-            if (Str::contains($titleLower, ['draw', 'paint', 'sketch', 'art'])) {
+            if (Str::contains($titleLower, ['draw', 'paint', 'sketch', 'art']) && !Str::contains($titleLower, ['sketchup', 'sketch up'])) {
                 return $categories->firstWhere('name', 'Digital Painting')->id;
             }
             return $categories->firstWhere('name', 'Graphic Design')->id;
         }
 
-        // G. KATEGORI UTAMA: MUSICAL INSTRUMENTS
+        // ==========================================
+        // 7. MUSIC (INSTRUMENTS & FUNDAMENTALS)
+        // ==========================================
         if (Str::contains($subjectLower, ['musical instruments', 'instruments', 'music'])) {
             if (Str::contains($titleLower, ['guitar', 'gitar'])) {
                 return $categories->firstWhere('name', 'Guitar')->id;
@@ -223,10 +267,13 @@ class CourseSeeder extends Seeder
             if (Str::contains($titleLower, ['ukulele'])) {
                 return $categories->firstWhere('name', 'Ukulele')->id;
             }
-            if (Str::contains($titleLower, ['theory', 'read music'])) {
+            if (Str::contains($titleLower, ['theory', 'notation', 'sheet music']) && !Str::contains($titleLower, ['composition', 'compose'])) {
                 return $categories->firstWhere('name', 'Music Theory')->id;
             }
-            if (Str::contains($titleLower, ['compos'])) {
+            if (Str::contains($titleLower, ['read music', 'sight reading', 'read notes'])) {
+                return $categories->firstWhere('name', 'Music Reading')->id;
+            }
+            if (Str::contains($titleLower, ['compos', 'songwriting', 'write song', 'orchestration'])) {
                 return $categories->firstWhere('name', 'Music Composition')->id;
             }
             if (Str::contains($titleLower, ['sing', 'vocal', 'voice'])) {

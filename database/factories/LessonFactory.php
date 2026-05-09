@@ -12,7 +12,7 @@ class LessonFactory extends Factory
     public function definition(): array
     {
         return [
-            // Pastikan Course diambil secara acak agar sinkron[cite: 2]
+            // Ambil Course secara acak agar sinkron
             'course_id' => Course::inRandomOrder()->first()->id ?? Course::factory(),
             
             'title' => function (array $attributes) {
@@ -21,28 +21,31 @@ class LessonFactory extends Factory
 
                 // Logika Judul Materi yang Nyambung ke Judul Kursus
                 if (Str::contains($courseTitle, ['Laravel', 'PHP', 'Web'])) {
-                    return $this->faker->randomElement(['Instalasi Lingkungan Kerja', 'Memahami Routing & Middleware', 'Eloquent ORM Mendalam', 'Controller & View Logic']);
+                    $title = $this->faker->randomElement(['Instalasi Lingkungan Kerja', 'Memahami Routing & Middleware', 'Eloquent ORM Mendalam', 'Controller & View Logic']);
                 } elseif (Str::contains($courseTitle, ['React', 'JavaScript', 'TypeScript'])) {
-                    return $this->faker->randomElement(['Setup React Project', 'Hooks & State Management', 'Props and Component Lifecycle', 'Integration with API']);
+                    $title = $this->faker->randomElement(['Setup React Project', 'Hooks & State Management', 'Props and Component Lifecycle', 'Integration with API']);
                 } elseif (Str::contains($courseTitle, ['English', 'Grammar', 'Bahasa', 'Tata Bahasa'])) {
-                    return $this->faker->randomElement(['Basic Vocabulary', 'English Tenses Overview', 'Daily Conversations', 'Pronunciation Practice']);
+                    $title = $this->faker->randomElement(['Basic Vocabulary', 'English Tenses Overview', 'Daily Conversations', 'Pronunciation Practice']);
                 } elseif (Str::contains($courseTitle, ['Bisnis', 'Business', 'Kewirausahaan'])) {
-                    return $this->faker->randomElement(['Analisis SWOT Bisnis', 'Strategi Pemasaran Digital', 'Manajemen Keuangan Dasar', 'Membangun Pitch Deck']);
+                    $title = $this->faker->randomElement(['Analisis SWOT Bisnis', 'Strategi Pemasaran Digital', 'Manajemen Keuangan Dasar', 'Membangun Pitch Deck']);
                 } else {
                     // Fallback Bahasa Beragam: Inggris, Spanyol, Indonesia
-                    return $this->faker->randomElement([
+                    $title = $this->faker->randomElement([
                         'Introduction to ' . $courseTitle,
                         'Conceptos Básicos de ' . $courseTitle,
                         'Dasar-dasar ' . $courseTitle,
                         'Chapter 1: Getting Started'
                     ]);
                 }
+
+                // PROTEKSI MUTLAK: Potong paksa teks maksimal 150 karakter agar tidak merusak SQL!
+                return Str::limit($title, 150, '...');
             },
 
-            // Konten dalam Bahasa Indonesia biar nggak Latin terus
+            // Konten dalam Bahasa Indonesia
             'content' => 'Materi ini dirancang untuk memberikan pemahaman mendalam tentang topik kursus, mencakup teori dan praktik implementasi secara nyata.',
             
-            // Link Video yang VALID agar tidak "Video Unavailable" lagi
+            // Link Video yang VALID agar tidak "Video Unavailable"
             'video_url' => $this->faker->randomElement([
                 'https://www.youtube.com/embed/63vA8F9s7Ic', // Tutorial Laravel (Pasti Jalan)
                 'https://www.youtube.com/embed/7W-T_p8m9_E', // Tutorial PHP (Pasti Jalan)
