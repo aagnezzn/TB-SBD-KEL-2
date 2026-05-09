@@ -15,34 +15,31 @@ class CategorySeeder extends Seeder
         Category::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // Struktur Kategori 3-Tingkat (7 Kategori Induk Baru yang 100% sesuai CSV)
+        // Struktur Kategori Padat (Sangat sinkron dengan CSV)
         $data = [
             'Development' => [
-                'Web Development' => ['HTML & CSS', 'JavaScript', 'React JS', 'Angular', 'Node.js', 'PHP & Laravel', 'Python Django', 'Ruby on Rails']
+                'Web Development' => ['HTML & CSS', 'JavaScript', 'React JS', 'PHP & Laravel', 'Python Django']
             ],
             'Business & Finance' => [
-                'Investing & Trading' => ['Stock Trading', 'Investing', 'Forex Trading', 'Day Trading', 'Options Trading'],
-                'Accounting' => ['Bookkeeping', 'Financial Accounting', 'Financial Statements', 'Taxes']
+                'Accounting' => ['Financial Accounting', 'Taxes'],
+                'Trading' => ['Stock Trading', 'Forex Trading']
             ],
             'Design' => [
-                'Graphic Design' => ['Graphic Design', 'Adobe Illustrator', 'Adobe Photoshop', 'Canva', 'Digital Painting'],
-                'Design Tools' => ['AutoCAD', 'SOLIDWORKS', 'Figma', 'SketchUp']
+                'Graphic Design' => ['Adobe Photoshop', 'Adobe Illustrator', 'Canva'],
+                '3D Design' => ['AutoCAD', 'SOLIDWORKS']
             ],
             'Music' => [
-                'Instruments' => ['Guitar', 'Piano', 'Keyboard', 'Bass Guitar', 'Ukulele'],
-                'Music Fundamentals' => ['Music Theory', 'Music Composition', 'Music Reading', 'Vocal & Singing']
+                'Instruments' => ['Guitar', 'Piano', 'Ukulele'],
+                'Vocals' => ['Vocal & Singing'] // Kita pastikan kategori ini terdaftar di database!
             ],
             'IT & Software' => [
-                'Operating Systems' => ['Linux Administration', 'Windows Server', 'PowerShell', 'Shell Scripting'],
-                'Network & Security' => ['Ethical Hacking', 'Cyber Security', 'Computer Networks', 'CCNA']
+                'Network & Security' => ['Cyber Security', 'Ethical Hacking'] 
             ],
             'Office Productivity' => [
-                'Microsoft Office' => ['Excel Basic', 'Excel VBA', 'PowerPoint', 'Microsoft Word'],
-                'Google Suite' => ['Google Sheets', 'Google Workspace', 'Google Drive']
+                'Microsoft Office' => ['Excel Basic', 'PowerPoint', 'Microsoft Word']
             ],
             'Personal Development' => [
-                'Productivity' => ['Time Management', 'Memory & Speed Reading', 'Focus & Motivation'],
-                'Career Development' => ['Interview Skills', 'Public Speaking', 'Business Writing', 'Resume Guide']
+                'Career & Productivity' => ['Public Speaking', 'Time Management', 'Interview Skills']
             ]
         ];
 
