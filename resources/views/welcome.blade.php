@@ -107,10 +107,15 @@
                     </div>
                 </a>
 
-                <div class="absolute top-0 left-full -ml-1 pl-4 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none group-hover/item:pointer-events-auto">
-                    <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
-                        {{-- Segitiga Penunjuk --}}
-                        <div class="absolute top-8 -left-2 w-4 h-4 bg-white border-l border-b border-gray-200 rotate-45"></div>
+                {{-- Ganti class div popup detail kamu dengan ini --}}
+<div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto
+    {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
+    
+    <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
+        {{-- Segitiga Penunjuk (Juga harus dibalik kalau muncul di kiri) --}}
+        <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45
+            {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}">
+        </div>
                         
                         <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
                         <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
@@ -187,10 +192,15 @@
             </div>
         </a>
 
-        <div class="absolute top-0 left-full -ml-1 pl-4 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none group-hover/item:pointer-events-auto">
-            <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
-                {{-- Segitiga Penunjuk --}}
-                <div class="absolute top-8 -left-2 w-4 h-4 bg-white border-l border-b border-gray-200 rotate-45"></div>
+        {{-- Ganti class div popup detail kamu dengan ini --}}
+<div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto
+    {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
+    
+    <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
+        {{-- Segitiga Penunjuk (Juga harus dibalik kalau muncul di kiri) --}}
+        <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45
+            {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}">
+        </div>
                 
                 <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
                 <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
