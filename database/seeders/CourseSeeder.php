@@ -49,11 +49,11 @@ class CourseSeeder extends Seeder
             // Keyword gambar unsplash
             $keyword = 'education';
             $titleLower = strtolower($title);
-            if (Str::contains($titleLower, ['code', 'programming', 'javascript', 'php', 'html', 'css', 'react', 'angular', 'python', 'sql', 'linux', 'cyber'])) {
+            if (Str::contains($titleLower, ['code', 'programming', 'javascript', 'php', 'html', 'css', 'react', 'angular', 'python', 'sql'])) {
                 $keyword = 'coding,technology';
             } elseif (Str::contains($titleLower, ['music', 'piano', 'guitar', 'instrument'])) {
                 $keyword = 'music,instrument';
-            } elseif (Str::contains($titleLower, ['business', 'marketing', 'finance', 'trading', 'money', 'excel', 'office'])) {
+            } elseif (Str::contains($titleLower, ['business', 'marketing', 'finance', 'trading', 'money', 'excel'])) {
                 $keyword = 'business,office';
             } elseif (Str::contains($titleLower, ['design', 'art', 'drawing', 'photoshop'])) {
                 $keyword = 'design,art';
@@ -76,213 +76,121 @@ class CourseSeeder extends Seeder
     {
         $titleLower = strtolower($title);
         $subjectLower = strtolower($subject);
+        $randomFallbackId = $categories->random()->id;
 
         // ==========================================
-        // 1. IT & SOFTWARE (SYSTEM, SECURITY, CCNA)
+        // A. DETEKSI OFFICE PRODUCTIVITY (Excel, Word, PowerPoint)
         // ==========================================
-        if (Str::contains($titleLower, ['powershell', 'linux', 'bash', 'windows server', 'server', 'ubuntu', 'cyber', 'security', 'ethical', 'hacking', 'network', 'ccna', 'security+', 'hack', 'wireshark', 'ip addressing', 'routing', 'switch', 'firewall', 'shell'])) {
-            if (Str::contains($titleLower, ['powershell'])) {
-                return $categories->firstWhere('name', 'PowerShell')->id;
-            }
-            if (Str::contains($titleLower, ['shell', 'bash', 'scripting']) && !Str::contains($titleLower, ['powershell'])) {
-                return $categories->firstWhere('name', 'Shell Scripting')->id ?? $categories->firstWhere('name', 'PowerShell')->id;
-            }
-            if (Str::contains($titleLower, ['linux', 'ubuntu', 'redhat'])) {
-                return $categories->firstWhere('name', 'Linux Administration')->id;
-            }
-            if (Str::contains($titleLower, ['windows server', 'active directory'])) {
-                return $categories->firstWhere('name', 'Windows Server')->id;
-            }
-            if (Str::contains($titleLower, ['hack', 'ethical', 'penetration', 'wireshark', 'metasploit', 'exploit'])) {
-                return $categories->firstWhere('name', 'Ethical Hacking')->id;
-            }
-            if (Str::contains($titleLower, ['ccna', 'ccent', 'routing', 'switching', 'cisco', 'subnetting'])) {
-                return $categories->firstWhere('name', 'CCNA')->id;
-            }
-            if (Str::contains($titleLower, ['cyber', 'security', 'firewall', 'cryptography'])) {
-                return $categories->firstWhere('name', 'Cyber Security')->id;
-            }
-            return $categories->firstWhere('name', 'Computer Networks')->id;
-        }
-
-        // ==========================================
-        // 2. OFFICE PRODUCTIVITY TOOLS (EXCEL VBA, GOOGLE SUITE)
-        // ==========================================
-        if (Str::contains($titleLower, ['excel', 'vba', 'macro', 'word', 'powerpoint', 'google sheets', 'spreadsheet', 'google drive', 'workspace', 'gmail', 'google docs'])) {
-            if (Str::contains($titleLower, ['vba', 'macro'])) {
-                return $categories->firstWhere('name', 'Excel VBA')->id;
-            }
-            if (Str::contains($titleLower, ['excel']) && !Str::contains($titleLower, ['vba', 'macro'])) {
-                return $categories->firstWhere('name', 'Excel Basic')->id;
-            }
-            if (Str::contains($titleLower, ['sheets', 'spreadsheet']) && Str::contains($titleLower, ['google'])) {
-                return $categories->firstWhere('name', 'Google Sheets')->id;
-            }
-            if (Str::contains($titleLower, ['drive', 'cloud storage']) && Str::contains($titleLower, ['google'])) {
-                return $categories->firstWhere('name', 'Google Drive')->id;
-            }
-            if (Str::contains($titleLower, ['workspace', 'gmail', 'docs', 'google suite', 'g suite'])) {
-                return $categories->firstWhere('name', 'Google Workspace')->id;
-            }
+        if (Str::contains($titleLower, ['excel', 'word', 'powerpoint', 'vba', 'macro'])) {
             if (Str::contains($titleLower, ['powerpoint'])) {
-                return $categories->firstWhere('name', 'PowerPoint')->id;
+                return $categories->firstWhere('name', 'PowerPoint')->id ?? $randomFallbackId;
             }
-            return $categories->firstWhere('name', 'Microsoft Word')->id;
+            if (Str::contains($titleLower, ['word'])) {
+                return $categories->firstWhere('name', 'Microsoft Word')->id ?? $randomFallbackId;
+            }
+            return $categories->firstWhere('name', 'Excel Basic')->id ?? $randomFallbackId;
         }
 
         // ==========================================
-        // 3. PERSONAL DEVELOPMENT (TIME, MOTIVATION, WRITING, RESUME)
+        // B. DETEKSI IT & SOFTWARE (Cyber Security, Network, Ethical Hacking)
         // ==========================================
-        if (Str::contains($titleLower, ['public speaking', 'interview', 'resume', 'cv', 'time management', 'memory', 'speed reading', 'motivation', 'career', 'write business', 'focus', 'business writing', 'productivity', 'procrastination', 'leadership', 'job search'])) {
-            if (Str::contains($titleLower, ['time management', 'procrastination', 'productivity'])) {
-                return $categories->firstWhere('name', 'Time Management')->id;
+        if (Str::contains($titleLower, ['cyber', 'security', 'hack', 'network', 'cisco', 'ccna', 'firewall'])) {
+            if (Str::contains($titleLower, ['hack', 'penetration', 'ethical'])) {
+                return $categories->firstWhere('name', 'Ethical Hacking')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['motivation', 'focus', 'self discipline', 'mindset', 'habits'])) {
-                return $categories->firstWhere('name', 'Focus & Motivation')->id;
-            }
-            if (Str::contains($titleLower, ['memory', 'speed reading'])) {
-                return $categories->firstWhere('name', 'Memory & Speed Reading')->id;
-            }
-            if (Str::contains($titleLower, ['interview', 'job search', 'get hired'])) {
-                return $categories->firstWhere('name', 'Interview Skills')->id;
-            }
-            if (Str::contains($titleLower, ['resume', 'cv', 'linkedin profile'])) {
-                return $categories->firstWhere('name', 'Resume Guide')->id;
-            }
-            if (Str::contains($titleLower, ['business writing', 'write business', 'email writing'])) {
-                return $categories->firstWhere('name', 'Business Writing')->id;
-            }
-            if (Str::contains($titleLower, ['public speaking', 'presentation'])) {
-                return $categories->firstWhere('name', 'Public Speaking')->id;
-            }
-            return $categories->firstWhere('name', 'Career Development')->id;
+            return $categories->firstWhere('name', 'Cyber Security')->id ?? $randomFallbackId;
         }
 
         // ==========================================
-        // 4. DEVELOPMENT (WEB DEVELOPMENT)
+        // C. DETEKSI PERSONAL DEVELOPMENT (Time Management, Public Speaking, Interview)
+        // ==========================================
+        if (Str::contains($titleLower, ['time', 'productivity', 'procrastination', 'speak', 'present', 'interview', 'resume', 'career'])) {
+            if (Str::contains($titleLower, ['time', 'productivity', 'procrastination'])) {
+                return $categories->firstWhere('name', 'Time Management')->id ?? $randomFallbackId;
+            }
+            if (Str::contains($titleLower, ['speak', 'present', 'public'])) {
+                return $categories->firstWhere('name', 'Public Speaking')->id ?? $randomFallbackId;
+            }
+            return $categories->firstWhere('name', 'Interview Skills')->id ?? $randomFallbackId;
+        }
+
+        // ==========================================
+        // D. KATEGORI UTAMA: DEVELOPMENT (Web Development)
         // ==========================================
         if (Str::contains($subjectLower, ['web development', 'development'])) {
-            if (Str::contains($titleLower, ['react'])) {
-                return $categories->firstWhere('name', 'React JS')->id;
+            if (Str::contains($titleLower, ['react', 'next'])) {
+                return $categories->firstWhere('name', 'React JS')->id ?? $categories->firstWhere('name', 'JavaScript')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['angular'])) {
-                return $categories->firstWhere('name', 'Angular')->id;
-            }
-            if (Str::contains($titleLower, ['node', 'express'])) {
-                return $categories->firstWhere('name', 'Node.js')->id;
-            }
-            if (Str::contains($titleLower, ['javascript', 'js', 'typescript'])) {
-                return $categories->firstWhere('name', 'JavaScript')->id;
+            if (Str::contains($titleLower, ['javascript', 'js', 'typescript', 'node', 'angular'])) {
+                return $categories->firstWhere('name', 'JavaScript')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['php', 'laravel'])) {
-                return $categories->firstWhere('name', 'PHP & Laravel')->id;
+                return $categories->firstWhere('name', 'PHP & Laravel')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['django', 'python'])) {
-                return $categories->firstWhere('name', 'Python Django')->id;
+                return $categories->firstWhere('name', 'Python Django')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['ruby', 'rails'])) {
-                return $categories->firstWhere('name', 'Ruby on Rails')->id;
-            }
-            return $categories->firstWhere('name', 'HTML & CSS')->id;
+            return $categories->firstWhere('name', 'HTML & CSS')->id ?? $randomFallbackId;
         }
 
         // ==========================================
-        // 5. BUSINESS & FINANCE (ACCOUNTING & OPTIONS TRADING)
+        // E. KATEGORI UTAMA: BUSINESS & FINANCE
         // ==========================================
         if (Str::contains($subjectLower, ['business finance', 'finance', 'accounting'])) {
-            if (Str::contains($titleLower, ['accounting', 'bookkeeping', 'accountant', 'tally', 'statement', 'tax'])) {
-                $rand = rand(1, 4);
-                if ($rand === 1) {
-                    return $categories->firstWhere('name', 'Bookkeeping')->id;
-                } elseif ($rand === 2) {
-                    return $categories->firstWhere('name', 'Financial Statements')->id;
-                } elseif ($rand === 3) {
-                    return $categories->firstWhere('name', 'Taxes')->id;
-                } else {
-                    return $categories->firstWhere('name', 'Financial Accounting')->id;
-                }
+            if (Str::contains($titleLower, ['accounting', 'bookkeeping', 'accountant', 'tally', 'statement'])) {
+                return $categories->firstWhere('name', 'Financial Accounting')->id ?? $randomFallbackId;
+            }
+            if (Str::contains($titleLower, ['tax', 'taxes'])) {
+                return $categories->firstWhere('name', 'Taxes')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['forex', 'currency'])) {
-                return $categories->firstWhere('name', 'Forex Trading')->id;
+                return $categories->firstWhere('name', 'Forex Trading')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['option', 'options trading', 'call put', 'options selling'])) {
-                return $categories->firstWhere('name', 'Options Trading')->id;
-            }
-            if (Str::contains($titleLower, ['day trade', 'day trading', 'scalping'])) {
-                return $categories->firstWhere('name', 'Day Trading')->id;
-            }
-            if (Str::contains($titleLower, ['stock', 'share', 'saham', 'trading'])) {
-                return $categories->firstWhere('name', 'Stock Trading')->id;
-            }
-            return $categories->firstWhere('name', 'Investing')->id;
+            return $categories->firstWhere('name', 'Stock Trading')->id ?? $randomFallbackId;
         }
 
         // ==========================================
-        // 6. DESIGN (GRAPHIC DESIGN, SKETCHUP, TOOLS)
+        // F. KATEGORI UTAMA: GRAPHIC DESIGN (Design)
         // ==========================================
         if (Str::contains($subjectLower, ['graphic design', 'design'])) {
             if (Str::contains($titleLower, ['photoshop'])) {
-                return $categories->firstWhere('name', 'Adobe Photoshop')->id;
+                return $categories->firstWhere('name', 'Adobe Photoshop')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['illustrator', 'vector'])) {
-                return $categories->firstWhere('name', 'Adobe Illustrator')->id;
+                return $categories->firstWhere('name', 'Adobe Illustrator')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['canva'])) {
-                return $categories->firstWhere('name', 'Canva')->id;
+                return $categories->firstWhere('name', 'Canva')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['autocad', 'cad'])) {
-                return $categories->firstWhere('name', 'AutoCAD')->id;
+                return $categories->firstWhere('name', 'AutoCAD')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['solidworks'])) {
-                return $categories->firstWhere('name', 'SOLIDWORKS')->id;
+                return $categories->firstWhere('name', 'SOLIDWORKS')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['sketchup', 'sketch up'])) {
-                return $categories->firstWhere('name', 'SketchUp')->id;
-            }
-            if (Str::contains($titleLower, ['figma', 'ui', 'ux'])) {
-                return $categories->firstWhere('name', 'Figma')->id;
-            }
-            if (Str::contains($titleLower, ['draw', 'paint', 'sketch', 'art']) && !Str::contains($titleLower, ['sketchup', 'sketch up'])) {
-                return $categories->firstWhere('name', 'Digital Painting')->id;
-            }
-            return $categories->firstWhere('name', 'Graphic Design')->id;
+            return $categories->firstWhere('name', 'Adobe Photoshop')->id ?? $randomFallbackId;
         }
 
         // ==========================================
-        // 7. MUSIC (INSTRUMENTS & FUNDAMENTALS)
+        // G. KATEGORI UTAMA: MUSICAL INSTRUMENTS (Music)
         // ==========================================
         if (Str::contains($subjectLower, ['musical instruments', 'instruments', 'music'])) {
-            if (Str::contains($titleLower, ['guitar', 'gitar'])) {
-                return $categories->firstWhere('name', 'Guitar')->id;
+            if (Str::contains($titleLower, ['guitar', 'gitar', 'bass'])) {
+                return $categories->firstWhere('name', 'Guitar')->id ?? $randomFallbackId;
             }
-            if (Str::contains($titleLower, ['piano'])) {
-                return $categories->firstWhere('name', 'Piano')->id;
-            }
-            if (Str::contains($titleLower, ['keyboard'])) {
-                return $categories->firstWhere('name', 'Keyboard')->id;
-            }
-            if (Str::contains($titleLower, ['bass'])) {
-                return $categories->firstWhere('name', 'Bass Guitar')->id;
+            if (Str::contains($titleLower, ['piano', 'keyboard'])) {
+                return $categories->firstWhere('name', 'Piano')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['ukulele'])) {
-                return $categories->firstWhere('name', 'Ukulele')->id;
-            }
-            if (Str::contains($titleLower, ['theory', 'notation', 'sheet music']) && !Str::contains($titleLower, ['composition', 'compose'])) {
-                return $categories->firstWhere('name', 'Music Theory')->id;
-            }
-            if (Str::contains($titleLower, ['read music', 'sight reading', 'read notes'])) {
-                return $categories->firstWhere('name', 'Music Reading')->id;
-            }
-            if (Str::contains($titleLower, ['compos', 'songwriting', 'write song', 'orchestration'])) {
-                return $categories->firstWhere('name', 'Music Composition')->id;
+                return $categories->firstWhere('name', 'Ukulele')->id ?? $randomFallbackId;
             }
             if (Str::contains($titleLower, ['sing', 'vocal', 'voice'])) {
-                return $categories->firstWhere('name', 'Vocal & Singing')->id;
+                return $categories->firstWhere('name', 'Vocal & Singing')->id ?? $randomFallbackId;
             }
-            return $categories->firstWhere('name', 'Music Theory')->id;
+            return $categories->firstWhere('name', 'Piano')->id ?? $randomFallbackId;
         }
 
-        return $categories->random()->id;
+        return $randomFallbackId;
     }
 
     private function getStaticPhotoId(string $keyword): string

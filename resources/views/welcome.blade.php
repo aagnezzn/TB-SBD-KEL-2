@@ -51,7 +51,7 @@
             </div>
             <div>
                 <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
-                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
+                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">{{__}}</p>
             </div>
         </section>
 
@@ -234,11 +234,11 @@
         <div class="absolute inset-0 bg-black/20"></div>
         <div class="relative h-full flex items-center">
             <div class="bg-white p-6 rounded shadow w-[450px] ml-10">
-                <h2 class="text-3xl font-bold mb-3">Bangun skill yang diminati</h2>
-                <p class="text-gray-600 mb-4">Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata</p>
+                <h2 class="text-3xl font-bold mb-3">{{ __('welcome.Bangun skill yang diminati') }}</h2>
+                <p class="text-gray-600 mb-4">{{ __('welcome.Dapatkan') }}</p>
                 <div class="flex space-x-3">
-                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">Dapatkan paket personal</button>
-                    <button class="border border-black font-bold px-4 py-2 rounded">Pelajari AI</button>
+                    <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">{{ __('welcome.Dapatkan paket personal') }}</button>
+                    <button class="border border-black font-bold px-4 py-2 rounded">{{ __('welcome.Pelajari AI') }}</button>
                 </div>
             </div>
         </div>
@@ -251,10 +251,10 @@
     <div class="grid grid-cols-4 gap-8 items-start">
         <div>
             <h2 class="text-3xl font-bold mb-4">
-           Pelajari skill penting terkait karier dan kehidupan
+           {{__('welcome.Pelajari skill')}}
             </h2>
             <p class="text-gray-600">
-            Udemy membantu Anda membangun skill yang dibutuhkan dengan cepat dan memajukan karier Anda di pasar kerja yang terus berubah.
+            {{ __('welcome.Udemy') }}
             </p>
         </div>
         <div class="col-span-3 relative">
@@ -301,40 +301,40 @@
     <div class="max-w-[1350px] mx-auto">
     <div class="bg-[#232433] rounded-2xl p-12 flex flex-col lg:flex-row items-center gap-10">
         <div class="w-full lg:w-1/2 text-white">
-            <h2 class="text-3xl font-bold mb-4">Transformasikan karier Anda di<br>AI era</h2>
+            <h2 class="text-3xl font-bold mb-4">{{ __('welcome.Transformasikan') }}<br>{{ __('welcome.AI era') }}</h2>
             <p class="text-gray-300 mb-8 text-sm leading-relaxed max-w-md">
-                Siapkan skill Anda untuk masa depan dengan Paket Personal. Dapatkan akses ke berbagai konten terbaru dari para pakar dunia nyata.
+                {{ __('welcome.Siapkan skill') }}
             </p>
             <div class="grid grid-cols-2 gap-y-5 gap-x-4 mb-8">
                 <div class="flex items-center gap-3">
                     <div class="bg-purple-900/60 p-1.5 rounded-full text-purple-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Pelajari AI dan lainnya</span>
+                    <span class="text-sm font-medium">{{ __('welcome.Pelajari AI dan lainnya') }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-green-900/60 p-1.5 rounded-full text-green-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Persiapkan untuk sertifikasi</span>
+                    <span class="text-sm font-medium">{{__('welcome.Persiapkan') }} </span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-yellow-900/60 p-1.5 rounded-full text-yellow-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Latihan dengan bimbingan AI</span>
+                    <span class="text-sm font-medium">{{ __('welcome.Latihan') }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="bg-blue-900/60 p-1.5 rounded-full text-blue-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     </div>
-                    <span class="text-sm font-medium">Majukan karier Anda</span>
+                    <span class="text-sm font-medium">{{ __('welcome.Majukan') }}</span>
                 </div>
             </div>
             <button class="bg-white text-gray-900 font-bold px-6 py-3 rounded hover:bg-gray-200 transition">
-                Pelajari selengkapnya
+            {{ __('welcome.Pelajari selengkapnya') }}
             </button>
-            <p class="text-xs text-gray-400 mt-4">Mulai Rp104.000/bulan</p>
+            <p class="text-xs text-gray-400 mt-4">{{ __('welcome.Mulai') }} </p>
         </div>
         
         <div class="w-full lg:w-1/2 h-[350px] rounded-2xl overflow-hidden">
@@ -352,8 +352,8 @@
             scrollRight() { $refs.sliderContent.scrollBy({ left: 300, behavior: 'smooth' }) }
          }">
          
-        <h2 class="text-3xl font-bold mb-2">Skill yang mengubah karier dan kehidupan Anda</h2>
-        <p class="text-gray-600 mb-6">Mulai dari topik dengan skill yang sangat penting hingga teknis, Udemy mendukung pengembangan profesional Anda.</p>
+        <h2 class="text-3xl font-bold mb-2">{{ __('welcome.Skill yang mengubah') }} </h2>
+        <p class="text-gray-600 mb-6">{{ __('welcome.Mulai dari') }} </p>
 
         <div class="flex space-x-6 border-b border-gray-300 mb-6 text-sm font-semibold text-gray-500 overflow-x-auto hide-scrollbar">
             @foreach($categories as $category)
@@ -464,7 +464,7 @@
                     <a x-show="kategoriAktif === {{ $catId }}" 
                        href="/category/{{ $data['slug'] }}" 
                        class="text-purple-700 font-bold hover:text-purple-900 text-sm inline-flex items-center space-x-1">
-                        <span>Tampilkan semua kursus {{ $data['name'] }}</span>
+                        <span>{{ __('welcome.Tampilkan') }}  {{ $data['name'] }}</span>
                         <span>&rarr;</span>
                     </a>
                 @endforeach
@@ -476,7 +476,7 @@
 <section class="bg-gray-50 py-12 md:py-16">
     <div class="bg-gray-100 py-16 px-4">
     <p class="text-center text-slate-700 font-light text-lg mb-8 tracking-wide">
-        Dipercaya oleh lebih dari 17.000 perusahaan dan jutaan pembelajar di seluruh dunia
+        {{ __('welcome.Dipercaya') }}
     </p>
 
     <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 max-w-7xl mx-auto">
@@ -520,14 +520,14 @@
 <section class="px-10 py-16 bg-gray-50">
     <div class="max-w-[1350px] mx-auto">
     <h2 class="text-3xl font-bold mb-8 max-w-2xl text-gray-900">
-        Bergabung dengan orang lain untuk mengubah hidup mereka melalui pembelajaran
+        {{ __('welcome.Bergabung') }}
     </h2>
     <div class="grid grid-cols-4 gap-6">
         
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                Kursus ini menjelaskan AI dengan sangat baik, dari tahap pengembangan hingga penerapan. Beragam perspektif yang diberikan membantu saya memahami cara menggunakan AI secara bertanggung jawab sebagai alat kerja, bukan sekadar tren.
+                {{ __('welcome.Kursus ini menjelaskan') }}
             </p>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -535,7 +535,7 @@
                 </div>
                 <div>
                     <p class="font-bold text-sm">Cris M.</p>
-                    <p class="text-xs text-gray-500">Google AI Essentials graduate</p>
+                    <p class="text-xs text-gray-500">{{ __('welcome.Google AI') }} </p>
                 </div>
             </div>
             <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm mt-auto border-t border-gray-100 pt-4 block">
@@ -795,5 +795,13 @@
             }
         }
     }
+
+    <div class="relative inline-block text-left z-50">
+    <select onchange="location = this.value;" class="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 focus:outline-none cursor-pointer shadow-sm">
+        <option value="{{ route('change.lang', 'id') }}" {{ app()->getLocale() == 'id' ? 'selected' : '' }}>🇮🇩 ID</option>
+        <option value="{{ route('change.lang', 'en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>🇺🇸 EN</option>
+        <option value="{{ route('change.lang', 'es') }}" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>🇪🇸 ES</option>
+    </select>
+</div>
 </script>
 @endsection

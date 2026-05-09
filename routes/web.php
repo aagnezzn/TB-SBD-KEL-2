@@ -114,3 +114,11 @@ Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'
     ->middleware('auth') 
     ->name('subscribe.start');
 
+// Rute untuk mengubah bahasa aplikasi (ID, EN, ES) secara otomatis
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en', 'es'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('change.lang');
+
