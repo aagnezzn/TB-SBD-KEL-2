@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\TransactionController;
 
 // Cari baris ini dan tambahkan ->name('course.show') di ujungnya
 Route::get('/course/{id}', function ($id) {
@@ -75,4 +76,11 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middl
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
 Route::post('/checkout/process', [CheckoutController::class, 'store'])->name('checkout.store');
 
-Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('payment.success');
+Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
+Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
+// Route untuk memproses data masuk ke database (biasanya dipanggil dari form checkout)
+Route::post('/checkout/process', [TransactionController::class, 'process'])->name('transaction.process');
+
+// Route untuk menampilkan halaman success yang kamu buat di awal
+Route::get('/payment/success/{id}', [TransactionController::class, 'success'])->name('transaction.success');
