@@ -44,12 +44,12 @@
                 <span class="text-[14px]"><a href="#" class="text-[#a435f0] font-bold underline">Lupa Kata Sandi</a></span>
             </div>
 
-            <div class="mt-10 text-center border-t border-gray-200 pt-6">
-                <p class="text-[14px] text-[#6a6f73] mb-4 font-medium">Punya akses khusus?</p>
-                <div class="flex flex-col items-center gap-3">
-                    <a href="{{ route('admin.login') }}" class="text-[#1c1d27] font-bold text-[14px] underline underline-offset-4 hover:text-[#a435f0] transition-all">Admin</a>
-                    <a href="#" class="text-[#1c1d27] font-bold text-[14px] underline underline-offset-4 hover:text-blue-600 transition-all">Instructor</a>
-                </div>
+            <div class="mt-6 text-center text-sm border-t pt-4">
+                <p class="text-black">Punya akses khusus? 
+                    <a href="/admin/login" class="text-[#a435f0] font-semibold hover:underline">Admin</a> 
+                    <span class="mx-1 text-gray-300">|</span>
+                    <a href="/instructor/login" class="text-[#a435f0] font-semibold hover:underline">Instructor</a>
+                </p>
             </div>
 
             <div class="mt-8 text-center text-[15px] border-t border-gray-200 pt-5">

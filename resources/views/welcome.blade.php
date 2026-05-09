@@ -51,7 +51,7 @@
             </div>
             <div>
                 <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
-                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">{{__}}</p>
+                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
             </div>
         </section>
 
@@ -263,7 +263,7 @@
     @foreach([
         // Nah, ini perhatikan, sekarang setiap baris sudah ada 3 data: [Gambar, Judul, Slug]
         ['ai.jpeg', 'AI Generatif', 'ai-generatif'],
-        ['sertif.jpeg', 'Sertifikasi TI', 'sertifikasi-ti'],
+        ['serti.jpeg', 'Sertifikasi TI', 'sertifikasi-ti'],
         ['ilmu_data.jpeg', 'Ilmu Data', 'ilmu-data'],
         ['gpt.jpeg', 'ChatGPT', 'chat-gpt'],
         ['rekayasa_prompt.jpeg', 'Rekayasa Prompt', 'rekayasa-prompt'],
@@ -753,55 +753,53 @@
 
 
 <script>
-    let letakGeser = 0;
-    const sliderKamu = document.getElementById('slider');
-    const jarakGeser = 280; // Jarak geser per klik
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil elemen
+        const sliderKamu = document.getElementById('slider');
+        const jarakGeser = 280; // Sesuaikan dengan lebar kartu kamu
+        let letakGeser = 0;
 
-    function nextSlide() {
-        if(sliderKamu) {
-            // Hitung sisa ruang maksimal untuk digeser
-            // scrollWidth = panjang total semua kartu jika dibentangkan
-            // clientWidth = panjang layar/wadah yang kelihatan saat ini
-            const batasMaksimal = sliderKamu.scrollWidth - sliderKamu.parentElement.clientWidth;
+        // Pastikan slider ada sebelum menjalankan fungsi
+        if (sliderKamu) {
             
-            // Cek apakah posisi geser saat ini masih belum mencapai batas maksimal
-            if (Math.abs(letakGeser) < batasMaksimal) {
-                letakGeser -= jarakGeser;
+            // Fungsi Geser Kanan (Next)
+            window.nextSlide = function() {
+                // ParentElement adalah wadah yang punya overflow-hidden
+                const batasMaksimal = sliderKamu.scrollWidth - sliderKamu.parentElement.clientWidth;
                 
-                // Mencegah kebablasan: kalau hasil geser ternyata melewati batas,
-                // kita paksa posisinya berhenti pas di ujung (batas maksimal)
-                if (Math.abs(letakGeser) > batasMaksimal) {
-                    letakGeser = -batasMaksimal;
+                if (Math.abs(letakGeser) < batasMaksimal) {
+                    letakGeser -= jarakGeser;
+                    
+                    // Jangan sampai lewat batas ujung kanan
+                    if (Math.abs(letakGeser) > batasMaksimal) {
+                        letakGeser = -batasMaksimal;
+                    }
+                    
+                    sliderKamu.style.transform = `translateX(${letakGeser}px)`;
                 }
-                
-                sliderKamu.style.transform = `translateX(${letakGeser}px)`;
-            }
-        }
-    }
+            };
 
-    function prevSlide() {
-        if(sliderKamu) {
-            // Hanya geser balik ke kanan kalau posisinya tidak di titik awal (0)
-            if (letakGeser < 0) {
-                letakGeser += jarakGeser;
-                
-                // Mencegah kebablasan: kalau hasil geser bikin posisinya positif (kebablasan ke kiri),
-                // kita paksa posisinya diam di titik 0 (paling awal)
-                if (letakGeser > 0) {
-                    letakGeser = 0;
+            // Fungsi Geser Kiri (Prev)
+            window.prevSlide = function() {
+                if (letakGeser < 0) {
+                    letakGeser += jarakGeser;
+                    
+                    // Jangan sampai lewat batas ujung kiri (nol)
+                    if (letakGeser > 0) {
+                        letakGeser = 0;
+                    }
+                    
+                    sliderKamu.style.transform = `translateX(${letakGeser}px)`;
                 }
-                
-                sliderKamu.style.transform = `translateX(${letakGeser}px)`;
-            }
+            };
         }
-    }
-
-    <div class="relative inline-block text-left z-50">
+    });
+</script>
+<div class="relative inline-block text-left z-50">
     <select onchange="location = this.value;" class="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 focus:outline-none cursor-pointer shadow-sm">
         <option value="{{ route('change.lang', 'id') }}" {{ app()->getLocale() == 'id' ? 'selected' : '' }}>🇮🇩 ID</option>
         <option value="{{ route('change.lang', 'en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>🇺🇸 EN</option>
         <option value="{{ route('change.lang', 'es') }}" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>🇪🇸 ES</option>
     </select>
 </div>
-</script>
 @endsection

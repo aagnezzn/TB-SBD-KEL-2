@@ -21,14 +21,14 @@
         <form action="{{ route('login.post') }}" method="POST" class="space-y-4">
             @csrf
             <div>
-                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Admin Email</label>
+                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Email Admin</label>
                 <input type="email" name="email" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
             </div>
             <div>
                 <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Password</label>
                 <input type="password" name="password" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
             </div>
-            <button type="submit" class="w-full bg-[#1c1d27] text-white font-bold py-3 hover:bg-black transition-colors">
+            <button type="submit" class="w-full bg-[#a435f0] text-white font-bold py-3 hover:bg-purple-800 transition-colors">
                 Masuk
             </button>
         </form>
