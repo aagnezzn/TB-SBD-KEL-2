@@ -9,7 +9,7 @@
 
             <div class="absolute hidden group-hover:block top-full left-0 z-[9999]">
                 <div class="relative">
-                    <div class="w-[250px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
+                    <div class="w-[250px] h-[350px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
                         @foreach($navCategories as $mainCat)
                         <div class="group/level2">
                             <div class="flex items-center justify-between px-5 py-3 hover:bg-[#f7f9fa] cursor-pointer transition-all duration-150">
@@ -20,7 +20,7 @@
                             </div>
 
                             <div class="absolute hidden group-hover/level2:block left-[250px] top-0">
-                                <div class="w-[360px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
+                                <div class="w-[360px] h-[350px] overflow-y-auto bg-white border border-gray-200 shadow-2xl py-2">
                                     @foreach($mainCat->children as $subCat)
                                     <div class="group/level3">
                                         <div class="flex items-center justify-between px-5 py-3 hover:bg-[#f7f9fa] cursor-pointer transition-all duration-150">
@@ -31,7 +31,7 @@
                                         </div>
 
                                         <div class="absolute hidden group-hover/level3:block left-[360px] top-0">
-                                            <div class="w-[340px] h-[650px] overflow-y-auto bg-white border border-gray-200 shadow-2xl px-7 py-6">
+                                            <div class="w-[340px] h-[350px] overflow-y-auto bg-white border border-gray-200 shadow-2xl px-7 py-6">
                                                 <h4 class="text-[12px] font-bold tracking-widest text-gray-500 uppercase mb-5">
                                                     Topik Populer
                                                 </h4>
