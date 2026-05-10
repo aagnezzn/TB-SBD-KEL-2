@@ -29,7 +29,7 @@ class CartController extends Controller
 {
     // Mencari item keranjang milik user yang sedang login
     $cartItem = \App\Models\Cart::where('id', $id)
-        ->where('user_id', auth()->id())
+        ->where('user_id', auth::id())
         ->firstOrFail();
 
     $cartItem->delete();

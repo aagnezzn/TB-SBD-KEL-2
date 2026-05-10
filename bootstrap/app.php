@@ -20,6 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // MENDAFTARKAN MIDDLEWARE ADMIN
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'instructor' => \App\Http\Middleware\InstructorMiddleware::class,
+            'student' => \App\Http\Middleware\StudentMiddleware::class,
         ]);
 
     })

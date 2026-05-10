@@ -16,4 +16,8 @@ class Lesson extends Model
         'video_url',
         'duration'
     ];
+
+    public function course() {
+    return $this->belongsTo(Course::class);
+}
 }

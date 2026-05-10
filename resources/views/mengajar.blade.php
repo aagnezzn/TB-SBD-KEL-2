@@ -12,8 +12,8 @@
                     Jadilah instruktur dan ubah hidup — termasuk hidup Anda sendiri
                 </p>
                 
-                <a href="/#" 
-                   class="inline-block mt-8 rounded-xl border bg-purple-800 text-white px-16 py-2 font-bold hover:bg-purple-600 transition shadow-sm text-center min-w-[350px]">
+                <a href="{{ route('instructor.courses.create') }}" 
+                    class="inline-block mt-8 rounded-xl border bg-purple-800 text-white px-16 py-2 font-bold hover:bg-purple-600 transition shadow-sm text-center min-w-[350px]">
                     Memulai
                 </a>
             </div>

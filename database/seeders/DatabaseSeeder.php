@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             FAQSeeder::class,
+            DataTambahSendiriSeeder::class,
         ]);
 
         // 2. Baca CSV Kedua Kalinya Khusus untuk Menghubungkan Transaksi Secara Akurat

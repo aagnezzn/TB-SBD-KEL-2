@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function enrollments() {
+    return $this->hasMany(Enrollment::class); // Sesuaikan nama model enrollment-mu
+}
 }

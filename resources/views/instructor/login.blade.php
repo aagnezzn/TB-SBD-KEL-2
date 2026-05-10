@@ -5,11 +5,11 @@
     <div class="w-full max-w-[400px] bg-white p-8 border border-gray-200 shadow-sm">
         
         <div class="text-center mb-8">
-            <div class="flex justify-center mb-4 text-[#a435f0]">
-                <i class="fas fa-user-shield text-5xl"></i>
+            <div class="flex justify-center mb-4 text-blue-600">
+                <i class="fas fa-chalkboard-teacher text-5xl"></i>
             </div>
-            <h1 class="font-bold text-2xl text-[#1c1d27]">Portal Admin Idemy</h1>
-            <p class="text-sm text-gray-600">Masukkan kredensial khusus administrator</p>
+            <h1 class="font-bold text-2xl text-[#1c1d27]">Portal Instruktur Idemy</h1>
+            <p class="text-sm text-gray-600">Masuk untuk mengelola kursus dan siswa Anda</p>
         </div>
 
         @if(session('error'))
@@ -20,22 +20,22 @@
 
         <form action="{{ route('login.post') }}" method="POST" class="space-y-4">
             @csrf
-            <input type="hidden" name="from_portal" value="admin">
+            <input type="hidden" name="from_portal" value="instructor">
             <div>
-                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Email Admin</label>
+                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Email Instruktur</label>
                 <input type="email" name="email" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
             </div>
             <div>
                 <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Password</label>
                 <input type="password" name="password" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
-            </div>
-            <button type="submit" class="w-full bg-[#a435f0] text-white font-bold py-3 hover:bg-purple-800 transition-colors">
+                </div>
+                <button type="submit" class="w-full bg-[#a435f0] text-white font-bold py-3 hover:bg-purple-800 transition-colors">
                 Masuk
             </button>
         </form>
 
-        <div class="mt-6 text-center">
-            <a href="/login" class="text-sm text-[#a435f0] hover:underline">Bukan Admin? Kembali ke Login Siswa</a>
+      <div class="mt-6 text-center">
+            <a href="/login" class="text-sm text-[#a435f0] hover:underline">Bukan Instruktur? Kembali ke Login Siswa</a>
         </div>
     </div>
 </div>

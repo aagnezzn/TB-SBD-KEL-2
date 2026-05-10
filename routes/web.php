@@ -1,120 +1,62 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FAQController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Models\Course;
+
+// Import Semua Controller Anda
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CategoryController;
 
-// Cari baris ini dan tambahkan ->name('course.show') di ujungnya
+/*
+|--------------------------------------------------------------------------
+| 1. RUTE UMUM / PUBLIK (Bisa diakses tanpa login)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', [CategoryController::class, 'index']);
+Route::get('/search', [CourseController::class, 'search'])->name('search');
+Route::get('/category/{slug}', [CourseController::class, 'filterByCategory'])->name('category.show');
+
 Route::get('/course/{id}', function ($id) {
     $course = \App\Models\Course::findOrFail($id); 
     return view('course-detail', compact('course'));
 })->name('course.show');
 
 Route::get('/berlangganan', [FAQController::class, 'index']);
-
 Route::get('/mengajar-di-idemy', function () {
     return view('mengajar');
 })->name('mengajar');
 
 Route::get('/keranjang', [CourseController::class, 'index'])->name('keranjang');
 
-Route::get('/login', function() {
-    return view ('login');
-});
-
-use App\Http\Controllers\AuthController;
-
-use App\Http\Controllers\LoginController;
-
-// Rute untuk menampilkan halaman login (GET)
+// Auth Routes (Login & Register)
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-
-// Rute untuk memproses data login dari form (POST)
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-
-use App\Http\Controllers\RegisterController;
-
-// Rute nampilin form daftar
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-
-// Rute memproses data pendaftaran
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
+Route::get('/instructor/login', [InstructorController::class, 'showLogin'])->name('instructor.login');
+Route::get('/admin/login', function () { return view('admin.login'); })->name('admin.login');
+
+// Logout (Tetap di luar agar bisa diakses siapa saja yang login)
 Route::post('/logout', function (Request $request) {
-    Auth::logout(); // Mengeluarkan user
-    $request->session()->invalidate(); // Menghapus sesi
-    $request->session()->regenerateToken(); // Mengamankan token CSRF
-    
-    return redirect('/'); // Mengembalikan user ke halaman utama
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
 })->name('logout');
 
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'es', 'id'])) {
-        session::put('locale', $locale);
-    }
-    return redirect()->back(); 
-});
-
-Route::get('/category/{slug}', [App\Http\Controllers\CourseController::class, 'filterByCategory'])->name('category.show');
-
-use App\Models\Category;
-
-Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
-Route::get('/search', [App\Http\Controllers\CourseController::class, 'search'])->name('search');
-
-Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
-Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
-Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove')->middleware('auth');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
-
-// --- ROUTE UNTUK CHECKOUT & PEMBAYARAN ---
-
-// 1. Nampilin halaman checkout (keranjang)
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
-
-// 2. Memproses form saat tombol 'Selesaikan Pembayaran' diklik
-Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
-
-// 3. Nampilin halaman Invoice (QR Code)
-Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
-
-// 4. Nampilin halaman Pembayaran Berhasil
-Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
-
-
-Route::get('/admin/login', function () {return view('admin.login');})->name('admin.login');
-
-// Lebih rapi karena pakai alias 'admin'
-Route::middleware(['admin'])->group(function () {
-    
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/courses', [AdminController::class, 'courses'])->name('admin.courses');
-    Route::get('/admin/courses/create', [AdminController::class, 'createCourse'])->name('admin.courses.create');
-    Route::post('/admin/courses/store', [AdminController::class, 'storeCourse'])->name('admin.courses.store');
-    Route::get('/admin/courses/edit/{id}', [AdminController::class, 'editCourse'])->name('admin.courses.edit');
-    Route::put('/admin/courses/update/{id}', [AdminController::class, 'updateCourse'])->name('admin.courses.update');
-    Route::delete('/admin/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
-    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
-    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
-    
-});
-
-
-// Route ini akan mengecek: "Sudah login belum?"
-// Jika belum, user akan dilempar ke login. Jika sudah, lanjut ke controller.
-Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])
-    ->middleware('auth') 
-    ->name('subscribe.start');
-
-// Rute untuk mengubah bahasa aplikasi (ID, EN, ES) secara otomatis
+// Bahasa
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['id', 'en', 'es'])) {
         session()->put('locale', $locale);
@@ -122,3 +64,67 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('change.lang');
 
+
+/*
+|--------------------------------------------------------------------------
+| 2. AREA SISWA (Dijaga Middleware 'student')
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'student'])->group(function () {
+    
+    // Fitur Keranjang (Cart)
+    Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart']);
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+    // Fitur Checkout & Pembayaran
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
+    Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
+
+    // Fitur Langganan & Daftar Jadi Instruktur
+    Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])->name('subscribe.start');
+    Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
+    Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
+    Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
+    Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| 3. AREA INSTRUCTOR (Dijaga Middleware 'instructor')
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function () {
+    Route::get('/dashboard', [InstructorController::class, 'index'])->name('instructor.dashboard');
+    Route::get('/my-courses', [InstructorController::class, 'myCourses'])->name('instructor.courses.index');
+    Route::get('/course/{id}/manage', [InstructorController::class, 'manageCourse'])->name('instructor.courses.manage');
+    Route::post('/section/{id}/lesson', [InstructorController::class, 'addLesson'])->name('instructor.lessons.store');
+    Route::get('/course/{id}/edit', [InstructorController::class, 'editCourse'])->name('instructor.courses.edit');
+    Route::put('/course/{id}/update', [InstructorController::class, 'updateCourse'])->name('instructor.courses.update');
+    Route::get('/course/add-new', [InstructorController::class, 'createNewCourse'])->name('instructor.courses.add');
+    Route::post('/course/save-new', [InstructorController::class, 'storeNewCourse'])->name('instructor.courses.save');
+    Route::get('/students', [InstructorController::class, 'myStudents'])->name('instructor.students.index');
+    Route::get('/performance', [InstructorController::class, 'performance'])->name('instructor.performance');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| 4. AREA ADMIN (Dijaga Middleware 'admin')
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/courses', [AdminController::class, 'courses'])->name('admin.courses');
+    Route::get('/courses/create', [AdminController::class, 'createCourse'])->name('admin.courses.create');
+    Route::post('/courses/store', [AdminController::class, 'storeCourse'])->name('admin.courses.store');
+    Route::get('/courses/edit/{id}', [AdminController::class, 'editCourse'])->name('admin.courses.edit');
+    Route::put('/courses/update/{id}', [AdminController::class, 'updateCourse'])->name('admin.courses.update');
+    Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
+    Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+});

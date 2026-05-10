@@ -15,33 +15,39 @@ class LoginController extends Controller
     }
 
     // Fungsi untuk memproses data saat tombol Lanjutkan diklik
-    public function login(Request $request)
+public function login(Request $request)
 {
-    // 1. Validasi input
     $credentials = $request->validate([
         'email' => 'required|email',
         'password' => 'required'
     ]);
 
-    // 2. Cek apakah email & password benar
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
+        $user = Auth::user();
 
-    // Cek jika user yang login memiliki role admin atau instructor
-    if (in_array(Auth::user()->role, ['admin', 'instructor'])) {
-    
-    // Logout kembali user tersebut agar session tidak tersimpan
-    Auth::logout();
+        // 1. CEK: Apakah dia bawa "Kunci" dari portal khusus?
+        $lewatPortal = $request->has('from_portal');
 
-    // Redirect balik ke halaman login dengan pesan error
-    return redirect()->route('login')->with('error', 'Admin dan Instructor tidak bisa login di sini. Silakan gunakan link khusus di bawah.');
-}
+        // 2. LOGIKA TENDANG: 
+        // Jika Admin/Instructor masuk dari FORM UTAMA (tanpa kunci from_portal)
+        if (!$lewatPortal && in_array($user->role, ['admin', 'instructor'])) {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Portal ini khusus Siswa. Silakan gunakan link di bawah!');
+        }
 
-        // Jika siswa, lempar ke homepage utama
+        // 3. REDIRECT LANGSUNG (Tanpa dicampak lagi)
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } 
+        
+        if ($user->role === 'instructor') {
+            return redirect()->route('instructor.dashboard');
+        }
+
         return redirect()->intended('/'); 
     }
 
-    // 3. Jika gagal
     return back()->with('error', 'Email atau password salah.');
 }
 }
