@@ -4,26 +4,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Cart;
-use App\Models\Enrollment; // Pastikan Anda punya model pendaftaran
+use App\Models\Enrollment; 
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;          // <-- Wajib ada untuk mencatat waktu bayar
+use Carbon\Carbon;          
 
 class CheckoutController extends Controller
 {
     public function index()
-{
-    // Mengambil item keranjang dari database berdasarkan user yang login
-    $cartItems = \App\Models\Cart::where('user_id', Auth::id())
-                     ->with('course') 
-                     ->get();
+    {
+        $cartItems = \App\Models\Cart::where('user_id', Auth::id())
+                         ->with('course') 
+                         ->get();
 
-    // Menghitung total harga dari semua kursus di keranjang
-    $total = $cartItems->sum(function($item) {
-        return $item->course->price;
-    });
+        $total = $cartItems->sum(function($item) {
+            return $item->course->price;
+        });
 
-    return view('checkout', compact('cartItems', 'total'));
-}
+        return view('checkout', compact('cartItems', 'total'));
+    }
 
     public function store(Request $request)
     {
@@ -37,45 +35,41 @@ class CheckoutController extends Controller
             return $item->course->price;
         });
 
-        // 1. BUAT DATA ENROLLMENT (PENDAFTARAN) DULU
-        $enrollment = Enrollment::create([
-            'user_id' => Auth::id(),
-            'course_id' => $cartItems->first()->course_id,
-            // Jika di tabel enrollments kamu ada kolom lain seperti 'status' => 'active', tambahkan di sini
-        ]);
+        // --- PERBAIKAN: Gunakan looping agar semua kursus terdaftar ---
+        foreach ($cartItems as $item) {
+            $enrollment = Enrollment::create([
+                'user_id'   => Auth::id(),
+                'course_id' => $item->course_id, // Mengambil id masing-masing kursus
+                // 'status' => 'active', // Tambahkan jika ada kolom status di tabelmu
+            ]);
 
-        // 2. BARU BUAT DATA PAYMENT BERDASARKAN ENROLLMENT TADI
-        $payment = Payment::create([
-            'enrollment_id' => $enrollment->id, // Mengambil ID dari pendaftaran di atas
-            'amount' => $total,
-            'payment_method' => $request->payment_method ?? 'Transfer Bank',
-            'status' => 'success',
-            'paid_at' => Carbon::now(),
-        ]);
+            // Buat data payment untuk setiap enrollment (pendaftaran)
+            // Atau jika kamu ingin 1 payment untuk banyak kursus, logic ini bisa disesuaikan
+            Payment::create([
+                'enrollment_id'  => $enrollment->id,
+                'amount'         => $item->course->price, // Harga per kursus
+                'payment_method' => $request->payment_method ?? 'Transfer Bank',
+                'status'         => 'success',
+                'paid_at'        => Carbon::now(),
+            ]);
+        }
 
-        // 3. Hapus keranjang setelah sukses
+        // 3. Hapus semua item di keranjang setelah pendaftaran sukses
         Cart::where('user_id', Auth::id())->delete();
 
-        // 4. Arahkan ke halaman ecek-ecek (invoice)
-        return redirect()->route('checkout.invoice', ['id' => $payment->id]);
+        // 4. Arahkan ke halaman My Learning (Pembelajaran Saya) agar user bisa langsung lihat hasilnya
+        return redirect()->route('learning.index')->with('success', 'Pembelian berhasil!');
     }
 
-    // Function untuk menampilkan halaman payment-success.blade.php
     public function success($id)
     {
-        // Cari data transaksi berdasarkan ID
         $payment = Payment::findOrFail($id);
-
-        // Lempar data ke blade dengan nama variabel 'payment' agar sesuai dengan bladenya
         return view('payment-success', ['payment' => $payment]);
     }
 
     public function invoice($id)
     {
-        // Ambil data transaksi
         $payment = \App\Models\Payment::findOrFail($id);
-
-        // Lempar ke halaman invoice
         return view('invoice', ['payment' => $payment]);
     }
 }

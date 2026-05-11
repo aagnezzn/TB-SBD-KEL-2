@@ -49,4 +49,13 @@ class User extends Authenticatable
     public function enrollments() {
     return $this->hasMany(Enrollment::class); // Sesuaikan nama model enrollment-mu
 }
+
+    public function courses() {
+    return $this->belongsToMany(Course::class, 'enrollments', 'user_id', 'course_id');
+}
+
+public function wishlists()
+{
+    return $this->hasMany(Wishlist::class);
+}
 }

@@ -169,14 +169,14 @@
 
                         {{-- Menu Bagian 1 --}}
                         <div class="py-2 border-b">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
+                            <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
                             <a href="{{ route('keranjang') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
                                 <span>Keranjang saya</span>
                                 @if($cartCount > 0)
                                     <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
                                 @endif
                             </a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
+                            <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
                             <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
                         </div>
 
@@ -189,7 +189,7 @@
                         {{-- Menu Bagian 3 --}}
                         <div class="py-2 border-b">
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Metode pembayaran</a>
+                            <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
                         </div>
 

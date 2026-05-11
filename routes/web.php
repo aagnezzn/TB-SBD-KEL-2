@@ -16,6 +16,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LearningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,17 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
     Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
+
+    //my learning
+    Route::get('/my-learning', [LearningController::class, 'index'])->name('learning.index');
+    // Route untuk tombol "Masukkan ke Daftar Keinginan"
+    Route::post('/wishlist/add/{id}', [LearningController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/wishlist/add/{id}', [LearningController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::delete('/wishlist/remove/{id}', [LearningController::class, 'removeFromWishlist'])->name('wishlist.remove');
+    Route::post('/wishlist/move-to-cart/{id}', [LearningController::class, 'moveToCart'])->name('wishlist.move-to-cart');
+
+    //riwayat Pembayaran
+    Route::get('/purchase-history', [LearningController::class, 'purchaseHistory'])->name('purchase.history');
 });
 
 
