@@ -15,7 +15,6 @@ class CategorySeeder extends Seeder
         Category::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // Struktur Kategori Padat (Sangat sinkron dengan CSV)
         $data = [
             'Development' => [
                 'Web Development' => ['HTML & CSS', 'JavaScript', 'React JS', 'PHP & Laravel', 'Python Django']
@@ -30,7 +29,7 @@ class CategorySeeder extends Seeder
             ],
             'Music' => [
                 'Instruments' => ['Guitar', 'Piano', 'Ukulele'],
-                'Vocals' => ['Vocal & Singing'] // Kita pastikan kategori ini terdaftar di database!
+                'Vocals' => ['Vocal & Singing']
             ],
             'IT & Software' => [
                 'Network & Security' => ['Cyber Security', 'Ethical Hacking'] 

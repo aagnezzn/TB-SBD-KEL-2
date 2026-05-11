@@ -6,7 +6,12 @@ use Illuminate\Database\Seeder;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Enrollment;
+use App\Models\Payment;
+use App\Models\Review;
+use App\Models\Lesson;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class CourseSeeder extends Seeder
 {
@@ -20,200 +25,281 @@ class CourseSeeder extends Seeder
         }
 
         $open = fopen($file, "r");
-        $header = fgetcsv($open, 2000, ";"); 
+        
+        $firstLine = fgets($open);
+        $delimiter = (strpos($firstLine, ';') !== false) ? ';' : ',';
+        rewind($open);
+
+        $header = fgetcsv($open, 2000, $delimiter); 
 
         $categories = Category::all();
         $instructorIds = User::where('role', 'instructor')->pluck('id')->toArray();
+        $studentIds = User::where('role', 'student')->pluck('id')->toArray();
+        $faker = Faker::create('id_ID');
 
-        if ($categories->isEmpty() || empty($instructorIds)) {
+        if ($categories->isEmpty() || empty($instructorIds) || empty($studentIds)) {
             echo "Integritas Gagal: Jalankan CategorySeeder & UserSeeder terlebih dahulu!\n";
             return;
         }
 
-        while (($data = fgetcsv($open, 2000, ";")) !== FALSE) {
+        // Mapping subjek CSV ke sub-kategori agar tidak kosong di halaman kategori website
+        $subjectToCategoryMap = [
+            'Web Development' => 'HTML & CSS',
+            'Business Finance' => 'Trading',
+            'Graphic Design' => 'Adobe Photoshop',
+            'Office Productivity' => 'Excel Basic',
+            'Personal Development' => 'Public Speaking',
+            'Musical Instruments' => 'Guitar',
+            'Coding' => 'JavaScript',
+        ];
+
+        $topicTitles = [
+            'coding' => [
+                'Instalasi Lingkungan Kerja & Editor', 'Memahami Sintaks dan Struktur Dasar',
+                'Deklarasi Variabel dan Tipe Data', 'Logika Percabangan (If-Else State)',
+                'Perulangan Efektif dengan Loop', 'Fungsi dan Parameter Modular',
+                'Penanganan Error (Try-Catch Exception)', 'Integrasi Database & Query Lanjutan'
+            ],
+            'cybersecurity' => [
+                'Pengenalan Keamanan Jaringan Dasar', 'Analisis Kerentanan Sistem Operasi',
+                'Simulasi Serangan Bruteforce & Proteksi', 'Konfigurasi Firewall & Port Security'
+            ],
+            'accounting' => [
+                'Konsep Dasar Persamaan Akuntansi', 'Penyusunan Jurnal Umum & Buku Besar',
+                'Analisis Neraca Saldo Akhir Periode', 'Pembuatan Laporan Laba Rugi Perusahaan'
+            ],
+            'trading' => [
+                'Psikologi Trading & Manajemen Risiko', 'Membaca Indikator Candlestick Fundamental',
+                'Analisis Tren Pasar Bullish dan Bearish', 'Strategi Swing Trading untuk Pemula'
+            ],
+            'excel' => [
+                'Navigasi Shortcut & Formula Dasar', 'Optimasi Lookup dengan VLOOKUP & XLOOKUP',
+                'Analisis Data Dinamis dengan Pivot Table', 'Visualisasi Data Menggunakan Chart Modern'
+            ],
+            'graphic_design' => [
+                'Teori Komposisi Warna & Tata Letak', 'Manipulasi Objek dengan Photoshop',
+                'Pembuatan Desain Vektor di Illustrator', 'Strategi Branding & Konsistensi Visual'
+            ],
+            'music' => [
+                'Pengenalan Nada dan Tangga Nada Dasar', 'Latihan Penjarian (Fingering Practice)',
+                'Memahami Progresi Akor Sederhana', 'Teknik Sinkronisasi Tangan Kiri & Kanan'
+            ],
+            'general' => [
+                'Pendahuluan & Kontrak Belajar', 'Konsep Teoretis Paling Mendasar',
+                'Studi Kasus Nyata di Dunia Kerja', 'Evaluasi Materi & Tips Belajar Mandiri'
+            ]
+        ];
+
+        $unsplashImages = [
+            'web_development' => ['1555066931-4365d14bab8c', '1542831371-29b0f74f9713', '1517694712202-14dd9538aa97'],
+            'cyber_security' => ['1563986768609-322da13575f3', '1558494949-ef010cbdcc31'],
+            'business_finance' => ['1454165804606-c3d57bc86b40', '1554224155-8d04cb21cd6c'],
+            'graphic_design' => ['1618005182384-a83a8bd57fbe', '1561070791-2526d30994a5'],
+            'public_speaking' => ['1475721027785-f74eccf877e2', '1515187029135-18ee286d815b'],
+            'excel_basic' => ['1551288049-bebda4e38f71', '1586281380349-632531db7ed4'],
+            'musical_instruments' => ['1511192336575-5a79af67a629', '1465847899084-d164df4dedc6']
+        ];
+
+        while (($data = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
             if (!isset($data[1]) || empty($data[1])) {
                 continue;
             }
             
-            // Atasi masalah pembersihan teks tanda kutip ganda CSV
             $title = trim(mb_convert_encoding($data[1], 'UTF-8', 'ISO-8859-1'), '"');
+            $titleLower = strtolower($title);
             $subject = trim(mb_convert_encoding($data[10], 'UTF-8', 'ISO-8859-1'), '"'); 
             $level = trim(mb_convert_encoding($data[7], 'UTF-8', 'ISO-8859-1'), '"');
+            $numSubscribers = (int) str_replace('.', '', $data[4]); 
+            $numReviews = (int) str_replace('.', '', $data[5]);
 
-            $categoryId = $this->determineTopicId($title, $subject, $categories);
-
-            $rawPrice = $data[3];
-            if (strtolower(trim($rawPrice)) === 'free') {
+            $priceRaw = trim($data[3], '"');
+            if (strtolower($priceRaw) === 'free' || empty($priceRaw)) {
                 $priceInRupiah = 0;
             } else {
-                $cleanPrice = str_replace(['$', ',00', '.', '"'], '', $rawPrice);
-                $priceInRupiah = (int) $cleanPrice * 15000;
+                $cleanPrice = (int) preg_replace('/[^0-9]/', '', $priceRaw);
+                $priceInRupiah = $cleanPrice * 150; 
+                if ($priceInRupiah === 0) {
+                    $priceInRupiah = 150000;
+                }
             }
 
-            // Pilih Keyword Gambar Unsplash
-            $keyword = 'general_education';
-            $titleLower = strtolower($title);
-            if (Str::contains($titleLower, ['react', 'next', 'angular', 'javascript', 'js', 'typescript', 'node', 'html', 'css', 'php', 'laravel', 'django', 'python', 'programming', 'code', 'sql'])) {
-                $keyword = 'coding';
-            } elseif (Str::contains($titleLower, ['cyber', 'security', 'hack', 'ethical', 'firewall', 'network', 'cisco'])) {
-                $keyword = 'cybersecurity';
-            } elseif (Str::contains($titleLower, ['accounting', 'bookkeeping', 'tax', 'taxes', 'statement'])) {
-                $keyword = 'accounting';
-            } elseif (Str::contains($titleLower, ['forex', 'trading', 'stock', 'saham', 'currency'])) {
-                $keyword = 'trading';
-            } elseif (Str::contains($titleLower, ['excel', 'sheets', 'spreadsheet', 'vba', 'macro'])) {
-                $keyword = 'excel';
-            } elseif (Str::contains($titleLower, ['powerpoint', 'word', 'office'])) {
-                $keyword = 'office_tools';
-            } elseif (Str::contains($titleLower, ['photoshop', 'illustrator', 'canva', 'figma'])) {
-                $keyword = 'graphic_design';
-            } elseif (Str::contains($titleLower, ['autocad', 'solidworks', 'cad'])) {
-                $keyword = '3d_cad';
-            } elseif (Str::contains($titleLower, ['guitar', 'gitar'])) {
-                $keyword = 'guitar';
-            } elseif (Str::contains($titleLower, ['piano', 'keyboard'])) {
-                $keyword = 'piano';
-            } elseif (Str::contains($titleLower, ['ukulele'])) {
-                $keyword = 'ukulele';
-            } elseif (Str::contains($titleLower, ['sing', 'vocal', 'voice'])) {
-                $keyword = 'singing';
+            // KLASIFIKASI KATEGORI SECARA DETAIL
+            $targetTopicName = '';
+
+            if ($subject === 'Web Development') {
+                if (Str::contains($titleLower, ['html', 'css', 'bootstrap', 'sass', 'flexbox', 'tailwind'])) {
+                    $targetTopicName = 'HTML & CSS';
+                } elseif (Str::contains($titleLower, ['javascript', 'js', 'typescript', 'jquery', 'es6'])) {
+                    $targetTopicName = 'JavaScript';
+                } elseif (Str::contains($titleLower, ['react', 'redux', 'next.js', 'nextjs'])) {
+                    $targetTopicName = 'React JS';
+                } elseif (Str::contains($titleLower, ['php', 'laravel', 'wordpress', 'mysql', 'api'])) {
+                    $targetTopicName = 'PHP & Laravel';
+                } elseif (Str::contains($titleLower, ['python', 'django', 'flask'])) {
+                    $targetTopicName = 'Python Django';
+                } else {
+                    $targetTopicName = collect(['HTML & CSS', 'JavaScript', 'React JS', 'PHP & Laravel', 'Python Django'])->random();
+                }
+            } elseif ($subject === 'Business Finance') {
+                if (Str::contains($titleLower, ['stock', 'trading', 'saham', 'market', 'chart', 'technical analysis'])) {
+                    $targetTopicName = 'Stock Trading';
+                } elseif (Str::contains($titleLower, ['forex', 'currency'])) {
+                    $targetTopicName = 'Forex Trading';
+                } elseif (Str::contains($titleLower, ['tax', 'taxes', 'taxation'])) {
+                    $targetTopicName = 'Taxes';
+                } elseif (Str::contains($titleLower, ['accounting', 'bookkeeping', 'finance', 'ledger'])) {
+                    $targetTopicName = 'Financial Accounting';
+                } else {
+                    $targetTopicName = collect(['Financial Accounting', 'Taxes', 'Stock Trading', 'Forex Trading'])->random();
+                }
+            } elseif ($subject === 'Graphic Design') {
+                if (Str::contains($titleLower, ['solidworks'])) {
+                    $targetTopicName = 'SOLIDWORKS';
+                } elseif (Str::contains($titleLower, ['autocad', 'cad', '3d', 'fusion 360', 'modeling'])) {
+                    $targetTopicName = 'AutoCAD';
+                } elseif (Str::contains($titleLower, ['photoshop', 'psd', 'photo editing'])) {
+                    $targetTopicName = 'Adobe Photoshop';
+                } elseif (Str::contains($titleLower, ['illustrator', 'vector', 'ai', 'logo'])) {
+                    $targetTopicName = 'Adobe Illustrator';
+                } elseif (Str::contains($titleLower, ['canva', 'social media post'])) {
+                    $targetTopicName = 'Canva';
+                } else {
+                    $targetTopicName = collect(['Adobe Photoshop', 'Adobe Illustrator', 'Canva', 'AutoCAD', 'SOLIDWORKS'])->random();
+                }
+            } elseif ($subject === 'Musical Instruments') {
+                if (Str::contains($titleLower, ['vocal', 'singing', 'voice', 'sing', 'choir'])) {
+                    $targetTopicName = 'Vocal & Singing';
+                } elseif (Str::contains($titleLower, ['guitar', 'guitarist', 'strum', 'chords'])) {
+                    $targetTopicName = 'Guitar';
+                } elseif (Str::contains($titleLower, ['piano', 'keyboard', 'pianist'])) {
+                    $targetTopicName = 'Piano';
+                } elseif (Str::contains($titleLower, ['ukulele', 'uke'])) {
+                    $targetTopicName = 'Ukulele';
+                } else {
+                    $targetTopicName = collect(['Guitar', 'Piano', 'Ukulele', 'Vocal & Singing'])->random();
+                }
+            } elseif ($subject === 'Cyber Security') {
+                if (Str::contains($titleLower, ['hack', 'penetration', 'pentest', 'kali', 'ethical'])) {
+                    $targetTopicName = 'Ethical Hacking';
+                } else {
+                    $targetTopicName = 'Cyber Security';
+                }
+            } elseif ($subject === 'Excel Basic') {
+                if (Str::contains($titleLower, ['powerpoint', 'presentation', 'ppt'])) {
+                    $targetTopicName = 'PowerPoint';
+                } elseif (Str::contains($titleLower, ['word', 'document', 'writing'])) {
+                    $targetTopicName = 'Microsoft Word';
+                } else {
+                    $targetTopicName = 'Excel Basic';
+                }
+            } elseif ($subject === 'Public Speaking') {
+                if (Str::contains($titleLower, ['time', 'productivity', 'procrastination', 'focus', 'schedule'])) {
+                    $targetTopicName = 'Time Management';
+                } elseif (Str::contains($titleLower, ['interview', 'resume', 'job', 'cv', 'career'])) {
+                    $targetTopicName = 'Interview Skills';
+                } else {
+                    $targetTopicName = 'Public Speaking';
+                }
+            } else {
+                $targetTopicName = 'HTML & CSS';
             }
 
-            Course::create([
-                'title' => $title, 
-                'description' => 'Materi komprehensif mengenai ' . $subject . ' yang dirancang khusus untuk tingkat ' . $level . '.',
-                'price' => $priceInRupiah,
-                'image_url' => 'https://images.unsplash.com/photo-' . $this->getStaticPhotoId($keyword) . '?auto=format&fit=crop&w=320&h=180&q=80',
+            $category = $categories->where('name', $targetTopicName)->first();
+            $categoryId = $category ? $category->id : $categories->random()->id;
+
+            $imgKey = Str::slug($subject, '_');
+            $selectedImages = $unsplashImages[$imgKey] ?? $unsplashImages['web_development'];
+            $randomImgId = $selectedImages[array_rand($selectedImages)];
+            $imageUrl = "https://images.unsplash.com/photo-" . $randomImgId . "?auto=format&fit=crop&w=600&q=80";
+
+            $instructorId = $instructorIds[array_rand($instructorIds)];
+
+            // 1. Buat Kursus (ID Auto-Increment)
+            $course = Course::create([
                 'category_id' => $categoryId,
-                'instructor_id' => $instructorIds[array_rand($instructorIds)],
+                'instructor_id' => $instructorId,
+                'title' => Str::limit($title, 150, '...'),
+                'description' => "This is a comprehensive course about " . $subject . " designed especially for " . $level . " students.",
+                'price' => $priceInRupiah,
+                'image_url' => $imageUrl,
+                'created_at' => $data[9] . ' 00:00:00',
+                'updated_at' => $data[9] . ' 00:00:00',
             ]);
+
+            // 2. Buat Lessons Terikat Langsung
+            $key = 'general';
+            if (Str::contains($titleLower, ['react', 'next', 'angular', 'javascript', 'js', 'typescript', 'html', 'css', 'php', 'laravel', 'python', 'sql'])) {
+                $key = 'coding';
+            } elseif (Str::contains($titleLower, ['cyber', 'security', 'firewall'])) {
+                $key = 'cybersecurity';
+            } elseif (Str::contains($titleLower, ['accounting', 'tax'])) {
+                $key = 'accounting';
+            } elseif (Str::contains($titleLower, ['forex', 'trading', 'stock'])) {
+                $key = 'trading';
+            } elseif (Str::contains($titleLower, ['excel', 'spreadsheet'])) {
+                $key = 'excel';
+            } elseif (Str::contains($titleLower, ['photoshop', 'illustrator', 'canva', 'design'])) {
+                $key = 'graphic_design';
+            } elseif (Str::contains($titleLower, ['guitar', 'piano', 'ukulele', 'vocal'])) {
+                $key = 'music';
+            }
+
+            $availableTitles = $topicTitles[$key];
+            shuffle($availableTitles);
+            $lessonLimit = rand(1, 2); 
+
+            for ($i = 0; $i < $lessonLimit; $i++) {
+                $lessonTitle = $availableTitles[$i] ?? ('Materi Tambahan Bagian ' . ($i + 1));
+                Lesson::create([
+                    'course_id' => $course->id,
+                    'title' => Str::limit($lessonTitle, 200, '...'),
+                    'content' => 'Pada modul pembelajaran ini, peserta didik akan diajarkan implementasi praktis dari materi ' . $lessonTitle . '.',
+                    'duration' => rand(15, 60),
+                ]);
+            }
+
+            // 3. Buat Enrollments & Payments
+            $enrollLimit = min($numSubscribers, 3);
+            for ($i = 0; $i < $enrollLimit; $i++) {
+                $studentId = $studentIds[array_rand($studentIds)];
+
+                $enrollment = Enrollment::create([
+                    'user_id' => $studentId,
+                    'course_id' => $course->id,
+                    'status' => 'active',
+                    'enrolled_at' => now()->subDays(rand(1, 30)),
+                ]);
+
+                if ($course->price > 0) {
+                    Payment::create([
+                        'enrollment_id' => $enrollment->id,
+                        'amount' => $course->price,
+                        'payment_method' => $faker->randomElement(['Bank Transfer', 'E-Wallet', 'Credit Card']),
+                        'status' => 'success',
+                        'paid_at' => $enrollment->enrolled_at,
+                    ]);
+                }
+            }
+
+            // 4. Buat Reviews
+            $reviewLimit = min($numReviews, 2);
+            $reviewComments = [
+                'Materi pembelajarannya sangat detail dan mudah diikuti.',
+                'Penjelasan instrukturnya sangat jelas, cocok sekali untuk pemula!',
+                'Proyek latihannya sangat membantu memahami studi kasus di dunia nyata.'
+            ];
+
+            for ($i = 0; $i < $reviewLimit; $i++) {
+                $studentId = $studentIds[array_rand($studentIds)];
+                Review::create([
+                    'user_id' => $studentId,
+                    'course_id' => $course->id,
+                    'rating' => rand(4, 5), 
+                    'comment' => $faker->randomElement($reviewComments),
+                ]);
+            }
         }
 
         fclose($open);
-    }
-
-    private function determineTopicId(string $title, string $subject, $categories): int
-    {
-        $titleLower = strtolower($title);
-        $subjectLower = strtolower($subject);
-        $randomFallbackId = $categories->random()->id;
-
-        if (Str::contains($titleLower, ['excel', 'word', 'powerpoint', 'vba', 'macro'])) {
-            if (Str::contains($titleLower, ['powerpoint'])) {
-                return $categories->firstWhere('name', 'PowerPoint')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['word'])) {
-                return $categories->firstWhere('name', 'Microsoft Word')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Excel Basic')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($titleLower, ['cyber', 'security', 'hack', 'network', 'cisco', 'ccna', 'firewall'])) {
-            if (Str::contains($titleLower, ['hack', 'penetration', 'ethical'])) {
-                return $categories->firstWhere('name', 'Ethical Hacking')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Cyber Security')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($titleLower, ['time', 'productivity', 'procrastination', 'speak', 'present', 'interview', 'resume', 'career'])) {
-            if (Str::contains($titleLower, ['time', 'productivity', 'procrastination'])) {
-                return $categories->firstWhere('name', 'Time Management')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['speak', 'present', 'public'])) {
-                return $categories->firstWhere('name', 'Public Speaking')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Interview Skills')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($subjectLower, ['web development', 'development'])) {
-            if (Str::contains($titleLower, ['react', 'next'])) {
-                return $categories->firstWhere('name', 'React JS')->id ?? $categories->firstWhere('name', 'JavaScript')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['javascript', 'js', 'typescript', 'node', 'angular'])) {
-                return $categories->firstWhere('name', 'JavaScript')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['php', 'laravel'])) {
-                return $categories->firstWhere('name', 'PHP & Laravel')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['django', 'python'])) {
-                return $categories->firstWhere('name', 'Python Django')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'HTML & CSS')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($subjectLower, ['business finance', 'finance', 'accounting'])) {
-            if (Str::contains($titleLower, ['accounting', 'bookkeeping', 'accountant', 'tally', 'statement'])) {
-                return $categories->firstWhere('name', 'Financial Accounting')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['tax', 'taxes'])) {
-                return $categories->firstWhere('name', 'Taxes')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['forex', 'currency'])) {
-                return $categories->firstWhere('name', 'Forex Trading')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Stock Trading')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($subjectLower, ['graphic design', 'design'])) {
-            if (Str::contains($titleLower, ['photoshop'])) {
-                return $categories->firstWhere('name', 'Adobe Photoshop')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['illustrator', 'vector'])) {
-                return $categories->firstWhere('name', 'Adobe Illustrator')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['canva'])) {
-                return $categories->firstWhere('name', 'Canva')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['autocad', 'cad'])) {
-                return $categories->firstWhere('name', 'AutoCAD')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['solidworks'])) {
-                return $categories->firstWhere('name', 'SOLIDWORKS')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Adobe Photoshop')->id ?? $randomFallbackId;
-        }
-
-        if (Str::contains($subjectLower, ['musical instruments', 'instruments', 'music'])) {
-            if (Str::contains($titleLower, ['guitar', 'gitar', 'bass'])) {
-                return $categories->firstWhere('name', 'Guitar')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['piano', 'keyboard'])) {
-                return $categories->firstWhere('name', 'Piano')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['ukulele'])) {
-                return $categories->firstWhere('name', 'Ukulele')->id ?? $randomFallbackId;
-            }
-            if (Str::contains($titleLower, ['sing', 'vocal', 'voice'])) {
-                return $categories->firstWhere('name', 'Vocal & Singing')->id ?? $randomFallbackId;
-            }
-            return $categories->firstWhere('name', 'Piano')->id ?? $randomFallbackId;
-        }
-
-        return $randomFallbackId;
-    }
-
-    private function getStaticPhotoId(string $keyword): string
-    {
-        $photos = [
-            'coding' => ['1587629197415-2ab68d7a52b7', '1498050108023-c5249f4df085', '1555066931-4365d14bab8c'],
-            'cybersecurity' => ['1550751827-4bd374c3f58b', '1563986768609-322da13575f3'],
-            'accounting' => ['1554224155-8d04cb21cd6c', '1454165804606-c3d57bc86b40'],
-            'trading' => ['1590283603385-17ffb3a7f29f', '1611974789855-9c2a0a7236a3'],
-            'excel' => ['1551288049-bebda4e38f71', '1460925895917-afdab827c52f'],
-            'office_tools' => ['1586281380349-632531db7ed4', '1513151233558-d860c5398176'],
-            'graphic_design' => ['1561070791-2526d30994b5', '1550684848-fac1c5b4e853'],
-            '3d_cad' => ['1581092160607-ee22621dd758', '1504917595217-d4dc5ebe6122'],
-            'guitar' => ['1510915361894-db8b60106cb1', '1511671782779-c97d3d27a1d4'],
-            'piano' => ['1520523839897-bd0b52f945a0', '1552422535-c45813c61732'],
-            'ukulele' => ['1508186225823-0963cf9ab0de'],
-            'singing' => ['1516280440614-37939bbacd6a', '1598387181032-a3103a2db5b5'],
-            'public_speaking' => ['1524178232363-1fb2b075b655', '1475721027490-800d556019eb'],
-            'time_management' => ['1508962914676-134849a727f0', '1506784983877-45594efa4cbe'],
-            'career_prep' => ['1573497019940-1b28c7a6f7b4', '1434030216411-0b793f4b4173'],
-            'general_education' => ['1427504494785-3a9ca7044f45', '1497633762265-2d179a990ab6']
-        ];
-
-        $list = $photos[$keyword] ?? $photos['general_education'];
-        return $list[array_rand($list)];
     }
 }

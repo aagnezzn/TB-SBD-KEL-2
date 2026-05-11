@@ -1,39 +1,42 @@
 <footer class="text-gray-300 font-sans w-full">
-    <!-- Bagian Atas: Kategori Dinamis dari Database -->
-    <div class="bg-[#303246] py-8 px-10">
+    <div class="bg-[#303246] py-10 px-10">
         <h2 class="text-2xl font-bold text-white mb-10">{{ __('menu.explore_title') }}</h2>
 
-        <!-- Grid tetap 4 kolom agar UI tidak pecah -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
-            @foreach($navCategories->take(8) as $mainCat) 
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+            {{-- Mengambil semua 7 kategori utama dan membiarkannya membungkus rapi ke bawah --}}
+            @foreach($navCategories->take(7) as $mainCat) 
             <div>
-                <!-- Nama Kategori Utama sebagai Heading -->
-                <h3 class="text-white font-bold text-base mb-4 uppercase tracking-wide text-[14px]">
+                <h3 class="text-white font-extrabold text-base mb-4 uppercase tracking-wide text-[14px]">
                     {{ $mainCat->name }}
                 </h3>
-                <ul class="space-y-2 text-sm leading-snug">
-                {{-- Ambil 5 anak kategori (Sub-Kategori) --}}
-                    @foreach($mainCat->children->take(5) as $subCat)
-                    <li>
-                         <a href="{{ route('category.show', $subCat->slug) }}" class="text-sm text-white hover:underline"> {{ $subCat->name }}
-                    </a>
-                    </li>
+                
+                <div class="space-y-4">
+                    {{-- Ambil Sub-Kategori (Tingkat 2) --}}
+                    @foreach($mainCat->children->take(2) as $subCat)
+                    <div>
+                        <span class="text-gray-400 font-semibold text-xs uppercase block mb-1 tracking-wider">
+                            → {{ $subCat->name }}
+                        </span>
+
+                        <ul class="pl-4 space-y-1.5 border-l border-gray-700">
+                            @foreach($subCat->children->take(3) as $topic)
+                            <li>
+                                <a href="{{ route('category.show', $topic->slug) }}" class="text-sm text-gray-300 hover:text-white hover:underline transition duration-150 block">
+                                    {{ $topic->name }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endforeach
-                    
-                    <!-- Link tambahan jika data di DB lebih dari 5 -->
-                    @if($mainCat->children->count() > 5)
-                    <li><a href="{{ route('category.show', $mainCat->slug) }}" class="hover:underline font-semibold text-white/70">{{ __('menu.view_all') }}...</a></li>
-                    @endif
-                </ul>
+                </div>
             </div>
             @endforeach
         </div>
     </div>
 
-    <!-- Bagian Bawah: Menu Perusahaan (Statis karena jarang berubah) -->
     <div class="bg-[#232433] py-8 px-10 border-t border-gray-800">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-8 mb-10">
-            <!-- Tentang -->
             <div>
                 <h3 class="text-white font-bold text-base mb-4">{{ __('menu.about') }}</h3>
                 <ul class="space-y-2 text-sm leading-snug text-gray-400">
@@ -45,7 +48,6 @@
                 </ul>
             </div>
 
-            <!-- Jelajahi Idemy -->
             <div>
                 <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
                 <ul class="space-y-2 text-sm leading-snug text-gray-400">
@@ -56,7 +58,6 @@
                 </ul>
             </div>
 
-            <!-- Business -->
             <div>
                 <h3 class="text-white font-bold text-base mb-4">Idemy for Business</h3>
                 <ul class="space-y-2 text-sm leading-snug text-gray-400">
@@ -64,9 +65,8 @@
                 </ul>
             </div>
 
-            <!-- Legal -->
             <div>
-            <h3 class="text-white font-bold text-base mb-4">{{ __('menu.legal') }}</h3>
+                <h3 class="text-white font-bold text-base mb-4">{{ __('menu.legal') }}</h3>
                 <ul class="space-y-2 text-sm leading-snug text-gray-400">
                     <li><a href="#" class="hover:underline">{{ __('menu.privacy') }}</a></li>
                     <li><a href="#" class="hover:underline">{{ __('menu.terms') }}</a></li>
@@ -75,16 +75,15 @@
             </div>
         </div>
 
-        <!-- Copyright Section -->
-        <div class="border-t border-gray-600 mt-10 py-6 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="border-t border-gray-700 mt-10 py-6 flex flex-col md:flex-row justify-between items-center text-sm">
             <div class="flex items-center space-x-4 mb-6 md:mb-0">
                 <span class="text-3xl font-extrabold text-white tracking-tighter">idemy</span>
                 <span class="text-xs mt-1">© 2026 Idemy, Inc.</span>
             </div>
             <div>
-                <a href="#" class="hover:underline">Pengaturan cookie</a>
+                <a href="#" class="hover:underline text-gray-400 hover:text-white">Pengaturan cookie</a>
             </div>
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-white transition">
+            <div class="flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
                 </svg>
