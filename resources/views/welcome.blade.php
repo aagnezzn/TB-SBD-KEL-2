@@ -546,7 +546,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                Udemy benar-benar <strong>pembawa perubahan dan pemandu hebat</strong> bagi saya saat Dimensional diluncurkan.
+                {{ __('welcome.Udemy benar-benar') }} <strong>{{ __('welcome.pembawa') }}</strong> {{ __('welcome.bagi saya') }} 
             </p>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -565,7 +565,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                Udemy memberikan Anda kegigihan. Saya mempelajari hal yang benar-benar saya perlukan di dunia nyata. Ini membantu saya <strong>mendapatkan pekerjaan baru.</strong>
+                {{ __('welcome.Udemy memberikan') }}  <strong>{{ __('welcome.mendapatkan pekerjaan baru') }}</strong>
             </p>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -584,7 +584,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
             <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                Saya sangat menyukai kursus tentang AI Studio. Awalnya saya belum mengenal alat ini, tetapi setelah mengikuti kursus, saya langsung menerapkannya untuk firma hukum saya.
+                {{ __('welcome.Saya sangat ') }} kursus tentang AI Studio. Awalnya saya belum mengenal alat ini, tetapi setelah mengikuti kursus, saya langsung menerapkannya untuk firma hukum saya.
             </p>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -608,13 +608,13 @@
         
         <div class="w-full lg:w-[30%]">
             <h2 class="text-3xl font-bold text-white mb-4 leading-tight">
-                Dapatkan sertifikasi dan<br>maju dalam karier Anda
+                {{ __('welcome.Dapatkan sertifikasi') }}<br>{{ __('welcome.maju dalam karier Anda') }}
             </h2>
             <p class="text-gray-300 mb-8 text-sm leading-relaxed pr-4">
-                Persiapkan diri untuk sertifikasi dengan kursus yang komprehensif, simulasi ujian, dan penawaran khusus voucher ujian.
+            {{ __('welcome.Persiapkan diri untuk') }} sertifikasi dengan kursus yang komprehensif, simulasi ujian, dan penawaran khusus voucher ujian.
             </p>
             <a href="#" class="text-white font-bold hover:underline flex items-center text-sm transition">
-                Jelajahi sertifikasi dan voucer 
+                {{ __('welcome.Jelajahi sertifikasi dan voucer ') }}
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
@@ -624,19 +624,19 @@
             <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
                 <img src="{{ asset('comptia.png') }}" alt="CompTIA" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">CompTIA</h3>
-                <p class="text-gray-400 text-xs">Cloud, Jejaring, Keamanan Siber</p>
+                <p class="text-gray-400 text-xs">{{ __('welcome.Cloud, Jejaring, Keamanan Siber') }}</p>
             </a>
 
             <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
                 <img src="{{ asset('aws.png') }}" alt="AWS" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">AWS</h3>
-                <p class="text-gray-400 text-xs">Cloud, AI, Coding, Jejaring</p>
+                <p class="text-gray-400 text-xs">{{ __('welcome.Cloud, AI, Coding, Jejaring') }}</p>
             </a>
 
             <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
                 <img src="{{ asset('pmi.png') }}" alt="PMI" class="w-full h-auto rounded-md mb-4 object-cover">
                 <h3 class="text-white font-bold text-lg mb-1">PMI</h3>
-                <p class="text-gray-400 text-xs">Manajemen Proyek & Program</p>
+                <p class="text-gray-400 text-xs">{{ __('welcome.Manajemen Proyek & Program') }}</p>
             </a>
 
         </div>
@@ -646,75 +646,75 @@
 
 <section class="w-screen bg-gray-100 pt-16 pb-0 m-0 left-1/2 ml-[-50vw] relative">
     <div class="max-w-full mx-auto px-10">
-    <h2 class="text-3xl font-bold text-gray-900 mb-4">Skill Populer</h2>
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ __('welcome.Skill Populer') }}</h2>
     <hr class="border-gray-300 mb-10">
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 w-full">
         
-        <div class="flex flex-col">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 leading-tight">ChatGPT adalah skill teratas</h3>
+        <div class="md:col-span-2 overflow-visible">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 leading-tight">{{ __('welcome.ChatGPT adalah skill teratas') }}</h3>
             <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
-                Lihat ChatGPT kursus
+                {{ __('welcome.Lihat ChatGPT kursus') }}
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
             </a>
-            <p class="text-sm text-gray-500 mt-1 mb-8">5.576.646 pembelajar</p>
+            <p class="text-sm text-gray-500 mt-1 mb-8">{{ __('welcome.5.576.646 pembelajar') }}</p>
             
-            <a href="#" class="border border-[#5624d0] text-[#5624d0] font-bold px-4 py-2.5 rounded hover:bg-[#5624d0]/5 transition w-max flex items-center text-sm">
-                Tampilkan semua skill yang sedang tren
+            <a href="#" class="whitespace-nowrap border border-[#5624d0] text-[#5624d0] font-bold px-4 py-2.5 rounded hover:bg-[#5624d0]/5 transition w-max flex items-center text-sm inline-flex">
+                {{ __('welcome.Tampilkan semua skill yang sedang tren') }}
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
             </a>
         </div>
 
         <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Pengembangan</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-6">{{ __('welcome.Pengembangan') }}</h3>
             <div class="space-y-6">
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
                         Python 
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">50.467.049 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">{{ __('welcome.50.467.049 pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
-                        Pengembangan Web 
+                        {{ __('welcome.Pengembangan Web') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">14.538.258 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">14.538.258 {{ __('welcome.pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
-                        Ilmu Data 
+                        {{ __('welcome.Ilmu Data') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">8.406.501 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">8.406.501 {{ __('welcome.pembelajar') }}</p>
                 </div>
             </div>
         </div>
 
         <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Desain</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-6">{{ __('welcome.Desain') }}</h3>
             <div class="space-y-6">
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
                         Blender 
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">3.135.853 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">3.135.853 {{ __('welcome.pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
                         AutoCAD 
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">2.156.576 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">2.156.576 {{ __('welcome.pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
-                        Desain Grafis 
+                        {{ __('welcome.Desain Grafis') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">4.710.142 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">4.710.142 {{ __('welcome.pembelajar') }}</p>
                 </div>
             </div>
         </div>
@@ -724,24 +724,24 @@
             <div class="space-y-6">
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-start hover:underline group">
-                        <span>PMI Project Management Professional (PMP)</span> 
+                        <span>{{ __('welcome.PMI Project Management Professional (PMP)') }}</span> 
                         <svg class="w-4 h-4 ml-1 mt-1 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">2.930.472 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">2.930.472 {{ __('welcome.pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
                         Microsoft Power BI 
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">5.213.210 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">5.213.210 {{ __('welcome.pembelajar') }}</p>
                 </div>
                 <div>
                     <a href="#" class="text-[#5624d0] font-bold text-base flex items-start hover:underline group">
                         <span>PMI Certified Associate in Project Management (CAPM)</span> 
                         <svg class="w-4 h-4 ml-1 mt-1 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </a>
-                    <p class="text-sm text-gray-500 mt-1">500.957 pembelajar</p>
+                    <p class="text-sm text-gray-500 mt-1">500.957 {{ __('welcome.pembelajar') }}</p>
                 </div>
             </div>
         </div>
