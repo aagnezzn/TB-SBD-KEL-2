@@ -73,10 +73,10 @@ class CourseController extends Controller
     }
 public function show($id)
 {
-    // Mengambil kursus beserta materi (lessons) agar halaman detail tidak kosong
-    $course = Course::with('lessons')->findOrFail($id);
-    return view('course-detail', compact('course'));
+    $course = Course::with(['lessons', 'reviews.user', 'enrollments'])
+        ->findOrFail($id);
 
+    return view('course-detail', compact('course'));
+}
 }
     
-}
