@@ -98,9 +98,55 @@
             <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2">
                 <span class="text-[#f69c08]">★</span> 
                 {{ number_format($avgRating, 1) }} Peringkat Kursus 
-                <span class="text-gray-400 text-base">• {{ $totalReviews }} Peringkat</span>
+                <span class="text-gray-400 text-base">• {{ $totalReviews }} Peringkat</span>   
             </h2>
-            
+
+        {{-- Tombol untuk buka Form --}}
+        <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition">
+            Beri Rating & Ulasan
+        </button>
+
+        {{-- Form Review (Disembunyikan secara default) --}}
+        <div id="review-form-container" class="hidden mb-10 p-6 border border-gray-200 bg-gray-50 rounded-lg">
+            <h3 class="text-lg font-bold mb-4">Berikan Ulasan Anda</h3>
+                <form action="{{ route('reviews.store', $course->id) }}" method="POST">
+                @csrf
+                    <div class="mb-4">
+                        <label class="block font-bold mb-1">Rating</label>
+                        <select name="rating" class="w-full border border-gray-300 p-2 rounded" required>
+                            <option value="5">5 - Sangat Bagus</option>
+                            <option value="4">4 - Bagus</option>
+                            <option value="3">3 - Cukup</option>
+                            <option value="2">2 - Buruk</option>
+                            <option value="1">1 - Sangat Buruk</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-bold mb-1">Ulasan</label>
+                            <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="Apa pendapatmu tentang kursus ini?" required></textarea>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold hover:bg-[#8710d8]">
+                            Kirim Ulasan
+                        </button>
+                        <button type="button" onclick="toggleReviewForm()" class="border border-black px-6 py-2 font-bold hover:bg-gray-200">
+                            Batal
+                        </button>
+                    </div>
+                </form>
+        </div>
+
+        {{-- Script Sederhana untuk muncul/hilang --}}
+        <script>
+            function toggleReviewForm() {
+            const form = document.getElementById('review-form-container');
+            if (form.classList.contains('hidden')) {
+            form.classList.remove('hidden');
+            } else {
+                form.classList.add('hidden');
+            }
+        }
+        </script>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 @forelse($course->reviews as $review)
                     <div class="border-t border-gray-100 pt-6">
@@ -135,7 +181,7 @@
                 @endforelse
             </div>
         </div>
-
     </div>
+    
 </div>
 @endsection

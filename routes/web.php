@@ -17,6 +17,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LearningController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,9 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     //riwayat Pembayaran
     Route::get('/purchase-history', [LearningController::class, 'purchaseHistory'])->name('purchase.history');
+
+    //untuk kasi rating dan review
+    Route::post('/course/{id}/review', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 
