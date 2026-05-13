@@ -1,6 +1,8 @@
 <div class="min-w-[260px] max-w-[260px] flex flex-col cursor-pointer group/item snap-start relative">
     <a href="{{ route('course.show', $course->id) }}">
-        <img src="https://loremflickr.com/320/180/tech?random={{ $course->id }}" class="w-full h-36 object-cover border border-gray-200 mb-2">
+        <img src="https://loremflickr.com/640/360/computer,office?random={{ $course->id }}" 
+             class="w-full h-36 object-cover border border-gray-200 mb-2">
+             
         <h3 class="font-bold text-gray-900 text-sm leading-tight mb-1 group-hover/item:text-purple-700 h-10 overflow-hidden">
             {{ $course->title }}
         </h3>

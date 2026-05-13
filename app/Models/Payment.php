@@ -2,25 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; // WAJIB ADA
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
-    use HasFactory; // WAJIB ADA
+    use HasFactory; 
+
     protected $table = 'payments';
 
+    // FIX: Kembalikan array fillable ke format string murni nama kolom database
     protected $fillable = [
         'enrollment_id', 
         'amount', 
         'payment_method', 
         'status', 
-        'paid_at' => 'datetime',
-        ];
-        public $timestamps = true;
+        'paid_at',
+    ];
 
-    // Tambahkan relasi ini agar Factory bisa mengambil harga kursus
-    public function enrollment()
+    // FIX: Deklarasi penentu format waktu dipisahkan ke dalam properti casts
+    protected $casts = [
+        'paid_at' => 'datetime',
+    ];
+
+    public $timestamps = true;
+
+    public function enrollment(): BelongsTo
     {
         return $this->belongsTo(Enrollment::class);
     }

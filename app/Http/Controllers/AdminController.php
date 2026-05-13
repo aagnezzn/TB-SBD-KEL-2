@@ -26,7 +26,6 @@ class AdminController extends Controller
 
     public function courses()
     {
-        // Admin tetap bisa melihat & menghapus kursus (moderasi), tapi tidak menambah.
         $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
         return view('admin.courses', compact('courses'));
     }
@@ -46,8 +45,6 @@ class AdminController extends Controller
 
         $users = User::query()
             ->when($search, function ($query, $search) {
-                // Perbaikan Bug: Pakai groups (where & orWhere di dalam kurung) 
-                // agar filter pencarian tidak mengabaikan role atau sebaliknya.
                 return $query->where(function($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
                       ->orWhere('email', 'like', "%{$search}%");
@@ -60,8 +57,6 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    // --- FITUR CREATE SUDAH DIHAPUS ---
-
     public function editCourse($id)
     {
         $course = Course::findOrFail($id);
@@ -71,14 +66,17 @@ class AdminController extends Controller
     public function updateCourse(Request $request, $id)
     {
         $course = Course::findOrFail($id);
-        // Tetap pakai validasi agar tidak ada data kosong yang masuk
+        
+        // Validasi input form secara ketat
         $data = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'description' => 'required',
             'price' => 'required|numeric',
         ]);
 
-        $course->update($request->all());
+        // FIX DATABASE: Amankan query menggunakan data yang lolos validasi saja
+        $course->update($data);
+        
         return redirect()->route('admin.courses')->with('success', 'Kelas berhasil diupdate!');
     }
 

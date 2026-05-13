@@ -39,8 +39,6 @@ Route::get('/mengajar-di-idemy', function () {
     return view('mengajar');
 })->name('mengajar');
 
-Route::get('/keranjang', [CourseController::class, 'index'])->name('keranjang');
-
 // Auth Routes (Login & Register)
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
@@ -50,7 +48,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/instructor/login', [InstructorController::class, 'showLogin'])->name('instructor.login');
 Route::get('/admin/login', function () { return view('admin.login'); })->name('admin.login');
 
-// Logout (Tetap di luar agar bisa diakses siapa saja yang login)
+// Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();
     $request->session()->invalidate();
@@ -69,17 +67,25 @@ Route::get('lang/{locale}', function ($locale) {
 
 /*
 |--------------------------------------------------------------------------
-| 2. AREA SISWA (Dijaga Middleware 'student')
+| 2. AREA DATA KERANJANG (Hanya butuh Login, Bebas dari jeratan sekat Student)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    // URL disamakan ke /keranjang, fungsi dilarikan ke CartController yang benar, name rute diikat ke cart.index
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart']);
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| 3. AREA SISWA (Dijaga Middleware 'student')
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'student'])->group(function () {
     
-    // Fitur Keranjang (Cart)
-    Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart']);
-    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-
     // Fitur Checkout & Pembayaran
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
@@ -93,25 +99,23 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
 
-    //my learning
+    // My Learning & Wishlist
     Route::get('/my-learning', [LearningController::class, 'index'])->name('learning.index');
-    // Route untuk tombol "Masukkan ke Daftar Keinginan"
-    Route::post('/wishlist/add/{id}', [LearningController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/add/{id}', [LearningController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/remove/{id}', [LearningController::class, 'removeFromWishlist'])->name('wishlist.remove');
     Route::post('/wishlist/move-to-cart/{id}', [LearningController::class, 'moveToCart'])->name('wishlist.move-to-cart');
 
-    //riwayat Pembayaran
+    // Riwayat Pembayaran
     Route::get('/purchase-history', [LearningController::class, 'purchaseHistory'])->name('purchase.history');
 
-    //untuk kasi rating dan review
+    // Rating dan Review
     Route::post('/course/{id}/review', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 
 /*
 |--------------------------------------------------------------------------
-| 3. AREA INSTRUCTOR (Dijaga Middleware 'instructor')
+| 4. AREA INSTRUCTOR (Dijaga Middleware 'instructor')
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function () {
@@ -130,7 +134,7 @@ Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function 
 
 /*
 |--------------------------------------------------------------------------
-| 4. AREA ADMIN (Dijaga Middleware 'admin')
+| 5. AREA ADMIN (Dijaga Middleware 'admin')
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Review;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,13 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ReviewFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-   public function definition(): array
-   {
+    public function definition(): array
+    {
         $comments = [
             'Materi sangat mudah dipahami, instruktur menjelaskan dengan sangat jelas!',
             'The course content is great, but the audio quality could be improved.',
@@ -26,11 +23,16 @@ class ReviewFactory extends Factory
             'Excelente curso, muy bien explicado y con ejemplos prácticos.'
         ];
 
+        // FIX: Proteksi null pointer murni pada database relasi review
+        $course = Course::inRandomOrder()->first();
+        $courseId = $course ? $course->id : Course::factory()->create()->id;
+
+        $student = User::where('role', 'student')->inRandomOrder()->first();
+        $studentId = $student ? $student->id : User::factory()->create(['role' => 'student'])->id;
+
         return [
-            // Fakta Logika: Mengambil ID Kursus dan User yang SUDAH ADA di database secara acak
-            'course_id' => \App\Models\Course::inRandomOrder()->first()->id,
-            'user_id' => \App\Models\User::where('role', 'student')->inRandomOrder()->first()->id,
-            
+            'course_id' => $courseId,
+            'user_id' => $studentId,
             'rating' => $this->faker->numberBetween(1, 5),
             'comment' => $this->faker->randomElement($comments),
         ];

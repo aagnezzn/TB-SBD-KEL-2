@@ -12,12 +12,10 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // 1. Ambil kategori utama untuk navigasi atas (Level 1)
         $navCategories = Category::whereNull('parent_id')
                             ->with('children.children')
                             ->get();
 
-        // 2. Tentukan nama-nama topik yang ingin kita tampilkan di slider utama
         $targetTopicNames = [
             'Python', 
             'Pemasaran Digital', 
@@ -29,46 +27,40 @@ class CategoryController extends Controller
             'Perencanaan Proyek'
         ];
 
-        // 3. Ambil kategori dari DB, lalu pangkas duplikatnya berdasarkan NAMA menggunakan ->unique('name')
         $topics = Category::whereIn('name', $targetTopicNames)
                             ->with(['courses.user'])
                             ->get()
-                            ->unique('name'); // MENGHILANGKAN DUPLIKAT TOMBOL DI HALAMAN DEPAN
+                            ->unique('name');
 
         $categories = collect();
         $categoriesData = [];
 
         foreach ($topics as $topic) {
-            // Ambil kursus yang terhubung langsung ke topik ini
             $courses = $topic->courses;
 
-            // Jika topik ini tidak punya kursus langsung, coba ambil dari sub-kategorinya
             if ($courses->isEmpty()) {
-                $subCategoryIds = $topic->children()->pluck('id')->push($topic->id);
-                $courses = Course::whereIn('category_id', $subCategoryIds)
-                                ->with('user')
-                                ->latest()
-                                ->take(10)
-                                ->get();
+                $subCategoryIds = $topic->children->pluck('id');
+                $courses = Course::whereIn('category_id', $subCategoryIds)->with('user')->get();
             }
 
-            // Hanya buatkan tab jika topik ini memiliki minimal 1 kursus agar tidak kosong
             if ($courses->isNotEmpty()) {
                 $categories->push($topic);
                 $categoriesData[$topic->id] = [
                     'name' => $topic->name,
                     'slug' => $topic->slug,
-                    'courses' => $courses
+                    'courses' => $courses->take(10)
                 ];
             }
         }
 
-        // FALLBACK: Jika semua kosong, ambil kategori acak yang ada kursusnya (tetap unik secara nama)
+        // FIX DATABASE FALLBACK: Proteksi relasi user/instruktur agar tidak null pointer exception
         if ($categories->isEmpty()) {
             $fallbackCategories = Category::has('courses')
-                                    ->with('courses.user')
+                                    ->with(['courses' => function($query) {
+                                        $query->whereHas('user'); // Hanya ambil kursus yang instrukturnya ada di DB
+                                    }])
                                     ->get()
-                                    ->unique('name') // Tetap dipastikan unik
+                                    ->unique('name')
                                     ->take(6);
                                     
             foreach ($fallbackCategories as $fallback) {
@@ -76,16 +68,14 @@ class CategoryController extends Controller
                 $categoriesData[$fallback->id] = [
                     'name' => $fallback->name,
                     'slug' => $fallback->slug,
-                    'courses' => $fallback->courses()->with('user')->take(10)->get()
+                    'courses' => $fallback->courses()->whereHas('user')->with('user')->take(10)->get()
                 ];
             }
         }
 
-        // 4. Ambil data rekomendasi dan populer untuk welcome
-        $recommendedCourses = Course::with(['category', 'user'])->latest()->take(5)->get();
-        $popularCourses = Course::with(['category', 'user'])->inRandomOrder()->take(5)->get();
+        $recommendedCourses = Course::whereHas('user')->with(['category', 'user'])->latest()->take(5)->get();
+        $popularCourses = Course::whereHas('user')->with(['category', 'user'])->inRandomOrder()->take(5)->get();
 
-        // 5. Ambil data keranjang jika user sudah login
         $cartItems = collect();
         if (Auth::check()) {
             $cartItems = Cart::where('user_id', Auth::id())

@@ -34,12 +34,13 @@ class DataTambahSendiriSeeder extends Seeder
             ]
         );
 
-        // 2. AMBIL ID KATEGORI SECARA DINAMIS
+        // 2. AMBIL ID KATEGORI SECARA DINAMIS (Gunakan ID spesifik atau fallback ID yang aman)
         $canvaCategory = Category::where('name', 'Canva')->first();
         $photoshopCategory = Category::where('name', 'Adobe Photoshop')->first();
 
-        $canvaCatId = $canvaCategory ? $canvaCategory->id : Category::first()->id;
-        $psCatId = $photoshopCategory ? $photoshopCategory->id : Category::first()->id;
+        // Cari sub-kategori spesifik dari database, jika kosong baru lempar ke id nomor 4/5 (level sub-kategori)
+        $canvaCatId = $canvaCategory ? $canvaCategory->id : 8; 
+        $psCatId = $photoshopCategory ? $photoshopCategory->id : 6;
 
         // 3. INPUT COURSE
         $canva = Course::updateOrCreate(
@@ -49,7 +50,8 @@ class DataTambahSendiriSeeder extends Seeder
                 'instructor_id' => $pira->id, 
                 'description' => 'Belajar trik trik canva yang jarang diketahui orang',
                 'price' => 400000,
-                'image_url' => 'default-course.png',
+                // FIX: Gunakan format URL eksternal penuh yang valid agar seimbang dengan data CSV
+                'image_url' => 'https://loremflickr.com/640/360/computer,office?random=999',
                 'created_at' => '2026-05-10 07:16:44',
             ]
         );
@@ -61,7 +63,8 @@ class DataTambahSendiriSeeder extends Seeder
                 'instructor_id' => $pira->id, 
                 'description' => 'Dalam kursus ini kita akan mempelajari secara mendalam dan mudah hingga anda mahir menggunakan adobe photoshop',
                 'price' => 750000,
-                'image_url' => 'default-course.png',
+                // FIX: Gunakan format URL eksternal penuh yang valid
+                'image_url' => 'https://loremflickr.com/640/360/computer,office?random=998',
                 'created_at' => '2026-05-10 11:26:30',
             ]
         );

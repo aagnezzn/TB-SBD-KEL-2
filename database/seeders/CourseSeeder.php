@@ -42,17 +42,6 @@ class CourseSeeder extends Seeder
             return;
         }
 
-        // Mapping subjek CSV ke sub-kategori agar tidak kosong di halaman kategori website
-        $subjectToCategoryMap = [
-            'Web Development' => 'HTML & CSS',
-            'Business Finance' => 'Trading',
-            'Graphic Design' => 'Adobe Photoshop',
-            'Office Productivity' => 'Excel Basic',
-            'Personal Development' => 'Public Speaking',
-            'Musical Instruments' => 'Guitar',
-            'Coding' => 'JavaScript',
-        ];
-
         $topicTitles = [
             'coding' => [
                 'Instalasi Lingkungan Kerja & Editor', 'Memahami Sintaks dan Struktur Dasar',
@@ -90,15 +79,8 @@ class CourseSeeder extends Seeder
             ]
         ];
 
-        $unsplashImages = [
-            'web_development' => ['1555066931-4365d14bab8c', '1542831371-29b0f74f9713', '1517694712202-14dd9538aa97'],
-            'cyber_security' => ['1563986768609-322da13575f3', '1558494949-ef010cbdcc31'],
-            'business_finance' => ['1454165804606-c3d57bc86b40', '1554224155-8d04cb21cd6c'],
-            'graphic_design' => ['1618005182384-a83a8bd57fbe', '1561070791-2526d30994a5'],
-            'public_speaking' => ['1475721027785-f74eccf877e2', '1515187029135-18ee286d815b'],
-            'excel_basic' => ['1551288049-bebda4e38f71', '1586281380349-632531db7ed4'],
-            'musical_instruments' => ['1511192336575-5a79af67a629', '1465847899084-d164df4dedc6']
-        ];
+        // Variabel counter untuk membantu pembuatan ID Seed Gambar yang Unik dan Konsisten
+        $courseCounter = 1;
 
         while (($data = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
             if (!isset($data[1]) || empty($data[1])) {
@@ -207,14 +189,12 @@ class CourseSeeder extends Seeder
             $category = $categories->where('name', $targetTopicName)->first();
             $categoryId = $category ? $category->id : $categories->random()->id;
 
-            $imgKey = Str::slug($subject, '_');
-            $selectedImages = $unsplashImages[$imgKey] ?? $unsplashImages['web_development'];
-            $randomImgId = $selectedImages[array_rand($selectedImages)];
-            $imageUrl = "https://images.unsplash.com/photo-" . $randomImgId . "?auto=format&fit=crop&w=600&q=80";
+            // FIX UTAMA: Gunakan Picsum dengan mengunci ID counter. Gambar tidak akan pernah berubah lagi saat direfresh.
+            $imageUrl = "https://picsum.photos/seed/course_static_" . $courseCounter . "/640/360";
 
             $instructorId = $instructorIds[array_rand($instructorIds)];
 
-            // 1. Buat Kursus (ID Auto-Increment)
+            // 1. Buat Kursus
             $course = Course::create([
                 'category_id' => $categoryId,
                 'instructor_id' => $instructorId,
@@ -225,6 +205,9 @@ class CourseSeeder extends Seeder
                 'created_at' => $data[9] . ' 00:00:00',
                 'updated_at' => $data[9] . ' 00:00:00',
             ]);
+
+            // Naikkan counter id kursus untuk data berikutnya
+            $courseCounter++;
 
             // 2. Buat Lessons Terikat Langsung
             $key = 'general';

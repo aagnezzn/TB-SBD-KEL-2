@@ -10,14 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
+    {
         Schema::create('carts', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('course_id')->constrained()->onDelete('cascade');
-        $table->timestamps();
-    });
-}
+            $table->id();
+            
+            // FIX RELASI MUTLAK: Kunci nama tabel tujuan secara eksplisit di dalam constrained
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -27,5 +30,3 @@ return new class extends Migration
         Schema::dropIfExists('carts');
     }
 };
- 
-    

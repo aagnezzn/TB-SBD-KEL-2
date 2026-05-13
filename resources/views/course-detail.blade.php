@@ -9,7 +9,6 @@
             <p class="text-lg mb-4">{{ Str::limit($course->description, 150) }}</p>
             
             <div class="flex items-center space-x-2 mb-4 text-sm">
-                {{-- Logika Rating Dinamis --}}
                 @php 
                     $avgRating = $course->reviews->avg('rating') ?? 0; 
                     $totalReviews = $course->reviews->count();
@@ -22,8 +21,6 @@
                     @endfor
                 </div>
                 <span class="text-[#c0c4fc] underline">({{ $totalReviews }} rating)</span>
-                
-                {{-- Jumlah Siswa dari Tabel Enrollments --}}
                 <span>{{ number_format($course->enrollments->count(), 0, ',', '.') }} siswa</span>
             </div>
             <p class="text-sm">Dibuat oleh <a href="#" class="text-[#c0c4fc] underline">{{ $course->user->name ?? 'Instruktur' }}</a></p>
@@ -31,10 +28,13 @@
         
         {{-- Sidebar Kartu Putih --}}
         <div class="md:w-1/3 lg:w-[350px] bg-white text-gray-900 border border-gray-200 shadow-lg p-6 md:absolute md:right-4 md:top-12 z-10">
-            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}" class="w-full h-44 object-cover mb-4 rounded">
+            
+            <img src="https://picsum.photos/seed/course_id_{{ $course->id }}/640/360" 
+                 alt="{{ $course->title }}" 
+                 class="w-full h-44 object-cover mb-4 rounded">
+                 
             <div class="text-3xl font-bold mb-4">Rp {{ number_format($course->price, 0, ',', '.') }}</div>
             
-            {{-- Form Tambah ke Keranjang --}}
             <form action="{{ route('cart.add', $course->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3">
@@ -43,11 +43,11 @@
             </form>
 
             <form action="{{ route('wishlist.add', $course->id) }}" method="POST">
-                        @csrf
-                            <button type="submit" class="w-full border border-black py-3 font-bold hover:bg-gray-100 transition">
-                                Masukkan ke Daftar Keinginan
-                            </button>
-                    </form>
+                @csrf
+                <button type="submit" class="w-full border border-black py-3 font-bold hover:bg-gray-100 transition">
+                    Masukkan ke Daftar Keinginan
+                </button>
+            </form>
             
             <div class="text-xs text-center text-gray-600 mb-6">Jaminan uang kembali 30 hari</div>
             
@@ -101,16 +101,14 @@
                 <span class="text-gray-400 text-base">• {{ $totalReviews }} Peringkat</span>   
             </h2>
 
-        {{-- Tombol untuk buka Form --}}
-        <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition">
-            Beri Rating & Ulasan
-        </button>
+            <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition">
+                Beri Rating & Ulasan
+            </button>
 
-        {{-- Form Review (Disembunyikan secara default) --}}
-        <div id="review-form-container" class="hidden mb-10 p-6 border border-gray-200 bg-gray-50 rounded-lg">
-            <h3 class="text-lg font-bold mb-4">Berikan Ulasan Anda</h3>
+            <div id="review-form-container" class="hidden mb-10 p-6 border border-gray-200 bg-gray-50 rounded-lg">
+                <h3 class="text-lg font-bold mb-4">Berikan Ulasan Anda</h3>
                 <form action="{{ route('reviews.store', $course->id) }}" method="POST">
-                @csrf
+                    @csrf
                     <div class="mb-4">
                         <label class="block font-bold mb-1">Rating</label>
                         <select name="rating" class="w-full border border-gray-300 p-2 rounded" required>
@@ -123,7 +121,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block font-bold mb-1">Ulasan</label>
-                            <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="Apa pendapatmu tentang kursus ini?" required></textarea>
+                        <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="Apa pendapatmu tentang kursus ini?" required></textarea>
                     </div>
                     <div class="flex gap-2">
                         <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold hover:bg-[#8710d8]">
@@ -134,19 +132,19 @@
                         </button>
                     </div>
                 </form>
-        </div>
+            </div>
 
-        {{-- Script Sederhana untuk muncul/hilang --}}
-        <script>
-            function toggleReviewForm() {
-            const form = document.getElementById('review-form-container');
-            if (form.classList.contains('hidden')) {
-            form.classList.remove('hidden');
-            } else {
-                form.classList.add('hidden');
-            }
-        }
-        </script>
+            <script>
+                function toggleReviewForm() {
+                    const form = document.getElementById('review-form-container');
+                    if (form.classList.contains('hidden')) {
+                        form.classList.remove('hidden');
+                    } else {
+                        form.classList.add('hidden');
+                    }
+                }
+            </script>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 @forelse($course->reviews as $review)
                     <div class="border-t border-gray-100 pt-6">
@@ -167,7 +165,6 @@
                                         <span class="text-xs text-gray-500">{{ $review->created_at->diffForHumans() }}</span>
                                     </div>
                                 </div>
-                                
                                 <p class="text-gray-700 leading-relaxed mt-2">
                                     {{ $review->comment }}
                                 </p>
@@ -182,6 +179,5 @@
             </div>
         </div>
     </div>
-    
 </div>
 @endsection

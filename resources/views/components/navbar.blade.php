@@ -1,6 +1,9 @@
 <nav class="bg-white border-b border-gray-200 px-6 py-2 flex items-center h-16 w-full relative">
     <div class="flex items-center space-x-4 flex-shrink-0">
-        <h1 class="text-2xl font-bold text-black cursor-pointer">idemy</h1>
+        
+        <a href="{{ url('/') }}" class="no-underline">
+            <h1 class="text-2xl font-bold text-black cursor-pointer m-0">idemy</h1>
+        </a>
 
         <div class="group relative inline-block">
             <button class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#5624d0] flex items-center gap-1 transition-all duration-200">
@@ -79,7 +82,7 @@
         </div>
         
         <div class="relative group py-4">
-            <a href="{{ route('keranjang') }}" class="text-gray-700 hover:text-purple-700 transition flex items-center h-full relative">
+            <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-purple-700 transition flex items-center h-full relative">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
@@ -129,7 +132,7 @@
                                     Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}
                                 </span>
                             </div>
-                            <a href="{{ route('keranjang') }}" class="block w-full bg-gray-900 text-white text-center py-3 font-bold rounded-lg hover:bg-gray-800 transition shadow-md">
+                            <a href="{{ route('cart.index') }}" class="block w-full bg-gray-900 text-white text-center py-3 font-bold rounded-lg hover:bg-gray-800 transition shadow-md">
                                 Buka Keranjang
                             </a>
                         </div>
@@ -170,7 +173,7 @@
                         {{-- Menu Bagian 1 --}}
                         <div class="py-2 border-b">
                             <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
-                            <a href="{{ route('keranjang') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
+                            <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
                                 <span>Keranjang saya</span>
                                 @if($cartCount > 0)
                                     <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>

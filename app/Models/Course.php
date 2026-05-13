@@ -4,40 +4,38 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
     use HasFactory;
 
-    // Pakai guarded id sudah benar, lebih simpel
     protected $guarded = ['id'];
 
-    // Relasi ke Category (Sudah Benar)
-    public function category() 
+    public function category(): BelongsTo 
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    // Relasi ke User (DIREVISI)
-    public function user()
+    // Relasi ke User Instruktur (Menggunakan key kolom instructor_id sesuai migrasi database)
+    public function user(): BelongsTo
     {
-        // Harus pakai 'user_id' karena itu nama kolom di database kamu!
         return $this->belongsTo(User::class, 'instructor_id');
     }
 
-    // Relasi ke Lesson (Materi)
-    public function lessons()
+    public function lessons(): HasMany
     {
         return $this->hasMany(Lesson::class);
     }
 
-    public function reviews()
+    public function reviews(): HasMany
     {
-    return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class);
     }
 
-    public function enrollments()
+    public function enrollments(): HasMany
     {
-    return $this->hasMany(Enrollment::class,'course_id','id');
+        return $this->hasMany(Enrollment::class, 'course_id', 'id');
     }
 }
