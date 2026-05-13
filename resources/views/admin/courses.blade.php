@@ -45,13 +45,6 @@
         </header>
 
         <div class="p-8">
-            
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Daftar Kelas</h3>
-                <a href="{{ route('admin.courses.create') }}" class="bg-[#a435f0] hover:bg-[#8710d8] text-white px-5 py-2.5 rounded font-bold text-sm transition-colors flex items-center">
-                    <i class="fas fa-plus mr-2"></i> Tambah Kelas Baru
-                </a>
-            </div>
 
             <div class="bg-white rounded-xl border border-[#d1d7dc] shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">

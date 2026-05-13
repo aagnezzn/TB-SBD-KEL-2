@@ -14,12 +14,18 @@ class StudentMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+   public function handle(Request $request, Closure $next): Response
 {
-    // Jika yang masuk adalah Admin atau Instructor, paksa logout dan suruh pakai portal mereka
     if (Auth::check() && in_array(Auth::user()->role, ['admin', 'instructor'])) {
+        $role = Auth::user()->role;
         Auth::logout();
-        return redirect()->route('login')->with('error', 'Gunakan portal login yang benar untuk akun Anda!');
+
+        // Memberikan pesan spesifik berdasarkan role mereka
+        $pesan = ($role === 'admin') 
+            ? 'Akun Admin tidak bisa login di sini. Silakan gunakan Portal Admin.' 
+            : 'Akun Instruktur tidak bisa login di sini. Silakan gunakan Portal Instruktur.';
+
+        return redirect()->route('login')->with('error', $pesan);
     }
 
     return $next($request);

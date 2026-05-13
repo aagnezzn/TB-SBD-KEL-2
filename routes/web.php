@@ -136,8 +136,6 @@ Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/courses', [AdminController::class, 'courses'])->name('admin.courses');
-    Route::get('/courses/create', [AdminController::class, 'createCourse'])->name('admin.courses.create');
-    Route::post('/courses/store', [AdminController::class, 'storeCourse'])->name('admin.courses.store');
     Route::get('/courses/edit/{id}', [AdminController::class, 'editCourse'])->name('admin.courses.edit');
     Route::put('/courses/update/{id}', [AdminController::class, 'updateCourse'])->name('admin.courses.update');
     Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');

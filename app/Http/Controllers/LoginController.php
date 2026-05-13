@@ -7,47 +7,50 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // Fungsi untuk menampilkan tampilan form login kamu
     public function showLoginForm()
     {
-        // Pastikan nama view ini sesuai dengan nama file blade kamu (misal: auth.login atau sekadar login)
         return view('login'); 
     }
 
-    // Fungsi untuk memproses data saat tombol Lanjutkan diklik
-public function login(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-        $user = Auth::user();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
 
-        // 1. CEK: Apakah dia bawa "Kunci" dari portal khusus?
-        $lewatPortal = $request->has('from_portal');
+            // 1. CEK: Apakah dia login lewat portal (Admin/Instructor) atau form utama?
+            $lewatPortal = $request->has('from_portal');
 
-        // 2. LOGIKA TENDANG: 
-        // Jika Admin/Instructor masuk dari FORM UTAMA (tanpa kunci from_portal)
-        if (!$lewatPortal && in_array($user->role, ['admin', 'instructor'])) {
-            Auth::logout();
-            return redirect()->route('login')->with('error', 'Portal ini khusus Siswa. Silakan gunakan link di bawah!');
+            // 2. LOGIKA TENDANG & FEEDBACK: 
+            if (!$lewatPortal && in_array($user->role, ['admin', 'instructor'])) {
+                $roleUser = $user->role; // Simpan role sebelum logout
+                Auth::logout();
+
+                // Pesan custom biar user nggak bingung
+                $pesan = ($roleUser === 'admin') 
+                    ? 'Akun Admin terdeteksi. Silakan gunakan Portal Login Admin.' 
+                    : 'Akun Instruktur terdeteksi. Silakan gunakan Portal Login Instruktur.';
+
+                return redirect()->route('login')->with('error', $pesan);
+            }
+
+            // 3. REDIRECT BERDASARKAN ROLE
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } 
+            
+            if ($user->role === 'instructor') {
+                return redirect()->route('instructor.dashboard');
+            }
+
+            return redirect()->intended('/'); 
         }
 
-        // 3. REDIRECT LANGSUNG (Tanpa dicampak lagi)
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } 
-        
-        if ($user->role === 'instructor') {
-            return redirect()->route('instructor.dashboard');
-        }
-
-        return redirect()->intended('/'); 
+        return back()->with('error', 'Email atau password salah.');
     }
-
-    return back()->with('error', 'Email atau password salah.');
-}
 }
