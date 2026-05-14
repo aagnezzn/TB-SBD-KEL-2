@@ -191,7 +191,9 @@
 
                         {{-- Menu Bagian 3 --}}
                         <div class="py-2 border-b">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
+                            <a href="{{ route('account.settings') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">
+    Pengaturan akun
+</a>
                             <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
                         </div>

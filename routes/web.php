@@ -146,3 +146,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
 });
+
+use App\Http\Controllers\AccountController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
+    Route::put('/pengaturan-akun', [AccountController::class, 'update'])->name('account.update');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
+    Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
+    Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
+    Route::patch('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
+});
