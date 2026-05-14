@@ -1,27 +1,23 @@
 @extends('layouts.app')
+
 <style>
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
+
 @section('content')
 @auth
-{{-- NAVBAR PUTIH: Kita kasih 'relative' di sini sebagai JANGKAR UTAMA --}}
+{{-- NAVBAR KATEGORI (Hanya muncul saat User sudah Login) --}}
 <div class="hidden lg:block bg-white border-b border-gray-200 relative">
     <div class="max-w-[1340px] mx-auto px-4">
         <ul class="flex justify-between items-center">
             @foreach($navCategories as $mainCat)
-            {{-- LI harus STATIC agar kotak hitam di bawahnya bisa ambil lebar 100% dari div navbar --}}
             <li class="group/subnav static flex justify-center"> 
-                
-                {{-- ANCHOR: Kita kasih 'relative' di sini KHUSUS untuk JANGKAR SEGITIGA --}}
                 <a href="/category/{{ $mainCat->slug }}" class="relative text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-normal px-4 py-4 capitalize transition-colors flex flex-col items-center">
                     {{ $mainCat->name }}
-
-                    {{-- SEGITIGA: Sekarang dia punya jangkar di anchor, pasti muncul tepat di bawah teks --}}
                     <div class="hidden group-hover/subnav:block absolute -bottom-[1px] w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-b-[7px] border-b-[#1c1d1f] z-[160]"></div>
                 </a>
 
-                {{-- KOTAK HITAM: Karena LI-nya static, 'left-0' dan 'w-full' akan ambil lebar dari DIV NAVBAR (Layar Penuh) --}}
                 <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-full left-0 top-full z-[150] py-4 shadow-xl 
                     before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
                     <div class="max-w-[1340px] mx-auto px-4 flex justify-center space-x-10">
@@ -41,9 +37,7 @@
 
 <main class="min-h-screen bg-white">
     @auth
-        {{-- === TAMPILAN SETELAH LOGIN (DASHBOARD) === --}}
-        
-        {{-- Sapaan User --}}
+        {{-- === TAMPILAN SETELAH LOGIN (DIAMBIL DARI KODE PERTAMA) === --}}
         <section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
             <div class="w-16 h-16 bg-[#1c1d1f] rounded-full flex items-center justify-center text-white text-2xl font-bold">
                 {{ substr(Auth::user()->name, 0, 1) }}
@@ -54,7 +48,6 @@
             </div>
         </section>
 
-        {{-- Grid Kursus Rekomendasi & Populer --}}
         <section class="max-w-[1340px] mx-auto px-4 pb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
             <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
@@ -177,6 +170,7 @@
                         </div>
                     </a>
 
+                    {{-- Pop-up Detail Kursus Populer --}}
                     <div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
                         <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
                             <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
@@ -202,98 +196,7 @@
                 @endforeach
             </div>
         </section>
-
-        {{-- Section Kategori Pengubah Karier --}}
-        <section class="px-10 py-12">
-            <div class="max-w-[1350px] mx-auto" 
-                 x-data="{ 
-                    kategoriAktif: {{ $categories->first()->id ?? 0 }},
-                    scrollLeft() { $refs.sliderContent.scrollBy({ left: -300, behavior: 'smooth' }) },
-                    scrollRight() { $refs.sliderContent.scrollBy({ left: 300, behavior: 'smooth' }) }
-                 }">
-                 
-                <h2 class="text-3xl font-bold mb-2">{{ __('welcome.Skill yang mengubah') }} </h2>
-                <p class="text-gray-600 mb-6">{{ __('welcome.Mulai dari') }} </p>
-
-                <div class="flex space-x-6 border-b border-gray-300 mb-6 text-sm font-semibold text-gray-500 overflow-x-auto hide-scrollbar">
-                    @foreach($categories as $category)
-                        <button @click="kategoriAktif = {{ $category->id }}" 
-                                :class="kategoriAktif === {{ $category->id }} ? 'border-b-2 border-black text-black' : 'hover:text-black'" 
-                                class="pb-2 transition-colors whitespace-nowrap capitalize">
-                            {{ $category->name }}
-                        </button>
-                    @endforeach
-                </div>
-
-                <div class="relative group">
-                    <button @click="scrollLeft()" class="absolute -left-5 top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-10 h-10 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10 hover:bg-gray-50">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-
-                    <div x-ref="sliderContent" class="flex flex-nowrap overflow-x-auto gap-4 pb-4 hide-scrollbar scroll-smooth snap-x snap-mandatory">
-                        @if(!empty($categoriesData))
-                            @foreach($categoriesData as $catId => $data)
-                                @foreach($data['courses'] as $course)
-                                    <div x-show="kategoriAktif === {{ $catId }}" 
-                                         x-data="{ openDetail: false }"
-                                         @mouseenter="openDetail = true"
-                                         @mouseleave="openDetail = false"
-                                         class="relative shrink-0 snap-start py-2">
-                                        
-                                        <div class="border border-gray-200 rounded-lg w-64 h-[280px] shrink-0 flex flex-col cursor-pointer group hover:shadow-md transition bg-white relative">
-                                           <img src="@php $cName = strtolower($data['name']); if(str_contains($cName, 'python')){ echo asset('python.jpg'); }elseif(str_contains($cName, 'pemasaran') || str_contains($cName, 'marketing')){ echo asset('marketing.jpg'); }elseif(str_contains($cName, 'data') || str_contains($cName, 'science')){ echo asset('data.jpg'); }elseif(str_contains($cName, 'excel')){ echo asset('excel.jpg'); }elseif(str_contains($cName, 'javascript') || str_contains($cName, 'js')){ echo asset('javascript.jpg'); }elseif(str_contains($cName, 'proyek') || str_contains($cName, 'project')){ echo asset('project.jpg'); }else{ echo $course->image_url ? asset('storage/' . $course->image_url) : 'https://img-c.udemycdn.com/course/240x135/placeholder.jpg'; } @endphp" class="w-full h-32 object-cover rounded-t-lg border-b border-gray-100" alt="Course Image">
-                                            
-                                            <div class="p-3 flex flex-col grow justify-between">
-                                                <div>
-                                                    <h3 class="font-bold text-xs leading-snug mb-1 group-hover:text-[#5624d0] line-clamp-2">
-                                                        {{ $course->title }}
-                                                    </h3>
-                                                    <p class="text-[10px] text-gray-500 mb-1">
-                                                        {{ optional($course->user)->name ?? 'Instructor Anonim' }}
-                                                    </p>
-                                                    
-                                                    {{-- INTEGRASI: Visualisasi bintang rating warna kuning penuh telah dipulihkan di sini --}}
-                                                    <div class="flex items-center space-x-1 mb-1">
-                                                        @if($course->price < 150000)
-                                                            <span class="bg-teal-100 text-teal-800 px-1 py-0.5 text-[9px] font-bold rounded">Terlaris</span>
-                                                        @endif
-                                                        <span class="text-yellow-700 font-bold text-[11px] ml-1">
-                                                            {{ number_format($course->reviews()->avg('rating') ?? 4.5, 1) }}
-                                                        </span>
-                                                        <div class="flex text-yellow-500 items-center">
-                                                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                                        </div>
-                                                        <span class="text-[10px] text-gray-500">({{ $course->reviews()->count() }})</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        @endif
-                    </div>
-
-                    <button @click="scrollRight()" class="absolute -right-5 top-1/2 -translate-y-1/2 bg-white border border-gray-300 w-10 h-10 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-10 hover:bg-gray-50">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-
-                <div class="mt-6">
-                    @if(!empty($categoriesData))
-                        @foreach($categoriesData as $catId => $data)
-                            <a x-show="kategoriAktif === {{ $catId }}" 
-                               href="/category/{{ $data['slug'] }}" 
-                               class="text-purple-700 font-bold hover:text-purple-900 text-sm inline-flex items-center space-x-1">
-                                <span>{{ __('welcome.Tampilkan') }}  {{ $data['name'] }}</span>
-                                <span>&rarr;</span>
-                            </a>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </section>
-
+        
         {{-- Bagian Brand Korporat --}}
         <section class="bg-gray-100 py-12 md:py-16 border-t border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4">
@@ -340,7 +243,7 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
                         <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                         <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            Udemy benar-benar <strong>pembawa perubahan dan pemandu hebat</strong> bagi saya saat Dimensional diluncurkan.
+                            idemy benar-benar <strong>pembawa perubahan dan pemandu hebat</strong> bagi saya saat Dimensional diluncurkan.
                         </p>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -392,7 +295,7 @@
         </section>
 
     @else
-        {{-- === TAMPILAN SEBELUM LOGIN (GUEST) === --}}
+        {{-- === TAMPILAN GUEST (DIAMBIL MURNI DARI KODE KEDUA) === --}}
         <section class="px-10 mt-4">
             <div class="max-w-[1350px] mx-auto">
                 <div class="h-[350px] relative rounded-lg overflow-hidden">
@@ -402,10 +305,6 @@
                         <div class="bg-white p-6 rounded shadow w-[450px] ml-10">
                             <h2 class="text-3xl font-bold mb-3">{{ __('welcome.Bangun skill yang diminati') }}</h2>
                             <p class="text-gray-600 mb-4">{{ __('welcome.Dapatkan') }}</p>
-                            <div class="flex space-x-3">
-                                <button class="bg-purple-800 text-white px-4 py-2 rounded font-bold">{{ __('welcome.Dapatkan paket personal') }}</button>
-                                <button class="border border-black font-bold px-4 py-2 rounded">{{ __('welcome.Pelajari AI') }}</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -414,150 +313,114 @@
 
         <section class="px-10 py-16 bg-gray-100">
             <div class="max-w-[1350px] mx-auto">
-                <div class="grid grid-cols-4 gap-8 items-start">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
                     <div>
                         <h2 class="text-3xl font-bold mb-4">{{__('welcome.Pelajari skill')}}</h2>
                         <p class="text-gray-600">{{ __('welcome.Udemy') }}</p>
                     </div>
-                    <div class="col-span-3 relative">
+                    <div class="lg:col-span-3 relative">
                         <div class="overflow-hidden">
                             <div id="slider" class="flex gap-6 transition-transform duration-500">
-                                @foreach([
-                                    ['ai.jpeg', 'AI Generatif', 'ai-generatif'],
-                                    ['serti.jpeg', 'Sertifikasi TI', 'sertifikasi-ti'],
-                                    ['ilmu_data.jpeg', 'Ilmu Data', 'ilmu-data'],
-                                    ['gpt.jpeg', 'ChatGPT', 'chat-gpt'],
-                                    ['rekayasa_prompt.jpeg', 'Rekayasa Prompt', 'rekayasa-prompt'],
-                                    ['microsoft_excel.jpeg', 'Microsoft Excel', 'microsoft-excel'],
-                                    ['model.jpeg', 'Model Bahasa Besar', 'model-bahasa-besar'],
-                                    ['pembelajaran_mesin.jpeg', 'Pembelajaran Mesin', 'pembelajaran-mesin'],
-                                    ['agen_ai.jpeg', 'Agen AI', 'agen-ai'],
-                                ] as $item)
-                                <div class="min-w-[300px]">
-                                    <a href="{{ route('category.show', $item[2]) }}" class="block relative rounded-2xl overflow-hidden shadow group">
-                                        <img src="{{ asset($item[0]) }}" class="w-full h-[300px] object-cover">
-                                        <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-xl flex justify-between items-center group-hover:bg-gray-50 transition">
-                                            <span class="font-semibold">{{ $item[1] }}</span>
-                                            <span>→</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                @endforeach
+                                @forelse($categories->take(12) as $cat)
+                                    @php
+                                        $cName = strtolower($cat->name);
+                                        $imgName = 'ai.jpeg';
+
+                                        if (str_contains($cName, 'development') || str_contains($cName, 'javascript') || str_contains($cName, 'coding')) { 
+                                            $imgName = 'rekayasa_prompt.jpeg'; 
+                                        } 
+                                        elseif (str_contains($cName, 'python')) { 
+                                            $imgName = 'python.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'business') || str_contains($cName, 'bisnis') || str_contains($cName, 'proyek')) { 
+                                            $imgName = 'serti.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'it & software') || str_contains($cName, 'it') || str_contains($cName, 'sertifikasi')) { 
+                                            $imgName = 'serti.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'office') || str_contains($cName, 'excel') || str_contains($cName, 'productivity')) { 
+                                            $imgName = 'microsoft_excel.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'data science') || str_contains($cName, 'data') || str_contains($cName, 'ilmu data')) { 
+                                            $imgName = 'ilmu_data.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'design') || str_contains($cName, 'desain')) { 
+                                            $imgName = 'model.jpeg'; 
+                                        }
+                                        elseif (str_contains($cName, 'marketing') || str_contains($cName, 'pemasaran')) { 
+                                            $imgName = 'gpt.jpeg'; 
+                                        }
+                                    @endphp
+                                    <div class="min-w-[300px]">
+                                        <a href="{{ url('/category/' . $cat->slug) }}" class="block relative rounded-2xl overflow-hidden shadow group bg-white">
+                                            <img src="{{ asset($imgName) }}" class="w-full h-[300px] object-cover" alt="{{ $cat->name }}"
+                                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640';">
+                                            <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-xl flex justify-between items-center group-hover:bg-gray-50 transition">
+                                                <span class="font-semibold capitalize text-gray-900">{{ $cat->name }}</span>
+                                                <span class="text-purple-700 font-bold">→</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @empty
+                                    <div class="text-gray-500 text-sm py-4">Tidak ada kategori ditemukan di database.</div>
+                                @endforelse
                             </div>
                         </div>
                         <button onclick="prevGuestSlide()" class="absolute left-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">‹</button>
                         <button onclick="nextGuestSlide()" class="absolute right-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">›</button>
-                        <div class="flex justify-center mt-6 space-x-2" id="dots"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="px-14 py-12">
-            <div class="bg-[#232433] rounded-xl p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
-                <div class="w-full lg:w-[30%]">
-                    <h2 class="text-3xl font-bold text-white mb-4 leading-tight">Dapatkan sertifikasi dan<br>maju dalam karier Anda</h2>
-                    <p class="text-gray-300 mb-8 text-sm leading-relaxed pr-4">Persiapkan diri untuk sertifikasi dengan kursus yang komprehensif, simulasi ujian, dan penawaran khusus voucher ujian.</p>
-                    <a href="#" class="text-white font-bold hover:underline flex items-center text-sm transition">
-                        Jelajahi sertifikasi dan voucer 
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                </div>
-
-                <div class="w-full lg:w-[60%] grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                        <img src="{{ asset('comptia.png') }}" alt="CompTIA" class="w-full h-auto rounded-md mb-4 object-cover">
-                        <h3 class="text-white font-bold text-lg mb-1">CompTIA</h3>
-                        <p class="text-gray-400 text-xs">Cloud, Jejaring, Keamanan Siber</p>
-                    </a>
-                    <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                        <img src="{{ asset('aws.png') }}" alt="AWS" class="w-full h-auto rounded-md mb-4 object-cover">
-                        <h3 class="text-white font-bold text-lg mb-1">AWS</h3>
-                        <p class="text-gray-400 text-xs">Cloud, AI, Coding, Jejaring</p>
-                    </a>
-                    <a href="#" class="bg-[#303246] rounded-lg p-4 flex flex-col hover:bg-[#3b3d4f] transition">
-                        <img src="{{ asset('pmi.png') }}" alt="PMI" class="w-full h-auto rounded-md mb-4 object-cover">
-                        <h3 class="text-white font-bold text-lg mb-1">PMI</h3>
-                        <p class="text-gray-400 text-xs">Manajemen Proyek & Program</p>
-                    </a>
+        {{-- BRAND KORPORAT --}}
+        <section class="bg-gray-100 py-12 border-t border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4">
+                <p class="text-center text-slate-600 font-medium text-base mb-8 tracking-wide">{{ __('welcome.Dipercaya') }}</p>
+                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+                    <img src="{{ asset('vw.png') }}" class="h-16 w-auto grayscale opacity-60" alt="VW">
+                    <img src="{{ asset('samsung.png') }}" class="h-16 w-auto grayscale opacity-60" alt="Samsung">
+                    <img src="{{ asset('cisco.png') }}" class="h-12 w-auto grayscale opacity-60" alt="Cisco">
                 </div>
             </div>
         </section>
 
-        <section class="w-screen bg-gray-100 pt-16 pb-12 m-0 left-1/2 ml-[-50vw] relative">
-            <div class="max-w-[1340px] mx-auto px-10">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Skill Populer</h2>
-                <hr class="border-gray-300 mb-10">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4 leading-tight">ChatGPT adalah skill teratas</h3>
-                        <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">
-                            Lihat ChatGPT kursus
-                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-                        </a>
-                        <p class="text-sm text-gray-500 mt-1 mb-8">5.576.646 pembelajar</p>
-                        <a href="#" class="border border-[#5624d0] text-[#5624d0] font-bold px-4 py-2.5 rounded hover:bg-[#5624d0]/5 transition w-max flex items-center text-sm">
-                            Tampilkan semua skill yang sedang tren
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
-                        </a>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Pengembangan</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Python <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">50.467.049 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Pengembangan Web <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">14.538.258 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Ilmu Data <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">8.406.501 pembelajar</p>
+        {{-- ULASAN SISWA GLOBAL BERVARIASI --}}
+        <section class="px-10 py-16 bg-gray-50">
+            <div class="max-w-[1350px] mx-auto">
+                <h2 class="text-3xl font-bold mb-8 max-w-2xl text-gray-900">{{ __('welcome.Bergabung') }}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @php
+                        $globalReviews = \App\Models\Review::with(['user', 'course'])->latest()->take(4)->get();
+                    @endphp
+                    
+                    @forelse($globalReviews as $review)
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
+                            <svg class="w-8 h-8 mb-4 text-purple-700" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                            <p class="text-gray-700 mb-6 grow text-sm leading-relaxed italic">
+                                "{{ $review->comment ?? 'Materi kursus yang luar biasa dan sangat membantu proses belajar.' }}"
+                            </p>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                                    {{ strtoupper(substr($review->user->name ?? 'U', 0, 1)) }}
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm text-gray-900 truncate">{{ $review->user->name ?? 'Siswa Anonim' }}</p>
+                                    <p class="text-xs text-gray-500 truncate">Kursus: {{ $review->course->title ?? 'Materi Umum' }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Desain</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Blender <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">3.135.853 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">AutoCAD <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">2.156.576 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Desain Grafis <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">4.710.142 pembelajar</p>
-                            </div>
+                    @empty
+                        <div class="col-span-4 text-center py-12 bg-white border border-dashed border-gray-300 rounded-xl text-gray-500 text-sm">
+                            Faktanya, tidak ada ulasan yang ditemukan di database. Pastikan data tabel `reviews` kamu sudah diisi.
                         </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Bisnis</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-start hover:underline group"><span>PMI Project Management Professional (PMP)</span> <svg class="w-4 h-4 ml-1 mt-1 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">2.930.472 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-center hover:underline group w-max">Microsoft Power BI <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">5.213.210 pembelajar</p>
-                            </div>
-                            <div>
-                                <a href="#" class="text-[#5624d0] font-bold text-base flex items-start hover:underline group"><span>PMI Certified Associate in Project Management (CAPM)</span> <svg class="w-4 h-4 ml-1 mt-1 shrink-0 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg></a>
-                                <p class="text-sm text-gray-500 mt-1">500.957 pembelajar</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>
     @endif
 
-    {{-- Pemilih Bahasa Internasional --}}
+    {{-- Pemilih Bahasa Internasional (Tetap Ada di Luar Blok Auth/Guest) --}}
     <div class="max-w-[1340px] mx-auto px-4 pb-12 flex justify-end">
         <div class="relative inline-block text-left z-50">
             <select onchange="location = this.value;" class="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 focus:outline-none cursor-pointer shadow-sm">

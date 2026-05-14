@@ -6,283 +6,145 @@ use Illuminate\Database\Seeder;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\User;
-use App\Models\Enrollment;
-use App\Models\Payment;
-use App\Models\Review;
-use App\Models\Lesson;
 use Illuminate\Support\Str;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class CourseSeeder extends Seeder
 {
     public function run(): void
     {
         $file = database_path('data/all_courses.csv');
-
         if (!file_exists($file)) {
-            echo "Kesalahan Eksekusi: File CSV tidak ditemukan!\n";
+            echo "File CSV tidak ditemukan di: " . $file;
             return;
         }
 
         $open = fopen($file, "r");
         
+        // Deteksi Delimiter (Koma atau Titik Koma)
         $firstLine = fgets($open);
         $delimiter = (strpos($firstLine, ';') !== false) ? ';' : ',';
         rewind($open);
-
-        $header = fgetcsv($open, 2000, $delimiter); 
+        
+        fgetcsv($open, 2000, $delimiter); // Skip header CSV
 
         $categories = Category::all();
         $instructorIds = User::where('role', 'instructor')->pluck('id')->toArray();
         $studentIds = User::where('role', 'student')->pluck('id')->toArray();
-        $faker = Faker::create('id_ID');
 
-        if ($categories->isEmpty() || empty($instructorIds) || empty($studentIds)) {
-            echo "Integritas Gagal: Jalankan CategorySeeder & UserSeeder terlebih dahulu!\n";
-            return;
-        }
-
-        $topicTitles = [
-            'coding' => [
-                'Instalasi Lingkungan Kerja & Editor', 'Memahami Sintaks dan Struktur Dasar',
-                'Deklarasi Variabel dan Tipe Data', 'Logika Percabangan (If-Else State)',
-                'Perulangan Efektif dengan Loop', 'Fungsi dan Parameter Modular',
-                'Penanganan Error (Try-Catch Exception)', 'Integrasi Database & Query Lanjutan'
-            ],
-            'cybersecurity' => [
-                'Pengenalan Keamanan Jaringan Dasar', 'Analisis Kerentanan Sistem Operasi',
-                'Simulasi Serangan Bruteforce & Proteksi', 'Konfigurasi Firewall & Port Security'
-            ],
-            'accounting' => [
-                'Konsep Dasar Persamaan Akuntansi', 'Penyusunan Jurnal Umum & Buku Besar',
-                'Analisis Neraca Saldo Akhir Periode', 'Pembuatan Laporan Laba Rugi Perusahaan'
-            ],
-            'trading' => [
-                'Psikologi Trading & Manajemen Risiko', 'Membaca Indikator Candlestick Fundamental',
-                'Analisis Tren Pasar Bullish dan Bearish', 'Strategi Swing Trading untuk Pemula'
-            ],
-            'excel' => [
-                'Navigasi Shortcut & Formula Dasar', 'Optimasi Lookup dengan VLOOKUP & XLOOKUP',
-                'Analisis Data Dinamis dengan Pivot Table', 'Visualisasi Data Menggunakan Chart Modern'
-            ],
-            'graphic_design' => [
-                'Teori Komposisi Warna & Tata Letak', 'Manipulasi Objek dengan Photoshop',
-                'Pembuatan Desain Vektor di Illustrator', 'Strategi Branding & Konsistensi Visual'
-            ],
-            'music' => [
-                'Pengenalan Nada dan Tangga Nada Dasar', 'Latihan Penjarian (Fingering Practice)',
-                'Memahami Progresi Akor Sederhana', 'Teknik Sinkronisasi Tangan Kiri & Kanan'
-            ],
-            'general' => [
-                'Pendahuluan & Kontrak Belajar', 'Konsep Teoretis Paling Mendasar',
-                'Studi Kasus Nyata di Dunia Kerja', 'Evaluasi Materi & Tips Belajar Mandiri'
-            ]
+        // Template pelajaran agar konten materi bervariasi
+        $lessonTemplates = [
+            ['Pengenalan Mendasar dan Setup Lingkungan Kerja', 'Video pengenalan awal mengenai konsep dasar, instalasi tools pendukung, serta konfigurasi environment awal agar siap memulai pembelajaran.'],
+            ['Konsep Inti, Arsitektur, dan Alur Kerja Utama', 'Membahas pemahaman mendalam tentang arsitektur utama, komponen penting, serta bagaimana alur logika sistem bekerja di dunia nyata.'],
+            ['Praktik Implementasi, Studi Kasus Nyata, dan Tips Terbaik', 'Sesi praktik langsung membangun sebuah mini-project, memecahkan masalah umum, disertai dengan tips and tricks optimasi performa.']
         ];
 
-        // Variabel counter untuk membantu pembuatan ID Seed Gambar yang Unik dan Konsisten
-        $courseCounter = 1;
+        // Variasi kalimat review bahasa Indonesia
+        $pembuka = ['Materi kursus sangat', 'Penjelasan dari instruktur bener-bener', 'Kelas ini beneran', 'Modul pembelajarannya begitu', 'Penyampaian materinya sangat', 'Suka banget, kurikulumnya'];
+        $inti = [' gampang diikuti dan dipahami,', ' terstruktur rapi dari awal sampai akhir,', ' interaktif dan ga bikin bosen sama sekali,', ' lengkap banget dengan contoh kasus nyata,', ' jelas dan langsung ke inti pembahasan,', ' detail banget pas bagian bedah codingan,'];
+        $penutup = [' recommended pol buat pemula!', ' ngebantu banget buat nambah portofolio.', ' worth it parah sih wajib dibeli.', ' bikin makin semangat buat dalemin materi ini.', ' cocok buat yang mau ganti karir ke bidang ini.', ' dapet banyak insight baru dari studi kasusnya.'];
+        $uniqueWords = ['mantap', 'keren', 'top', 'oke', 'rekomended', 'jos', 'puas', 'bintang lima', 'sukses', 'paham', 'ciamik', 'luar biasa'];
+        
+        $paymentMethods = ['GoPay', 'OVO', 'Transfer Bank', 'Dana', 'LinkAja'];
+        
+        // Buat counter untuk mengamankan keunikan seed gambar lokator
+        $imageCounter = 1;
 
         while (($data = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
-            if (!isset($data[1]) || empty($data[1])) {
-                continue;
-            }
+            if (!isset($data[1]) || empty($data[1])) continue;
             
-            $title = trim(mb_convert_encoding($data[1], 'UTF-8', 'ISO-8859-1'), '"');
-            $titleLower = strtolower($title);
-            $subject = trim(mb_convert_encoding($data[10], 'UTF-8', 'ISO-8859-1'), '"'); 
-            $level = trim(mb_convert_encoding($data[7], 'UTF-8', 'ISO-8859-1'), '"');
-            $numSubscribers = (int) str_replace('.', '', $data[4]); 
-            $numReviews = (int) str_replace('.', '', $data[5]);
-
-            $priceRaw = trim($data[3], '"');
-            if (strtolower($priceRaw) === 'free' || empty($priceRaw)) {
-                $priceInRupiah = 0;
-            } else {
-                $cleanPrice = (int) preg_replace('/[^0-9]/', '', $priceRaw);
-                $priceInRupiah = $cleanPrice * 150; 
-                if ($priceInRupiah === 0) {
-                    $priceInRupiah = 150000;
-                }
+            $subject = (isset($data[10])) ? trim($data[10], '"') : 'General';
+            
+            // LOGIKA FIX: Tentukan keyword pencarian gambar berdasarkan subjek agar gambar relevan dengan tema kursus
+            $keyword = 'computer,office';
+            if (Str::contains(strtolower($subject), ['web', 'coding', 'programming', 'javascript', 'html', 'php', 'laravel'])) {
+                $keyword = 'coding,programming';
+            } elseif (Str::contains(strtolower($subject), ['design', 'graphic', 'canva', 'photoshop', 'illustrator'])) {
+                $keyword = 'design,workspace';
+            } elseif (Str::contains(strtolower($subject), ['business', 'finance', 'accounting', 'trading'])) {
+                $keyword = 'business,chart';
+            } elseif (Str::contains(strtolower($subject), ['music', 'guitar', 'piano', 'vocal'])) {
+                $keyword = 'music,instrument';
             }
 
-            // KLASIFIKASI KATEGORI SECARA DETAIL
-            $targetTopicName = '';
-
-            if ($subject === 'Web Development') {
-                if (Str::contains($titleLower, ['html', 'css', 'bootstrap', 'sass', 'flexbox', 'tailwind'])) {
-                    $targetTopicName = 'HTML & CSS';
-                } elseif (Str::contains($titleLower, ['javascript', 'js', 'typescript', 'jquery', 'es6'])) {
-                    $targetTopicName = 'JavaScript';
-                } elseif (Str::contains($titleLower, ['react', 'redux', 'next.js', 'nextjs'])) {
-                    $targetTopicName = 'React JS';
-                } elseif (Str::contains($titleLower, ['php', 'laravel', 'wordpress', 'mysql', 'api'])) {
-                    $targetTopicName = 'PHP & Laravel';
-                } elseif (Str::contains($titleLower, ['python', 'django', 'flask'])) {
-                    $targetTopicName = 'Python Django';
-                } else {
-                    $targetTopicName = collect(['HTML & CSS', 'JavaScript', 'React JS', 'PHP & Laravel', 'Python Django'])->random();
-                }
-            } elseif ($subject === 'Business Finance') {
-                if (Str::contains($titleLower, ['stock', 'trading', 'saham', 'market', 'chart', 'technical analysis'])) {
-                    $targetTopicName = 'Stock Trading';
-                } elseif (Str::contains($titleLower, ['forex', 'currency'])) {
-                    $targetTopicName = 'Forex Trading';
-                } elseif (Str::contains($titleLower, ['tax', 'taxes', 'taxation'])) {
-                    $targetTopicName = 'Taxes';
-                } elseif (Str::contains($titleLower, ['accounting', 'bookkeeping', 'finance', 'ledger'])) {
-                    $targetTopicName = 'Financial Accounting';
-                } else {
-                    $targetTopicName = collect(['Financial Accounting', 'Taxes', 'Stock Trading', 'Forex Trading'])->random();
-                }
-            } elseif ($subject === 'Graphic Design') {
-                if (Str::contains($titleLower, ['solidworks'])) {
-                    $targetTopicName = 'SOLIDWORKS';
-                } elseif (Str::contains($titleLower, ['autocad', 'cad', '3d', 'fusion 360', 'modeling'])) {
-                    $targetTopicName = 'AutoCAD';
-                } elseif (Str::contains($titleLower, ['photoshop', 'psd', 'photo editing'])) {
-                    $targetTopicName = 'Adobe Photoshop';
-                } elseif (Str::contains($titleLower, ['illustrator', 'vector', 'ai', 'logo'])) {
-                    $targetTopicName = 'Adobe Illustrator';
-                } elseif (Str::contains($titleLower, ['canva', 'social media post'])) {
-                    $targetTopicName = 'Canva';
-                } else {
-                    $targetTopicName = collect(['Adobe Photoshop', 'Adobe Illustrator', 'Canva', 'AutoCAD', 'SOLIDWORKS'])->random();
-                }
-            } elseif ($subject === 'Musical Instruments') {
-                if (Str::contains($titleLower, ['vocal', 'singing', 'voice', 'sing', 'choir'])) {
-                    $targetTopicName = 'Vocal & Singing';
-                } elseif (Str::contains($titleLower, ['guitar', 'guitarist', 'strum', 'chords'])) {
-                    $targetTopicName = 'Guitar';
-                } elseif (Str::contains($titleLower, ['piano', 'keyboard', 'pianist'])) {
-                    $targetTopicName = 'Piano';
-                } elseif (Str::contains($titleLower, ['ukulele', 'uke'])) {
-                    $targetTopicName = 'Ukulele';
-                } else {
-                    $targetTopicName = collect(['Guitar', 'Piano', 'Ukulele', 'Vocal & Singing'])->random();
-                }
-            } elseif ($subject === 'Cyber Security') {
-                if (Str::contains($titleLower, ['hack', 'penetration', 'pentest', 'kali', 'ethical'])) {
-                    $targetTopicName = 'Ethical Hacking';
-                } else {
-                    $targetTopicName = 'Cyber Security';
-                }
-            } elseif ($subject === 'Excel Basic') {
-                if (Str::contains($titleLower, ['powerpoint', 'presentation', 'ppt'])) {
-                    $targetTopicName = 'PowerPoint';
-                } elseif (Str::contains($titleLower, ['word', 'document', 'writing'])) {
-                    $targetTopicName = 'Microsoft Word';
-                } else {
-                    $targetTopicName = 'Excel Basic';
-                }
-            } elseif ($subject === 'Public Speaking') {
-                if (Str::contains($titleLower, ['time', 'productivity', 'procrastination', 'focus', 'schedule'])) {
-                    $targetTopicName = 'Time Management';
-                } elseif (Str::contains($titleLower, ['interview', 'resume', 'job', 'cv', 'career'])) {
-                    $targetTopicName = 'Interview Skills';
-                } else {
-                    $targetTopicName = 'Public Speaking';
-                }
-            } else {
-                $targetTopicName = 'HTML & CSS';
-            }
-
-            $category = $categories->where('name', $targetTopicName)->first();
-            $categoryId = $category ? $category->id : $categories->random()->id;
-
-            // FIX UTAMA: Gunakan Picsum dengan mengunci ID counter. Gambar tidak akan pernah berubah lagi saat direfresh.
-            $imageUrl = "https://picsum.photos/seed/course_static_" . $courseCounter . "/640/360";
-
-            $instructorId = $instructorIds[array_rand($instructorIds)];
-
-            // 1. Buat Kursus
+            // 1. BUAT KURSUS MASTER WITH DYNAMIC IMAGE LOCK
+            // Menggunakan LoremFlickr dengan parameter '?lock=' + counter memastikan gambar bervariasi total tiap baris data!
             $course = Course::create([
-                'category_id' => $categoryId,
-                'instructor_id' => $instructorId,
-                'title' => Str::limit($title, 150, '...'),
-                'description' => "This is a comprehensive course about " . $subject . " designed especially for " . $level . " students.",
-                'price' => $priceInRupiah,
-                'image_url' => $imageUrl,
-                'created_at' => $data[9] . ' 00:00:00',
-                'updated_at' => $data[9] . ' 00:00:00',
+                'category_id'   => $categories->random()->id,
+                'instructor_id' => $instructorIds[array_rand($instructorIds)],
+                'title'         => Str::limit(trim($data[1], '"'), 150),
+                'description'   => "Pelajari keahlian baru di bidang " . $subject . " dengan materi terstruktur.",
+                'price'         => rand(150000, 950000),
+                'image_url'     => "https://loremflickr.com/640/360/" . $keyword . "?lock=" . $imageCounter,
+                'status'        => 'active',
             ]);
 
-            // Naikkan counter id kursus untuk data berikutnya
-            $courseCounter++;
+            $imageCounter++; // Naikkan angka counter agar baris data kursus berikutnya mendapat gambar berbeda
 
-            // 2. Buat Lessons Terikat Langsung
-            $key = 'general';
-            if (Str::contains($titleLower, ['react', 'next', 'angular', 'javascript', 'js', 'typescript', 'html', 'css', 'php', 'laravel', 'python', 'sql'])) {
-                $key = 'coding';
-            } elseif (Str::contains($titleLower, ['cyber', 'security', 'firewall'])) {
-                $key = 'cybersecurity';
-            } elseif (Str::contains($titleLower, ['accounting', 'tax'])) {
-                $key = 'accounting';
-            } elseif (Str::contains($titleLower, ['forex', 'trading', 'stock'])) {
-                $key = 'trading';
-            } elseif (Str::contains($titleLower, ['excel', 'spreadsheet'])) {
-                $key = 'excel';
-            } elseif (Str::contains($titleLower, ['photoshop', 'illustrator', 'canva', 'design'])) {
-                $key = 'graphic_design';
-            } elseif (Str::contains($titleLower, ['guitar', 'piano', 'ukulele', 'vocal'])) {
-                $key = 'music';
+            // 2. BULK INSERT LESSON BERVARIASI
+            $lessons = [];
+            foreach ($lessonTemplates as $index => $template) {
+                $lessons[] = [
+                    'course_id'  => $course->id,
+                    'title'      => 'Bab ' . ($index + 1) . ': ' . $template[0] . ' - ' . $subject,
+                    'content'    => $template[1] . ' Pembahasan mendalam langkah demi langkah untuk menunjang keahlian praktis Anda.',
+                    'duration'   => rand(20, 60),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
             }
+            DB::table('lessons')->insert($lessons);
 
-            $availableTitles = $topicTitles[$key];
-            shuffle($availableTitles);
-            $lessonLimit = rand(1, 2); 
-
-            for ($i = 0; $i < $lessonLimit; $i++) {
-                $lessonTitle = $availableTitles[$i] ?? ('Materi Tambahan Bagian ' . ($i + 1));
-                Lesson::create([
-                    'course_id' => $course->id,
-                    'title' => Str::limit($lessonTitle, 200, '...'),
-                    'content' => 'Pada modul pembelajaran ini, peserta didik akan diajarkan implementasi praktis dari materi ' . $lessonTitle . '.',
-                    'duration' => rand(15, 60),
-                ]);
-            }
-
-            // 3. Buat Enrollments & Payments
-            $enrollLimit = min($numSubscribers, 3);
-            for ($i = 0; $i < $enrollLimit; $i++) {
-                $studentId = $studentIds[array_rand($studentIds)];
-
-                $enrollment = Enrollment::create([
-                    'user_id' => $studentId,
-                    'course_id' => $course->id,
-                    'status' => 'active',
-                    'enrolled_at' => now()->subDays(rand(1, 30)),
-                ]);
-
-                if ($course->price > 0) {
-                    Payment::create([
-                        'enrollment_id' => $enrollment->id,
-                        'amount' => $course->price,
-                        'payment_method' => $faker->randomElement(['Bank Transfer', 'E-Wallet', 'Credit Card']),
-                        'status' => 'success',
-                        'paid_at' => $enrollment->enrolled_at,
-                    ]);
+            // 3. BULK INSERT TEPAT 50 ENROLLMENTS, PAYMENTS, & REVIEWS UNIK PER KURSUS
+            if (!empty($studentIds)) {
+                $countToTake = min(50, count($studentIds));
+                $courseStudents = array_rand(array_flip($studentIds), $countToTake);
+                if (!is_array($courseStudents)) {
+                    $courseStudents = [$courseStudents];
                 }
-            }
 
-            // 4. Buat Reviews
-            $reviewLimit = min($numReviews, 2);
-            $reviewComments = [
-                'Materi pembelajarannya sangat detail dan mudah diikuti.',
-                'Penjelasan instrukturnya sangat jelas, cocok sekali untuk pemula!',
-                'Proyek latihannya sangat membantu memahami studi kasus di dunia nyata.'
-            ];
+                $payments = [];
+                $reviews = [];
 
-            for ($i = 0; $i < $reviewLimit; $i++) {
-                $studentId = $studentIds[array_rand($studentIds)];
-                Review::create([
-                    'user_id' => $studentId,
-                    'course_id' => $course->id,
-                    'rating' => rand(4, 5), 
-                    'comment' => $faker->randomElement($reviewComments),
-                ]);
+                foreach ($courseStudents as $studentId) {
+                    $enrolledAt = now()->subDays(rand(1, 40))->subHours(rand(1, 23));
+                    
+                    $enrollId = DB::table('enrollments')->insertGetId([
+                        'user_id'     => $studentId,
+                        'course_id'   => $course->id,
+                        'status'      => 'active',
+                        'enrolled_at' => $enrolledAt,
+                        'created_at'  => $enrolledAt,
+                        'updated_at'  => $enrolledAt,
+                    ]);
+
+                    $payments[] = [
+                        'enrollment_id'  => $enrollId,
+                        'amount'         => $course->price,
+                        'payment_method' => $paymentMethods[array_rand($paymentMethods)],
+                        'status'         => 'success',
+                        'paid_at'        => $enrolledAt,
+                        'created_at'     => $enrolledAt,
+                        'updated_at'     => $enrolledAt,
+                    ];
+
+                    $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
+                    $finalComment = $textKustom . ' (' . $uniqueWords[array_rand($uniqueWords)] . ' ' . rand(100, 999) . ')';
+
+                    $reviews[] = [
+                        'user_id'    => $studentId,
+                        'course_id'  => $course->id,
+                        'rating'     => rand(4, 5),
+                        'comment'    => $finalComment,
+                        'created_at' => $enrolledAt,
+                        'updated_at' => $enrolledAt,
+                    ];
+                }
+
+                DB::table('payments')->insert($payments);
+                DB::table('reviews')->insert($reviews);
             }
         }
-
         fclose($open);
     }
 }

@@ -7,23 +7,17 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Review>
- */
 class ReviewFactory extends Factory
 {
     public function definition(): array
     {
-        $comments = [
-            'Materi sangat mudah dipahami, instruktur menjelaskan dengan sangat jelas!',
-            'The course content is great, but the audio quality could be improved.',
-            'Sangat membantu saya dalam mengerjakan tugas akhir kuliah. Terima kasih!',
-            'Great course! Highly recommended for beginners who want to learn web development.',
-            'Penjelasannya terlalu cepat, tapi materinya sangat lengkap dan berbobot.',
-            'Excelente curso, muy bien explicado y con ejemplos prácticos.'
-        ];
+        $pembuka = ['Materi kelas sangat', 'Penjelasan mentor benar-benar', 'Modul kelas ini tergolong', 'Materi yang dibawakan sangat'];
+        $inti = [' mudah dimengerti orang awam,', ' terstruktur rapi per sub-bab,', ' interaktif dengan contoh riil,', ' mendalam dan langsung praktek,'];
+        $penutup = [' highly recommended banget!', ' ngebantu upgrade skill portofolio.', ' sangat sepadan dengan biayanya.', ' memuaskan sekali cara ngajarnya.'];
 
-        // FIX: Proteksi null pointer murni pada database relasi review
+        $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
+        $suffix = ' (' . $this->faker->word() . ' ' . rand(100, 999) . ')';
+
         $course = Course::inRandomOrder()->first();
         $courseId = $course ? $course->id : Course::factory()->create()->id;
 
@@ -32,9 +26,9 @@ class ReviewFactory extends Factory
 
         return [
             'course_id' => $courseId,
-            'user_id' => $studentId,
-            'rating' => $this->faker->numberBetween(1, 5),
-            'comment' => $this->faker->randomElement($comments),
+            'user_id'   => $studentId,
+            'rating'    => $this->faker->numberBetween(4, 5),
+            'comment'   => $textKustom . $suffix,
         ];
     }
 }

@@ -16,8 +16,11 @@
                 @foreach($cartItems as $item)
                 <div class="flex gap-6 border-b border-gray-100 pb-8 mb-6 last:mb-0">
                     <a href="{{ route('course.show', $item->course->id) }}" class="shrink-0">
-                        <img src="https://loremflickr.com/640/360/computer,office?random={{ $item->course->id }}" 
-                             class="w-32 h-20 object-cover rounded-md shadow-sm">
+                        {{-- FIX: Menggunakan data image_url dari DB + Pengaman Onerror --}}
+                        <img src="{{ $item->course->image_url }}" 
+                             alt="{{ $item->course->title }}"
+                             class="w-32 h-20 object-cover rounded-md shadow-sm"
+                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&q=80';">
                     </a>
 
                     <div class="flex-grow">
@@ -65,10 +68,6 @@
             </button>
 
             <div id="courseSlider" class="flex overflow-x-auto overflow-visible gap-4 pb-8 scroll-smooth no-scrollbar snap-x relative">
-                @foreach($courses as $course)
-                    @include('partials.course-card', ['course' => $course])
-                @endforeach
-
                 @foreach($courses as $course)
                     @include('partials.course-card', ['course' => $course])
                 @endforeach

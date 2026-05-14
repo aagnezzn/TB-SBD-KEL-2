@@ -67,25 +67,29 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                           @forelse($students as $student)
+                           @forelse($students ?? [] as $student)
                            <tr class="hover:bg-gray-50/50 transition">
                               <td class="p-5">
-                                 <div class="font-bold text-[#1c1d1f]">{{ $student->name }}</div>
+                                 <div class="font-bold text-[#1c1d1f] capitalize">{{ $student->name }}</div>
                                  <div class="text-[10px] text-gray-400 font-bold uppercase tracking-tight">{{ $student->email }}</div>
                               </td>
                               <td class="p-5">
-                                 @foreach($student->enrollments as $enroll)
-                                    <span class="block text-sm font-semibold text-blue-600 italic">
-                                    {{ $enroll->course->title }}
-                                    </span>
-                                 @endforeach
+                                 @forelse($student->enrollments ?? [] as $enroll)
+                                    @if($enroll->course)
+                                        <span class="block text-sm font-semibold text-blue-600 italic mb-1">
+                                            {{ $enroll->course->title }}
+                                        </span>
+                                    @endif
+                                 @empty
+                                    <span class="text-xs text-gray-400 italic">Belum memilih kursus</span>
+                                 @endforelse
                               </td>
                               <td class="p-5 text-gray-500 text-sm">
-                                 {{ $student->created_at->format('d M Y') }}
+                                 {{ $student->created_at ? $student->created_at->format('d M Y') : '-' }}
                               </td>
                               <td class="p-5 text-right">
-                                 <button class="text-gray-400 hover:text-blue-600 transition">
-                                    <i class="fas fa-envelope"></i> Hubungi
+                                 <button class="text-gray-400 hover:text-blue-600 transition font-semibold text-xs border border-gray-200 px-3 py-1.5 rounded-sm bg-white shadow-sm">
+                                    <i class="fas fa-envelope mr-1"></i> Hubungi
                                  </button>
                               </td>
                            </tr>
@@ -93,7 +97,7 @@
                            <tr>
                               <td colspan="4" class="p-20 text-center text-gray-400">
                                  <i class="fas fa-user-slash text-5xl mb-4 block text-gray-200"></i>
-                                 <p class="italic">Belum ada siswa yang mendaftar di kursus Anda.</p>
+                                 <p class="italic font-medium">Belum ada siswa yang mendaftar di kursus Anda.</p>
                               </td>
                            </tr>
                            @endforelse

@@ -27,24 +27,26 @@
         </div>
         
         {{-- Sidebar Kartu Putih --}}
-        <div class="md:w-1/3 lg:w-[350px] bg-white text-gray-900 border border-gray-200 shadow-lg p-6 md:absolute md:right-4 md:top-12 z-10">
+        <div class="md:w-1/3 lg:w-[350px] bg-white text-gray-900 border border-gray-200 shadow-lg p-6 md:absolute md:right-4 md:top-12 z-10 rounded">
             
-            <img src="https://picsum.photos/seed/course_id_{{ $course->id }}/640/360" 
+            {{-- FIX: Menggunakan data image_url dari DB + Pengaman Onerror --}}
+            <img src="{{ $course->image_url }}" 
                  alt="{{ $course->title }}" 
-                 class="w-full h-44 object-cover mb-4 rounded">
+                 class="w-full h-44 object-cover mb-4 rounded"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
                  
             <div class="text-3xl font-bold mb-4">Rp {{ number_format($course->price, 0, ',', '.') }}</div>
             
             <form action="{{ route('cart.add', $course->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3">
+                <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3 rounded">
                     Tambahkan ke keranjang
                 </button>
             </form>
 
             <form action="{{ route('wishlist.add', $course->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="w-full border border-black py-3 font-bold hover:bg-gray-100 transition">
+                <button type="submit" class="w-full border border-black py-3 font-bold hover:bg-gray-100 transition rounded">
                     Masukkan ke Daftar Keinginan
                 </button>
             </form>
@@ -52,7 +54,7 @@
             <div class="text-xs text-center text-gray-600 mb-6">Jaminan uang kembali 30 hari</div>
             
             <div class="text-sm">
-                <div class="font-bold mb-2">Kursus ini mencakup:</div>
+                <div class="font-bold mb-2 font-bold">Kursus ini mencakup:</div>
                 <ul class="space-y-2 text-gray-700">
                     <li>✓ Video sesuai permintaan</li>
                     <li>✓ Akses seumur hidup penuh</li>
@@ -101,7 +103,7 @@
                 <span class="text-gray-400 text-base">• {{ $totalReviews }} Peringkat</span>   
             </h2>
 
-            <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition">
+            <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition rounded-sm">
                 Beri Rating & Ulasan
             </button>
 
@@ -124,10 +126,10 @@
                         <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="Apa pendapatmu tentang kursus ini?" required></textarea>
                     </div>
                     <div class="flex gap-2">
-                        <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold hover:bg-[#8710d8]">
+                        <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold hover:bg-[#8710d8] transition">
                             Kirim Ulasan
                         </button>
-                        <button type="button" onclick="toggleReviewForm()" class="border border-black px-6 py-2 font-bold hover:bg-gray-200">
+                        <button type="button" onclick="toggleReviewForm()" class="border border-black px-6 py-2 font-bold hover:bg-gray-200 transition">
                             Batal
                         </button>
                     </div>
