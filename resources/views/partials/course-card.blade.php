@@ -1,6 +1,6 @@
 <div class="min-w-[260px] max-w-[260px] flex flex-col cursor-pointer group/item snap-start relative bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
     <a href="{{ route('course.show', $course->id) }}">
-        {{-- FIX: Menggunakan data image_url dari DB + Pengaman Onerror --}}
+        {{-- Gambar dari database dengan pengaman fallback Unsplash --}}
         <img src="{{ $course->image_url }}" 
              alt="{{ $course->title }}"
              class="w-full h-36 object-cover rounded-t-lg border-b border-gray-200 mb-2"
@@ -12,18 +12,34 @@
             </h3>
             <p class="text-xs text-gray-500 mb-1">Oleh {{ $course->user->name ?? 'Instruktur' }}</p>
 
+            {{-- LOGIKA DINAMIS DATABASE --}}
+            @php 
+                $avgRating = $course->reviews->avg('rating') ?? 0; 
+                $totalReviews = $course->reviews->count();
+            @endphp
+
             <div class="flex items-center gap-1 text-xs mb-1">
-                <span class="font-bold text-yellow-700">4,8</span>
-                <div class="flex text-yellow-500">
-                    ★★★★★
+                <span class="font-bold text-yellow-700">
+                    {{ number_format($avgRating, 1) }}
+                </span>
+                
+                <div class="flex text-yellow-500 tracking-tighter">
+                    {{-- Render Bintang sesuai rata-rata rating di database --}}
+                    @for($i = 1; $i <= 5; $i++)
+                        {{ $i <= round($avgRating) ? '★' : '☆' }}
+                    @endfor
                 </div>
-                <span class="text-gray-500">({{ rand(500, 2000) }})</span>
+                
+                <span class="text-gray-500">({{ number_format($totalReviews, 0, ',', '.') }})</span>
             </div>
-            <p class="font-bold text-gray-900 text-base mb-2">Rp{{ number_format($course->price, 0, ',', '.') }}</p>
+            
+            <p class="font-bold text-gray-900 text-base mb-2">
+                Rp{{ number_format($course->price, 0, ',', '.') }}
+            </p>
         </div>
     </a>
 
-    {{-- Pop-up Floating Detail --}}
+    {{-- Pop-up Floating Detail (CSS Pure) --}}
     <div class="absolute top-0 left-full ml-3 w-[320px] bg-white border border-gray-200 rounded-lg shadow-2xl p-4 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none group-hover/item:pointer-events-auto">
         <h3 class="font-bold text-lg mb-2">{{ $course->title }}</h3>
         <p class="text-xs text-green-700 font-bold mb-2 uppercase">Diperbarui Mei 2026</p>

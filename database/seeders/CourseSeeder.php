@@ -45,7 +45,7 @@ class CourseSeeder extends Seeder
         $penutup = [' recommended pol buat pemula!', ' ngebantu banget buat nambah portofolio.', ' worth it parah sih wajib dibeli.', ' bikin makin semangat buat dalemin materi ini.', ' cocok buat yang mau ganti karir ke bidang ini.', ' dapet banyak insight baru dari studi kasusnya.'];
         $uniqueWords = ['mantap', 'keren', 'top', 'oke', 'rekomended', 'jos', 'puas', 'bintang lima', 'sukses', 'paham', 'ciamik', 'luar biasa'];
         
-        $paymentMethods = ['GoPay', 'OVO', 'Transfer Bank', 'Dana', 'LinkAja'];
+        $paymentMethods = ['OVO', 'Transfer Bank', 'Dana'];
         
         // Buat counter untuk mengamankan keunikan seed gambar lokator
         $imageCounter = 1;
@@ -95,9 +95,9 @@ class CourseSeeder extends Seeder
             }
             DB::table('lessons')->insert($lessons);
 
-            // 3. BULK INSERT TEPAT 50 ENROLLMENTS, PAYMENTS, & REVIEWS UNIK PER KURSUS
+            // 3. BULK INSERT TEPAT 20 ENROLLMENTS, PAYMENTS, & REVIEWS UNIK PER KURSUS
             if (!empty($studentIds)) {
-                $countToTake = min(50, count($studentIds));
+                $countToTake = min(20, count($studentIds));
                 $courseStudents = array_rand(array_flip($studentIds), $countToTake);
                 if (!is_array($courseStudents)) {
                     $courseStudents = [$courseStudents];
@@ -134,7 +134,7 @@ class CourseSeeder extends Seeder
                     $reviews[] = [
                         'user_id'    => $studentId,
                         'course_id'  => $course->id,
-                        'rating'     => rand(4, 5),
+                        'rating'     => rand(3, 5),
                         'comment'    => $finalComment,
                         'created_at' => $enrolledAt,
                         'updated_at' => $enrolledAt,
