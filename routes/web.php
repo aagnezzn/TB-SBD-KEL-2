@@ -71,7 +71,6 @@ Route::get('lang/{locale}', function ($locale) {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
-    // URL disamakan ke /keranjang, fungsi dilarikan ke CartController yang benar, name rute diikat ke cart.index
     Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/add/{course_id}', [CartController::class, 'addToCart']);
@@ -94,9 +93,8 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     // Fitur Langganan & Daftar Jadi Instruktur
     Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])->name('subscribe.start');
-    Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
-    Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
-    Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
+    
+    // Upgrade Role
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
 
     // My Learning & Wishlist
@@ -129,6 +127,19 @@ Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function 
     Route::post('/course/save-new', [InstructorController::class, 'storeNewCourse'])->name('instructor.courses.save');
     Route::get('/students', [InstructorController::class, 'myStudents'])->name('instructor.students.index');
     Route::get('/performance', [InstructorController::class, 'performance'])->name('instructor.performance');
+});
+
+/*
+|--------------------------------------------------------------------------
+| 4.5. AREA INSTRUCTOR BEBAS PREFIX (Untuk form pembuatan & konfirmasi)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'instructor'])->group(function () {
+    Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
+    Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
+    
+    // FIX MUTLAK: Rute konfirmasi sudah aman di sini dan dilindungi oleh InstructorMiddleware!
+    Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
 });
 
 

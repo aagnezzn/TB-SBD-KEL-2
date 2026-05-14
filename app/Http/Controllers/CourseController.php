@@ -49,7 +49,7 @@ class CourseController extends Controller
             ->orWhereHas('user', function($query) use ($lowerKeyword) {
                 $query->whereRaw('LOWER(name) LIKE ?', ["%{$lowerKeyword}%"]);
             })
-            ->with(['user', 'category'])
+            ->with(['user', 'category', 'reviews']) 
             ->get();
 
         return view('search-results', compact('courses', 'keyword'));
@@ -63,7 +63,7 @@ class CourseController extends Controller
                         ->get();
 
         // 2. Ambil 20 kursus secara ACAK (sesuai permintaan Anda)
-        $courses = Course::with(['user', 'category'])
+        $courses = Course::with(['user', 'category', 'reviews'])
                          ->inRandomOrder() 
                          ->limit(20) 
                          ->get(); 

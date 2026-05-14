@@ -26,9 +26,9 @@
                 <div class="flex flex-col md:flex-row border-b border-gray-200 pb-6 gap-6 group">
                     
                     <div class="w-48 h-28 bg-gray-100 flex-shrink-0 relative overflow-hidden border border-gray-200">
-                        <img src="https://loremflickr.com/640/360/computer,office?random={{ $course->id }}" 
-                             alt="{{ $course->title }}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <img src="{{ $course->image_url }}" alt="{{ $course->title }}" 
+     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
                     </div>
                     
                     <div class="flex flex-col justify-between grow">

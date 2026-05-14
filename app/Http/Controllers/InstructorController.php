@@ -65,8 +65,9 @@ class InstructorController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        // Gunakan Unsplash agar loading web kencang
-        $imageUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';
+        // Generator Angka Acak untuk Cache Buster gambar LoremFlickr
+        $angkaAcak = rand(1000, 9999);
+        $imageUrl = "https://loremflickr.com/640/360/computer,office?lock={$angkaAcak}";
 
         Course::create([
             'instructor_id' => Auth::id(),
@@ -78,6 +79,13 @@ class InstructorController extends Controller
             'status' => 'active',
         ]);
 
+        // FIX LOGIKA UTAMAMU DI SINI:
+        // Jika pembuatnya adalah Instruktur asli, langsung arahkan ke dashboard instruktur, jangan ke halaman upgrade role lagi!
+        if (Auth::user()->role === 'instructor') {
+            return redirect()->route('instructor.dashboard')->with('success', 'Kursus baru Anda berhasil diterbitkan!');
+        }
+
+        // Ini jembatan penahan cadangan jika pembuatnya ternyata siswa yang baru mengajukan upgrade rute
         return redirect()->route('instructor.confirmation');
     }
 
@@ -93,6 +101,7 @@ class InstructorController extends Controller
         return view('instructor.courses.manage', compact('course'));
     }
 
+    // Form Edit Kursus
     public function editCourse($id)
     {
         $course = Course::where('instructor_id', Auth::id())->findOrFail($id);
@@ -100,11 +109,26 @@ class InstructorController extends Controller
         return view('instructor.courses.edit', compact('course', 'categories'));
     }
 
+    // Proses Perbaruan Data KursusSecara Aman
     public function updateCourse(Request $request, $id)
     {
+        $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|string|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
         $course = Course::where('instructor_id', Auth::id())->findOrFail($id);
-        $course->update($request->all());
-        return redirect()->route('instructor.courses.index')->with('success', 'Kursus diperbarui!');
+        
+        $course->update([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+        
+        return redirect()->route('instructor.courses.index')->with('success', 'Kursus diperbarui secara aman!');
     }
 
     // 7. Tambah Materi (Sesuai rute instructor.lessons.store)
@@ -121,86 +145,71 @@ class InstructorController extends Controller
 
     // 8. Daftar Siswa (Sesuai rute instructor.students.index)
     public function myStudents()
-{
-    // 1. Ambil data instruktur yang sedang login
-    $instructor = \Illuminate\Support\Facades\Auth::user();
+    {
+        $instructor = Auth::user();
+        $courseIds = Course::where('instructor_id', $instructor->id)->pluck('id')->toArray();
 
-    // 2. Ambil semua ID kursus yang dibuat oleh instruktur ini
-    $courseIds = \App\Models\Course::where('instructor_id', $instructor->id)->pluck('id')->toArray();
+        $students = \App\Models\User::where('role', 'student')
+            ->whereHas('enrollments', function($query) use ($courseIds) {
+                $query->whereIn('course_id', $courseIds);
+            })
+            ->with(['enrollments' => function($query) use ($courseIds) {
+                $query->whereIn('course_id', $courseIds)->with('course');
+            }])
+            ->latest()
+            ->get();
 
-    // 3. Ambil data siswa yang terdaftar khusus pada kelas milik instruktur ini
-    // Menggunakan eager loading (with) agar data hubungan tabelnya tidak NULL dan tidak memicu Error 500
-    $students = \App\Models\User::where('role', 'student')
-        ->whereHas('enrollments', function($query) use ($courseIds) {
-            $query->whereIn('course_id', $courseIds);
-        })
-        ->with(['enrollments' => function($query) use ($courseIds) {
-            $query->whereIn('course_id', $courseIds)->with('course');
-        }])
-        ->latest()
-        ->get();
-
-    // 4. Kirim variabel $students secara resmi ke file Blade index siswa
-    return view('instructor.students.index', compact('students'));
-}
-
-    // 9. Performa & Konfirmasi
-    public function performance()
-{
-    $instructorId = Auth::id();
-    
-    // Ambil semua ID kursus milik instruktur ini
-    $courses = \App\Models\Course::where('instructor_id', $instructorId)->get();
-    $courseIds = $courses->pluck('id');
-
-    // 1. Data Kotak Statistik Atas (Earnings, Enrollments, Rating)
-    $totalEarnings = \App\Models\Payment::whereHas('enrollment', function($query) use ($courseIds) {
-        $query->whereIn('course_id', $courseIds);
-    })->sum('amount');
-
-    $totalEnrollments = \App\Models\Enrollment::whereIn('course_id', $courseIds)->count();
-    $averageRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
-
-    // 2. LOGIKA GRAFIK: Hitung Aktivitas Pendapatan 7 Hari Terakhir (Sesuai Struktur Blade Kamu)
-    $chartData = [];
-    
-    // Looping mundur dari 6 hari lalu sampai hari ini (Total 7 hari)
-    for ($i = 6; $i >= 0; $i--) {
-        $date = now()->subDays($i);
-        
-        // Hitung total pendapatan instruktur pada tanggal spesifik ini
-        $dayIncome = \App\Models\Payment::whereHas('enrollment', function($query) use ($courseIds) {
-            $query->whereIn('course_id', $courseIds);
-        })
-        ->whereDate('created_at', $date->toDateString())
-        ->sum('amount');
-
-        // Tentukan tinggi grafik batang dalam bentuk persen (%)
-        // Jika tidak ada income, tinggi 0. Jika ada, kalkulasi persentase kasarnya (misal max skala 2 juta rupiah = 100%)
-        $maxScale = 2000000; 
-        $heightPercentage = $dayIncome > 0 ? min(($dayIncome / $maxScale) * 100, 100) : 0;
-
-        // Masukkan ke array dengan KEY yang dicari oleh file Blade kamu
-        $chartData[] = [
-            'day'    => $date->isoFormat('ddd'), // Contoh hasil: Sen, Sel, Rab, Kam...
-            'income' => $dayIncome,
-            'height' => $heightPercentage
-        ];
+        return view('instructor.students.index', compact('students'));
     }
 
-    // 3. Bungkus data statistik atas
-    $data = [
-        'total_earnings'    => $totalEarnings,
-        'total_enrollments' => $totalEnrollments,
-        'avg_rating'        => round($averageRating, 1),
-    ];
+    // 9. Performa Statistik Grafik Pendapatan
+    public function performance()
+    {
+        $instructorId = Auth::id();
+        
+        $courses = Course::where('instructor_id', $instructorId)->get();
+        $courseIds = $courses->pluck('id');
 
-    // Kirim $data dan $chartData ke view
-    return view('instructor.performance', compact('data', 'chartData'));
-}
+        $totalEarnings = Payment::whereHas('enrollment', function($query) use ($courseIds) {
+            $query->whereIn('course_id', $courseIds);
+        })->sum('amount');
 
+        $totalEnrollments = Enrollment::whereIn('course_id', $courseIds)->count();
+        $averageRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
+
+        $chartData = [];
+        
+        for ($i = 6; $i >= 0; $i--) {
+            $date = now()->subDays($i);
+            
+            $dayIncome = Payment::whereHas('enrollment', function($query) use ($courseIds) {
+                $query->whereIn('course_id', $courseIds);
+            })
+            ->whereDate('created_at', $date->toDateString())
+            ->sum('amount');
+
+            $maxScale = 2000000; 
+            $heightPercentage = $dayIncome > 0 ? min(($dayIncome / $maxScale) * 100, 100) : 0;
+
+            $chartData[] = [
+                'day'    => $date->isoFormat('ddd'), 
+                'income' => $dayIncome,
+                'height' => $heightPercentage
+            ];
+        }
+
+        $data = [
+            'total_earnings'    => $totalEarnings,
+            'total_enrollments' => $totalEnrollments,
+            'avg_rating'        => round($averageRating, 1),
+        ];
+
+        return view('instructor.performance', compact('data', 'chartData'));
+    }
+
+    // Merender halaman konfirmasi lama
     public function showConfirmation() {
-        return view('instructor.courses_confirmation');
+        return view('instructor.confirmation');
     }
 
     // 10. Upgrade Role (Untuk Siswa jadi Instruktur)
