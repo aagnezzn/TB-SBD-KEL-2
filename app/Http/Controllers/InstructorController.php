@@ -23,19 +23,28 @@ class InstructorController extends Controller
 
     // 2. Dashboard Ringkasan (Sesuai rute instructor.dashboard)
     public function index()
-    {
-        $user = Auth::user();
-        $courses = Course::where('instructor_id', $user->id)->latest()->get();
-        $courseIds = $courses->pluck('id');
+{
+    $user = Auth::user();
+    
+    // Ambil semua kursus milik instruktur ini
+    $courses = Course::where('instructor_id', $user->id)->latest()->get();
+    $courseIds = $courses->pluck('id');
 
-        $totalCourses = $courses->count();
-        $totalStudents = Enrollment::whereIn('course_id', $courseIds)->count();
-        $totalRevenue = Payment::whereHas('enrollment', function($query) use ($courseIds) {
-            $query->whereIn('course_id', $courseIds);
-        })->sum('amount');
+    // Hitung statistik
+    $totalCourses = $courses->count();
+    $totalStudents = Enrollment::whereIn('course_id', $courseIds)->count();
+    
+    // FAKTA: Tambahkan logika hitung rating di bawah ini!
+    $avgRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
+    $avgRating = round($avgRating, 1);
 
-        return view('instructor.dashboard', compact('courses', 'totalCourses', 'totalStudents', 'totalRevenue'));
-    }
+    $totalRevenue = Payment::whereHas('enrollment', function($query) use ($courseIds) {
+        $query->whereIn('course_id', $courseIds);
+    })->sum('amount');
+
+    // FAKTA: Kamu HARUS menambahkan 'avgRating' di dalam compact()
+    return view('instructor.dashboard', compact('courses', 'totalCourses', 'totalStudents', 'totalRevenue', 'avgRating'));
+}
 
     // 3. Daftar Kursus Saya (Sesuai rute instructor.courses.index)
     public function myCourses()
@@ -110,26 +119,40 @@ class InstructorController extends Controller
     }
 
     // Proses Perbaruan Data KursusSecara Aman
-    public function updateCourse(Request $request, $id)
-    {
-        $request->validate([
-            'category_id' => 'required',
-            'title' => 'required|string|max:255',
-            'description' => 'required',
-            'price' => 'required|numeric',
-        ]);
+   public function updateCourse(Request $request, $id)
+{
+    // 1. Validasi
+    $request->validate([
+        'category_id' => 'required',
+        'title' => 'required|string|max:255',
+        'description' => 'required',
+        'price' => 'required|numeric',
+    ]);
 
-        $course = Course::where('instructor_id', Auth::id())->findOrFail($id);
-        
-        $course->update([
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'price' => $request->price,
-        ]);
-        
-        return redirect()->route('instructor.courses.index')->with('success', 'Kursus diperbarui secara aman!');
+    // 2. Cari kursus
+    $course = Course::where('instructor_id', Auth::id())->findOrFail($id);
+    
+    // 3. Update Kursus Utama
+    $course->update([
+        'category_id' => $request->category_id,
+        'title' => $request->title,
+        'description' => $request->description,
+        'price' => $request->price,
+    ]);
+
+    // 4. Update Materi (Lessons) - Inilah mesin pengubah judul materinya
+    if ($request->has('lessons')) {
+        foreach ($request->lessons as $lessonId => $lessonData) {
+            Lesson::where('id', $lessonId)
+                  ->where('course_id', $course->id)
+                  ->update([
+                      'title' => $lessonData['title'] // Mengambil input dari form tadi
+                  ]);
+        }
     }
+    
+    return redirect()->route('instructor.courses.index')->with('success', 'Perubahan berhasil disimpan!');
+}
 
     // 7. Tambah Materi (Sesuai rute instructor.lessons.store)
     public function addLesson(Request $request, $id)

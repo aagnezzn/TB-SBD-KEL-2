@@ -64,28 +64,26 @@
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="col-span-1">
                                     <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Judul Kursus</label>
-                                    <input type="text" name="title" value="{{ $course->title }}" class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700">
+                                    <input type="text" name="title" value="{{ $course->title }}" required class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700 bg-white">
                                 </div>
                                 <div class="col-span-1">
+                                    <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Kategori</label>
+                                    <select name="category_id" required class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700 bg-white">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{ $course->category_id == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Deskripsi</label>
+                                    <textarea name="description" rows="3" required class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700 bg-white">{{ $course->description }}</textarea>
+                                </div>
+                                <div class="col-span-2">
                                     <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2">Harga (Rp)</label>
-                                    <input type="number" name="price" value="{{ $course->price }}" class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700">
+                                    <input type="number" name="price" value="{{ $course->price }}" required class="w-full border border-gray-200 p-3 rounded-sm outline-none focus:border-blue-600 font-bold text-gray-700 bg-white">
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white border border-gray-200 p-8 shadow-sm">
-                            <h3 class="font-bold text-gray-800 mb-6 border-b pb-2 uppercase text-xs tracking-widest">Edit Nama Materi / Video</h3>
-                            <div class="space-y-4">
-                                @foreach($course->lessons as $lesson)
-                                <div class="flex items-center gap-4 bg-gray-50 p-4 border border-gray-100 rounded-sm">
-                                    <div class="text-gray-400"><i class="fas fa-play-circle"></i></div>
-                                    <div class="flex-1">
-                                        <label class="text-[10px] text-gray-400 font-bold">Judul Materi ID #{{ $lesson->id }}</label>
-                                        <input type="text" name="lessons[{{ $lesson->id }}][title]" value="{{ $lesson->title }}" class="w-full bg-transparent border-b border-gray-200 focus:border-blue-600 outline-none py-1 font-semibold text-sm">
-                                    </div>
-                                    <div class="text-xs text-gray-400 font-bold italic">{{ $lesson->duration }} Menit</div>
-                                </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>

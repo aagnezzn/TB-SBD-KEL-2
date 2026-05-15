@@ -53,7 +53,7 @@
             <div class="flex-1 overflow-y-auto p-10">
                 <div class="flex justify-between items-center mb-10">
                     <h1 class="text-3xl font-bold">Halo, Instruktur!</h1>
-                    <a href="{{ route('instructor.courses.add') }}" class="bg-blue-600 text-white px-6 py-3 font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-100">Buat Kursus Baru</a>
+                    <a href="{{ route('instructor.courses.create') }}" class="bg-blue-600 text-white px-6 py-3 font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-100">Buat Kursus Baru</a>
                 </div>
 
                 <div class="grid grid-cols-3 gap-8 mb-10">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="bg-white p-8 border border-gray-100 shadow-sm rounded-sm">
                         <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Rating</p>
-                        <p class="text-4xl font-bold text-blue-600 mt-2">4.8</p>
+                        <p class="text-4xl font-bold text-blue-600 mt-2">{{ $avgRating ?? '0.0' }}</p>
                     </div>
                 </div>
 
