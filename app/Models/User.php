@@ -49,6 +49,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function profile()
+{
+    return $this->hasOne(UserProfile::class, 'user_id');
+}
+
     public function enrollments(): HasMany 
     {
         return $this->hasMany(Enrollment::class); 
@@ -64,8 +69,5 @@ class User extends Authenticatable
         return $this->hasMany(Wishlist::class);
     }
 
-    public function profile()
-{
-    return $this->hasOne(UserProfile::class);
-}
+   
 }

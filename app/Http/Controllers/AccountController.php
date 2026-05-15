@@ -17,16 +17,12 @@ class AccountController extends Controller
 
     public function updateProfile(Request $request)
 {
-    $user = Auth::user();
+    /** @var \App\Models\User $user */
+    $user = Auth::user(); // Menggunakan Type Hint agar VS Code tidak merah
 
-    // Validasi data (opsional tapi disarankan)
-    $request->validate([
-        'headline' => 'nullable|max:60',
-    ]);
-
-    // Simpan atau update ke tabel user_profiles
+    // 1. Simpan ke tabel user_profiles
     $user->profile()->updateOrCreate(
-        ['user_id' => $user->id], // Keyword pencarian berdasarkan id user
+        ['user_id' => $user->id],
         [
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
@@ -42,9 +38,13 @@ class AccountController extends Controller
         ]
     );
 
+    // 2. SINKRONISASI: Update nama utama di tabel users
+    // Ini agar nama "Tisu Paseo" berubah menjadi nama baru Anda
+    $user->name = $request->first_name . ' ' . $request->last_name;
+    $user->save();
+
     return redirect()->back()->with('status', 'Profil berhasil diperbarui!');
 }
-
     public function updateEmail(Request $request)
     {
         $request->validate([
@@ -74,4 +74,13 @@ class AccountController extends Controller
         // Menggunakan key 'status' agar memicu alert hijau "Sandi Anda berhasil diperbarui!" di foto ketiga
         return back()->with('status', 'Sandi Anda berhasil diperbarui!');
     }
+
+    public function showPublicProfile($id)
+{
+    /** @var \App\Models\User $user */
+    // Mengambil user beserta data profilnya dari tabel user_profiles
+    $user = \App\Models\User::with('profile')->findOrFail($id);
+    
+    return view('profile.public', compact('user'));
+}
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\LearningController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AccountController;
 
+
 /*
 |--------------------------------------------------------------------------
 | 1. RUTE PUBLIK (Bebas Akses Tanpa Login)
@@ -137,4 +138,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
+    Route::put('/pengaturan-akun', [AccountController::class, 'update'])->name('account.update');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
+    Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
+    Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
+    Route::patch('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::get('/profil-publik/{id}', [AccountController::class, 'showPublicProfile'])->name('profile.public');
+});
+
+
+
