@@ -1,11 +1,11 @@
-<aside class="w-64 bg-[#8a05db] flex flex-col h-screen text-white">
+<aside class="w-64 bg-[#6a11cb] flex flex-col h-screen text-white">
     
-    <div class="h-16 flex items-center px-6 border-b border-white/10">
-        <span class="text-3xl font-black">
-            idemy
-        </span>
-    </div>
-
+        <div class="h-16 px-6 border-b border-white/10 flex flex-col justify-center pb-1">
+            <h1 class="text-2xl font-black tracking-tighter mb-0.5 leading-none">idemy</h1>
+    
+            <p class="text-[9px] text-[#a435f0] font-black uppercase tracking-widest">Admin Portal
+            </p>
+            </div>
     <nav class="flex-1 p-4 space-y-2">
 
         <a href="{{ route('admin.dashboard') }}"

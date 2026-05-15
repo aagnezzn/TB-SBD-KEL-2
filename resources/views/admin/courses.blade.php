@@ -13,13 +13,13 @@
 
     <main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         
-        <header class="h-16 bg-[#8710d8] border-b border-white/20 flex items-center justify-between px-8 shrink-0 shadow-md">
-            <h2 class="text-xl font-bold">Kelola kelas</h2>
+        <header class="h-16 bg-[#6a11cb] border-b border-white/20 flex items-center justify-between px-8 shrink-0 shadow-md">
+            <h2 class="text-xl font-bold text-white">Kelola kelas</h2>
             <div class="flex items-center gap-6">
-                <span class="text-sm font-semibold text-[#6a6f73]">Halo, Admin!</span>
+                <span class="text-sm font-semibold text-white/90">Halo, Admin!</span>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
-                    <button type="submit" class="text-sm font-bold text-red-500 hover:text-red-700 flex items-center gap-2">
+                    <button type="submit" class="text-sm font-bold text-red-500 hover:text-red-400 flex items-center gap-2">
                         <i class="fas fa-sign-out-alt"></i> Keluar
                     </button>
                 </form>
