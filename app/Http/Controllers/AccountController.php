@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    public function index()
-    {
-        // Mengambil data user yang login agar nilainya bisa muncul di form (misal: Nadia Stevany)
-        $user = Auth::user(); 
-        return view('profile.account', compact('user'));
-    }
+   public function index()
+{
+    // Menggunakan eager loading 'profile' agar data langsung tersedia
+    $user = \App\Models\User::find(Auth::id())->load('profile');
+    
+    return view('profile.account', compact('user'));
+}
 
     public function updateProfile(Request $request)
 {
@@ -36,12 +37,13 @@ class AccountController extends Controller
             'twitter'    => $request->twitter,
             'youtube'    => $request->youtube,
         ]
+        
     );
 
-    // 2. SINKRONISASI: Update nama utama di tabel users
-    // Ini agar nama "Tisu Paseo" berubah menjadi nama baru Anda
+    
     $user->name = $request->first_name . ' ' . $request->last_name;
     $user->save();
+    $user->profile->touch();
 
     return redirect()->back()->with('status', 'Profil berhasil diperbarui!');
 }
