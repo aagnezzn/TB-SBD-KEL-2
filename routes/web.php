@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-// Import Controllers
+// Import Semua Controller 
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;

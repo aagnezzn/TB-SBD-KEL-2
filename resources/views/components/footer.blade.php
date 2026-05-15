@@ -81,15 +81,20 @@
                 <span class="text-xs mt-1">© 2026 Idemy, Inc.</span>
             </div>
             <div>
-                <a href="#" class="hover:underline text-gray-400 hover:text-white">Pengaturan cookie</a>
+                <a href="#" class="hover:underline text-gray-400 hover:text-white">{{__('menu.Pengaturan cookie')}}</a>
             </div>
-            <div class="flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white transition">
+            {{-- Bahasa --}}
+            <button 
+                @click="languageModal = true" 
+                class="flex items-center space-x-2 cursor-pointer text-gray-400 hover:text-white transition bg-transparent border-none outline-none focus:outline-none"
+>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
                 </svg>
-                <span>Bahasa Indonesia</span>
-                
-            </div>
+                <span class="text-sm font-medium">
+                {{ App::getLocale() == 'id' ? 'Bahasa Indonesia' : (App::getLocale() == 'en' ? 'English' : 'Español') }}
+                </span>
+            </button>
         </div>
     </div>
 </footer>
