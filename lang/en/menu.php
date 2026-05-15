@@ -55,4 +55,6 @@ return [
     'legal' => 'Legal & Accessibility',
     'privacy' => 'Privacy policy',
     'terms' => 'Terms',
+    'Pengaturan cookie' => 'Cookie Settings',
+    
 ];

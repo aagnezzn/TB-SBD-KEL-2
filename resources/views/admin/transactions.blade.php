@@ -9,26 +9,7 @@
 </head>
 <body class="bg-[#f7f9fa] flex h-screen overflow-hidden font-sans text-[#1c1d1f]">
 
-    <aside class="w-64 bg-white border-r border-[#d1d7dc] flex flex-col shrink-0">
-        <div class="h-16 flex items-center px-6 border-b border-[#d1d7dc] shrink-0">
-            <span class="text-3xl font-bold">idemy <span class="text-sm font-normal text-[#a435f0] bg-purple-100 px-2 py-1 rounded">Admin</span></span>
-        </div>
-        
-        <nav class="flex-1 py-6 px-4 space-y-2">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-[#1c1d1f] hover:bg-gray-100 rounded-lg transition-colors">
-                <i class="fas fa-chart-pie w-6 text-[#6a6f73]"></i> Ringkasan
-            </a>
-            <a href="{{ route('admin.courses') }}" class="flex items-center px-4 py-3 text-[#1c1d1f] hover:bg-gray-100 rounded-lg transition-colors">
-                <i class="fas fa-video w-6 text-[#6a6f73]"></i> Kelola Kelas
-            </a>
-            <a href="{{ route('admin.transactions') }}" class="flex items-center px-4 py-3 text-[#a435f0] bg-[#f7f9fa] border border-[#d1d7dc] rounded-lg font-bold transition-colors">
-                <i class="fas fa-receipt w-6"></i> Transaksi
-            </a>
-            <a href="{{ route('admin.users') }}" class="flex items-center px-4 py-3 text-[#1c1d1f] hover:bg-gray-100 rounded-lg transition-colors">
-                    <i class="fas fa-users w-6 text-[#6a6f73]"></i> Pengguna
-            </a>
-        </nav>
-    </aside>
+    @include('admin.sidebar')
 
     <main class="flex-1 flex flex-col h-screen overflow-y-auto">
         <header class="h-16 bg-white border-b border-[#d1d7dc] flex items-center justify-between px-8 sticky top-0 z-10 shrink-0">

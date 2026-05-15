@@ -50,5 +50,9 @@ return [
     'Desain' => 'Diseño',
     'Desain Grafis' => 'Diseño Gráfico',
     'PMI Project Management Professional (PMP)' => 'PMI Project Management Professional (PMP)',
+    'Lihat kursus AI' => 'Ver cursos de IA',
+    'Lihat kursus iOS & Swift' => 'Ver cursos de iOS y Swift',
+    'Lihat kursus AWS ini' => 'Ver este curso de AWS',
+    'Sertifikat Profesional Google AI' => 'Certificado Profesional de Google AI',
 
 ];

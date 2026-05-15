@@ -55,5 +55,6 @@ return [
     'legal' => 'Legal & Aksesibilitas',
     'privacy' => 'Kebijakan privasi',
     'terms' => 'Persyaratan',
+    'Pengaturan cookie' => 'Pengaturan cookie',
 
 ];

@@ -26,17 +26,22 @@ class AdminController extends Controller
 
     public function courses()
     {
-        $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
-        return view('admin.courses', compact('courses'));
-    }
+    // Ambil data statistik yang dibutuhkan view
+    $totalPendapatan = Payment::where('status', 'success')->sum('amount');
+    $totalKelas = Course::count();
+    $totalSiswa = User::where('role', 'student')->count();
+    $transaksiTerbaru = Payment::latest()->take(5)->get();
 
-    public function transactions()
-    {
-        $payments = Payment::with(['enrollment.user', 'enrollment.course'])
-                    ->latest()
-                    ->paginate(10);
-                
-        return view('admin.transactions', compact('payments'));
+    $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
+
+    // Kirim SEMUA variabel yang dibutuhkan oleh view
+    return view('admin.courses', compact(
+        'courses', 
+        'totalPendapatan', 
+        'totalKelas', 
+        'totalSiswa', 
+        'transaksiTerbaru'
+    ));
     }
 
     public function users(Request $request)
@@ -55,6 +60,16 @@ class AdminController extends Controller
             ->withQueryString();
 
         return view('admin.users', compact('users'));
+    }
+
+    // Fungsi untuk halaman Transaksi
+    public function transactions()
+    {
+    $payments = Payment::with(['enrollment.user', 'enrollment.course'])
+                ->latest()
+                ->paginate(10);
+                
+    return view('admin.transactions', compact('payments'));
     }
 
     public function editCourse($id)
