@@ -37,16 +37,25 @@
 
 <main class="min-h-screen bg-white">
     @auth
-        {{-- === TAMPILAN SETELAH LOGIN (DIAMBIL DARI KODE PERTAMA) === --}}
-        <section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
+        {{-- === TAMPILAN SETELAH LOGIN (SUDAH DISINKRONKAN DENGAN FOTO) === --}}
+<section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
+    <div class="w-16 h-16 shrink-0">
+        @if(Auth::user()->profile && Auth::user()->profile->photo)
+            {{-- Menampilkan foto profil jika ada --}}
+            <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
+                 class="w-16 h-16 rounded-full object-cover">
+        @else
+            {{-- Fallback ke inisial hitam jika foto tidak ada --}}
             <div class="w-16 h-16 bg-[#1c1d1f] rounded-full flex items-center justify-center text-white text-2xl font-bold">
                 {{ substr(Auth::user()->name, 0, 1) }}
             </div>
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
-                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
-            </div>
-        </section>
+        @endif
+    </div>
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
+        <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
+    </div>
+</section>
 
         <section class="max-w-[1340px] mx-auto px-4 pb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>

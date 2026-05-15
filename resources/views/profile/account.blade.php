@@ -5,27 +5,38 @@
     <div class="max-w-6xl mx-auto py-16 px-6 flex flex-col md:flex-row gap-10">
         
         <aside class="w-full md:w-1/4">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6">
-                <div class="flex flex-col items-center">
-                    <div class="relative">
-                        <div class="w-24 h-24 bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center rounded-2xl text-3xl font-bold mb-4 shadow-lg transform -rotate-3">
-                            @php
-                                $words = explode(' ', auth()->user()->name);
-                                $initials = '';
-                                foreach (array_slice($words, 0, 2) as $w) {
-                                    $initials .= strtoupper(substr($w, 0, 1));
-                                }
-                            @endphp
-                            {{ $initials }}
-                        </div>
-                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-white rounded-full"></div>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6">
+        <div class="flex flex-col items-center">
+            <div class="relative">
+                @if($user->profile && $user->profile->photo)
+                    {{-- TAMPILKAN FOTO JIKA ADA --}}
+                    <img src="{{ asset('storage/photos/' . $user->profile->photo) }}" 
+                         class="w-24 h-24 object-cover rounded-2xl mb-4 shadow-lg transform -rotate-3 border-4 border-white">
+                @else
+                    {{-- TAMPILKAN INISIAL JIKA FOTO KOSONG --}}
+                    <div class="w-24 h-24 bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center rounded-2xl text-3xl font-bold mb-4 shadow-lg transform -rotate-3">
+                        @php
+                            $words = explode(' ', auth()->user()->name);
+                            $initials = '';
+                            foreach (array_slice($words, 0, 2) as $w) {
+                                $initials .= strtoupper(substr($w, 0, 1));
+                            }
+                        @endphp
+                        {{ $initials }}
                     </div>
-                    <h2 class="text-xl font-extrabold text-slate-800 text-center leading-tight mt-2">
-                        {{ auth()->user()->name }}
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Personal Account</p>
-                </div>
+                @endif
+                
+                {{-- Indikator Online --}}
+                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-white rounded-full"></div>
             </div>
+            
+            <h2 class="text-xl font-extrabold text-slate-800 text-center leading-tight mt-2">
+                {{ auth()->user()->name }}
+            </h2>
+            <p class="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Personal Account</p>
+        </div>
+    </div>
+
 
             <nav class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-2 space-y-1">
                 <a href="{{ route('profile.public', auth()->id()) }}" class="group flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
@@ -164,15 +175,73 @@
                 </div>
 
                 {{-- TAB FOTO --}}
-                <div x-show="activeTab === 'foto'" x-transition x-cloak>
-                    <div class="p-8 md:p-12 border-b border-slate-100 bg-white">
-                        <h1 class="text-3xl font-black text-slate-900 tracking-tight">Foto Profil</h1>
-                        <p class="text-slate-500 mt-2 text-lg">Kelola gambar profil publik Anda di sini.</p>
-                    </div>
-                    <div class="p-8 md:p-12">
-                        <p class="text-slate-500 text-sm italic">Fitur unggah gambar akan segera hadir.</p>
+<div x-show="activeTab === 'foto'" x-transition x-cloak>
+    <div class="p-8 md:p-12 border-b border-slate-100 bg-white">
+        <h1 class="text-3xl font-black text-slate-900 tracking-tight">Foto Profil</h1>
+        <p class="text-slate-500 mt-2 text-lg">Kelola gambar profil publik Anda di sini.</p>
+    </div>
+
+    <div class="p-8 md:p-12">
+        <form action="{{ route('settings.photo.update') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+            @csrf
+            @method('PUT')
+
+            {{-- Pratinjau Gambar --}}
+            <div class="space-y-4">
+                <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">Pratinjau gambar:</h3>
+                <div class="flex justify-center bg-slate-50 border border-dashed border-slate-200 rounded-3xl p-12">
+                    <div class="relative group">
+                        <img id="image-preview" 
+                             src="{{ $user->profile && $user->profile->photo ? asset('storage/photos/' . $user->profile->photo) : 'https://ui-avatars.com/api/?name='.urlencode($user->name) }}" 
+                             class="w-56 h-56 object-cover rounded-2xl shadow-2xl border-4 border-white transition-transform group-hover:scale-105">
                     </div>
                 </div>
+            </div>
+
+            {{-- Input File --}}
+            <div class="space-y-4">
+                <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">Tambah/Ganti Gambar:</h3>
+                <div class="flex flex-col md:flex-row gap-3">
+                    <input type="text" id="file-name-display" readonly placeholder="Tidak ada file yang dipilih"
+                           class="flex-1 bg-slate-50 border border-slate-200 p-4 rounded-2xl text-sm text-slate-600 focus:outline-none">
+                    
+                    <label for="photo-input" class="cursor-pointer bg-white border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-2xl font-bold text-sm hover:bg-indigo-50 transition-all text-center">
+                        Pilih File
+                    </label>
+                    <input type="file" name="photo" id="photo-input" class="hidden" accept="image/*" onchange="previewImage(this)">
+                </div>
+                @error('photo')
+                    <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Tombol Simpan --}}
+            <div class="pt-6 border-t border-slate-50">
+                <button type="submit" class="bg-indigo-600 text-white px-12 py-4 rounded-2xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all w-full md:w-auto">
+                    Simpan Foto
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- Tambahkan script ini di bagian bawah account.blade.php sebelum @endsection --}}
+<script>
+    function previewImage(input) {
+        const preview = document.getElementById('image-preview');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            fileNameDisplay.value = input.files[0].name;
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
                 {{-- TAB KEAMANAN --}}
                 <div x-show="activeTab === 'keamanan'" x-transition x-cloak x-data="{ openEmailModal: false }">

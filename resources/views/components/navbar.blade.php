@@ -148,68 +148,82 @@
             @endguest
 
             @auth
-                <div class="relative group cursor-pointer py-4">
-                    {{-- Inisial Nama dengan Titik Ungu --}}
-                    <div class="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg relative">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                        @if($cartCount > 0)
-                            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-[#a435f0] rounded-full border-2 border-white"></span>
-                        @endif
-                    </div>
-
-                    {{-- DROPDOWN PROFIL LENGKAP --}}
-                    <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[14px] cursor-default z-50">
-                        {{-- Header: Info User --}}
-                        <div class="p-4 border-b flex items-center gap-3">
-                            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                            </div>
-                            <div class="min-w-0">
-                                <div class="font-bold text-gray-900 truncate">{{ Auth::user()->name }}</div>
-                                <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
-                            </div>
-                        </div>
-
-                        {{-- Menu Bagian 1 --}}
-                        <div class="py-2 border-b">
-                            <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
-                            <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
-                                <span>Keranjang saya</span>
-                                @if($cartCount > 0)
-                                    <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
-                                @endif
-                            </a>
-                            <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
-                            <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
-                        </div>
-
-                        {{-- Menu Bagian 2 --}}
-                        <div class="py-2 border-b">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pemberitahuan</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pesan</a>
-                        </div>
-
-                        {{-- Menu Bagian 3 --}}
-                        <div class="py-2 border-b">
-                            <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">
-    Pengaturan akun
-</a>
-                            <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
-                        </div>
-
-                        {{-- Logout --}}
-                        <div class="py-2">
-                            <form action="{{ route('logout') }}" method="POST" class="m-0">
-                                @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
-                                    Keluar
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+    <div class="relative group cursor-pointer py-4">
+        {{-- Inisial Nama atau FOTO PROFIL dengan Titik Ungu --}}
+        <div class="w-11 h-11 rounded-full flex items-center justify-center relative overflow-visible">
+            @if(Auth::user()->profile && Auth::user()->profile->photo)
+                <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
+                     class="w-11 h-11 rounded-full object-cover">
+            @else
+                <div class="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
-            @endauth
+            @endif
+
+            {{-- Titik Ungu Notifikasi Keranjang --}}
+            @if($cartCount > 0)
+                <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-[#a435f0] rounded-full border-2 border-white z-10"></span>
+            @endif
+        </div>
+
+        {{-- DROPDOWN PROFIL LENGKAP --}}
+        <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[14px] cursor-default z-50">
+            {{-- Header: Info User --}}
+            <div class="p-4 border-b flex items-center gap-3">
+                <div class="w-12 h-12 shrink-0">
+                    @if(Auth::user()->profile && Auth::user()->profile->photo)
+                        <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
+                             class="w-12 h-12 rounded-full object-cover">
+                    @else
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                        </div>
+                    @endif
+                </div>
+                <div class="min-w-0">
+                    <div class="font-bold text-gray-900 truncate">{{ Auth::user()->name }}</div>
+                    <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
+                </div>
+            </div>
+
+            {{-- Menu Bagian 1 --}}
+            <div class="py-2 border-b">
+                <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
+                <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
+                    <span>Keranjang saya</span>
+                    @if($cartCount > 0)
+                        <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
+                    @endif
+                </a>
+                <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
+                <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
+            </div>
+
+            {{-- Menu Bagian 2 --}}
+            <div class="py-2 border-b">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pemberitahuan</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pesan</a>
+            </div>
+
+            {{-- Menu Bagian 3 --}}
+            <div class="py-2 border-b">
+                <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
+                <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
+            </div>
+
+            {{-- Logout --}}
+            <div class="py-2">
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
+                        Keluar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endauth
         </div>
     
 {{-- Dropdown Pilihan Bahasa --}}

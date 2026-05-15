@@ -85,4 +85,49 @@ class AccountController extends Controller
     
     return view('profile.public', compact('user'));
 }
+
+public function editPhoto()
+{
+    // Karena sudah digabung, kita arahkan ke view account 
+    // tapi sambil membawa parameter tab=foto agar Alpine.js membukanya
+    return redirect()->route('account.index', ['tab' => 'foto']);
+}
+
+public function updatePhoto(Request $request)
+{
+    $request->validate([
+        'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
+    /** @var \App\Models\User $user */
+    $user = Auth::user();
+
+    if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
+        
+        // 1. Ambil nama file lama untuk dihapus (biar tidak nyampah)
+        if ($user->profile && $user->profile->photo) {
+            $oldPath = public_path('storage/photos/' . $user->profile->photo);
+            if (file_exists($oldPath)) {
+                unlink($oldPath); // Hapus file fisik lama
+            }
+        }
+
+        // 2. Buat nama file baru
+        $fileName = time() . '_' . $user->id . '.' . $file->getClientOriginalExtension();
+        
+        // 3. PERBAIKAN: Gunakan move() langsung ke public_path
+        // Ini akan otomatis membuat folder 'photos' jika belum ada
+        $file->move(public_path('storage/photos'), $fileName);
+
+        // 4. Simpan hanya nama filenya saja ke database
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            ['photo' => $fileName]
+        );
+    }
+
+    return redirect()->route('account.index', ['tab' => 'foto'])
+                     ->with('status', 'Foto profil berhasil diperbarui!');
+}
 }

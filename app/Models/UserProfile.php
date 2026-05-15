@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserProfile extends Model
 {
     protected $fillable = [
-        'user_id', 'first_name', 'last_name', 'headline', 'bio', 
+        'user_id', 'first_name', 'last_name', 'headline', 'bio', 'photo',
         'website', 'facebook', 'instagram', 'linkedin', 'tiktok', 'twitter', 'youtube'
     ];
 
