@@ -23,15 +23,27 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
-            // 1. CEK: Apakah dia login lewat portal (Admin/Instructor) atau form utama?
+            // 1. Ambil data asal portal (dari hidden input di Blade)
             $lewatPortal = $request->has('from_portal');
+            $tipePortal = $request->input('portal_type'); // 'admin' atau 'instructor'
 
-            // 2. LOGIKA TENDANG & FEEDBACK: 
+            // 2. PROTEKSI PORTAL ADMIN: Jika di laman Admin tapi bukan akun Admin
+            if ($lewatPortal && $tipePortal === 'admin' && $user->role !== 'admin') {
+                Auth::logout();
+                return redirect()->route('admin.login')->with('error', 'Akses Ditolak! Ini portal khusus Admin.');
+            }
+
+            // 3. PROTEKSI PORTAL INSTRUCTOR: Jika di laman Instructor tapi bukan akun Instructor
+            if ($lewatPortal && $tipePortal === 'instructor' && $user->role !== 'instructor') {
+                Auth::logout();
+                return redirect()->route('instructor.login')->with('error', 'Akses Ditolak! Ini portal khusus Instruktur.');
+            }
+
+            // 4. PROTEKSI LAMAN DEPAN: Admin & Instructor tidak boleh login di form siswa umum
             if (!$lewatPortal && in_array($user->role, ['admin', 'instructor'])) {
-                $roleUser = $user->role; // Simpan role sebelum logout
+                $roleUser = $user->role;
                 Auth::logout();
 
-                // Pesan custom biar user nggak bingung
                 $pesan = ($roleUser === 'admin') 
                     ? 'Akun Admin terdeteksi. Silakan gunakan Portal Login Admin.' 
                     : 'Akun Instruktur terdeteksi. Silakan gunakan Portal Login Instruktur.';
@@ -39,7 +51,7 @@ class LoginController extends Controller
                 return redirect()->route('login')->with('error', $pesan);
             }
 
-            // 3. REDIRECT BERDASARKAN ROLE
+            // 5. REDIRECT AKHIR (Jika semua validasi lolos)
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } 

@@ -20,7 +20,8 @@
 
         <form action="{{ route('login.post') }}" method="POST" class="space-y-4">
             @csrf
-            <input type="hidden" name="from_portal" value="admin">
+            <input type="hidden" name="from_portal" value="1">
+            <input type="hidden" name="portal_type" value="admin">
             <div>
                 <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Email Admin</label>
                 <input type="email" name="email" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
