@@ -10,16 +10,22 @@ use Illuminate\Support\Facades\Storage;
 class AccountController extends Controller
 {
    public function index()
-    {
-    $user = \App\Models\User::find(Auth::id())->load('profile');
-    
-    return view('profile.account', compact('user'));
+{
+    /** @var \App\Models\User $user */
+    $user = \App\Models\User::find(Auth::id());
+
+    // JIKA AKUN BARU BELUM PUNYA PROFIL, OTOMATIS BUATKAN RECORD KOSONG DI DATABASE
+    if (!$user->profile) {
+        $user->profile()->create([
+            'first_name' => explode(' ', $user->name)[0] ?? 'User',
+            'last_name'  => explode(' ', $user->name)[1] ?? '',
+        ]);
+        
+        // Muat ulang data user beserta profil barunya
+        $user->load('profile');
     }
 
-    public function updateProfile(Request $request)
-    {
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
+    return view('profile.account', compact('user'));
 
     $user->profile()->updateOrCreate(
         ['user_id' => $user->id],

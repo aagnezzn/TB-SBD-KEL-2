@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
 
     // Pengaturan Akun
-    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
+    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.index');
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
     Route::patch('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
