@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             FAQSeeder::class,
-            DataTambahSendiriSeeder::class, // FIX: Pira & Naruto masuk ke DB sebelum data CSV di-load
+            DataTambahSendiriSeeder::class,
         ]);
 
-        // Baru eksekusi import data massal dari CSV
+        // eksekusi import data massal dari CSV
         $this->call(CourseSeeder::class);
     }
 }

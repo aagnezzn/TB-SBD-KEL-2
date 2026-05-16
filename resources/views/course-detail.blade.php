@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- Bagian Atas/Header --}}
+{{-- Header --}}
 <div class="bg-[#1c1d1f] text-white py-12">
     <div class="max-w-[1340px] mx-auto px-4 flex flex-col md:flex-row gap-8 relative">
         <div class="md:w-2/3 lg:w-3/5">
@@ -54,7 +54,7 @@
             <div class="text-xs text-center text-gray-600 mb-6">Jaminan uang kembali 30 hari</div>
             
             <div class="text-sm">
-                <div class="font-bold mb-2 font-bold">Kursus ini mencakup:</div>
+                <div class="font-bold mb-2">Kursus ini mencakup:</div>
                 <ul class="space-y-2 text-gray-700">
                     <li>✓ Video sesuai permintaan</li>
                     <li>✓ Akses seumur hidup penuh</li>
@@ -95,7 +95,7 @@
             @endforelse
         </div>
 
-        {{-- Bagian Review/Ulasan --}}
+        {{-- Bagian Review --}}
         <div class="mt-12 border-t border-gray-200 pt-10">
             <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2">
                 <span class="text-[#f69c08]">★</span> 

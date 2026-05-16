@@ -118,7 +118,7 @@
             notif.style.opacity = "0";
             setTimeout(() => notif.remove(), 500);
         }
-    }, 5000); // Notif hilang otomatis setelah 5 detik
+    }, 5000);
 </script>
 
 @endsection

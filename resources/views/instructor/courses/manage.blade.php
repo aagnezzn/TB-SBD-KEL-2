@@ -16,7 +16,7 @@
     </div>
 
     <div class="grid grid-cols-3 gap-10">
-        {{-- KIRI: Form Input Materi --}}
+        {{-- Form Input Materi --}}
         <div class="col-span-1">
             <div class="bg-white border border-purple-50 p-8 shadow-xl shadow-purple-900/5 rounded-2xl">
                 <h3 class="font-bold text-gray-800 mb-6 border-b border-purple-50 pb-4 uppercase text-[11px] tracking-widest">Input Materi Baru</h3>
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        {{-- KANAN: Daftar Pelajaran --}}
+        {{-- Daftar Pelajaran --}}
         <div class="col-span-2">
             <div class="bg-white border border-purple-50 shadow-xl shadow-purple-900/5 rounded-2xl overflow-hidden">
                 <div class="bg-[#fcfaff] p-5 border-b border-purple-50 flex items-center justify-between">

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="max-w-2xl mx-auto py-20 text-center">
-    {{-- Mengganti emoji ceklis dengan ikon font awesome --}}
     <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-8 font-bold flex items-center justify-center gap-2">
         <i class="fas fa-check-circle"></i> Kursus Anda berhasil disimpan ke database!
     </div>
@@ -23,7 +22,6 @@
         </form>
 
         @if(session('success'))
-            {{-- Mengganti emoji bintang dengan ikon font awesome --}}
             <div class="mt-8 p-4 bg-purple-100 text-purple-700 rounded-lg font-bold animate-bounce flex items-center justify-center gap-2">
                 <i class="fas fa-star"></i> {{ session('success') }}
             </div>

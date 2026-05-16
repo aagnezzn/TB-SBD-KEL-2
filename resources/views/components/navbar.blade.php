@@ -152,7 +152,7 @@
 
             @auth
     <div class="relative group cursor-pointer py-4">
-        {{-- Inisial Nama atau FOTO PROFIL dengan Titik Ungu --}}
+        {{-- Inisial Nama atau --}}
         <div class="w-11 h-11 rounded-full flex items-center justify-center relative overflow-visible">
             @if(Auth::user()->profile && Auth::user()->profile->photo)
                 <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 

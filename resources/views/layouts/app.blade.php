@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-gray-50 flex min-h-screen flex-col m-0 p-0 overflow-y-auto">
-{{-- 1. KITA TAMBAHKAN x-data="{ languageModal: false }" DI SINI AGAR STATE MODAL BISA DIAKSES GLOBAL --}}
+{{-- AGAR STATE MODAL BISA DIAKSES GLOBAL --}}
 <body x-data="{ languageModal: false }" class="bg-gray-50 flex min-h-screen flex-col m-0 p-0 overflow-y-auto">
     {{-- Banner Promo --}}
     <div class="w-full bg-[#addada] py-3 px-4 relative flex items-center justify-center border-b border-cyan-200 z-[9999]">
@@ -25,12 +25,12 @@
         </p>
     </div>
 
-    {{-- FIX UTAMA: Paksa navbar menduduki z-[9999] agar dropdown keranjang & profil melayang di atas semua halaman --}}
+    {{-- agar dropdown keranjang & profil melayang di atas semua halaman --}}
     <header class="relative z-[9999] w-full">
         @include('components.navbar')
     </header>
 
-    {{-- FIX PENDUKUNG: Set konten halaman di lapisan z-10 agar selalu mengalah di bawah navbar --}}
+    {{-- agar selalu mengalah di bawah navbar --}}
     <main class="flex-1 relative z-10">
         @yield('content')
     </main>
@@ -40,7 +40,7 @@
         @include('components.footer')
     </footer>
 
-    {{-- 2. KITA PASANG STRUKTUR MODAL POPUP DI SINI (SEBELUM PENUTUP BODY) --}}
+    {{-- PASANG STRUKTUR MODAL POPUP --}}
     <div 
         x-show="languageModal" 
         x-transition

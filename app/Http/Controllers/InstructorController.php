@@ -12,7 +12,7 @@ use App\Models\Payment;
 
 class InstructorController extends Controller
 {
-    // 1. Menampilkan Halaman Login (Sesuai rute instructor.login)
+    // 1. Menampilkan Halaman Login
     public function showLogin()
     {
         if (Auth::check() && Auth::user()->role === 'instructor') {
@@ -21,7 +21,7 @@ class InstructorController extends Controller
         return view('instructor.login');
     }
 
-    // 2. Dashboard Ringkasan (Sesuai rute instructor.dashboard)
+    // 2. Dashboard Ringkasan
     public function index()
 {
     $user = Auth::user();
@@ -42,18 +42,17 @@ class InstructorController extends Controller
         $query->whereIn('course_id', $courseIds);
     })->sum('amount');
 
-    // FAKTA: Kamu HARUS menambahkan 'avgRating' di dalam compact()
     return view('instructor.dashboard', compact('courses', 'totalCourses', 'totalStudents', 'totalRevenue', 'avgRating'));
 }
 
-    // 3. Daftar Kursus Saya (Sesuai rute instructor.courses.index)
+    // 3. Daftar Kursus Saya
     public function myCourses()
     {
         $courses = Course::where('instructor_id', Auth::id())->latest()->get();
         return view('instructor.courses.index', compact('courses'));
     }
 
-    // 4. Form Buat Kursus (Sesuai rute instructor.courses.create & add)
+    // 4. Form Buat Kursus 
     public function createCourse() {
         $categories = Category::all(); 
         return view('instructor.courses_create', compact('categories'));
@@ -64,7 +63,7 @@ class InstructorController extends Controller
         return $this->createCourse();
     }
 
-    // 5. Simpan Kursus (Sesuai rute instructor.courses.store & save)
+    // 5. Simpan Kursus
     public function storeCourse(Request $request)
     {
         $request->validate([
@@ -74,7 +73,6 @@ class InstructorController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        // Generator Angka Acak untuk Cache Buster gambar LoremFlickr
         $angkaAcak = rand(1000, 9999);
         $imageUrl = "https://loremflickr.com/640/360/computer,office?lock={$angkaAcak}";
 
@@ -88,13 +86,12 @@ class InstructorController extends Controller
             'status' => 'active',
         ]);
 
-        // FIX LOGIKA UTAMAMU DI SINI:
-        // Jika pembuatnya adalah Instruktur asli, langsung arahkan ke dashboard instruktur, jangan ke halaman upgrade role lagi!
+        // Jika pembuatnya adalah Instruktur asli, langsung arahkan ke dashboard instruktur, jangan ke halaman upgrade role lagi
         if (Auth::user()->role === 'instructor') {
             return redirect()->route('instructor.dashboard')->with('success', 'Kursus baru Anda berhasil diterbitkan!');
         }
 
-        // Ini jembatan penahan cadangan jika pembuatnya ternyata siswa yang baru mengajukan upgrade rute
+        // kalo yang ngisi siswa, dibalikkan ke halaman konfirmasi
         return redirect()->route('instructor.confirmation');
     }
 
@@ -103,7 +100,7 @@ class InstructorController extends Controller
         return $this->storeCourse($request);
     }
 
-    // 6. Manage & Edit (Sesuai rute manage & edit & update)
+    // 6. Manage & Edit
     public function manageCourse($id)
     {
         $course = Course::with('lessons')->where('instructor_id', Auth::id())->findOrFail($id);
@@ -118,7 +115,7 @@ class InstructorController extends Controller
         return view('instructor.courses.edit', compact('course', 'categories'));
     }
 
-    // Proses Perbaruan Data KursusSecara Aman
+    // Proses Perbaruan Data Kursus
    public function updateCourse(Request $request, $id)
 {
     // 1. Validasi
@@ -140,13 +137,13 @@ class InstructorController extends Controller
         'price' => $request->price,
     ]);
 
-    // 4. Update Materi (Lessons) - Inilah mesin pengubah judul materinya
+    // 4. Update Materi 
     if ($request->has('lessons')) {
         foreach ($request->lessons as $lessonId => $lessonData) {
             Lesson::where('id', $lessonId)
                   ->where('course_id', $course->id)
                   ->update([
-                      'title' => $lessonData['title'] // Mengambil input dari form tadi
+                      'title' => $lessonData['title']
                   ]);
         }
     }
@@ -154,7 +151,6 @@ class InstructorController extends Controller
     return redirect()->route('instructor.courses.index')->with('success', 'Perubahan berhasil disimpan!');
 }
 
-    // 7. Tambah Materi (Sesuai rute instructor.lessons.store)
     public function addLesson(Request $request, $id)
     {
         Lesson::create([
@@ -166,7 +162,7 @@ class InstructorController extends Controller
         return back()->with('success', 'Materi ditambahkan!');
     }
 
-    // 8. Daftar Siswa (Sesuai rute instructor.students.index)
+    // 8. Daftar Siswa 
     public function myStudents()
     {
         $instructor = Auth::user();
@@ -235,7 +231,7 @@ class InstructorController extends Controller
         return view('instructor.confirmation');
     }
 
-    // 10. Upgrade Role (Untuk Siswa jadi Instruktur)
+    // 10. Upgrade Role
     public function upgradeRole()
     {
         $user = Auth::user();

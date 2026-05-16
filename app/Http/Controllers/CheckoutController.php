@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         $now = Carbon::now();
         $lastPaymentId = null;
 
-        // Gunakan Database Transaction agar jika satu gagal, semua batal (aman dari data sampah)
+        // Gunakan Database Transaction agar jika satu gagal, semua batal
         DB::transaction(function () use ($cartItems, $now, $request, &$lastPaymentId) {
             foreach ($cartItems as $item) {
                 // 1. Buat Pendaftaran
@@ -62,14 +62,10 @@ class CheckoutController extends Controller
             // 3. Hapus keranjang setelah data pendaftaran & pembayaran aman
             Cart::where('user_id', Auth::id())->delete();
         });
-
-        // FIX ALUR: Jangan langsung ke learning, tapi mampir ke Invoice dulu
-        // Kita bawa ID pembayaran terakhir untuk ditampilkan QR Code-nya
         return redirect()->route('checkout.invoice', ['id' => $lastPaymentId])
                          ->with('success', 'Pesanan berhasil dibuat, silakan selesaikan pembayaran.');
     }
 
-    // TAMBAHKAN FUNGSI INI: Agar file invoice.blade.php bisa dipanggil
     public function invoice($id)
     {
         // Cari data pembayaran yang barusan dibuat
@@ -78,7 +74,6 @@ class CheckoutController extends Controller
         return view('invoice', compact('payment'));
     }
 
-    // Fungsi untuk tombol "Cek Status" di halaman invoice
     public function success($id)
     {
         return redirect()->route('learning.index')

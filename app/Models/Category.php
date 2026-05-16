@@ -10,7 +10,6 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['name', 'slug', 'parent_id'];
 
-    // Memanggil anak langsung (Level 2)
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
@@ -18,17 +17,15 @@ class Category extends Model
 
     public function parent()
     {
-    // Ini buat nyari siapa bapaknya (opsional tapi berguna)
+    // Ini buat nyari siapa bapaknya
     return $this->belongsTo(Category::class, 'parent_id');
     }
-    // Memanggil anak dari anak (Level 3 / Topik Populer)
-    // Digunakan dengan cara: $category->load('children.children')
+    // Memanggil anak dari anak
     public function subChildren()
     {
         return $this->children()->with('subChildren');
     }
 
-    // Tambahkan ini di dalam class Category
     public function getRouteKeyName()
     {
     return 'slug';

@@ -18,7 +18,7 @@ class Course extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    // Relasi ke User Instruktur (Menggunakan key kolom instructor_id sesuai migrasi database)
+    // Relasi ke User Instruktur
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'instructor_id');

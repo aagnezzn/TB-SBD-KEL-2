@@ -3,7 +3,6 @@
         <h2 class="text-2xl font-bold text-white mb-10">{{ __('menu.explore_title') }}</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
-            {{-- Mengambil semua 7 kategori utama dan membiarkannya membungkus rapi ke bawah --}}
             @foreach($navCategories->take(7) as $mainCat) 
             <div>
                 <h3 class="text-white font-extrabold text-base mb-4 uppercase tracking-wide text-[14px]">
@@ -11,7 +10,7 @@
                 </h3>
                 
                 <div class="space-y-4">
-                    {{-- Ambil Sub-Kategori (Tingkat 2) --}}
+                    {{-- Ambil Sub-Kategori --}}
                     @foreach($mainCat->children->take(2) as $subCat)
                     <div>
                         <span class="text-gray-400 font-semibold text-xs uppercase block mb-1 tracking-wider">

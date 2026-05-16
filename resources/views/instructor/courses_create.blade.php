@@ -1,11 +1,11 @@
 @extends('instructor.layout_instructor')
 
 @section('title', 'Buat Kursus Baru - Idemy')
-@section('page_title', 'Tambah Kursus') {{-- Muncul di header ungu atas --}}
+@section('page_title', 'Tambah Kursus') 
 
 @section('content')
     <div class="max-w-3xl mx-auto py-8">
-        {{-- Progress Bar Sederhana --}}
+        {{-- Progress Bar  --}}
         <div class="w-full bg-purple-100 h-1.5 mb-10 rounded-full overflow-hidden">
             <div class="bg-[#a435f0] h-full w-1/2 transition-all duration-500 shadow-[0_0_8px_rgba(164,53,240,0.5)]"></div>
         </div>
@@ -15,7 +15,7 @@
             <p class="text-gray-500 max-w-lg mx-auto">Isi detail dasar di bawah ini. Tenang saja, Anda bisa mengubah semua ini nanti setelah kursus terdaftar.</p>
         </div>
 
-        {{-- Faktanya: Card utama menggunakan border tipis ungu agar terlihat mewah --}}
+        {{-- Card utama --}}
         <div class="bg-white border border-purple-50 shadow-xl shadow-purple-900/5 rounded-2xl p-10">
             <form action="{{ route('instructor.courses.store') }}" method="POST" class="space-y-8">
                 @csrf
