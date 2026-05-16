@@ -159,4 +159,6 @@ Route::get('/profil-publik/{id}', [App\Http\Controllers\AccountController::class
 // Pastikan route update tetap menunjuk ke fungsi updatePhoto
 Route::put('/pengaturan/foto/update', [AccountController::class, 'updatePhoto'])->name('settings.photo.update');
 
+Route::delete('/account/profile/photo', [AccountController::class, 'deletePhoto'])->name('account.avatar.delete');
+
 

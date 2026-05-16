@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
@@ -32,10 +33,7 @@ class AccountController extends Controller
             'website'    => $request->website,
             'facebook'   => $request->facebook,
             'instagram'  => $request->instagram,
-            'linkedin'   => $request->linkedin,
-            'tiktok'     => $request->tiktok,
             'twitter'    => $request->twitter,
-            'youtube'    => $request->youtube,
         ]
         
     );
@@ -129,5 +127,28 @@ public function updatePhoto(Request $request)
 
     return redirect()->route('account.index', ['tab' => 'foto'])
                      ->with('status', 'Foto profil berhasil diperbarui!');
+}
+
+public function deletePhoto()
+{
+    /** @var \App\Models\User $user */
+    $user = Auth::user();
+
+    // Cek apakah user punya foto di profilnya
+    if ($user->profile && $user->profile->photo) {
+        // Hapus file foto dari folder storage/photos
+        if (Storage::disk('public')->exists('photos/' . $user->profile->photo)) {
+            Storage::disk('public')->delete('photos/' . $user->profile->photo);
+        }
+
+        // Set kolom photo di database menjadi null
+        $user->profile()->update([
+            'photo' => null
+        ]);
+
+        return redirect()->back()->with('status', 'Foto profil berhasil dihapus!');
+    }
+
+    return redirect()->back()->with('error', 'Anda tidak memiliki foto profil untuk dihapus.');
 }
 }

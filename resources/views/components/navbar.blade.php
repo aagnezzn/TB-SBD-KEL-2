@@ -202,11 +202,7 @@
                 <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
             </div>
 
-            {{-- Menu Bagian 2 --}}
-            <div class="py-2 border-b">
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pemberitahuan</a>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pesan</a>
-            </div>
+            
 
             {{-- Menu Bagian 3 --}}
             <div class="py-2 border-b">

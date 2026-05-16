@@ -35,46 +35,41 @@
         </div>
     </div>
 
-    <div class="bg-[#232433] py-8 px-10 border-t border-gray-800">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-8 mb-10">
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">{{ __('menu.about') }}</h3>
-                <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                    <li><a href="#" class="hover:underline">{{ __('menu.about_us') }}</a></li>
-                    <li><a href="#" class="hover:underline">{{ __('menu.careers') }}</a></li>
-                    <li><a href="#" class="hover:underline">{{ __('menu.contact') }}</a></li>
-                    <li><a href="#" class="hover:underline">Blog</a></li>
-                    <li><a href="#" class="hover:underline">Investor</a></li>
-                </ul>
-            </div>
+    <div class="bg-[#232433] py-8 border-t border-gray-800">
+       <div class="max-w-[1340px] mx-auto px-4 md:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-8 mb-10 items-start">
+                
+                {{-- KOLOM 1: IDEMY TEAM & NAMA ANGGOTA KELOMPOK --}}
+                <div>
+                    <h3 class="text-purple-400 font-bold text-base mb-3">Idemy Team</h3>
+                    {{-- Daftar nama 4 anggota kelompok --}}
+                    <ul class="space-y-1.5 text-xs text-gray-400 font-medium tracking-wide">
+                        <li>• Khairunnisa</li>
+                        <li>• Nadia Stevany S</li>
+                        <li>• Agnes Natalia S</li>
+                        <li>• Limjun Basani S</li>
+                    </ul>
+                </div>
 
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
-                <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                    <li><a href="#" class="hover:underline">Dapatkan aplikasi</a></li>
-                    <li><a href="#" class="hover:underline">Mengajar di Idemy</a></li>
-                    <li><a href="#" class="hover:underline">Paket dan Harga</a></li>
-                    <li><a href="#" class="hover:underline">Afiliasi</a></li>
-                </ul>
-            </div>
+                {{-- KOLOM 2: JELAJAHI IDEMY --}}
+                <div>
+                    <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
+                    <ul class="space-y-2 text-sm leading-snug text-gray-400">
+                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">Mengajar di Idemy</a></li>
+                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">Paket dan Harga</a></li>
+                    </ul>
+                </div>
 
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">Idemy for Business</h3>
-                <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                    <li><a href="#" class="hover:underline">Idemy Business</a></li>
-                </ul>
+                {{-- KOLOM 3: LEGALITAS --}}
+                <div>
+                    <h3 class="text-white font-bold text-base mb-4">{{ __('menu.legal') }}</h3>
+                    <ul class="space-y-2 text-sm leading-snug text-gray-400">
+                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">{{ __('menu.privacy') }}</a></li>
+                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">{{ __('menu.terms') }}</a></li>
+                    </ul>
+                </div>
+                
             </div>
-
-            <div>
-                <h3 class="text-white font-bold text-base mb-4">{{ __('menu.legal') }}</h3>
-                <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                    <li><a href="#" class="hover:underline">{{ __('menu.privacy') }}</a></li>
-                    <li><a href="#" class="hover:underline">{{ __('menu.terms') }}</a></li>
-                    <li><a href="#" class="hover:underline">Peta situs web</a></li>
-                </ul>
-            </div>
-        </div>
-
         <div class="border-t border-gray-700 mt-10 py-6 flex flex-col md:flex-row justify-between items-center text-sm">
             <div class="flex items-center space-x-4 mb-6 md:mb-0">
                 <span class="text-3xl font-extrabold text-white tracking-tighter">idemy</span>

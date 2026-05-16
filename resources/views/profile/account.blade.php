@@ -134,10 +134,8 @@
             'website'   => ['domain' => 'Situs web (http(s)://..)', 'placeholder' => '', 'hint' => ''],
             'facebook'  => ['domain' => 'facebook.com/', 'placeholder' => 'Nama pengguna', 'hint' => 'Tambahkan nama pengguna Facebook Anda (misalnya johnsmith).'],
             'instagram' => ['domain' => 'instagram.com/', 'placeholder' => 'Nama pengguna', 'hint' => 'Masukkan nama pengguna Instagram Anda (misalnya johnsmith).'],
-            'linkedin'  => ['domain' => 'linkedin.com/', 'placeholder' => 'URL Profil Publik', 'hint' => 'Masukkan URL profil publik LinkedIn Anda (misalnya in/johnsmith, perusahaan/udemy).'],
-            'tiktok'    => ['domain' => 'tiktok.com/', 'placeholder' => '@Username', 'hint' => 'Masukkan nama pengguna TikTok Anda (misalnya @johnsmith).'],
-            'twitter'   => ['domain' => 'x.com/', 'placeholder' => 'Nama pengguna', 'hint' => 'Tambahkan nama pengguna X Anda (misalnya johnsmith).'],
-            'youtube'   => ['domain' => 'youtube.com/', 'placeholder' => 'Nama pengguna', 'hint' => 'Masukkan nama pengguna YouTube Anda (misalnya johnsmith).']
+            'twitter'   => ['domain' => 'x.com/', 'placeholder' => 'Nama pengguna', 'hint' => 'Tambahkan nama pengguna X Anda (misalnya johnsmith).']
+            
         ]; 
     @endphp
 
@@ -196,6 +194,7 @@
                              class="w-56 h-56 object-cover rounded-2xl shadow-2xl border-4 border-white transition-transform group-hover:scale-105">
                     </div>
                 </div>
+                
             </div>
 
             {{-- Input File --}}
@@ -222,6 +221,18 @@
                 </button>
             </div>
         </form>
+        <div class="mt-4 flex items-center gap-4">
+    {{-- Tombol Hapus hanya muncul jika user memang punya foto profil di database --}}
+    @if(Auth::user()->profile && Auth::user()->profile->photo)
+        <form action="{{ route('account.avatar.delete') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto profil ini?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded-xl font-bold text-sm transition cursor-pointer">
+                Hapus Foto Profil
+            </button>
+        </form>
+    @endif
+</div>
     </div>
 </div>
 

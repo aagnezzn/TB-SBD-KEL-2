@@ -10,12 +10,19 @@
             <div class="h-32 bg-[#a435f0]"></div> 
             
             <div class="px-8 pb-8">
-                <div class="relative flex justify-between items-end -mt-12 mb-6">
-                    <div class="w-32 h-32 bg-white p-2 rounded-full shadow-lg">
-                        <div class="w-full h-full bg-[#2d2f31] rounded-full flex items-center justify-center text-4xl font-bold text-white">
-                            {{ substr($user->name, 0, 1) }}
-                        </div>
-                    </div>
+    <div class="relative flex justify-between items-end -mt-12 mb-6">
+        <div class="w-32 h-32 bg-white p-2 rounded-full shadow-lg overflow-hidden flex items-center justify-center">
+            @if($user->profile && $user->profile->photo)
+                {{-- TAMPILKAN FOTO JIKA ADA --}}
+                <img src="{{ asset('storage/photos/' . $user->profile->photo) }}" 
+                     class="w-full h-full rounded-full object-cover">
+            @else
+                {{-- FALLBACK KE INISIAL HURUF HITAM JIKA KOSONG --}}
+                <div class="w-full h-full bg-[#2d2f31] rounded-full flex items-center justify-center text-4xl font-bold text-white">
+                    {{ substr($user->name, 0, 1) }}
+                </div>
+            @endif
+        </div>
                     
                     @if(auth()->id() == $user->id)
                     <a href="{{ url('/pengaturan-akun?tab=profil') }}" 
@@ -41,23 +48,26 @@
             'website' => 'globe', 
             'facebook' => 'facebook', 
             'instagram' => 'instagram', 
-            'linkedin' => 'linkedin', 
-            'tiktok' => 'tiktok', 
-            'twitter' => 'twitter', 
-            'youtube' => 'youtube'
+            'twitter' => 'twitter'
+            
         ]; 
     @endphp
 
-    @foreach($sosmeds as $field => $icon)@if(!empty($user->profile->$field))@php
-                $value = $user->profile->$field;
-                if (str_contains($value, 'http')) {
-                    $url = $value;
+    @foreach($sosmeds as $field => $icon)
+    @if(!empty($user->profile->$field))
+        @php
+            $value = $user->profile->$field;
+            if (str_contains($value, 'http')) {
+                $url = $value;
+            } else {
+                if ($field == 'website') {
+                    $url = 'https://' . $value;
+                } elseif ($field == 'twitter') {
+                    $url = 'https://twitter.com/' . $value;
                 } else {
-                    if ($field == 'website') $url = 'https://' . $value;
-                    elseif ($field == 'twitter') $url = 'https://twitter.com/' . $value;
-                    elseif ($field == 'tiktok') $url = 'https://tiktok.com/@' . ltrim($value, '@');
-                    else $url = 'https://' . $field . '.com/' . $value;
+                    $url = 'https://' . $field . '.com/' . $value;
                 }
+            }
             @endphp<a href="{{ $url }}" target="_blank" class="text-slate-500 hover:text-[#a435f0] transition-colors text-xl inline-flex items-center justify-center"><i class="fab fa-{{ $icon }}"></i></a>@endif @endforeach
 </div>
 
