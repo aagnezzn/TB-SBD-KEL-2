@@ -99,7 +99,10 @@
                         @forelse($cartItems as $item)
                             <div class="flex gap-4 mb-5 last:mb-0 group/item relative">
                                 <a href="{{ route('course.show', $item->course->id) }}" class="shrink-0">
-                                    <img src="https://loremflickr.com/120/80/tech?random={{ $item->course->id }}" class="w-20 h-14 object-cover rounded-md shadow-sm group-hover/item:opacity-80 transition">
+                                    {{-- FAKTA: DI SINI KODENYA SAYA PERBAIKI AGAR SINKRON DENGAN DATABASE --}}
+                                    <img src="{{ $item->course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640' }}" 
+                                         class="w-20 h-14 object-cover rounded-md shadow-sm group-hover/item:opacity-80 transition"
+                                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640';">
                                 </a>
                                 <div class="flex flex-col flex-grow">
                                     <a href="{{ route('course.show', $item->course->id) }}">
