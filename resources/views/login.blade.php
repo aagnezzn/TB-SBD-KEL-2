@@ -12,7 +12,7 @@
         <div class="w-full max-w-[400px]">
             
             <h1 class="text-center font-bold text-[28px] leading-tight mb-8 text-[#1c1d27]">
-                Login untuk melanjutkan perjalanan belajar Anda
+                {{__('login.Login') }} 
             </h1>
 
             @if(session('error'))
@@ -25,27 +25,27 @@
             <form action="{{ route('login.post') }}" method="POST" class="space-y-4">
                 @csrf
                 <div>
-                    <input type="email" name="email" placeholder="Email" required
+                    <input type="email" name="email" placeholder="{{ __('login.Email') }}" required
                         class="w-full border-2 border-[#1c1d27] p-4 font-bold text-[16px] focus:outline-none">
                 </div>
 
                 <div class="relative">
-                    <input type="password" name="password" placeholder="Kata Sandi" required
+                    <input type="password" name="password" placeholder="{{ __('login.Password') }}" required
                         class="w-full border-2 border-[#1c1d27] p-4 font-bold text-[16px] focus:outline-none">
                 </div>
 
                 <button type="submit" 
                     class="w-full bg-[#a435f0] text-white font-bold py-4 text-[18px] hover:bg-[#8710d8] transition-colors">
-                    Login
+                    {{__('login.masuk') }}
                 </button>
             </form>
 
             <div class="text-center mt-4">
-                <span class="text-[14px]"><a href="#" class="text-[#a435f0] font-bold underline">Lupa Kata Sandi</a></span>
+                <span class="text-[14px]"><a href="#" class="text-[#a435f0] font-bold underline">{{__('login.Lupa') }}</a></span>
             </div>
 
             <div class="mt-6 text-center text-sm border-t pt-4">
-                <p class="text-black">Punya akses khusus? 
+                <p class="text-black">{{__('login.Punya') }}
                     <a href="/admin/login" class="text-[#a435f0] font-semibold hover:underline">Admin</a> 
                     <span class="mx-1 text-gray-300">|</span>
                     <a href="/instructor/login" class="text-[#a435f0] font-semibold hover:underline">Instructor</a>
@@ -53,8 +53,8 @@
             </div>
 
             <div class="mt-8 text-center text-[15px] border-t border-gray-200 pt-5">
-                <span class="text-[#1c1d27]">Tidak punya akun?</span>
-                <a href="/register" class="text-[#a435f0] font-bold hover:text-[#8710d8] underline underline-offset-4 ml-1">Daftar</a>
+                <span class="text-[#1c1d27]">{{__('login.Tidak') }} </span>
+                <a href="/register" class="text-[#a435f0] font-bold hover:text-[#8710d8] underline underline-offset-4 ml-1">{{__('login.Daftar') }}</a>
             </div>
 
         </div>

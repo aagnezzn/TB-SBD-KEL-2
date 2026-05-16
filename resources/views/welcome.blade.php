@@ -52,14 +52,14 @@
         @endif
     </div>
     <div>
-        <h1 class="text-2xl font-bold text-gray-900">Jumpa lagi, {{ Auth::user()->name }}</h1>
-        <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">Tambahkan pekerjaan dan minat</p>
+        <h1 class="text-2xl font-bold text-gray-900">{{__('welcome.Jumpa') }}  {{ Auth::user()->name }}</h1>
+        <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">{{__('welcome.Tambahkan') }} </p>
     </div>
 </section>
 
         <section class="max-w-[1340px] mx-auto px-4 pb-12">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Apa yang akan dipelajari berikutnya</h2>
-            <p class="text-lg font-bold text-gray-800 mb-6">Direkomendasikan untuk Anda</p>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">{{__('welcome.Apa') }}</h2>
+            <p class="text-lg font-bold text-gray-800 mb-6">{{__('welcome.Direkomendasikan')}}</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
                 @foreach ($recommendedCourses as $course)
@@ -98,10 +98,10 @@
 
                             <div class="flex space-x-2">
                                 <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
-                                    <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
+                                    <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> {{__('welcome.Premium') }}
                                 </span>
                                 <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
-                                    Terlaris
+                                    {{ __('welcome.Terlaris') }}
                                 </span>
                             </div>
                         </a>
@@ -112,18 +112,18 @@
                                 <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
                                         
                                 <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
-                                <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
+                                <p class="text-xs text-green-700 font-bold mb-3">{{__('welcome.Diperbarui')}}</p>
                                 
                                 <ul class="text-sm text-gray-600 mb-5 space-y-2">
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Akses selamanya ke materi lengkap.</span></li>
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Sertifikat penyelesaian kursus.</span></li>
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Bisa diakses dari HP maupun Laptop.</span></li>
+                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Akses')}}</span></li>
+                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Sertifikat') }} </span></li>
+                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Bisa')}}</span></li>
                                 </ul>
 
                                 <form action="{{ route('cart.add', $course->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
-                                        Tambahkan ke keranjang
+                                        {{__('welcome.Tambahkan ke keranjang')}}
                                     </button>
                                 </form>
                             </div>
@@ -132,7 +132,7 @@
                 @endforeach
             </div>
 
-            <p class="text-lg font-bold text-gray-800 mb-6 mt-8">Kursus Populer</p>
+            <p class="text-lg font-bold text-gray-800 mb-6 mt-8">{{__('welcome.Kursus Populer')}}</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
                 @foreach ($popularCourses as $course)
@@ -171,10 +171,10 @@
 
                         <div class="flex space-x-2">
                             <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
-                                <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span> Premium
+                                <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span>{{__('welcome.Premium') }}
                             </span>
                             <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
-                                Terlaris
+                               {{ __('welcome.Terlaris') }}
                             </span>
                         </div>
                     </a>
@@ -185,18 +185,18 @@
                             <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
                                     
                             <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
-                            <p class="text-xs text-green-700 font-bold mb-3">Diperbarui April 2026</p>
+                            <p class="text-xs text-green-700 font-bold mb-3">{{__('welcome.Diperbarui')}}</p>
                             
                             <ul class="text-sm text-gray-600 mb-5 space-y-2">
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Materi terpopuler dengan ulasan positif.</span></li>
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Akses penuh seumur hidup.</span></li>
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>Sertifikat kursus setelah selesai.</span></li>
+                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Materi')}}</span></li>
+                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Akses')}} </span></li>
+                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Sertifikat kursus')}} </span></li>
                             </ul>
 
                             <form action="{{ route('cart.add', $course->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
-                                    Tambahkan ke keranjang
+                                    {{__('welcome.Tambahkan ke keranjang')}}
                                 </button>
                             </form>
                         </div>
@@ -252,7 +252,7 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
                         <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                         <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            idemy benar-benar <strong>pembawa perubahan dan pemandu hebat</strong> bagi saya saat Dimensional diluncurkan.
+                            {{__('welcome.idemy benar-benar')}} <strong>{{__('welcome.pembawa')}} </strong> {{__('welcome.bagi')}}
                         </p>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -269,7 +269,7 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
                         <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                         <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            Udemy memberikan Anda kegigihan. Saya mempelajari hal yang benar-benar saya perlukan di dunia nyata. Ini membantu saya <strong>mendapatkan pekerjaan baru.</strong>
+                            {{__('welcome.Udemy memberikan')}}<strong>{{__('welcome.mendapatkan')}} </strong>
                         </p>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -286,7 +286,7 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
                         <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                         <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            Saya sangat menyukai kursus tentang AI Studio. Awalnya saya belum mengenal alat ini, tetapi setelah mengikuti kursus, saya langsung menerapkannya untuk firma hukum saya.
+                            {{__('welcome.Saya')}} 
                         </p>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
@@ -371,7 +371,7 @@
                                         </a>
                                     </div>
                                 @empty
-                                    <div class="text-gray-500 text-sm py-4">Tidak ada kategori ditemukan di database.</div>
+                                    <div class="text-gray-500 text-sm py-4">{{__('welcome.Tidak ada')}}</div>
                                 @endforelse
                             </div>
                         </div>
@@ -429,16 +429,7 @@
         </section>
     @endif
 
-    {{-- Pemilih Bahasa Internasional (Tetap Ada di Luar Blok Auth/Guest) --}}
-    <div class="max-w-[1340px] mx-auto px-4 pb-12 flex justify-end">
-        <div class="relative inline-block text-left z-50">
-            <select onchange="location = this.value;" class="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 focus:outline-none cursor-pointer shadow-sm">
-                <option value="{{ route('change.lang', 'id') }}" {{ app()->getLocale() == 'id' ? 'selected' : '' }}>🇮🇩 ID</option>
-                <option value="{{ route('change.lang', 'en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>🇺🇸 EN</option>
-                <option value="{{ route('change.lang', 'es') }}" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>🇪🇸 ES</option>
-            </select>
-        </div>
-    </div>
+
 </main>
 
 <script>
