@@ -21,33 +21,29 @@ class CourseSeeder extends Seeder
 
         $open = fopen($file, "r");
         
-        // Deteksi Delimiter (Koma atau Titik Koma)
         $firstLine = fgets($open);
         $delimiter = (strpos($firstLine, ';') !== false) ? ';' : ',';
         rewind($open);
         
-        fgetcsv($open, 2000, $delimiter); // Skip header CSV
+        fgetcsv($open, 2000, $delimiter);
 
         $categories = Category::all();
         $instructorIds = User::where('role', 'instructor')->pluck('id')->toArray();
         $studentIds = User::where('role', 'student')->pluck('id')->toArray();
 
-        // Template pelajaran agar konten materi bervariasi
         $lessonTemplates = [
             ['Pengenalan Mendasar dan Setup Lingkungan Kerja', 'Video pengenalan awal mengenai konsep dasar, instalasi tools pendukung, serta konfigurasi environment awal agar siap memulai pembelajaran.'],
             ['Konsep Inti, Arsitektur, dan Alur Kerja Utama', 'Membahas pemahaman mendalam tentang arsitektur utama, komponen penting, serta bagaimana alur logika sistem bekerja di dunia nyata.'],
             ['Praktik Implementasi, Studi Kasus Nyata, dan Tips Terbaik', 'Sesi praktik langsung membangun sebuah mini-project, memecahkan masalah umum, disertai dengan tips and tricks optimasi performa.']
         ];
 
-        // Variasi kalimat review bahasa Indonesia
         $pembuka = ['Materi kursus sangat', 'Penjelasan dari instruktur bener-bener', 'Kelas ini beneran', 'Modul pembelajarannya begitu', 'Penyampaian materinya sangat', 'Suka banget, kurikulumnya'];
         $inti = [' gampang diikuti dan dipahami,', ' terstruktur rapi dari awal sampai akhir,', ' interaktif dan ga bikin bosen sama sekali,', ' lengkap banget dengan contoh kasus nyata,', ' jelas dan langsung ke inti pembahasan,', ' detail banget pas bagian bedah codingan,'];
         $penutup = [' recommended pol buat pemula!', ' ngebantu banget buat nambah portofolio.', ' worth it parah sih wajib dibeli.', ' bikin makin semangat buat dalemin materi ini.', ' cocok buat yang mau ganti karir ke bidang ini.', ' dapet banyak insight baru dari studi kasusnya.'];
         $uniqueWords = ['mantap', 'keren', 'top', 'oke', 'rekomended', 'jos', 'puas', 'bintang lima', 'sukses', 'paham', 'ciamik', 'luar biasa'];
         
         $paymentMethods = ['OVO', 'Transfer Bank', 'Dana'];
-        
-        // Buat counter untuk mengamankan keunikan seed gambar lokator
+
         $imageCounter = 1;
 
         while (($data = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
@@ -55,7 +51,7 @@ class CourseSeeder extends Seeder
             
             $subject = (isset($data[10])) ? trim($data[10], '"') : 'General';
             
-            // LOGIKA FIX: Tentukan keyword pencarian gambar berdasarkan subjek agar gambar relevan dengan tema kursus
+            // Tentukan keyword pencarian gambar berdasarkan subjek agar gambar relevan dengan tema kursus
             $keyword = 'computer,office';
             if (Str::contains(strtolower($subject), ['web', 'coding', 'programming', 'javascript', 'html', 'php', 'laravel'])) {
                 $keyword = 'coding,programming';
@@ -68,7 +64,6 @@ class CourseSeeder extends Seeder
             }
 
             // 1. BUAT KURSUS MASTER WITH DYNAMIC IMAGE LOCK
-            // Menggunakan LoremFlickr dengan parameter '?lock=' + counter memastikan gambar bervariasi total tiap baris data!
             $course = Course::create([
                 'category_id'   => $categories->random()->id,
                 'instructor_id' => $instructorIds[array_rand($instructorIds)],
@@ -79,7 +74,7 @@ class CourseSeeder extends Seeder
                 'status'        => 'active',
             ]);
 
-            $imageCounter++; // Naikkan angka counter agar baris data kursus berikutnya mendapat gambar berbeda
+            $imageCounter++;
 
             // 2. BULK INSERT LESSON BERVARIASI
             $lessons = [];

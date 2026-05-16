@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Open Sans', sans-serif; }
-        /* Faktanya: Custom scrollbar agar tetap cantik tapi fungsional */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #fcfaff; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #dcd0ff; border-radius: 10px; }
@@ -17,12 +16,9 @@
     </style>
 </head>
 <body class="bg-[#fcfaff] text-[#1c1d1f] antialiased">
-    {{-- Container Utama: h-screen & overflow-hidden wajib agar layout tidak hancur --}}
     <div class="flex h-screen overflow-hidden">
         
-        {{-- SIDEBAR: Tetap di kiri --}}
         <aside class="w-72 bg-[#5624d0] flex flex-col h-screen text-white shrink-0 shadow-2xl z-20">
-            {{-- Logo Section: h-24 --}}
             <div class="h-24 px-8 border-b border-white/10 flex flex-col justify-center shrink-0">
                 <h1 class="text-3xl font-black tracking-tighter leading-none">idemy</h1>
                 <p class="text-[10px] text-[#a435f0] font-black uppercase tracking-widest mt-1">Instructor Portal</p>
@@ -71,17 +67,17 @@
             </div>
         </aside>
 
-        {{-- AREA UTAMA: Header + Content --}}
+        {{-- Header + Content --}}
         <main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
             
-            {{-- HEADER: h-24 --}}
-            <header class="h-24 bg-[#5624d0] border-b border-white/10 flex items-center justify-between px-12 shrink-0">
+            {{-- HEADER --}}
+            <header class="h-24 bg-white border-b border-white/20 flex items-center justify-between px-8 shrink-0 shadow-md">
                 {{-- KIRI: Page Title --}}
-                <div class="font-bold text-white/60 text-xs uppercase tracking-widest italic">
+                <div class="text-xl font-bold text-black">
                     @yield('page_title')
                 </div>
 
-                {{-- KANAN: User Info --}}
+                {{-- User Info --}}
                 <div class="flex items-center gap-6">
                     <span class="text-sm font-bold text-white">{{ Auth::user()->name }}</span>
                     <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#5624d0] font-bold uppercase border-4 border-white shadow-lg shadow-purple-900/20">
@@ -90,8 +86,7 @@
                 </div>
             </header>
 
-            {{-- ISI KONTEN: Di sinilah perbaikan scroll-nya --}}
-            {{-- Faktanya: h-full dan overflow-y-auto pada div ini akan mengaktifkan scroll --}}
+            {{-- ISI KONTEN --}}
             <div class="flex-1 overflow-y-auto p-12 custom-scrollbar bg-[#fcfaff]">
                 <div class="max-w-6xl mx-auto">
                     @yield('content')

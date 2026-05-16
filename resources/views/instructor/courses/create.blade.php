@@ -1,7 +1,7 @@
 @extends('instructor.layout_instructor')
 
 @section('title', 'Buat Kursus Baru - IDEMY')
-@section('page_title', 'Langkah 1: Detail Kursus') {{-- Muncul di header ungu atas --}}
+@section('page_title', 'Langkah 1: Detail Kursus')
 
 @section('content')
     <div class="max-w-3xl mx-auto">

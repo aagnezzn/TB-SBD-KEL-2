@@ -20,7 +20,7 @@ class InstructorMiddleware
         return $next($request);
     }
 
-    // Jika bukan instructor, tendang ke login instructor
+    // Jika bukan instructor, diarahkan ke login instructor
     return redirect()->route('instructor.login')->with('error', 'Halaman khusus Instruktur!');
 }
 }

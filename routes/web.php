@@ -86,6 +86,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
     Route::patch('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::get('/profil-publik/{id}', [AccountController::class, 'showPublicProfile'])->name('profile.public');
+    Route::put('/pengaturan/foto/update', [AccountController::class, 'updatePhoto'])->name('settings.photo.update');
+    Route::delete('/account/profile/photo', [AccountController::class, 'deletePhoto'])->name('account.avatar.delete');
+
+
 });
 
 /*
@@ -138,27 +143,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
 
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.settings');
-    Route::put('/pengaturan-akun', [AccountController::class, 'update'])->name('account.update');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.index');
-    Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
-    Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
-    Route::patch('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
-    
-});
-
-Route::get('/profil-publik/{id}', [App\Http\Controllers\AccountController::class, 'showPublicProfile'])->name('profile.public');
-
-// Pastikan route update tetap menunjuk ke fungsi updatePhoto
-Route::put('/pengaturan/foto/update', [AccountController::class, 'updatePhoto'])->name('settings.photo.update');
-
-Route::delete('/account/profile/photo', [AccountController::class, 'deletePhoto'])->name('account.avatar.delete');
 
 

@@ -13,20 +13,14 @@ class Review extends Model
         'user_id',
         'course_id',
         'rating',
-        'comment' // Kolom teks ulasan di database kamu namanya 'comment'
+        'comment'
     ];
 
-    /**
-     * Relasi ke model User (Siapa yang mengulas)
-     */
     public function user() 
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * FIX UNTUK ERROR: Menambahkan relasi course yang hilang
-     */
     public function course() 
     {
         return $this->belongsTo(Course::class, 'course_id');

@@ -13,7 +13,6 @@ class CourseController extends Controller
     public function filterByCategory($slug) 
 {
     // 1. Cari kategori berdasarkan slug (misal: 'ilmu-data')
-    // Kita panggil 'children' juga biar tahu topik-topik di bawahnya
     $category = Category::where('slug', $slug)->with('children')->firstOrFail();
     
     // 2. Ambil semua ID: ID kategori ini sendiri + ID semua anak-anaknya (topik populer)
@@ -42,10 +41,10 @@ class CourseController extends Controller
         $courses = Course::where(function($query) use ($lowerKeyword) {
                 // Cari di judul
                 $query->whereRaw('LOWER(title) LIKE ?', ["%{$lowerKeyword}%"])
-                      // ATAU cari di deskripsi
+                      // atau cari di deskripsi
                       ->orWhereRaw('LOWER(description) LIKE ?', ["%{$lowerKeyword}%"]);
             })
-            // ATAU cari berdasarkan nama instruktur
+            // atau cari berdasarkan nama instruktur
             ->orWhereHas('user', function($query) use ($lowerKeyword) {
                 $query->whereRaw('LOWER(name) LIKE ?', ["%{$lowerKeyword}%"]);
             })
@@ -57,12 +56,12 @@ class CourseController extends Controller
 
    public function index()
     {
-        // 1. Ambil data keranjang (agar daftar belanjaan muncul)
+        // 1. Ambil data keranjang 
         $cartItems = Cart::where('user_id', Auth::id())
                         ->with('course.user')
                         ->get();
 
-        // 2. Ambil 20 kursus secara ACAK (sesuai permintaan Anda)
+        // 2. Ambil 20 kursus 
         $courses = Course::with(['user', 'category', 'reviews'])
                          ->inRandomOrder() 
                          ->limit(20) 

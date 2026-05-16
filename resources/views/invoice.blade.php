@@ -26,7 +26,7 @@
 
         <div class="bg-red-50 border border-red-100 rounded p-3 mb-6">
             <p class="text-[11px] text-red-600 font-bold leading-tight uppercase">
-                <i class="fas fa-exclamation-triangle mr-1"></i> Ini adalah halaman simulasi.
+                <i class="fas fa-exclamation-triangle mr-1"></i> Ini hanya qr simulasi.
             </p>
         </div>
 

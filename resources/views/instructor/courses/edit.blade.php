@@ -1,7 +1,7 @@
 @extends('instructor.layout_instructor')
 
 @section('title', 'Edit Kursus - ' . $course->title)
-@section('page_title', 'Edit Mode') {{-- Muncul di header ungu atas --}}
+@section('page_title', 'Edit Mode')
 
 @section('content')
     <form action="{{ route('instructor.courses.update', $course->id) }}" method="POST">
@@ -14,7 +14,7 @@
                 <p class="text-[10px] text-[#a435f0] font-bold uppercase tracking-widest mb-1">Manajemen Kursus</p>
                 <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Edit Kursus</h1>
             </div>
-            {{-- Tombol Simpan: Ganti ke Ungu #5624d0 --}}
+            {{-- Tombol Simpan --}}
             <button type="submit" 
                     class="bg-[#5624d0] text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-[#4c1da7] shadow-xl shadow-purple-100 transition-all active:scale-95 flex items-center gap-2">
                 <i class="fas fa-save"></i>

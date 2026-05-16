@@ -15,9 +15,9 @@
                 Melangkah maju dalam pekerjaan dan kehidupan dengan akses langganan ke koleksi kursus berperingkat teratas dalam topik teknologi, bisnis, dan lainnya.
             </p>
             <a href="{{ route('register') }}" 
-   class="mx-auto w-4/5 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 text-sm rounded transition mt-auto block text-center">
-    Mulai langganan
-</a>
+                class="mx-auto w-4/5 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 text-sm rounded transition mt-auto block text-center">
+                Mulai langganan
+            </a>
             <p class="text-sm text-gray-500 mt-4">
                 Mulai Rp116.000 per bulan. Batalkan kapan saja.
             </p>
@@ -112,9 +112,9 @@
         <div class="flex items-center gap-4">
             <span class="text-sm text-gray-600 hidden md:block font-medium">Mulai Rp116.000 per bulan. Batalkan kapan saja.</span>
             <a href="{{ route('register') }}" 
-   class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-4 text-sm rounded transition block text-center">
-    Mulai langganan
-</a>
+                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-4 text-sm rounded transition block text-center">
+                Mulai langganan
+            </a>
         </div>
     </div>
 </div>
@@ -174,8 +174,7 @@
             <p class="text-gray-700 text-lg leading-relaxed">
                 Dapatkan pengetahuan melalui praktik dengan simulasi Role Play AI, lab, latihan coding, dan simulasi tes ujian sertifikasi. Setelah Anda menyelesaikan kursus, tunjukkan skill baru Anda dengan sertifikat penyelesaian dari Idemy atau penerbit seperti AWS, Microsoft, Google, CompTIA, dan PMI.
             </p>
-            </div>
-
+        </div>
     </div>
 </section>
 
@@ -296,8 +295,6 @@
         </div>
     </div>
 </section>
-
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -27,45 +27,43 @@
         </div>
     </div>
     
-    <!-- Lanjutkan ke section berikutnya... -->
-    
-<div class="max-w-[1340px] mx-auto pt-10 pb-12 px-6 lg:px-10">
-    <h2 class="text-[28px] md:text-[36px] font-bold text-center text-[#2d2f31] mb-8 font-serif tracking-tight leading-tight">
-        Begitu banyak alasan untuk memulai
-    </h2>
+    <div class="max-w-[1340px] mx-auto pt-10 pb-12 px-6 lg:px-10">
+        <h2 class="text-[28px] md:text-[36px] font-bold text-center text-[#2d2f31] mb-8 font-serif tracking-tight leading-tight">
+            Begitu banyak alasan untuk memulai
+        </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 justify-center text-center max-w-[1100px] mx-auto">
-        <div class="flex flex-col items-center">
-            <div class="h-[80px] flex items-center justify-center mb-4">
-                <img src="{{ asset('ajari.png') }}" class="w-24 h-24 object-contain">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 justify-center text-center max-w-[1100px] mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="h-[80px] flex items-center justify-center mb-4">
+                    <img src="{{ asset('ajari.png') }}" class="w-24 h-24 object-contain">
+                </div>
+                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Ajari Jalan Anda</h3>
+                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
+                    Publikasikan kursus yang Anda inginkan, dengan cara yang Anda inginkan, dan selalu kontrol konten Anda sendiri.
+                </p>
             </div>
-            <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Ajari Jalan Anda</h3>
-            <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                Publikasikan kursus yang Anda inginkan, dengan cara yang Anda inginkan, dan selalu kontrol konten Anda sendiri.
-            </p>
-        </div>
 
-        <div class="flex flex-col items-center">
-            <div class="h-[80px] flex items-center justify-center mb-4">
-                <img src="{{ asset('inspirasi.png') }}" class="w-24 h-24 object-contain">
+            <div class="flex flex-col items-center">
+                <div class="h-[80px] flex items-center justify-center mb-4">
+                    <img src="{{ asset('inspirasi.png') }}" class="w-24 h-24 object-contain">
+                </div>
+                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Inspirasi orang yang ingin belajar</h3>
+                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
+                    Ajarkan yang Anda ketahui dan bantu orang yang ingin belajar menjelajahi minat mereka, mendapatkan skill baru.
+                </p>
             </div>
-            <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Inspirasi orang yang ingin belajar</h3>
-            <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                Ajarkan yang Anda ketahui dan bantu orang yang ingin belajar menjelajahi minat mereka, mendapatkan skill baru.
-            </p>
-        </div>
 
-        <div class="flex flex-col items-center">
-            <div class="h-[80px] flex items-center justify-center mb-4">
-                <img src="{{ asset('hadiah.png') }}" class="w-24 h-24 object-contain">
+            <div class="flex flex-col items-center">
+                <div class="h-[80px] flex items-center justify-center mb-4">
+                    <img src="{{ asset('hadiah.png') }}" class="w-24 h-24 object-contain">
+                </div>
+                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Dapatkan hadiah</h3>
+                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
+                    Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran berbayar.
+                </p>
             </div>
-            <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Dapatkan hadiah</h3>
-            <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran berbayar.
-            </p>
         </div>
     </div>
-</div>
 
 
 <!--Teks kotak ungu -->

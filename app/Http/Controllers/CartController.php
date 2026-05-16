@@ -15,7 +15,7 @@ class CartController extends Controller
                       ->where('course_id', $course_id)
                       ->exists();
 
-        // FIX BUG LOGIKA: Jika data sudah ada, langsung tendang balik dengan info peringatan
+        //Jika data sudah ada, langsung tendang balik dengan info peringatan
         if ($exists) {
             return redirect()->back()->with('info', 'Kursus ini sudah ada di dalam keranjang belanja Anda.');
         }

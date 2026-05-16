@@ -67,7 +67,7 @@
                     </form>
                 </div>
 
-                {{-- Preview Section (Selaras dengan Sistem Gambar Baru) --}}
+                {{-- Preview Section --}}
                 <div class="lg:col-span-1 space-y-6">
                     <div class="bg-white rounded-xl border border-[#d1d7dc] shadow-sm p-6 sticky top-24">
                         <h3 class="text-sm font-bold mb-4 uppercase tracking-wider text-gray-500">Pratinjau Tampilan</h3>

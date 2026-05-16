@@ -24,7 +24,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8', 
         ], [
-            // Pesan error custom biar bahasa Indonesia
+            // Pesan error 
             'email.unique' => 'Email ini sudah terdaftar. Silakan gunakan email lain atau login.',
             'password.min' => 'Password minimal harus 8 karakter.'
         ]);
@@ -33,10 +33,10 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // WAJIB PAKE HASH! Password gak boleh disimpen telanjang.
+            'password' => Hash::make($request->password),
         ]);
 
-        // Biar user gak usah login manual lagi habis daftar, kita auto-login
+        //auto login
         Auth::login($user);
 
         // Arahkan ke halaman utama

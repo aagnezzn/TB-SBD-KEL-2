@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- KONTROL NAV MINIMALIS: Override penumpukan layout atas dengan z-[210] agar mutlak mengunci lapisan teratas --}}
+{{-- KONTROL NAV MINIMALIS --}}
 <nav class="flex justify-between items-center px-8 py-5 bg-white border-b border-[#d1d7dc] sticky top-0 z-[210] shadow-sm">
     <a href="/" class="text-3xl font-bold text-[#1c1d1f] no-underline">
         idemy
@@ -13,7 +13,7 @@
     </a>
 </nav>
 
-{{-- PEMBUNGKUS UTAMA: Menggunakan bg-gray dan set isolasi z-index konten agar berada di bawah nav minimalis --}}
+{{-- PEMBUNGKUS UTAMA --}}
 <div class="bg-[#f7f9fa] min-h-screen py-10 relative z-10">
     <div class="max-w-[1100px] mx-auto px-4 font-sans text-[#1c1d1f]">
         <form action="{{ route('checkout.store') }}" method="POST">
@@ -21,7 +21,7 @@
             
             <div class="flex flex-col lg:flex-row gap-12 items-start">
                 
-                {{-- KOLOM KIRI: Alamat & Metode Pembayaran --}}
+                {{-- Alamat & Metode Pembayaran --}}
                 <div class="w-full lg:w-[65%]">
                     <h1 class="text-3xl font-bold mb-8">Checkout</h1>
                     
@@ -30,6 +30,9 @@
                         <label class="block text-sm font-bold mb-2">Negara</label>
                         <select class="w-full md:w-1/2 border border-[#1c1d1f] p-3 focus:outline-none bg-white cursor-pointer">
                             <option>Indonesia</option>
+                            <option>Malaysia</option>
+                            <option>Singapura</option>
+                            <option>Brunei</option>
                         </select>
                         <p class="text-xs text-[#6a6f73] mt-3">Idemy diwajibkan oleh hukum untuk menagih pajak transaksi yang berlaku di wilayah Anda.</p>
                     </div>
@@ -53,16 +56,14 @@
                         </label>
 
                         <label class="flex items-center justify-between p-4 bg-white cursor-pointer hover:bg-[#f7f9fa] transition">
-    <div class="flex items-center gap-3">
-        <input type="radio" name="payment_method" value="Transfer Bank" class="w-4 h-4 accent-[#a435f0] cursor-pointer">
-        <span class="font-bold text-sm">Transfer Bank</span>
-    </div>
-    
-    {{-- FIX: Mengganti tag FontAwesome dengan SVG Bank Tailwind murni yang pasti muncul --}}
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.5M4.5 21V10.5M2.25 21h19.5M3 10.5h18M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-    </svg>
-</label>
+                            <div class="flex items-center gap-3">
+                            <input type="radio" name="payment_method" value="Transfer Bank" class="w-4 h-4 accent-[#a435f0] cursor-pointer">
+                            <span class="font-bold text-sm">Transfer Bank</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.5M4.5 21V10.5M2.25 21h19.5M3 10.5h18M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                            </svg>
+                        </label>
                     </div>
                 </div>
 
@@ -115,7 +116,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
     </div>

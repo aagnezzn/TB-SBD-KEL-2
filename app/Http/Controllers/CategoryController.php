@@ -16,19 +16,14 @@ class CategoryController extends Controller
         $navCategories = Category::whereNull('parent_id')
                             ->with('children.children')
                             ->get();
-
-        // =========================================================================
-        // FIX UTAMA: Tarik semua kategori induk murni dari database (CSV)
-        // Ini digunakan khusus untuk slider guest agar tidak cuma muncul JavaScript doang
-        // =========================================================================
         $categories = Category::whereNull('parent_id')->get();
 
-        // Jika field parent_id di database kamu kosong/rata, pakai fallback ini:
+        // Jika field parent_id di database kosong
         if ($categories->isEmpty()) {
             $categories = Category::take(8)->get();
         }
 
-        // Target topik besar bawaan project kamu untuk kebutuhan tab dashboard setelah login
+        // Target topik besar bawaan project untuk kebutuhan tab dashboard setelah login
         $targetTopicNames = [
             'Python', 
             'Pemasaran Digital', 
@@ -40,7 +35,7 @@ class CategoryController extends Controller
             'Perencanaan Proyek'
         ];
 
-        // Memuat topik beserta kursus, instruktur, DAN REVIEWS untuk halaman dalam
+        // Memuat topik beserta kursus, instruktur, dan reviews untuk halaman dalam
         $topics = Category::whereIn('name', $targetTopicNames)
                             ->with(['courses.user', 'courses.reviews.user'])
                             ->get()
@@ -65,7 +60,7 @@ class CategoryController extends Controller
             }
         }
 
-        // DATABASE FALLBACK PROTECTION untuk data tab dashboard
+        // database fallback untuk data tab dashboard
         if (empty($categoriesData)) {
             $fallbackCategories = Category::has('courses')
                                     ->with(['courses' => function($query) {
@@ -84,7 +79,7 @@ class CategoryController extends Controller
             }
         }
 
-        // 2. AMBIL ULASAN MURNI UNTUK KURSUS REKOMENDASI DAN POPULER
+        // 2. Ambil dari ulasan untuk kursus rekomendasi sama populer 
         $recommendedCourses = Course::whereHas('user')
                                     ->with(['category', 'user', 'reviews.user'])
                                     ->latest()
@@ -98,7 +93,7 @@ class CategoryController extends Controller
                                 ->take(5)
                                 ->get();
 
-        // Keranjang belanja siswa
+        // Keranjang belanja
         $cartItems = collect();
         if (Auth::check()) {
             $cartItems = Cart::where('user_id', Auth::id())

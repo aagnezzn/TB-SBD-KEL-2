@@ -12,7 +12,7 @@ class Payment extends Model
 
     protected $table = 'payments';
 
-    // FIX: Kembalikan array fillable ke format string murni nama kolom database
+    // Kembalikan array fillable ke format string murni nama kolom database
     protected $fillable = [
         'enrollment_id', 
         'amount', 
@@ -21,7 +21,7 @@ class Payment extends Model
         'paid_at',
     ];
 
-    // FIX: Deklarasi penentu format waktu dipisahkan ke dalam properti casts
+    //Deklarasi penentu format waktu dipisahkan ke dalam properti casts
     protected $casts = [
         'paid_at' => 'datetime',
     ];

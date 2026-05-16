@@ -20,7 +20,7 @@ class StudentMiddleware
         $role = Auth::user()->role;
         Auth::logout();
 
-        // Memberikan pesan spesifik berdasarkan role mereka
+        // Memberikan pesan spesifik berdasarkan role
         $pesan = ($role === 'admin') 
             ? 'Akun Admin tidak bisa login di sini. Silakan gunakan Portal Admin.' 
             : 'Akun Instruktur tidak bisa login di sini. Silakan gunakan Portal Instruktur.';

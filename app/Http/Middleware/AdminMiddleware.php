@@ -15,7 +15,7 @@ class AdminMiddleware
         return $next($request);
     }
 
-    // Jika bukan admin, tendang ke login admin
+    // Jika bukan admin, diarahkan ke login admin
     return redirect()->route('admin.login')->with('error', 'Akses Admin Ditolak!');
 }
 }

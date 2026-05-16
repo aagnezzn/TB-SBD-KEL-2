@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // FIX: Daftarkan kolom role agar seeder data instruktur & student tidak diblokir Laravel
+        'role', 
     ];
 
     /**

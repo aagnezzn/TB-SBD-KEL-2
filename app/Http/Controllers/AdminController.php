@@ -26,21 +26,18 @@ class AdminController extends Controller
 
     public function courses()
     {
-    // Ambil data statistik yang dibutuhkan view
-    $totalPendapatan = Payment::where('status', 'success')->sum('amount');
-    $totalKelas = Course::count();
-    $totalSiswa = User::where('role', 'student')->count();
-    $transaksiTerbaru = Payment::latest()->take(5)->get();
+        $totalPendapatan = Payment::where('status', 'success')->sum('amount');
+        $totalKelas = Course::count();
+        $totalSiswa = User::where('role', 'student')->count();
+        $transaksiTerbaru = Payment::latest()->take(5)->get();
 
-    $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
-
-    // Kirim SEMUA variabel yang dibutuhkan oleh view
-    return view('admin.courses', compact(
-        'courses', 
-        'totalPendapatan', 
-        'totalKelas', 
-        'totalSiswa', 
-        'transaksiTerbaru'
+        $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
+       return view('admin.courses', compact(
+            'courses', 
+            'totalPendapatan', 
+            'totalKelas', 
+            'totalSiswa', 
+            'transaksiTerbaru'
     ));
     }
 
@@ -65,13 +62,13 @@ class AdminController extends Controller
     // Fungsi untuk halaman Transaksi
     public function transactions()
     {
-    $payments = Payment::with(['enrollment.user', 'enrollment.course'])
+        $payments = Payment::with(['enrollment.user', 'enrollment.course'])
                 ->latest()
                 ->paginate(10);
-                
-    return view('admin.transactions', compact('payments'));
+        return view('admin.transactions', compact('payments'));
     }
 
+    //fungsi halaman edit
     public function editCourse($id)
     {
         $course = Course::findOrFail($id);
@@ -81,23 +78,28 @@ class AdminController extends Controller
     public function updateCourse(Request $request, $id)
     {
         $course = Course::findOrFail($id);
-        
-        // Validasi input form secara ketat
+ 
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
             'price' => 'required|numeric',
         ]);
 
-        // FIX DATABASE: Amankan query menggunakan data yang lolos validasi saja
-        $course->update($data);
-        
+        $course->update($data);        
         return redirect()->route('admin.courses')->with('success', 'Kelas berhasil diupdate!');
     }
 
+    //fungsi hapus kursus
     public function deleteCourse($id)
     {
         Course::findOrFail($id)->delete();
         return redirect()->route('admin.courses')->with('success', 'Kelas berhasil dihapus!');
+    }
+
+    //fungsi halaman detail transaksi
+    public function detailTransaksi($id)
+    {
+        $transaksi = Payment::findOrFail($id);
+        return view('admin.transaksi-detail', compact('transaksi'));
     }
 }

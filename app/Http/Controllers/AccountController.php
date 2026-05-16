@@ -10,19 +10,17 @@ use Illuminate\Support\Facades\Storage;
 class AccountController extends Controller
 {
    public function index()
-{
-    // Menggunakan eager loading 'profile' agar data langsung tersedia
+    {
     $user = \App\Models\User::find(Auth::id())->load('profile');
     
     return view('profile.account', compact('user'));
-}
+    }
 
     public function updateProfile(Request $request)
-{
+    {
     /** @var \App\Models\User $user */
-    $user = Auth::user(); // Menggunakan Type Hint agar VS Code tidak merah
+    $user = Auth::user();
 
-    // 1. Simpan ke tabel user_profiles
     $user->profile()->updateOrCreate(
         ['user_id' => $user->id],
         [
@@ -36,15 +34,14 @@ class AccountController extends Controller
             'twitter'    => $request->twitter,
         ]
         
-    );
-
-    
+    );    
     $user->name = $request->first_name . ' ' . $request->last_name;
     $user->save();
     $user->profile->touch();
 
     return redirect()->back()->with('status', 'Profil berhasil diperbarui!');
-}
+    }
+
     public function updateEmail(Request $request)
     {
         $request->validate([
@@ -59,7 +56,6 @@ class AccountController extends Controller
         return back()->with('status', 'Email berhasil diperbarui!');
     }
 
-    // Fungsi updatePassword bawaan kamu, sudah rapi dan siap pakai!
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -71,28 +67,24 @@ class AccountController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        // Menggunakan key 'status' agar memicu alert hijau "Sandi Anda berhasil diperbarui!" di foto ketiga
         return back()->with('status', 'Sandi Anda berhasil diperbarui!');
     }
 
     public function showPublicProfile($id)
-{
+    {
     /** @var \App\Models\User $user */
-    // Mengambil user beserta data profilnya dari tabel user_profiles
     $user = \App\Models\User::with('profile')->findOrFail($id);
     
     return view('profile.public', compact('user'));
-}
+    }
 
-public function editPhoto()
-{
-    // Karena sudah digabung, kita arahkan ke view account 
-    // tapi sambil membawa parameter tab=foto agar Alpine.js membukanya
+    public function editPhoto()
+    {
     return redirect()->route('account.index', ['tab' => 'foto']);
-}
+    }
 
-public function updatePhoto(Request $request)
-{
+    public function updatePhoto(Request $request)
+    {
     $request->validate([
         'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
     ]);
@@ -102,8 +94,7 @@ public function updatePhoto(Request $request)
 
     if ($request->hasFile('photo')) {
         $file = $request->file('photo');
-        
-        // 1. Ambil nama file lama untuk dihapus (biar tidak nyampah)
+
         if ($user->profile && $user->profile->photo) {
             $oldPath = public_path('storage/photos/' . $user->profile->photo);
             if (file_exists($oldPath)) {
@@ -111,14 +102,8 @@ public function updatePhoto(Request $request)
             }
         }
 
-        // 2. Buat nama file baru
         $fileName = time() . '_' . $user->id . '.' . $file->getClientOriginalExtension();
-        
-        // 3. PERBAIKAN: Gunakan move() langsung ke public_path
-        // Ini akan otomatis membuat folder 'photos' jika belum ada
         $file->move(public_path('storage/photos'), $fileName);
-
-        // 4. Simpan hanya nama filenya saja ke database
         $user->profile()->updateOrCreate(
             ['user_id' => $user->id],
             ['photo' => $fileName]
@@ -127,21 +112,18 @@ public function updatePhoto(Request $request)
 
     return redirect()->route('account.index', ['tab' => 'foto'])
                      ->with('status', 'Foto profil berhasil diperbarui!');
-}
+    }
 
-public function deletePhoto()
-{
+    public function deletePhoto()
+    {
     /** @var \App\Models\User $user */
     $user = Auth::user();
 
-    // Cek apakah user punya foto di profilnya
     if ($user->profile && $user->profile->photo) {
-        // Hapus file foto dari folder storage/photos
         if (Storage::disk('public')->exists('photos/' . $user->profile->photo)) {
             Storage::disk('public')->delete('photos/' . $user->profile->photo);
         }
 
-        // Set kolom photo di database menjadi null
         $user->profile()->update([
             'photo' => null
         ]);
@@ -150,5 +132,5 @@ public function deletePhoto()
     }
 
     return redirect()->back()->with('error', 'Anda tidak memiliki foto profil untuk dihapus.');
-}
+    }
 }

@@ -13,7 +13,7 @@ class DataTambahSendiriSeeder extends Seeder
 {
     public function run()
     {
-        // 1. INPUT USER FIXED (Pira & Naruto)
+        // 1. INPUT USER
         $pira = User::updateOrCreate(
             ['email' => 'pira@test.com'], 
             [
@@ -40,7 +40,7 @@ class DataTambahSendiriSeeder extends Seeder
         $canvaCatId = $canvaCategory ? $canvaCategory->id : 8; 
         $psCatId = $photoshopCategory ? $photoshopCategory->id : 6;
 
-        // 2. INPUT COURSE MANDIRI
+        // 2. INPUT COURSE
         $coursesToCreate = [
             [
                 'title' => 'Belajar Canva Menyenangkan',
@@ -83,7 +83,7 @@ class DataTambahSendiriSeeder extends Seeder
                 ]
             );
 
-            // Buat Materi Bervariasi (Gunakan updateOrInsert agar aman dari penumpukan data)
+            // Buat Materi Bervariasi
             for ($i = 1; $i <= 3; $i++) {
                 DB::table('lessons')->updateOrInsert(
                     [
@@ -99,7 +99,7 @@ class DataTambahSendiriSeeder extends Seeder
                 );
             }
 
-            // KUNCI UTAMA: Daftarkan Uzumaki Naruto secara mutlak ke setiap kelas Pira agar data dashboard instruktur langsung terisi!
+            // Daftarkan Uzumaki Naruto secara mutlak ke setiap kelas Pira agar data dashboard instruktur langsung terisi!
             if (isset($naruto)) {
                 $narutoEnrollId = DB::table('enrollments')->insertGetId([
                     'user_id' => $naruto->id,
@@ -134,7 +134,7 @@ class DataTambahSendiriSeeder extends Seeder
             if (!empty($studentIds)) {
                 $countToTake = min(50, count($studentIds));
                 
-                // FIX LOGIKA ANTI-CRASH: Amankan nilai acak dari ancaman integer non-array
+                // Amankan nilai acak dari ancaman integer non-array
                 $courseStudents = array_rand(array_flip($studentIds), $countToTake);
                 if (!is_array($courseStudents)) {
                     $courseStudents = [$courseStudents];

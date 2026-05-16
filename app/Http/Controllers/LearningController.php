@@ -11,74 +11,71 @@ use App\Models\Cart;
 class LearningController extends Controller
 {
     public function index(Request $request)
-{
-    $user = Auth::user();
-    if (!$user) return redirect()->route('login');
+    {
+        $user = Auth::user();
+        if (!$user) return redirect()->route('login');
 
-    $tab = $request->query('tab', 'all');
+        $tab = $request->query('tab', 'all');
 
-    if ($tab == 'wishlist') {
-        // Mengambil course lewat tabel Wishlist
-        $courses = Wishlist::where('user_id', $user->id)
-                    ->with('course.user') // Eager load user agar tidak error
+        if ($tab == 'wishlist') {    
+            $courses = Wishlist::where('user_id', $user->id)
+                    ->with('course.user')
                     ->get()
                     ->pluck('course'); 
-    } else {
-        // Mengambil course yang sudah dibeli
+        } else {
         $courses = $user->courses()->with('user')->get(); 
+        }
+
+        return view('learning.index', compact('courses', 'tab'));
     }
 
-    return view('learning.index', compact('courses', 'tab'));
-}
+    public function addToWishlist($id)
+    {
+        Wishlist::firstOrCreate([
+            'user_id' => Auth::id(),
+            'course_id' => $id
+        ]);
 
-public function addToWishlist($id)
-{
-    Wishlist::firstOrCreate([
-        'user_id' => Auth::id(),
-        'course_id' => $id
-    ]);
+        return redirect()->back()->with('success', 'Berhasil ditambah ke wishlist');
+    }
 
-    return redirect()->back()->with('success', 'Berhasil ditambah ke wishlist');
-}
+    public function purchaseHistory()
+    {
+        $payments = \App\Models\Payment::whereHas('enrollment', function($query) {
+            $query->where('user_id', Auth::id());
+        })
+        ->with('enrollment.course')
+        ->orderBy('paid_at', 'desc')
+        ->get();
 
-public function purchaseHistory()
-{
-    $payments = \App\Models\Payment::whereHas('enrollment', function($query) {
-        $query->where('user_id', Auth::id());
-    })
-    ->with('enrollment.course') // Ambil data kursusnya juga
-    ->orderBy('paid_at', 'desc')
-    ->get();
+        return view('learning.purchase_history', compact('payments'));
+    }
 
-    return view('learning.purchase_history', compact('payments'));
-}
+    public function removeFromWishlist($id)
+    {
+        Wishlist::where('user_id', Auth::id())
+                ->where('course_id', $id)
+                ->delete();
 
-public function removeFromWishlist($id)
-{
-    Wishlist::where('user_id', Auth::id())
-            ->where('course_id', $id)
-            ->delete();
+        return redirect()->back()->with('success', 'Berhasil dihapus dari daftar keinginan.');
+    }
 
-    return redirect()->back()->with('success', 'Berhasil dihapus dari daftar keinginan.');
-}
+    public function moveToCart($id)
+    {
+        $userId = Auth::id();
 
-public function moveToCart($id)
-{
-    $userId = Auth::id();
+        // Simpan ke tabel carts
+        Cart::updateOrCreate([
+            'user_id' => $userId,
+            'course_id' => $id
+        ]);
 
-    // 1. Simpan ke tabel carts
-    // Kita gunakan updateOrCreate supaya jika barang sudah ada di keranjang, tidak duplikat
-    Cart::updateOrCreate([
-        'user_id' => $userId,
-        'course_id' => $id
-    ]);
+        //Hapus dari tabel wishlists
+        Wishlist::where('user_id', $userId)
+                ->where('course_id', $id)
+                ->delete();
 
-    // 2. Hapus dari tabel wishlists
-    Wishlist::where('user_id', $userId)
-            ->where('course_id', $id)
-            ->delete();
-
-    // 3. Kembali ke halaman dengan pesan sukses
-    return redirect()->back()->with('success', 'Kursus berhasil dipindahkan ke keranjang.');
-}
+        //Kembali ke halaman dengan pesan sukses
+        return redirect()->back()->with('success', 'Kursus berhasil dipindahkan ke keranjang.');
+    }
 }

@@ -40,10 +40,6 @@
                 </button>
             </form>
 
-            <div class="text-center mt-4">
-                <span class="text-[14px]"><a href="#" class="text-[#a435f0] font-bold underline">Lupa Kata Sandi</a></span>
-            </div>
-
             <div class="mt-6 text-center text-sm border-t pt-4">
                 <p class="text-black">Punya akses khusus? 
                     <a href="/admin/login" class="text-[#a435f0] font-semibold hover:underline">Admin</a> 
