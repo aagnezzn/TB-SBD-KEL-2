@@ -17,28 +17,32 @@ class CategorySeeder extends Seeder
 
         $data = [
             'Development' => [
+                // FAKTANYA: Sesuai dengan subjek "Web Development" di CSV
                 'Web Development' => ['HTML & CSS', 'JavaScript', 'React JS', 'PHP & Laravel', 'Python Django']
             ],
             'Business & Finance' => [
-                'Accounting' => ['Financial Accounting', 'Taxes'],
-                'Trading' => ['Stock Trading', 'Forex Trading']
+                // FAKTANYA: Diubah menjadi "Business Finance" agar klop dengan teks CSV
+                'Business Finance' => ['Accounting', 'Financial Accounting', 'Taxes', 'Stock Trading', 'Forex Trading']
             ],
             'Design' => [
-                'Graphic Design' => ['Adobe Photoshop', 'Adobe Illustrator', 'Canva'],
-                '3D Design' => ['AutoCAD', 'SOLIDWORKS']
+                // FAKTANYA: Sesuai dengan subjek "Graphic Design" di CSV
+                'Graphic Design' => ['Adobe Photoshop', 'Adobe Illustrator', 'Canva', '3D Design', 'AutoCAD']
             ],
             'Music' => [
-                'Instruments' => ['Guitar', 'Piano', 'Ukulele'],
-                'Vocals' => ['Vocal & Singing']
+                // FAKTANYA: Sesuai dengan subjek "Musical Instruments" di CSV
+                'Musical Instruments' => ['Guitar', 'Piano', 'Ukulele', 'Vocal & Singing']
             ],
             'IT & Software' => [
-                'Network & Security' => ['Cyber Security', 'Ethical Hacking'] 
+                // FAKTANYA: Diubah menjadi "Cyber Security" agar klop dengan teks CSV
+                'Cyber Security' => ['Network Security', 'Ethical Hacking'] 
             ],
             'Office Productivity' => [
-                'Microsoft Office' => ['Excel Basic', 'PowerPoint', 'Microsoft Word']
+                // FAKTANYA: Sesuai dengan subjek "Excel Basic" di CSV
+                'Excel Basic' => ['Excel Advanced', 'PowerPoint', 'Microsoft Word']
             ],
             'Personal Development' => [
-                'Career & Productivity' => ['Public Speaking', 'Time Management', 'Interview Skills']
+                // FAKTANYA: Sesuai dengan subjek "Public Speaking" di CSV
+                'Public Speaking' => ['Time Management', 'Interview Skills']
             ]
         ];
 

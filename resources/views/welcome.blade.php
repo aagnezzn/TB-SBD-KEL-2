@@ -10,19 +10,19 @@
 {{-- NAVBAR KATEGORI (Hanya muncul saat User sudah Login) --}}
 <div class="hidden lg:block bg-white border-b border-gray-200 relative">
     <div class="max-w-[1340px] mx-auto px-4">
-        <ul class="flex justify-between items-center">
+        <ul class="flex justify-between items-center m-0 p-0 list-none">
             @foreach($navCategories as $mainCat)
             <li class="group/subnav static flex justify-center"> 
-                <a href="/category/{{ $mainCat->slug }}" class="relative text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-normal px-4 py-4 capitalize transition-colors flex flex-col items-center">
+                <a href="/category/{{ $mainCat->slug }}" class="relative text-[13px] text-gray-600 hover:text-[#5624d0] whitespace-nowrap font-medium px-4 py-4 capitalize transition-colors flex flex-col items-center no-underline">
                     {{ $mainCat->name }}
                     <div class="hidden group-hover/subnav:block absolute -bottom-[1px] w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-b-[7px] border-b-[#1c1d1f] z-[160]"></div>
                 </a>
 
-                <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-full left-0 top-full z-[150] py-4 shadow-xl 
-                    before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+                <div class="absolute hidden group-hover/subnav:flex bg-[#1c1d1f] w-full left-0 top-full z-[150] py-4 shadow-xl before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
                     <div class="max-w-[1340px] mx-auto px-4 flex justify-center space-x-10">
+                        {{-- FAKTANYA: Loop Level 2 (Sub-Kategori) diubah menjadi link navigasi yang valid --}}
                         @foreach($mainCat->children->take(8) as $subCat)
-                        <a href="/category/{{ $subCat->slug }}" class="text-[13px] font-normal text-white hover:text-gray-300 whitespace-nowrap transition-colors capitalize">
+                        <a href="/category/{{ $subCat->slug }}" class="text-[13px] font-normal text-white hover:text-purple-400 whitespace-nowrap transition-colors capitalize no-underline">
                             {{ $subCat->name }}
                         </a>
                         @endforeach
@@ -37,46 +37,41 @@
 
 <main class="min-h-screen bg-white">
     @auth
-        {{-- === TAMPILAN SETELAH LOGIN (SUDAH DISINKRONKAN DENGAN FOTO) === --}}
-<section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
-    <div class="w-16 h-16 shrink-0">
-        @if(Auth::user()->profile && Auth::user()->profile->photo)
-            {{-- Menampilkan foto profil jika ada --}}
-            <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
-                 class="w-16 h-16 rounded-full object-cover">
-        @else
-            {{-- Fallback ke inisial hitam jika foto tidak ada --}}
-            <div class="w-16 h-16 bg-[#1c1d1f] rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                {{ substr(Auth::user()->name, 0, 1) }}
+        {{-- === TAMPILAN SETELAH LOGIN === --}}
+        <section class="max-w-[1340px] mx-auto px-4 py-8 flex items-center space-x-4">
+            <div class="w-16 h-16 shrink-0">
+                @if(Auth::user()->profile && Auth::user()->profile->photo)
+                    <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" class="w-16 h-16 rounded-full object-cover">
+                @else
+                    <div class="w-16 h-16 bg-[#1c1d1f] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
+                @endif
             </div>
-        @endif
-    </div>
-    <div>
-        <h1 class="text-2xl font-bold text-gray-900">{{__('welcome.Jumpa') }}  {{ Auth::user()->name }}</h1>
-        <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">{{__('welcome.Tambahkan') }} </p>
-    </div>
-</section>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">{{__('welcome.Jumpa') }}  {{ Auth::user()->name }}</h1>
+                <p class="text-sm font-bold text-[#5624d0] cursor-pointer hover:text-[#401b9c]">{{__('welcome.Tambahkan') }} </p>
+            </div>
+        </section>
 
         <section class="max-w-[1340px] mx-auto px-4 pb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">{{__('welcome.Apa') }}</h2>
             <p class="text-lg font-bold text-gray-800 mb-6">{{__('welcome.Direkomendasikan')}}</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
+            {{-- Grid Kursus Rekomendasi --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative overflow-visible">
                 @foreach ($recommendedCourses as $course)
                     <div class="relative group/item">
-                        <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
-                            <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                                <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3' }}" 
-                                     alt="{{ $course->title }}" 
-                                     class="w-full h-32 object-cover"
-                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3';">
+                        <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full no-underline">
+                            <div class="border border-gray-200 mb-2 relative overflow-hidden rounded-md">
+                                <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3' }}" alt="{{ $course->title }}" class="w-full h-32 object-cover" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3';">
                                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                             </div>
                             
-                            <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
+                            <h3 class="text-[14px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
                                 {{ $course->title }}
                             </h3>
-                            <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->user->name ?? 'Instruktur Anonim' }}</p>
+                            <p class="text-xs text-gray-500 mb-1 truncate">Oleh {{ $course->user->name ?? 'Instruktur Anonim' }}</p>
                             
                             <div class="flex items-center space-x-1 mb-1">
                                 <span class="text-sm font-bold text-[#b4690e]">
@@ -84,15 +79,12 @@
                                 </span>
                                 <div class="flex text-[#b4690e] space-x-0.5">
                                     <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
                                 </div>
                                 <span class="text-xs text-gray-500">({{ $course->reviews()->count() }})</span>
                             </div>
                             
-                            <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
+                            {{-- FAKTANYA: Keamanan konversi cetak Rupiah menggunakan number_format() --}}
+                            <div class="font-extrabold text-gray-900 text-sm mb-2 mt-auto">
                                 Rp{{ number_format($course->price, 0, ',', '.') }}
                             </div>
 
@@ -106,23 +98,19 @@
                             </div>
                         </a>
 
-                        {{-- Popup Detail Kursus Rekomendasi --}}
+                        {{-- Pop-up Hover Detail Kursus Rekomendasi --}}
                         <div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
                             <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
                                 <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
-                                        
-                                <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
+                                <h3 class="font-bold text-base mb-2 leading-tight text-gray-900">{{ $course->title }}</h3>
                                 <p class="text-xs text-green-700 font-bold mb-3">{{__('welcome.Diperbarui')}}</p>
-                                
-                                <ul class="text-sm text-gray-600 mb-5 space-y-2">
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Akses')}}</span></li>
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Sertifikat') }} </span></li>
-                                    <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Bisa')}}</span></li>
+                                <ul class="text-xs text-gray-600 mb-5 space-y-2 p-0 list-none">
+                                    <li class="flex items-start gap-2"><span>✓</span> <span>{{__('welcome.Akses')}}</span></li>
+                                    <li class="flex items-start gap-2"><span>✓</span> <span>{{__('welcome.Sertifikat') }} </span></li>
                                 </ul>
-
-                                <form action="{{ route('cart.add', $course->id) }}" method="POST">
+                                <form action="{{ route('cart.add', $course->id) }}" method="POST" class="m-0">
                                     @csrf
-                                    <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
+                                    <button type="submit" class="w-full bg-purple-600 text-white py-2.5 text-xs font-bold rounded hover:bg-purple-700 transition cursor-pointer">
                                         {{__('welcome.Tambahkan ke keranjang')}}
                                     </button>
                                 </form>
@@ -132,82 +120,72 @@
                 @endforeach
             </div>
 
-            <p class="text-lg font-bold text-gray-800 mb-6 mt-8">{{__('welcome.Kursus Populer')}}</p>
+            <p class="text-lg font-bold text-gray-800 mb-6 mt-12">{{__('welcome.Kursus Populer')}}</p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 relative overflow-visible">
+            {{-- Grid Kursus Populer --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative overflow-visible">
                 @foreach ($popularCourses as $course)
-                <div class="relative group/item">
-                    <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full">
-                        <div class="border border-gray-200 mb-2 relative overflow-hidden">
-                            <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3' }}" 
-                                 alt="{{ $course->title }}" 
-                                 class="w-full h-32 object-cover"
-                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3';">
-                            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                        </div>
-                        
-                        <h3 class="text-[15px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
-                            {{ $course->title }}
-                        </h3>
-                        <p class="text-xs text-gray-500 mb-1 truncate">{{ $course->user->name ?? 'Instruktur Anonim' }}</p>
-                        
-                        <div class="flex items-center space-x-1 mb-1">
-                            <span class="text-sm font-bold text-[#b4690e]">
-                                {{ number_format($course->reviews()->avg('rating') ?? 4.5, 1) }}
-                            </span>
-                            <div class="flex text-[#b4690e] space-x-0.5">
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 14.535l-4.954 3.033 1.182-5.484L2 8.223l5.545-.535L10 2l2.455 5.688 5.545.535-4.228 3.861 1.182 5.484z"/></svg>
+                    <div class="relative group/item">
+                        <a href="/course/{{ $course->id }}" class="group cursor-pointer flex flex-col h-full no-underline">
+                            <div class="border border-gray-200 mb-2 relative overflow-hidden rounded-md">
+                                <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3' }}" alt="{{ $course->title }}" class="w-full h-32 object-cover" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3';">
+                                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                             </div>
-                            <span class="text-xs text-gray-500">({{ $course->reviews()->count() }})</span>
-                        </div>
-                        
-                        <div class="font-bold text-gray-900 text-base mb-2 mt-auto">
-                            Rp{{ number_format($course->price, 0, ',', '.') }}
-                        </div>
-
-                        <div class="flex space-x-2">
-                            <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
-                                <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span>{{__('welcome.Premium') }}
-                            </span>
-                            <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
-                               {{ __('welcome.Terlaris') }}
-                            </span>
-                        </div>
-                    </a>
-
-                    {{-- Pop-up Detail Kursus Populer --}}
-                    <div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
-                        <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
-                            <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
-                                    
-                            <h3 class="font-bold text-lg mb-2 leading-tight">{{ $course->title }}</h3>
-                            <p class="text-xs text-green-700 font-bold mb-3">{{__('welcome.Diperbarui')}}</p>
                             
-                            <ul class="text-sm text-gray-600 mb-5 space-y-2">
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Materi')}}</span></li>
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Akses')}} </span></li>
-                                <li class="flex items-start gap-2 text-xs"><span>✓</span> <span>{{__('welcome.Sertifikat kursus')}} </span></li>
-                            </ul>
+                            <h3 class="text-[14px] font-bold text-gray-900 leading-tight mb-1 line-clamp-2 group-hover:text-[#5624d0]">
+                                {{ $course->title }}
+                            </h3>
+                            <p class="text-xs text-gray-500 mb-1 truncate">Oleh {{ $course->user->name ?? 'Instruktur Anonim' }}</p>
+                            
+                            <div class="flex items-center space-x-1 mb-1">
+                                <span class="text-sm font-bold text-[#b4690e]">
+                                    {{ number_format($course->reviews()->avg('rating') ?? 4.5, 1) }}
+                                </span>
+                                <div class="flex text-[#b4690e] space-x-0.5">
+                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                </div>
+                                <span class="text-xs text-gray-500">({{ $course->reviews()->count() }})</span>
+                            </div>
+                            
+                            <div class="font-extrabold text-gray-900 text-sm mb-2 mt-auto">
+                                Rp{{ number_format($course->price, 0, ',', '.') }}
+                            </div>
 
-                            <form action="{{ route('cart.add', $course->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="w-full bg-purple-600 text-white py-3 font-bold rounded hover:bg-purple-700 transition">
-                                    {{__('welcome.Tambahkan ke keranjang')}}
-                                </button>
-                            </form>
+                            <div class="flex space-x-2">
+                                <span class="bg-[#ecebfe] text-[#1e1e1c] text-[10px] font-bold px-1.5 py-0.5 flex items-center rounded-sm">
+                                    <span class="text-[#5624d0] font-black mr-1 text-xs leading-none">◈</span>{{__('welcome.Premium') }}
+                                </span>
+                                <span class="bg-[#acd2cc] text-[#1e1e1c] text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                                   {{ __('welcome.Terlaris') }}
+                                </span>
+                            </div>
+                        </a>
+
+                        {{-- Pop-up Hover Detail Kursus Populer --}}
+                        <div class="absolute hidden group-hover/item:block z-[100] top-0 w-[330px] transition-all duration-300 pointer-events-none group-hover/item:pointer-events-auto {{ $loop->iteration % 5 == 0 ? 'right-full -mr-1 pr-4' : 'left-full -ml-1 pl-4' }}">
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-2xl p-5 relative">
+                                <div class="absolute top-8 w-4 h-4 bg-white border-gray-200 rotate-45 {{ $loop->iteration % 5 == 0 ? '-right-2 border-r border-t' : '-left-2 border-l border-b' }}"></div>
+                                <h3 class="font-bold text-base mb-2 leading-tight text-gray-900">{{ $course->title }}</h3>
+                                <p class="text-xs text-green-700 font-bold mb-3">{{__('welcome.Diperbarui')}}</p>
+                                <ul class="text-xs text-gray-600 mb-5 space-y-2 p-0 list-none">
+                                    <li class="flex items-start gap-2"><span>✓</span> <span>{{__('welcome.Materi')}}</span></li>
+                                    <li class="flex items-start gap-2"><span>✓</span> <span>{{__('welcome.Akses')}} </span></li>
+                                </ul>
+                                <form action="{{ route('cart.add', $course->id) }}" method="POST" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="w-full bg-purple-600 text-white py-2.5 text-xs font-bold rounded hover:bg-purple-700 transition cursor-pointer">
+                                        {{__('welcome.Tambahkan ke keranjang')}}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </section>
 
     @else
-        {{-- === TAMPILAN GUEST (DIAMBIL MURNI DARI KODE KEDUA) === --}}
+        {{-- === TAMPILAN GUEST === --}}
         <section class="px-10 mt-4">
             <div class="max-w-[1350px] mx-auto">
                 <div class="h-[350px] relative rounded-lg overflow-hidden">
@@ -264,9 +242,8 @@
                                         }
                                     @endphp
                                     <div class="min-w-[300px]">
-                                        <a href="{{ url('/category/' . $cat->slug) }}" class="block relative rounded-2xl overflow-hidden shadow group bg-white">
-                                            <img src="{{ asset($imgName) }}" class="w-full h-[300px] object-cover" alt="{{ $cat->name }}"
-                                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640';">
+                                        <a href="{{ url('/category/' . $cat->slug) }}" class="block relative rounded-2xl overflow-hidden shadow group bg-white no-underline">
+                                            <img src="{{ asset($imgName) }}" class="w-full h-[300px] object-cover" alt="{{ $cat->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640';">
                                             <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-xl flex justify-between items-center group-hover:bg-gray-50 transition">
                                                 <span class="font-semibold capitalize text-gray-900">{{ $cat->name }}</span>
                                                 <span class="text-purple-700 font-bold">→</span>
@@ -278,8 +255,8 @@
                                 @endforelse
                             </div>
                         </div>
-                        <button onclick="prevGuestSlide()" class="absolute left-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">‹</button>
-                        <button onclick="nextGuestSlide()" class="absolute right-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10">›</button>
+                        <button onclick="prevGuestSlide()" class="absolute left-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10 cursor-pointer">‹</button>
+                        <button onclick="nextGuestSlide()" class="absolute right-[-25px] top-1/2 -translate-y-1/2 bg-white border border-gray-200 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition z-10 cursor-pointer">›</button>
                     </div>
                 </div>
             </div>
@@ -297,7 +274,7 @@
             </div>
         </section>
 
-        {{-- ULASAN SISWA GLOBAL BERVARIASI --}}
+        {{-- ULASAN SISWA GLOBAL --}}
         <section class="px-10 py-16 bg-gray-50">
             <div class="max-w-[1350px] mx-auto">
                 <h2 class="text-3xl font-bold mb-8 max-w-2xl text-gray-900">{{ __('welcome.Bergabung') }}</h2>
@@ -331,8 +308,6 @@
             </div>
         </section>
     @endif
-
-
 </main>
 
 <script>

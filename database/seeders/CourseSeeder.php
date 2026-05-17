@@ -27,6 +27,7 @@ class CourseSeeder extends Seeder
         
         fgetcsv($open, 2000, $delimiter);
 
+        // Ambil semua kategori untuk pencarian di memori
         $categories = Category::all();
         $instructorIds = User::where('role', 'instructor')->pluck('id')->toArray();
         $studentIds = User::where('role', 'student')->pluck('id')->toArray();
@@ -44,29 +45,52 @@ class CourseSeeder extends Seeder
         $uniqueWords = ['Keren', 'Mantap', 'Top', 'Oke', 'Bagus', 'Rekomendasi', 'Puas', 'LuarBiasa'];
 
         while (($row = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
-            if (count($row) < 4) continue;
+            if (count($row) < 11) continue;
 
-            $csvCatName = trim($row[2]);
-            $category = $categories->first(function ($cat) use ($csvCatName) {
+            // FAKTANYA: Ambil string nama Subject dari file CSV di indeks ke-10
+            $csvCatName = trim($row[10]);
+            
+            // 1. Cari Kategori Level 2 (Sub-Kategori) yang namanya klop dengan CSV
+            $parentCategory = $categories->whereNotNull('parent_id')->first(function ($cat) use ($csvCatName) {
                 return strtolower($cat->name) === strtolower($csvCatName);
             });
 
-            if (!$category) {
-                $category = $categories->first();
+            if ($parentCategory) {
+                // 2. FAKTANYA: Cari anak-anak Level 3 di bawahnya secara acak (HTML & CSS, JavaScript, dll)
+                $subCategory = $categories->where('parent_id', $parentCategory->id)->random(1)->first();
+                
+                // Jika memiliki anak di Level 3, gunakan ID-nya. Jika tidak, gunakan ID Level 2.
+                $category = $subCategory ? $subCategory : $parentCategory;
+            } else {
+                // Fallback darurat jika ada typo kata di dalam file CSV
+                $category = $categories->whereNotNull('parent_id')->first() ?? $categories->first();
             }
 
             $instructorId = !empty($instructorIds) ? $instructorIds[array_rand($instructorIds)] : 1;
 
-            $coursePrice = intval(trim($row[3]));
-            if ($coursePrice <= 0) {
-                $coursePrice = array_rand([150000 => 1, 250000 => 1, 350000 => 1, 450000 => 1]);
+            // Bersihkan format harga dari CSV (contoh: $199,00 atau Free)
+            $rawPrice = trim($row[3]);
+            if (strtolower($rawPrice) === 'free' || $rawPrice === '0' || empty($rawPrice)) {
+                $coursePrice = 0;
+            } else {
+                // Menghilangkan simbol dolar dan spasi, lalu ambil angka depannya
+                $cleanPrice = preg_replace('/[^\d]/', '', str_replace(',00', '', $rawPrice));
+                
+                // FAKTANYA: WAJIB DIKALIKAN 15000 AGAR NOMINAL MENJADI RUPIAH DI DATABASE
+                $coursePrice = intval($cleanPrice) * 15000;
+                
+                // Jika hasil konversi aneh atau nol, beri harga default acak standar Rupiah
+                if ($coursePrice <= 0) {
+                    $coursePrice = array_rand([150000 => 1, 250000 => 1, 350000 => 1, 450000 => 1]);
+                }
             }
 
             $randomSeedId = rand(1, 5000);
 
+            // Buat record data kursus
             $course = Course::create([
-                'title'         => trim($row[0]),
-                'description'   => trim($row[1]),
+                'title'         => trim($row[1]),
+                'description'   => 'Pelajari keahlian baru secara komprehensif mengenai ' . trim($row[1]) . '. Kelas dirancang terstruktur untuk semua level tingkatan.',
                 'image_url'     => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
                 'category_id'   => $category->id,
                 'instructor_id' => $instructorId,
@@ -74,6 +98,7 @@ class CourseSeeder extends Seeder
                 'status'        => 'active',
             ]);
 
+            // Insert data materi (lessons) secara massal
             $lessons = [];
             foreach ($lessonTemplates as $index => $template) {
                 $lessons[] = [
@@ -87,6 +112,7 @@ class CourseSeeder extends Seeder
             }
             DB::table('lessons')->insert($lessons);
 
+            // Hidrasi data transaksi mahasiswa (enrollments, payments, reviews) jika data student ada
             if (!empty($studentIds)) {
                 $chosenStudents = (array) array_rand($studentIds, min(3, count($studentIds)));
                 
@@ -106,7 +132,6 @@ class CourseSeeder extends Seeder
                         'updated_at'  => $enrolledAt,
                     ]);
 
-                    // FAKTANYA: Disinkronkan dengan membuang enrollment_id dan memasukkan user_id & course_id
                     $payments[] = [
                         'user_id'        => $studentId,
                         'course_id'      => $course->id,
@@ -124,7 +149,7 @@ class CourseSeeder extends Seeder
                     $reviews[] = [
                         'user_id'    => $studentId,
                         'course_id'  => $course->id,
-                        'rating'     => rand(3, 5),
+                        'rating'     => rand(4, 5),
                         'comment'    => $finalComment,
                         'created_at' => $enrolledAt,
                         'updated_at' => $enrolledAt,

@@ -53,7 +53,7 @@ class CourseFactory extends Factory
         $randomSeedId = $this->faker->unique()->numberBetween(1, 5000);
 
         return [
-            'title' => $title . ' ' . $randomSeedId,
+            'title' => $title,
             'description' => "This is a specialized course about " . $catName . " presented in " . $lang . ". Designed for all levels.",
             // FIX: Samakan server menggunakan LoremFlickr + parameter lock agar gambar membeku permanen dan serasi dengan Blade
             'image_url' => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
