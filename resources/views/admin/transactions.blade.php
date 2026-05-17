@@ -47,11 +47,13 @@
                             <tr class="border-b border-[#d1d7dc] hover:bg-gray-50">
                                 <td class="px-6 py-4 text-sm font-semibold">#{{ $payment->id }}</td>
                                 <td class="px-6 py-4">
-                                    <p class="font-bold text-sm text-[#1c1d1f]">{{ $payment->enrollment->user->name ?? 'User Hilang' }}</p>
-                                    <p class="text-xs text-[#6a6f73]">{{ $payment->enrollment->user->email ?? '-' }}</p>
+                                    {{-- FAKTANYA: Langsung memanggil relasi user tanpa melalui enrollment --}}
+                                    <p class="font-bold text-sm text-[#1c1d1f]">{{ $payment->user->name ?? 'User Hilang' }}</p>
+                                    <p class="text-xs text-[#6a6f73]">{{ $payment->user->email ?? '-' }}</p>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-[#1c1d1f]">
-                                    {{ $payment->enrollment->course->title ?? 'Kelas Terhapus' }}
+                                    {{-- FAKTANYA: Langsung memanggil relasi course tanpa melalui enrollment --}}
+                                    {{ $payment->course->title ?? 'Kelas Terhapus' }}
                                 </td>
                                 <td class="px-6 py-4 text-sm text-center">
                                     <span class="bg-gray-100 px-2 py-1 rounded text-xs font-semibold">{{ $payment->payment_method }}</span>

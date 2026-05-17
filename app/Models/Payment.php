@@ -12,24 +12,30 @@ class Payment extends Model
 
     protected $table = 'payments';
 
-    // Kembalikan array fillable ke format string murni nama kolom database
+    // FAKTANYA: Properti fillable wajib mendaftarkan user_id dan course_id agar mendukung Mass Assignment
     protected $fillable = [
-        'enrollment_id', 
+        'user_id', 
+        'course_id', 
         'amount', 
         'payment_method', 
         'status', 
         'paid_at',
     ];
 
-    //Deklarasi penentu format waktu dipisahkan ke dalam properti casts
     protected $casts = [
         'paid_at' => 'datetime',
     ];
 
     public $timestamps = true;
 
-    public function enrollment(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Enrollment::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // FAKTANYA: Relasi lama dibuang, diganti dengan relasi langsung ke Course yang dibeli
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }

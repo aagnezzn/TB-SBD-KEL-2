@@ -67,7 +67,6 @@ Route::get('lang/{locale}', function ($locale) {
 |--------------------------------------------------------------------------
 | 2. AREA AUTH UMUM (Hanya Butuh Login)
 |--------------------------------------------------------------------------
-| Di sini tempat rute yang bisa diakses baik oleh Student maupun Instructor.
 */
 Route::middleware(['auth'])->group(function () {
     // Keranjang
@@ -75,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
-    // JEMBATAN INSTRUKTUR (PENTING: Jangan masukkan ke middleware 'instructor' agar Siswa bisa daftar)
+    // JEMBATAN INSTRUKTUR
     Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
     Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
     Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
@@ -89,8 +88,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil-publik/{id}', [AccountController::class, 'showPublicProfile'])->name('profile.public');
     Route::put('/pengaturan/foto/update', [AccountController::class, 'updatePhoto'])->name('settings.photo.update');
     Route::delete('/account/profile/photo', [AccountController::class, 'deletePhoto'])->name('account.avatar.delete');
-
-
 });
 
 /*
@@ -143,9 +140,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/admin/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
-
+    
+    // FAKTANYA: Prefix '/admin' dibuang dari string URL karena sudah diwakili oleh grup prefix utama!
+    Route::get('/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
 });
-
-
-

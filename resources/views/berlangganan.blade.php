@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<script src="https://unpkg.com/alpinejs" defer></script>
 
 @section('content')
 

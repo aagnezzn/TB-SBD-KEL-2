@@ -23,27 +23,23 @@ class InstructorController extends Controller
 
     // 2. Dashboard Ringkasan
     public function index()
-{
-    $user = Auth::user();
-    
-    // Ambil semua kursus milik instruktur ini
-    $courses = Course::where('instructor_id', $user->id)->latest()->get();
-    $courseIds = $courses->pluck('id');
+    {
+        $user = Auth::user();
+        
+        $courses = Course::where('instructor_id', $user->id)->latest()->get();
+        $courseIds = $courses->pluck('id');
 
-    // Hitung statistik
-    $totalCourses = $courses->count();
-    $totalStudents = Enrollment::whereIn('course_id', $courseIds)->count();
-    
-    // FAKTA: Tambahkan logika hitung rating di bawah ini!
-    $avgRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
-    $avgRating = round($avgRating, 1);
+        $totalCourses = $courses->count();
+        $totalStudents = Enrollment::whereIn('course_id', $courseIds)->count();
+        
+        $avgRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
+        $avgRating = round($avgRating, 1);
 
-    $totalRevenue = Payment::whereHas('enrollment', function($query) use ($courseIds) {
-        $query->whereIn('course_id', $courseIds);
-    })->sum('amount');
+        // FAKTANYA: Query diubah langsung memfilter course_id di tabel payments tanpa lewat enrollment
+        $totalRevenue = Payment::whereIn('course_id', $courseIds)->where('status', 'success')->sum('amount');
 
-    return view('instructor.dashboard', compact('courses', 'totalCourses', 'totalStudents', 'totalRevenue', 'avgRating'));
-}
+        return view('instructor.dashboard', compact('courses', 'totalCourses', 'totalStudents', 'avgRating', 'totalRevenue'));
+    }
 
     // 3. Daftar Kursus Saya
     public function myCourses()
@@ -182,17 +178,14 @@ class InstructorController extends Controller
     }
 
     // 9. Performa Statistik Grafik Pendapatan
-    public function performance()
+   public function performance()
     {
-        $instructorId = Auth::id();
-        
-        $courses = Course::where('instructor_id', $instructorId)->get();
+        $user = Auth::user();
+        $courses = Course::where('instructor_id', $user->id)->get();
         $courseIds = $courses->pluck('id');
 
-        $totalEarnings = Payment::whereHas('enrollment', function($query) use ($courseIds) {
-            $query->whereIn('course_id', $courseIds);
-        })->sum('amount');
-
+        // FAKTANYA: Hitung total langsung dari data payments baru
+        $totalEarnings = Payment::whereIn('course_id', $courseIds)->where('status', 'success')->sum('amount');
         $totalEnrollments = Enrollment::whereIn('course_id', $courseIds)->count();
         $averageRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
 
@@ -201,9 +194,9 @@ class InstructorController extends Controller
         for ($i = 6; $i >= 0; $i--) {
             $date = now()->subDays($i);
             
-            $dayIncome = Payment::whereHas('enrollment', function($query) use ($courseIds) {
-                $query->whereIn('course_id', $courseIds);
-            })
+            // FAKTANYA: Query grafik mingguan diubah murni mendeteksi course_id langsung pada payments
+            $dayIncome = Payment::whereIn('course_id', $courseIds)
+            ->where('status', 'success')
             ->whereDate('created_at', $date->toDateString())
             ->sum('amount');
 

@@ -34,77 +34,70 @@ class CourseSeeder extends Seeder
         $lessonTemplates = [
             ['Pengenalan Mendasar dan Setup Lingkungan Kerja', 'Video pengenalan awal mengenai konsep dasar, instalasi tools pendukung, serta konfigurasi environment awal agar siap memulai pembelajaran.'],
             ['Konsep Inti, Arsitektur, dan Alur Kerja Utama', 'Membahas pemahaman mendalam tentang arsitektur utama, komponen penting, serta bagaimana alur logika sistem bekerja di dunia nyata.'],
-            ['Praktik Implementasi, Studi Kasus Nyata, dan Tips Terbaik', 'Sesi praktik langsung membangun sebuah mini-project, memecahkan masalah umum, disertai dengan tips and tricks optimasi performa.']
+            ['Praktik Implementation, Studi Kasus Nyata, dan Tips Terbaik', 'Sesi praktik langsung membangun sebuah mini-project, memecahkan masalah umum, serta tips optimasi performa kode di lingkungan produksi.']
         ];
 
-        $pembuka = ['Materi kursus sangat', 'Penjelasan dari instruktur bener-bener', 'Kelas ini beneran', 'Modul pembelajarannya begitu', 'Penyampaian materinya sangat', 'Suka banget, kurikulumnya'];
-        $inti = [' gampang diikuti dan dipahami,', ' terstruktur rapi dari awal sampai akhir,', ' interaktif dan ga bikin bosen sama sekali,', ' lengkap banget dengan contoh kasus nyata,', ' jelas dan langsung ke inti pembahasan,', ' detail banget pas bagian bedah codingan,'];
-        $penutup = [' recommended pol buat pemula!', ' ngebantu banget buat nambah portofolio.', ' worth it parah sih wajib dibeli.', ' bikin makin semangat buat dalemin materi ini.', ' cocok buat yang mau ganti karir ke bidang ini.', ' dapet banyak insight baru dari studi kasusnya.'];
-        $uniqueWords = ['mantap', 'keren', 'top', 'oke', 'rekomended', 'jos', 'puas', 'bintang lima', 'sukses', 'paham', 'ciamik', 'luar biasa'];
-        
         $paymentMethods = ['OVO', 'Transfer Bank', 'Dana'];
+        $pembuka = ['Materi kelas sangat', 'Penjelasan mentor benar-benar', 'Modul kelas ini tergolong', 'Materi yang dibawakan sangat'];
+        $inti = [' mudah dimengerti orang awam,', ' terstruktur rapi per sub-bab,', ' interaktif dengan contoh riil,', ' mendalam dan langsung praktek,'];
+        $penutup = [' highly recommended banget!', ' ngebantu upgrade skill portofolio.', ' sangat sepadan dengan biayanya.', ' memuaskan sekali cara ngajarnya.'];
+        $uniqueWords = ['Keren', 'Mantap', 'Top', 'Oke', 'Bagus', 'Rekomendasi', 'Puas', 'LuarBiasa'];
 
-        $imageCounter = 1;
+        while (($row = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
+            if (count($row) < 4) continue;
 
-        while (($data = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
-            if (!isset($data[1]) || empty($data[1])) continue;
-            
-            $subject = (isset($data[10])) ? trim($data[10], '"') : 'General';
-            
-            // Tentukan keyword pencarian gambar berdasarkan subjek agar gambar relevan dengan tema kursus
-            $keyword = 'computer,office';
-            if (Str::contains(strtolower($subject), ['web', 'coding', 'programming', 'javascript', 'html', 'php', 'laravel'])) {
-                $keyword = 'coding,programming';
-            } elseif (Str::contains(strtolower($subject), ['design', 'graphic', 'canva', 'photoshop', 'illustrator'])) {
-                $keyword = 'design,workspace';
-            } elseif (Str::contains(strtolower($subject), ['business', 'finance', 'accounting', 'trading'])) {
-                $keyword = 'business,chart';
-            } elseif (Str::contains(strtolower($subject), ['music', 'guitar', 'piano', 'vocal'])) {
-                $keyword = 'music,instrument';
+            $csvCatName = trim($row[2]);
+            $category = $categories->first(function ($cat) use ($csvCatName) {
+                return strtolower($cat->name) === strtolower($csvCatName);
+            });
+
+            if (!$category) {
+                $category = $categories->first();
             }
 
-            // 1. BUAT KURSUS MASTER WITH DYNAMIC IMAGE LOCK
+            $instructorId = !empty($instructorIds) ? $instructorIds[array_rand($instructorIds)] : 1;
+
+            $coursePrice = intval(trim($row[3]));
+            if ($coursePrice <= 0) {
+                $coursePrice = array_rand([150000 => 1, 250000 => 1, 350000 => 1, 450000 => 1]);
+            }
+
+            $randomSeedId = rand(1, 5000);
+
             $course = Course::create([
-                'category_id'   => $categories->random()->id,
-                'instructor_id' => $instructorIds[array_rand($instructorIds)],
-                'title'         => Str::limit(trim($data[1], '"'), 150),
-                'description'   => "Pelajari keahlian baru di bidang " . $subject . " dengan materi terstruktur.",
-                'price'         => rand(150000, 950000),
-                'image_url'     => "https://loremflickr.com/640/360/" . $keyword . "?lock=" . $imageCounter,
+                'title'         => trim($row[0]),
+                'description'   => trim($row[1]),
+                'image_url'     => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
+                'category_id'   => $category->id,
+                'instructor_id' => $instructorId,
+                'price'         => $coursePrice,
                 'status'        => 'active',
             ]);
 
-            $imageCounter++;
-
-            // 2. BULK INSERT LESSON BERVARIASI
             $lessons = [];
             foreach ($lessonTemplates as $index => $template) {
                 $lessons[] = [
                     'course_id'  => $course->id,
-                    'title'      => 'Bab ' . ($index + 1) . ': ' . $template[0] . ' - ' . $subject,
-                    'content'    => $template[1] . ' Pembahasan mendalam langkah demi langkah untuk menunjang keahlian praktis Anda.',
-                    'duration'   => rand(20, 60),
+                    'title'      => ($index + 1) . '. ' . $template[0],
+                    'content'    => $template[1],
+                    'duration'   => rand(15, 45),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
             }
             DB::table('lessons')->insert($lessons);
 
-            // 3. BULK INSERT TEPAT 20 ENROLLMENTS, PAYMENTS, & REVIEWS UNIK PER KURSUS
             if (!empty($studentIds)) {
-                $countToTake = min(20, count($studentIds));
-                $courseStudents = array_rand(array_flip($studentIds), $countToTake);
-                if (!is_array($courseStudents)) {
-                    $courseStudents = [$courseStudents];
-                }
-
+                $chosenStudents = (array) array_rand($studentIds, min(3, count($studentIds)));
+                
                 $payments = [];
                 $reviews = [];
 
-                foreach ($courseStudents as $studentId) {
-                    $enrolledAt = now()->subDays(rand(1, 40))->subHours(rand(1, 23));
-                    
-                    $enrollId = DB::table('enrollments')->insertGetId([
+                foreach ($chosenStudents as $studentIndex) {
+                    $studentId = $studentIds[$studentIndex];
+                    $enrolledAt = now()->subDays(rand(1, 30));
+
+                    DB::table('enrollments')->insert([
                         'user_id'     => $studentId,
                         'course_id'   => $course->id,
                         'status'      => 'active',
@@ -113,8 +106,10 @@ class CourseSeeder extends Seeder
                         'updated_at'  => $enrolledAt,
                     ]);
 
+                    // FAKTANYA: Disinkronkan dengan membuang enrollment_id dan memasukkan user_id & course_id
                     $payments[] = [
-                        'enrollment_id'  => $enrollId,
+                        'user_id'        => $studentId,
+                        'course_id'      => $course->id,
                         'amount'         => $course->price,
                         'payment_method' => $paymentMethods[array_rand($paymentMethods)],
                         'status'         => 'success',

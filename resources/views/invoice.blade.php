@@ -9,7 +9,12 @@
         </div>
 
         <h1 class="text-2xl font-bold text-[#1c1d1f] mb-2">Selesaikan Pembayaran</h1>
-        <p class="text-[#6a6f73] text-sm mb-6">Silakan scan QR Code di bawah ini menggunakan aplikasi M-Banking atau E-Wallet Anda.</p>
+        <p class="text-[#6a6f73] text-sm mb-4">Silakan scan QR Code di bawah ini menggunakan aplikasi M-Banking atau E-Wallet Anda.</p>
+        
+        {{-- FAKTANYA: Menampilkan judul kursus langsung dari relasi baru pembeli --}}
+        <p class="text-sm font-bold text-purple-700 bg-purple-50 py-2 px-4 rounded border border-purple-100 mb-6 inline-block capitalize">
+            Kursus: {{ $payment->course->title ?? 'Kursus Tidak Ditemukan' }}
+        </p>
 
         <div class="border-2 border-dashed border-[#d1d7dc] rounded-lg p-6 flex flex-col items-center justify-center mb-6 bg-gray-50">
             {{-- QR Code Generator (Data menggunakan ID Payment unik) --}}

@@ -14,7 +14,9 @@ class AdminController extends Controller
         $totalPendapatan = Payment::where('status', 'success')->sum('amount');
         $totalKelas = Course::count();
         $totalSiswa = User::where('role', 'student')->count();
-        $transaksiTerbaru = Payment::latest()->take(5)->get();
+        
+        // FAKTANYA: Load relasi langsung ke user dan course di dashboard admin
+        $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
 
         return view('admin.dashboard', compact(
             'totalPendapatan', 
@@ -29,16 +31,16 @@ class AdminController extends Controller
         $totalPendapatan = Payment::where('status', 'success')->sum('amount');
         $totalKelas = Course::count();
         $totalSiswa = User::where('role', 'student')->count();
-        $transaksiTerbaru = Payment::latest()->take(5)->get();
+        $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
 
         $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
-       return view('admin.courses', compact(
+        return view('admin.courses', compact(
             'courses', 
             'totalPendapatan', 
             'totalKelas', 
             'totalSiswa', 
             'transaksiTerbaru'
-    ));
+        ));
     }
 
     public function users(Request $request)
@@ -47,10 +49,8 @@ class AdminController extends Controller
 
         $users = User::query()
             ->when($search, function ($query, $search) {
-                return $query->where(function($q) use ($search) {
-                    $q->where('name', 'like', "%{$search}%")
+                $query->where('name', 'like', "%{$search}%")
                       ->orWhere('email', 'like', "%{$search}%");
-                });
             })
             ->latest()
             ->paginate(10)
@@ -59,16 +59,15 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    // Fungsi untuk halaman Transaksi
+    // FAKTANYA: Fungsi Transaksi diperbaiki total agar memanggil relasi baru secara langsung
     public function transactions()
     {
-        $payments = Payment::with(['enrollment.user', 'enrollment.course'])
+        $payments = Payment::with(['user', 'course'])
                 ->latest()
                 ->paginate(10);
         return view('admin.transactions', compact('payments'));
     }
 
-    //fungsi halaman edit
     public function editCourse($id)
     {
         $course = Course::findOrFail($id);
@@ -89,17 +88,16 @@ class AdminController extends Controller
         return redirect()->route('admin.courses')->with('success', 'Kelas berhasil diupdate!');
     }
 
-    //fungsi hapus kursus
     public function deleteCourse($id)
     {
         Course::findOrFail($id)->delete();
         return redirect()->route('admin.courses')->with('success', 'Kelas berhasil dihapus!');
     }
 
-    //fungsi halaman detail transaksi
     public function detailTransaksi($id)
     {
-        $transaksi = Payment::findOrFail($id);
+        // FAKTANYA: Load relasi langsung untuk kebutuhan halaman detail invoice admin
+        $transaksi = Payment::with(['user', 'course'])->findOrFail($id);
         return view('admin.transaksi-detail', compact('transaksi'));
     }
 }

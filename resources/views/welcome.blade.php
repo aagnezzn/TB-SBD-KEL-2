@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
+@section('content')
 <style>
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 
-@section('content')
 @auth
 {{-- NAVBAR KATEGORI (Hanya muncul saat User sudah Login) --}}
 <div class="hidden lg:block bg-white border-b border-gray-200 relative">
@@ -203,103 +203,6 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-        </section>
-        
-        {{-- Bagian Brand Korporat --}}
-        <section class="bg-gray-100 py-12 md:py-16 border-t border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4">
-                <p class="text-center text-slate-600 font-medium text-base mb-8 tracking-wide">
-                    {{ __('welcome.Dipercaya') }}
-                </p>
-                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                    <div class="flex items-center justify-center"><img src="{{ asset('vw.png') }}" class="h-16 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="VW"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('samsung.png') }}" class="h-16 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="Samsung"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('cisco.png') }}" class="h-12 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="Cisco"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('vimeo.png') }}" class="h-8 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="Vimeo"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('pg.png') }}" class="h-16 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="P&G"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('hpe.png') }}" class="h-12 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="HPE"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('citi.png') }}" class="h-12 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="Citi"></div>
-                    <div class="flex items-center justify-center"><img src="{{ asset('ericsson.png') }}" class="h-12 w-auto grayscale opacity-60 hover:opacity-100 transition" alt="Ericsson"></div>
-                </div>
-            </div>
-        </section>
-
-        {{-- Ulasan Pengguna --}}
-        <section class="px-10 py-16 bg-gray-50">
-            <div class="max-w-[1350px] mx-auto">
-                <h2 class="text-3xl font-bold mb-8 max-w-2xl text-gray-900">
-                    {{ __('welcome.Bergabung') }}
-                </h2>
-                <div class="grid grid-cols-4 gap-6">
-                    <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
-                        <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            {{ __('welcome.Kursus ini menjelaskan') }}
-                        </p>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">Cris M.</p>
-                                <p class="text-xs text-gray-500">{{ __('welcome.Google AI') }} </p>
-                            </div>
-                        </div>
-                        <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm mt-auto border-t border-gray-100 pt-4 block">Lihat kursus AI &rarr;</a>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
-                        <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            {{__('welcome.idemy benar-benar')}} <strong>{{__('welcome.pembawa')}} </strong> {{__('welcome.bagi')}}
-                        </p>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                                <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">Alvin Lim</p>
-                                <p class="text-xs text-gray-500">Technical Co-Founder, CTO di Dimensional</p>
-                            </div>
-                        </div>
-                        <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm mt-auto border-t border-gray-100 pt-4 block">Lihat kursus iOS & Swift &rarr;</a>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
-                        <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            {{__('welcome.Udemy memberikan')}}<strong>{{__('welcome.mendapatkan')}} </strong>
-                        </p>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                                <img src="https://randomuser.me/api/portraits/men/22.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">William A. Wachlin</p>
-                                <p class="text-xs text-gray-500">Partner Account Manager di AWS</p>
-                            </div>
-                        </div>
-                        <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm mt-auto border-t border-gray-100 pt-4 block">Lihat kursus AWS ini &rarr;</a>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm">
-                        <svg class="w-8 h-8 mb-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                        <p class="text-gray-700 mb-6 grow text-sm leading-relaxed">
-                            {{__('welcome.Saya')}} 
-                        </p>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                                <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">Ben C.</p>
-                                <p class="text-xs text-gray-500">Google AI Professional graduate</p>
-                            </div>
-                        </div>
-                        <a href="#" class="text-purple-700 font-bold hover:text-purple-900 text-sm mt-auto border-t border-gray-100 pt-4 block">Sertifikat Profesional Google AI &rarr;</a>
-                    </div>
-                </div>
             </div>
         </section>
 

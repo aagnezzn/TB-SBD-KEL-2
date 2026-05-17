@@ -12,7 +12,8 @@
                 <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Tuliskan Detail Kursus Anda</h2>
             </div>
             
-            <form action="{{ route('instructor.courses.save') }}" method="POST" class="space-y-8">
+            {{-- UBAH BARIS INI: --}}
+<form action="{{ route('instructor.courses.store') }}" method="POST" class="space-y-8">
                 @csrf
                 
                 {{-- Input Judul --}}

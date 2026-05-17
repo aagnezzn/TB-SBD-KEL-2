@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
 
         // eksekusi import data massal dari CSV
         $this->call(CourseSeeder::class);
+
+        $this->call([
+            UserProfileSeeder::class,
+            CartSeeder::class,
+            WishlistSeeder::class,
+        ]);
     }
 }

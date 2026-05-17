@@ -5,9 +5,7 @@
     <title>Idemy</title>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://unpkg.com/feather-icons"></script>
     
     <style>
@@ -15,9 +13,9 @@
     </style>
 </head>
 
-<body class="bg-gray-50 flex min-h-screen flex-col m-0 p-0 overflow-y-auto">
-{{-- AGAR STATE MODAL BISA DIAKSES GLOBAL --}}
+{{-- FAKTANYA: Hanya boleh ada SATU root node <body> dengan inisialisasi Alpine.js --}}
 <body x-data="{ languageModal: false }" class="bg-gray-50 flex min-h-screen flex-col m-0 p-0 overflow-y-auto">
+    
     {{-- Banner Promo --}}
     <div class="w-full bg-[#addada] py-3 px-4 relative flex items-center justify-center border-b border-cyan-200 z-[9999]">
         <p class="text-center text-sm md:text-base text-gray-900">

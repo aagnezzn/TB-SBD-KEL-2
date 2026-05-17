@@ -18,8 +18,9 @@
             <tbody class="divide-y divide-gray-200">
                 @forelse($payments as $payment)
                     <tr class="text-sm text-gray-700 hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-purple-700">
-                            {{ $payment->enrollment->course->title ?? 'Course Deleted' }}
+                        <td class="px-6 py-4 font-medium text-purple-700 capitalize">
+                            {{-- FAKTANYA: Akses langsung ke properti course tanpa lewat enrollment --}}
+                            {{ $payment->course->title ?? 'Course Deleted' }}
                         </td>
                         <td class="px-6 py-4 text-gray-500">
                             {{ \Carbon\Carbon::parse($payment->paid_at)->format('M d, Y') }}
@@ -31,9 +32,15 @@
                             {{ $payment->payment_method }}
                         </td>
                         <td class="px-6 py-4">
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">
-                                {{ strtoupper($payment->status) }}
-                            </span>
+                            @if(strtolower($payment->status) == 'success')
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">
+                                    {{ strtoupper($payment->status) }}
+                                </span>
+                            @else
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full">
+                                    {{ strtoupper($payment->status) }}
+                                </span>
+                            @endif
                         </td>
                     </tr>
                 @empty

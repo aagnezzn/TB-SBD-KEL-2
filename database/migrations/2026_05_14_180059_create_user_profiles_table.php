@@ -10,21 +10,20 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            // Menghubungkan ke tabel users (jika user dihapus, profil otomatis terhapus)
+            // Relasi One-to-One terkunci sempurna ke tabel users
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
             
-            // Kolom-kolom profil Anda
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('headline', 60)->nullable();
             $table->text('bio')->nullable();
+            
+            $table->string('photo')->nullable(); 
+            
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('tiktok')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('youtube')->nullable();
             $table->timestamps();
         });
     }

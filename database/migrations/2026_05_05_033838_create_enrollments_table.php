@@ -19,7 +19,8 @@ return new class extends Migration
         $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
         
         $table->timestamp('enrolled_at')->useCurrent();
-        $table->enum('status', ['active', 'completed', 'dropped'])->default('active');
+        // Di dalam create_enrollments_table.php
+        $table->enum('status', ['pending', 'active', 'completed', 'dropped'])->default('pending');
         $table->timestamps();
     });
     }

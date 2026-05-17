@@ -41,10 +41,8 @@ class LearningController extends Controller
 
     public function purchaseHistory()
     {
-        $payments = \App\Models\Payment::whereHas('enrollment', function($query) {
-            $query->where('user_id', Auth::id());
-        })
-        ->with('enrollment.course')
+        $payments = \App\Models\Payment::where('user_id', Auth::id())
+        ->with('course')
         ->orderBy('paid_at', 'desc')
         ->get();
 
