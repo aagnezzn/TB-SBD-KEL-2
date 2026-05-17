@@ -34,7 +34,7 @@ class CourseSeeder extends Seeder
 
         $lessonTemplates = [
             ['Pengenalan Mendasar dan Setup Lingkungan Kerja', 'Video pengenalan awal mengenai konsep dasar, instalasi tools pendukung, serta konfigurasi environment awal agar siap memulai pembelajaran.'],
-            ['Konsep Inti, Arsitektur, dan Alur Kerja Utama', 'Membahas pemahaman mendalam tentang arsitektur utama, komponen penting, serta bagaimana alur logika sistem bekerja di dunia nyata.'],
+            ['Konsep Inti, Arsitektur, dan Alur Kerja Utama', 'Membahas pemahaman mendalam tentang arsitektur utama, components penting, serta bagaimana alur logika sistem bekerja di dunia nyata.'],
             ['Praktik Implementation, Studi Kasus Nyata, dan Tips Terbaik', 'Sesi praktik langsung membangun sebuah mini-project, memecahkan masalah umum, serta tips optimasi performa kode di lingkungan produksi.']
         ];
 
@@ -87,15 +87,21 @@ class CourseSeeder extends Seeder
 
             $randomSeedId = rand(1, 5000);
 
-            // Buat record data kursus
+            // Ambil nilai statistik asli dari file CSV, hilangkan separator titiknya
+            $csvSubscribersCount = intval(str_replace('.', '', trim($row[4])));
+            $csvReviewsCount = intval(str_replace('.', '', trim($row[5])));
+
+            // Buat record data kursus dengan menyertakan nilai statistik asli CSV
             $course = Course::create([
-                'title'         => trim($row[1]),
-                'description'   => 'Pelajari keahlian baru secara komprehensif mengenai ' . trim($row[1]) . '. Kelas dirancang terstruktur untuk semua level tingkatan.',
-                'image_url'     => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
-                'category_id'   => $category->id,
-                'instructor_id' => $instructorId,
-                'price'         => $coursePrice,
-                'status'        => 'active',
+                'title'             => trim($row[1]),
+                'description'       => 'Pelajari keahlian baru secara komprehensif mengenai ' . trim($row[1]) . '. Kelas dirancang terstruktur untuk semua level tingkatan.',
+                'image_url'         => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
+                'category_id'       => $category->id,
+                'instructor_id'     => $instructorId,
+                'price'             => $coursePrice,
+                'status'            => 'active',
+                'subscribers_count' => $csvSubscribersCount, // Mengisi kolom statistik tabel courses
+                'reviews_count'     => $csvReviewsCount,     // Mengisi kolom statistik tabel courses
             ]);
 
             // Insert data materi (lessons) secara massal
@@ -112,14 +118,17 @@ class CourseSeeder extends Seeder
             }
             DB::table('lessons')->insert($lessons);
 
-            // Hidrasi data transaksi mahasiswa (enrollments, payments, reviews) jika data student ada
+            // Hidrasi data transaksi mahasiswa (enrollments, payments, reviews) untuk fungsionalitas sistem web
             if (!empty($studentIds)) {
-                $chosenStudents = (array) array_rand($studentIds, min(3, count($studentIds)));
+                // Batasi jumlah maksimal sampel record relasi agar database tidak overcapacity
+                $enrollCount = min($csvSubscribersCount, count($studentIds), 15); 
+                $reviewCount = min($csvReviewsCount, $enrollCount); 
+
+                // Ambil sejumlah siswa acak sesuai hasil kuota sampel batas aman
+                $chosenEnrollStudents = (array) array_rand($studentIds, $enrollCount);
                 
                 $payments = [];
-                $reviews = [];
-
-                foreach ($chosenStudents as $studentIndex) {
+                foreach ($chosenEnrollStudents as $studentIndex) {
                     $studentId = $studentIds[$studentIndex];
                     $enrolledAt = now()->subDays(rand(1, 30));
 
@@ -142,22 +151,36 @@ class CourseSeeder extends Seeder
                         'created_at'     => $enrolledAt,
                         'updated_at'     => $enrolledAt,
                     ];
-
-                    $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
-                    $finalComment = $textKustom . ' (' . $uniqueWords[array_rand($uniqueWords)] . ' ' . rand(100, 999) . ')';
-
-                    $reviews[] = [
-                        'user_id'    => $studentId,
-                        'course_id'  => $course->id,
-                        'rating'     => rand(4, 5),
-                        'comment'    => $finalComment,
-                        'created_at' => $enrolledAt,
-                        'updated_at' => $enrolledAt,
-                    ];
+                }
+                if (!empty($payments)) {
+                    DB::table('payments')->insert($payments);
                 }
 
-                DB::table('payments')->insert($payments);
-                DB::table('reviews')->insert($reviews);
+                if ($reviewCount > 0) {
+                    $chosenReviewKeys = (array) array_rand($chosenEnrollStudents, $reviewCount);
+                    $reviews = [];
+
+                    foreach ($chosenReviewKeys as $key) {
+                        $studentIndex = $chosenEnrollStudents[$key];
+                        $studentId = $studentIds[$studentIndex];
+                        $enrolledAt = now()->subDays(rand(1, 15));
+
+                        $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
+                        $finalComment = $textKustom . ' (' . $uniqueWords[array_rand($uniqueWords)] . ' ' . rand(100, 999) . ')';
+
+                        $reviews[] = [
+                            'user_id'    => $studentId,
+                            'course_id'  => $course->id,
+                            'rating'     => rand(4, 5),
+                            'comment'    => $finalComment,
+                            'created_at' => $enrolledAt,
+                            'updated_at' => $enrolledAt,
+                        ];
+                    }
+                    if (!empty($reviews)) {
+                        DB::table('reviews')->insert($reviews);
+                    }
+                }
             }
         }
         fclose($open);

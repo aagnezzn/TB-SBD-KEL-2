@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('price'); 
+            $table->integer('subscribers_count')->default(0);
+            $table->integer('reviews_count')->default(0);
             $table->string('image_url')->nullable();
             
             // FIX: Tambahkan kolom status untuk mendukung data Factory & Controller
