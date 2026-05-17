@@ -9,43 +9,58 @@ use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
-   public function index()
-{
-    /** @var \App\Models\User $user */
-    $user = \App\Models\User::find(Auth::id());
+    public function index()
+    {
+        /** @var \App\Models\User $user */
+        $user = \App\Models\User::find(Auth::id());
 
-    // JIKA AKUN BARU BELUM PUNYA PROFIL, OTOMATIS BUATKAN RECORD KOSONG DI DATABASE
-    if (!$user->profile) {
-        $user->profile()->create([
-            'first_name' => explode(' ', $user->name)[0] ?? 'User',
-            'last_name'  => explode(' ', $user->name)[1] ?? '',
-        ]);
-        
-        // Muat ulang data user beserta profil barunya
-        $user->load('profile');
+        // JIKA AKUN BARU BELUM PUNYA PROFIL, OTOMATIS BUATKAN RECORD KOSONG DI DATABASE
+        if (!$user->profile) {
+            $user->profile()->create([
+                'first_name' => explode(' ', $user->name)[0] ?? 'User',
+                'last_name'  => explode(' ', $user->name)[1] ?? '',
+            ]);
+            
+            // Muat ulang data user beserta profil barunya
+            $user->load('profile');
+        }
+
+        return view('profile.account', compact('user'));
     }
 
-    return view('profile.account', compact('user'));
+    // --- SINTAKS UPDATE PROFILE YANG KITA PISAH & PERBAIKI ---
+    public function updateProfile(Request $request)
+    {
+        // Validasi input data profil (Sesuaikan jika ada field yang required)
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'nullable|string|max:255',
+        ]);
 
-    $user->profile()->updateOrCreate(
-        ['user_id' => $user->id],
-        [
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'headline'   => $request->headline,
-            'bio'        => $request->bio,
-            'website'    => $request->website,
-            'facebook'   => $request->facebook,
-            'instagram'  => $request->instagram,
-            'twitter'    => $request->twitter,
-        ]
-        
-    );    
-    $user->name = $request->first_name . ' ' . $request->last_name;
-    $user->save();
-    $user->profile->touch();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
-    return redirect()->back()->with('status', 'Profil berhasil diperbarui!');
+        // Update data ke table profiles
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'first_name' => $request->first_name,
+                'last_name'  => $request->last_name,
+                'headline'   => $request->headline,
+                'bio'        => $request->bio,
+                'website'    => $request->website,
+                'facebook'   => $request->facebook,
+                'instagram'  => $request->instagram,
+                'twitter'    => $request->twitter,
+            ]
+        );    
+
+        // Update data nama di table users
+        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->save();
+        $user->profile->touch();
+
+        return redirect()->back()->with('status', 'Profil berhasil diperbarui!');
     }
 
     public function updateEmail(Request $request)
@@ -78,65 +93,65 @@ class AccountController extends Controller
 
     public function showPublicProfile($id)
     {
-    /** @var \App\Models\User $user */
-    $user = \App\Models\User::with('profile')->findOrFail($id);
-    
-    return view('profile.public', compact('user'));
+        /** @var \App\Models\User $user */
+        $user = \App\Models\User::with('profile')->findOrFail($id);
+        
+        return view('profile.public', compact('user'));
     }
 
     public function editPhoto()
     {
-    return redirect()->route('account.index', ['tab' => 'foto']);
+        return redirect()->route('account.index', ['tab' => 'foto']);
     }
 
     public function updatePhoto(Request $request)
     {
-    $request->validate([
-        'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-    ]);
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
-    if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
 
-        if ($user->profile && $user->profile->photo) {
-            $oldPath = public_path('storage/photos/' . $user->profile->photo);
-            if (file_exists($oldPath)) {
-                unlink($oldPath); // Hapus file fisik lama
+            if ($user->profile && $user->profile->photo) {
+                $oldPath = public_path('storage/photos/' . $user->profile->photo);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath); // Hapus file fisik lama
+                }
             }
+
+            $fileName = time() . '_' . $user->id . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/photos'), $fileName);
+            $user->profile()->updateOrCreate(
+                ['user_id' => $user->id],
+                ['photo' => $fileName]
+            );
         }
 
-        $fileName = time() . '_' . $user->id . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('storage/photos'), $fileName);
-        $user->profile()->updateOrCreate(
-            ['user_id' => $user->id],
-            ['photo' => $fileName]
-        );
-    }
-
-    return redirect()->route('account.index', ['tab' => 'foto'])
-                     ->with('status', 'Foto profil berhasil diperbarui!');
+        return redirect()->route('account.index', ['tab' => 'foto'])
+                         ->with('status', 'Foto profil berhasil diperbarui!');
     }
 
     public function deletePhoto()
     {
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
-    if ($user->profile && $user->profile->photo) {
-        if (Storage::disk('public')->exists('photos/' . $user->profile->photo)) {
-            Storage::disk('public')->delete('photos/' . $user->profile->photo);
+        if ($user->profile && $user->profile->photo) {
+            if (Storage::disk('public')->exists('photos/' . $user->profile->photo)) {
+                Storage::disk('public')->delete('photos/' . $user->profile->photo);
+            }
+
+            $user->profile()->update([
+                'photo' => null
+            ]);
+
+            return redirect()->back()->with('status', 'Foto profil berhasil dihapus!');
         }
 
-        $user->profile()->update([
-            'photo' => null
-        ]);
-
-        return redirect()->back()->with('status', 'Foto profil berhasil dihapus!');
-    }
-
-    return redirect()->back()->with('error', 'Anda tidak memiliki foto profil untuk dihapus.');
+        return redirect()->back()->with('error', 'Anda tidak memiliki foto profil untuk dihapus.');
     }
 }
