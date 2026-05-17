@@ -14,7 +14,7 @@
                                 class="w-24 h-24 object-cover rounded-2xl mb-4 shadow-lg transform -rotate-3 border-4 border-white">
                             @else
                             {{-- TAMPILKAN INISIAL JIKA FOTO KOSONG --}}
-                            <div class="w-24 h-24 bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center rounded-2xl text-3xl font-bold mb-4 shadow-lg transform -rotate-3">
+                            <div class="w-24 h-24 bg-gradient-to-tr from-purple-600 to-purple-500 text-white flex items-center justify-center rounded-2xl text-3xl font-bold mb-4 shadow-lg transform -rotate-3">
                             @php
                                 $words = explode(' ', auth()->user()->name);
                                 $initials = '';
@@ -44,19 +44,19 @@
                 </a>
 
                 <button @click="activeTab = 'profil'; window.history.replaceState(null, '', '?tab=profil')" type="button"
-                    :class="activeTab === 'profil' ? 'bg-indigo-50 text-indigo-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
+                    :class="activeTab === 'profil' ? 'bg-purple-50 text-purple-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
                     class="group flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-left">
                     <span class="text-sm">Profil</span>
                 </button>
 
                 <button @click="activeTab = 'foto'; window.history.replaceState(null, '', '?tab=foto')" type="button"
-                    :class="activeTab === 'foto' ? 'bg-indigo-50 text-indigo-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
+                    :class="activeTab === 'foto' ? 'bg-purple-50 text-purple-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
                     class="group flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-left">
                     <span class="text-sm">Foto</span>
                 </button>
 
                 <button @click="activeTab = 'keamanan'; window.history.replaceState(null, '', '?tab=keamanan')" type="button"
-                    :class="activeTab === 'keamanan' ? 'bg-indigo-50 text-indigo-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
+                    :class="activeTab === 'keamanan' ? 'bg-purple-50 text-purple-700 font-bold w-full' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full'"
                     class="group flex items-center px-4 py-3 rounded-xl transition-all duration-200 text-left">
                     <span class="text-sm">Keamanan Akun</span>
                 </button>
@@ -109,11 +109,11 @@
 
                             <div class="space-y-4">
                                 <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">Dasar-Dasar:</h3>
-                                <input type="text" name="first_name" required value="{{ auth()->user()->profile->first_name ?? '' }}" placeholder="Nama Depan" class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm">
-                                <input type="text" name="last_name" value="{{ auth()->user()->profile->last_name ?? '' }}" placeholder="Nama Belakang" class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm">
+                                <input type="text" name="first_name" required value="{{ auth()->user()->profile->first_name ?? '' }}" placeholder="Nama Depan" class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition-all text-sm">
+                                <input type="text" name="last_name" value="{{ auth()->user()->profile->last_name ?? '' }}" placeholder="Nama Belakang" class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition-all text-sm">
                                 <div class="space-y-2">
                                     <div class="relative">
-                                        <input type="text" name="headline" maxlength="60" value="{{ auth()->user()->profile->headline ?? '' }}" placeholder="Headline" class="w-full bg-white border border-slate-200 p-4 pr-12 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm">
+                                        <input type="text" name="headline" maxlength="60" value="{{ auth()->user()->profile->headline ?? '' }}" placeholder="Headline" class="w-full bg-white border border-slate-200 p-4 pr-12 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition-all text-sm">
                                         <span class="absolute right-4 top-4 text-slate-400 text-sm">60</span>
                                     </div>
                                     <p class="text-xs text-slate-400 ml-1">Tambahkan headline profesional.</p>
@@ -122,7 +122,7 @@
 
                             <div class="space-y-3">
                                 <h3 class="text-sm font-bold text-slate-700 uppercase tracking-widest">Biografi</h3>
-                                <textarea name="bio" rows="4" placeholder="Ceritakan biografi Anda..." class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm">{{ auth()->user()->profile->bio ?? '' }}</textarea>
+                                <textarea name="bio" rows="4" placeholder="Ceritakan biografi Anda..." class="w-full bg-white border border-slate-200 p-4 rounded-2xl focus:outline-none focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition-all text-sm">{{ auth()->user()->profile->bio ?? '' }}</textarea>
                             </div>
 
                             
@@ -147,7 +147,7 @@
                                             <input type="text" name="{{ $field }}" 
                                             value="{{ auth()->user()->profile->$field ?? '' }}" 
                                             placeholder="{{ $data['domain'] }}" 
-                                            class="w-full bg-white border border-slate-300 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-slate-400 transition-all text-sm text-slate-600">
+                                            class="w-full bg-white border border-slate-300 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-slate-400 transition-all text-sm text-slate-600">
                                         @else
 
                                             {{-- Tampilan Input Group untuk Sosmed --}}
@@ -157,7 +157,7 @@
                                             <input type="text" name="{{ $field }}" 
                                             value="{{ auth()->user()->profile->$field ?? '' }}" 
                                             placeholder="{{ $data['placeholder'] }}" 
-                                            class="flex-1 bg-white border border-slate-300 p-4 rounded-r-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-slate-400 transition-all text-sm text-slate-600">
+                                            class="flex-1 bg-white border border-slate-300 p-4 rounded-r-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-slate-400 transition-all text-sm text-slate-600">
                                         @endif
                                         </div>
             
@@ -168,7 +168,7 @@
                                 @endforeach
                             </div>
 
-                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm px-6 h-[52px] rounded-2xl transition shadow-md">
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm px-6 h-[52px] rounded-2xl transition shadow-md">
                                 Simpan Profil
                             </button>
                         </form>
@@ -205,7 +205,7 @@
                                 <div class="flex flex-col md:flex-row gap-3">
                                     <input type="text" id="file-name-display" readonly placeholder="Tidak ada file yang dipilih"
                                     class="flex-1 bg-slate-50 border border-slate-200 p-4 rounded-2xl text-sm text-slate-600 focus:outline-none">
-                                    <label for="photo-input" class="cursor-pointer bg-white border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-2xl font-bold text-sm hover:bg-indigo-50 transition-all text-center">
+                                    <label for="photo-input" class="cursor-pointer bg-white border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-2xl font-bold text-sm hover:bg-purple-50 transition-all text-center">
                                         Pilih File
                                     </label>
                                     <input type="file" name="photo" id="photo-input" class="hidden" accept="image/*" onchange="previewImage(this)">
@@ -217,7 +217,7 @@
 
                         {{-- Tombol Simpan --}}
                         <div class="pt-6 border-t border-slate-50">
-                            <button type="submit" class="bg-indigo-600 text-white px-12 py-4 rounded-2xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all w-full md:w-auto">
+                            <button type="submit" class="bg-purple-600 text-white px-12 py-4 rounded-2xl font-bold hover:bg-purple-700 shadow-lg shadow-purple-200 transition-all w-full md:w-auto">
                                 Simpan Foto
                             </button>
                         </div>
@@ -268,7 +268,7 @@
                                     @csrf @method('PATCH')
                                     <input type="email" name="new_email" required placeholder="name@example.com" class="w-full border border-slate-200 p-4 rounded-2xl mb-6">
                                     <div class="flex justify-end">
-                                        <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-2xl font-bold">Verifikasi email baru</button>
+                                        <button type="submit" class="bg-purple-600 text-white px-6 py-3 rounded-2xl font-bold">Verifikasi email baru</button>
                                     </div>
                                 </form>
                             </div>
