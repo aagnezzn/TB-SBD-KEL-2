@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="bg-black pt-12 pb-0 mb-10">
+<div class="bg-[#2d2f31] pt-12 pb-0 mb-10">
     <div class="max-w-7xl mx-auto px-4">
         
-        {{-- NOTIFIKASI BERHASIL --}}
+        {{-- NOTIFIKASI BERHASIL AUTO-HIDE --}}
         @if(session('success'))
             <div id="success-notification" class="mb-8 animate-fade-in-down">
                 <div class="flex items-center justify-between bg-[#acd2cc] border border-[#1e4b44] p-4 shadow-lg">
@@ -18,7 +18,6 @@
                             <p class="text-sm mt-1 opacity-90">{{ session('success') }}</p>
                         </div>
                     </div>
-                    {{-- Tombol Hapus Manual --}}
                     <button onclick="document.getElementById('success-notification').remove()" class="text-gray-700 hover:text-black transition p-2">
                         <i class="fas fa-times text-lg"></i>
                     </button>
@@ -30,11 +29,11 @@
         
         <nav class="flex space-x-8">
             <a href="{{ route('learning.index', ['tab' => 'all']) }}" 
-               class="{{ !request('tab') || request('tab') == 'all' ? 'border-white text-white' : 'border-transparent text-gray-400' }} py-3 px-1 border-b-4 font-bold text-sm transition">
+               class="{{ !request('tab') || request('tab') == 'all' ? 'border-white text-white' : 'border-transparent text-gray-400 hover:text-white' }} py-3 px-1 border-b-4 font-bold text-sm transition">
                 All courses
             </a>
             <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" 
-               class="{{ request('tab') == 'wishlist' ? 'border-white text-white' : 'border-transparent text-gray-400' }} py-3 px-1 border-b-4 font-bold text-sm transition">
+               class="{{ request('tab') == 'wishlist' ? 'border-white text-white' : 'border-transparent text-gray-400 hover:text-white' }} py-3 px-1 border-b-4 font-bold text-sm transition">
                 Wishlist
             </a>
         </nav>
@@ -47,41 +46,46 @@
             @foreach($courses as $course)
                 <div class="bg-white border border-gray-200 rounded-sm overflow-hidden flex flex-col h-full group relative hover:shadow-md transition">
                     
+                    {{-- Aksi Singkirkan Item dari Daftar Wishlist --}}
                     @if(request('tab') == 'wishlist')
                         <form action="{{ route('wishlist.remove', $course->id) }}" method="POST" class="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition">
                             @csrf @method('DELETE')
-                            <button type="submit" class="bg-white p-2 rounded-full shadow-md text-gray-600 hover:text-red-600">
+                            <button type="submit" class="bg-white p-2 rounded-full shadow-md text-gray-600 hover:text-red-600 cursor-pointer">
                                 <i class="fas fa-times text-xs"></i>
                             </button>
                         </form>
                     @endif
 
-                    <div class="aspect-video w-full bg-gray-100 overflow-hidden">
-                        <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80' }}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                             onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
-                    </div>
-                    
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="font-bold text-gray-900 text-sm mb-1 h-10 overflow-hidden line-clamp-2">
-                            {{ $course->title }}
-                        </h3>
-                        <p class="text-[11px] text-gray-500 mb-4">{{ $course->user->name ?? 'Instructor' }}</p>
+                    {{-- FAKTA PERBAIKAN: Seluruh elemen visual kartu dibungkus rute agar fungsional bisa diklik --}}
+                    <a href="{{ route('course.show', $course->id) }}" class="block flex flex-col flex-1">
+                        <div class="aspect-video w-full bg-gray-100 overflow-hidden">
+                            <img src="{{ $course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80' }}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                 onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
+                        </div>
                         
-                        <div class="mt-auto">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-900 text-sm mb-1 h-10 overflow-hidden line-clamp-2 hover:text-purple-700 transition">
+                                {{ $course->title }}
+                            </h3>
+                            <p class="text-[11px] text-gray-500 mb-4">Oleh {{ $course->user->name ?? 'Instructor' }}</p>
+                    </a> {{-- Penutup Bungkus Anchor Atas --}}
+                        
+                        <div class="mt-auto pt-2">
                             @if(request('tab') == 'wishlist')
-                                <div class="flex flex-col">
-                                    <span class="font-bold text-gray-900 text-lg">Rp {{ number_format($course->price, 0, ',', '.') }}</span>
-                                    <form action="{{ route('wishlist.move-to-cart', $course->id) }}" method="POST">
+                                <div class="flex flex-col w-full">
+                                    <span class="font-black text-gray-900 text-base">Rp {{ number_format($course->price, 0, ',', '.') }}</span>
+                                    <form action="{{ route('wishlist.move-to-cart', $course->id) }}" method="POST" class="m-0">
                                         @csrf
-                                        <button class="w-full mt-3 bg-purple-600 py-2 text-white font-bold hover:bg-purple-800 transition">
+                                        <button class="w-full mt-3 bg-purple-600 py-2.5 text-white text-xs font-bold hover:bg-purple-800 transition cursor-pointer">
                                             Tambahkan ke keranjang
                                         </button>
                                     </form>
                                 </div>
                             @else
-                                <div class="w-full bg-gray-200 h-1 mb-2">
-                                    <div class="bg-purple-600 h-1" style="width: 25%"></div>
+                                {{-- Progress Pembelajaran Siswa --}}
+                                <div class="w-full bg-gray-200 h-1 mb-2 rounded-full">
+                                    <div class="bg-purple-600 h-1 rounded-full" style="width: 25%"></div>
                                 </div>
                                 <span class="text-[10px] text-gray-600 font-bold uppercase tracking-tight">25% SELESAI</span>
                             @endif
@@ -109,7 +113,6 @@
     .animate-fade-in-down { animation: fade-in-down 0.5s ease-out; }
 </style>
 
-{{-- SCRIPT AUTO-HIDE --}}
 <script>
     setTimeout(function() {
         let notif = document.getElementById('success-notification');
@@ -120,5 +123,4 @@
         }
     }, 5000);
 </script>
-
 @endsection

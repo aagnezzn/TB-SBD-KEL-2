@@ -1,6 +1,5 @@
 <nav class="bg-white border-b border-gray-200 px-6 py-2 flex items-center h-16 w-full relative">
     <div class="flex items-center space-x-4 flex-shrink-0">
-        
         <a href="{{ url('/') }}" class="no-underline">
             <h1 class="text-2xl font-bold text-black cursor-pointer m-0">idemy</h1>
         </a>
@@ -40,7 +39,7 @@
                                                 </h4>
                                                 <div class="flex flex-col gap-4">
                                                     @foreach($subCat->children as $topic)
-                                                    <a href="{{ route('category.show', $topic->slug) }}" class="text-[15px] text-gray-700 hover:text-[#5624d0] transition-all duration-150 no-underline">
+                                                    <a href="{{ route('category.show', $topic->id) }}" class="text-[15px] text-gray-700 hover:text-[#5624d0] transition-all duration-150 no-underline">
                                                         {{ $topic->name }}
                                                     </a>
                                                     @endforeach
@@ -99,7 +98,6 @@
                         @forelse($cartItems as $item)
                             <div class="flex gap-4 mb-5 last:mb-0 group/item relative">
                                 <a href="{{ route('course.show', $item->course->id) }}" class="shrink-0">
-                                    {{-- FAKTA: DI SINI KODENYA SAYA PERBAIKI AGAR SINKRON DENGAN DATABASE --}}
                                     <img src="{{ $item->course->image_url ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640' }}" 
                                          class="w-20 h-14 object-cover rounded-md shadow-sm group-hover/item:opacity-80 transition"
                                          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640';">
@@ -110,7 +108,7 @@
                                             {{ $item->course->title }}
                                         </h4>
                                     </a>
-                                    <p class="text-[11px] text-gray-500 mt-1">Oleh {{ $item->course->user->name }}</p>
+                                    <p class="text-[11px] text-gray-500 mt-1">Oleh {{ $item->course->user->name ?? 'Instructor' }}</p>
                                     <p class="text-[14px] font-extrabold text-gray-900 mt-1">Rp{{ number_format($item->course->price, 0, ',', '.') }}</p>
                                     <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                         @csrf
@@ -144,143 +142,107 @@
             </div>
         </div>
 
-        <div class="flex items-center space-x-3">
-            @guest
-                <a href="/login" class="border border-purple-700 text-purple-700 px-5 py-2 font-bold text-sm rounded-lg hover:bg-purple-50 transition-all duration-200 text-center inline-block">{{ __('menu.login') }}</a>
-                <a href="/register" class="bg-purple-700 text-white px-5 py-2 font-bold text-sm rounded-lg border border-purple-700 hover:bg-purple-800 transition-all duration-200">{{ __('menu.register') }}</a>
-            @endguest
+        @guest
+            <a href="/login" class="border border-purple-700 text-purple-700 px-5 py-2 font-bold text-sm rounded-lg hover:bg-purple-50 transition-all duration-200 text-center inline-block">{{ __('menu.login') }}</a>
+            <a href="/register" class="bg-purple-700 text-white px-5 py-2 font-bold text-sm rounded-lg border border-purple-700 hover:bg-purple-800 transition-all duration-200">{{ __('menu.register') }}</a>
+        @endguest
 
-            @auth
-    <div class="relative group cursor-pointer py-4">
-        {{-- Inisial Nama atau --}}
-        <div class="w-11 h-11 rounded-full flex items-center justify-center relative overflow-visible">
-            @if(Auth::user()->profile && Auth::user()->profile->photo)
-                <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
-                     class="w-11 h-11 rounded-full object-cover">
-            @else
-                <div class="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                </div>
-            @endif
+        @auth
+        <div class="relative group cursor-pointer py-4">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center relative overflow-visible">
+                @if(Auth::user()->profile && Auth::user()->profile->photo)
+                    <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" class="w-11 h-11 rounded-full object-cover">
+                @else
+                    <div class="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
+                @endif
 
-            {{-- Titik Ungu Notifikasi Keranjang --}}
-            @if($cartCount > 0)
-                <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-[#a435f0] rounded-full border-2 border-white z-10"></span>
-            @endif
-        </div>
-
-        {{-- DROPDOWN PROFIL LENGKAP --}}
-        <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[14px] cursor-default z-50">
-            {{-- Header: Info User --}}
-            <div class="p-4 border-b flex items-center gap-3">
-                <div class="w-12 h-12 shrink-0">
-                    @if(Auth::user()->profile && Auth::user()->profile->photo)
-                        <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" 
-                             class="w-12 h-12 rounded-full object-cover">
-                    @else
-                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl">
-                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                        </div>
-                    @endif
-                </div>
-                <div class="min-w-0">
-                    <div class="font-bold text-gray-900 truncate">{{ Auth::user()->name }}</div>
-                    <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
-                </div>
+                @if($cartCount > 0)
+                    <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-[#a435f0] rounded-full border-2 border-white z-10"></span>
+                @endif
             </div>
 
-            {{-- Menu Bagian 1 --}}
-            <div class="py-2 border-b">
-                <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
-                <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
-                    <span>Keranjang saya</span>
-                    @if($cartCount > 0)
-                        <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
-                    @endif
-                </a>
-                <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
-                <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
-            </div>
+            <div class="absolute right-0 top-16 w-[280px] bg-white border border-gray-200 shadow-xl hidden group-hover:block text-[14px] cursor-default z-50">
+                <div class="p-4 border-b flex items-center gap-3">
+                    <div class="w-12 h-12 shrink-0">
+                        @if(Auth::user()->profile && Auth::user()->profile->photo)
+                            <img src="{{ asset('storage/photos/' . Auth::user()->profile->photo) }}" class="w-12 h-12 rounded-full object-cover">
+                        @else
+                            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="min-w-0">
+                        <div class="font-bold text-gray-900 truncate">{{ Auth::user()->name }}</div>
+                        <div class="text-gray-500 text-xs truncate">{{ Auth::user()->email }}</div>
+                    </div>
+                </div>
 
-            
+                <div class="py-2 border-b">
+                    <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
+                    <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
+                        <span>Keranjang saya</span>
+                        @if($cartCount > 0)
+                            <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
+                        @endif
+                    </a>
+                    <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
+                    <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
+                </div>
 
-            {{-- Menu Bagian 3 --}}
-            <div class="py-2 border-b">
-                <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
-                <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
-            </div>
+                <div class="py-2 border-b">
+                    <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
+                    <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
+                </div>
 
-            {{-- Logout --}}
-            <div class="py-2">
-                <form action="{{ route('logout') }}" method="POST" class="m-0">
-                    @csrf
-                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
-                        Keluar
-                    </button>
-                </form>
+                <div class="py-2">
+                    <form action="{{ route('logout') }}" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
+                            Keluar
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-@endauth
-        </div>
-    
-{{-- Dropdown Pilihan Bahasa --}}
-<div x-data="{ languageModal: false }">
-    <button 
-        @click="languageModal = true" 
-        class="flex items-center justify-center w-10 h-10 border border-black rounded-none hover:bg-gray-50 transition focus:outline-none bg-white cursor-pointer"
-    >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-700 hover:text-blue-600 transition-colors">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
-        </svg>
-    </button>
+        @endauth
 
-    <div 
-        x-show="languageModal" 
-        x-cloak
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-[#2d2f31]/80"
-    >
-        <div 
-            @click.away="languageModal = false"
-            class="bg-white w-full max-w-[600px] rounded-lg shadow-2xl relative p-6 md:p-8"
-        >
-            <button @click="languageModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-black transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <div x-data="{ languageModal: false }" class="relative">
+            <button @click="languageModal = true" class="flex items-center justify-center w-10 h-10 border border-black rounded-none hover:bg-gray-50 transition focus:outline-none bg-white cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-700 hover:text-blue-600 transition-colors">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
                 </svg>
             </button>
 
-            <h2 class="text-[19px] font-bold text-[#2d2f31] mb-6">Pilih bahasa</h2>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2">
-                @php
-                    $availableLangs = [
-                        'en' => 'English',
-                        'es' => 'Español',
-                        'id' => 'Bahasa Indonesia'
-                    ];
-                @endphp
-
-                @foreach($availableLangs as $code => $name)
-                    <div class="flex">
-                        <a href="/lang/{{ $code }}" 
-                           class="inline-block text-[14px] px-3 py-1.5 transition-all duration-150 
-                           {{ App::getLocale() == $code 
-                                ? 'border border-[#2d2f31] font-bold text-[#2d2f31]' 
-                                : 'text-[#2d2f31] hover:text-[#5624d0]' }}">
-                            {{ $name }}
-                        </a>
+            <div x-show="languageModal" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-[#2d2f31]/80">
+                <div @click.away="languageModal = false" class="bg-white w-full max-w-[600px] rounded-lg shadow-2xl relative p-6 md:p-8">
+                    <button @click="languageModal = false" class="absolute top-4 right-4 text-gray-500 hover:text-black transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <h2 class="text-[19px] font-bold text-[#2d2f31] mb-6">Pilih bahasa</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2">
+                        @php
+                            $availableLangs = [
+                                'en' => 'English',
+                                'es' => 'Español',
+                                'id' => 'Bahasa Indonesia'
+                            ];
+                        @endphp
+                        @foreach($availableLangs as $code => $name)
+                            <div class="flex">
+                                <a href="/lang/{{ $code }}" class="inline-block text-[14px] px-3 py-1.5 transition-all duration-150 {{ App::getLocale() == $code ? 'border border-[#2d2f31] font-bold text-[#2d2f31]' : 'text-[#2d2f31] hover:text-[#5624d0]' }}">
+                                    {{ $name }}
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
     </div>
-</div>
-    </nav>
+</nav>

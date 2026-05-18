@@ -40,13 +40,13 @@
                 
                 {{-- KOLOM 1: IDEMY TEAM & NAMA ANGGOTA KELOMPOK --}}
                 <div>
-                    <h3 class="text-purple-400 font-bold text-base mb-3">Idemy Team</h3>
+                    <h3 class="text-white font-bold text-base mb-4">Idemy Team</h3>
                     {{-- Daftar nama 4 anggota kelompok --}}
-                    <ul class="space-y-1.5 text-xs text-gray-400 font-medium tracking-wide">
-                        <li>• Khairunnisa</li>
-                        <li>• Nadia Stevany S</li>
-                        <li>• Agnes Natalia S</li>
-                        <li>• Limjun Basani S</li>
+                    <ul class="space-y-2 text-sm leading-snug text-gray-400">
+                       <li><a href="#" class="hover:underline hover:text-purple-400 transition">Khairunnisa</a></li>
+                       <li><a href="#" class="hover:underline hover:text-purple-400 transition">Nadia Stevany S</a></li>
+                       <li><a href="#" class="hover:underline hover:text-purple-400 transition">Agnes Natalia S</a></li>
+                       <li><a href="#" class="hover:underline hover:text-purple-400 transition">Limjun Basani S</a></li>
                     </ul>
                 </div>
 
@@ -54,7 +54,7 @@
                 <div>
                     <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
                     <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">Mengajar di Idemy</a></li>
+                        <li><a href="{{ route('mengajar') }}" class="hover:underline hover:text-purple-400 transition">Mengajar di Idemy</a></li>
                         <li><a href="#" class="hover:underline hover:text-purple-400 transition">Paket dan Harga</a></li>
                     </ul>
                 </div>

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             // Relasi One-to-One terkunci sempurna ke tabel users
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade'); 
             
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

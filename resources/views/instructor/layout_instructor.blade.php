@@ -18,13 +18,13 @@
 <body class="bg-[#fcfaff] text-[#1c1d1f] antialiased">
     <div class="flex h-screen overflow-hidden">
         
+        {{-- SIDEBAR UTAMA PORTAL --}}
         <aside class="w-72 bg-[#5624d0] flex flex-col h-screen text-white shrink-0 shadow-2xl z-20">
             <div class="h-24 px-8 border-b border-white/10 flex flex-col justify-center shrink-0">
                 <h1 class="text-3xl font-black tracking-tighter leading-none">idemy</h1>
                 <p class="text-[10px] text-[#a435f0] font-black uppercase tracking-widest mt-1">Instructor Portal</p>
             </div>
 
-            {{-- Navigasi Sidebar --}}
             <nav class="flex-1 p-4 space-y-2 mt-4 overflow-y-auto custom-scrollbar">
                 @php
                     $active = 'bg-white text-[#5624d0] shadow-xl font-bold scale-[1.02]';
@@ -56,10 +56,9 @@
                 </a>
             </nav>
 
-            {{-- Logout Section --}}
             <div class="p-6 border-t border-white/10 shrink-0">
                 <form action="{{ route('logout') }}" method="POST">@csrf
-                    <button type="submit" class="flex items-center gap-4 w-full px-6 py-4 text-white/60 hover:text-white hover:bg-red-500/20 rounded-xl transition-all font-bold">
+                    <button type="submit" class="flex items-center gap-4 w-full px-6 py-4 text-white/60 hover:text-white hover:bg-red-500/20 rounded-xl transition-all font-bold cursor-pointer">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="text-sm">Keluar</span>
                     </button>
@@ -67,26 +66,23 @@
             </div>
         </aside>
 
-        {{-- Header + Content --}}
         <main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-            
-            {{-- HEADER --}}
-            <header class="h-24 bg-white border-b border-white/20 flex items-center justify-between px-8 shrink-0 shadow-md">
-                {{-- KIRI: Page Title --}}
-                <div class="text-xl font-bold text-black">
+            {{-- HEADER ATAS PANEL --}}
+            <header class="h-24 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 shadow-sm">
+                <div class="text-xl font-bold text-gray-800">
                     @yield('page_title')
                 </div>
 
-                {{-- User Info --}}
                 <div class="flex items-center gap-6">
-                    <span class="text-sm font-bold text-white">{{ Auth::user()->name }}</span>
-                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#5624d0] font-bold uppercase border-4 border-white shadow-lg shadow-purple-900/20">
+                    {{-- FAKTA PERBAIKAN: Warna teks diubah dari text-white ke text-gray-700 agar terbaca jelas di background putih --}}
+                    <span class="text-sm font-bold text-gray-700">{{ Auth::user()->name }}</span>
+                    <div class="w-12 h-12 bg-[#5624d0] rounded-full flex items-center justify-center text-white font-bold uppercase border-4 border-purple-50 shadow-md">
                         {{ substr(Auth::user()->name, 0, 1) }}
                     </div>
                 </div>
             </header>
 
-            {{-- ISI KONTEN --}}
+            {{-- VIEWPORT KONTEN DYNAMIC --}}
             <div class="flex-1 overflow-y-auto p-12 custom-scrollbar bg-[#fcfaff]">
                 <div class="max-w-6xl mx-auto">
                     @yield('content')

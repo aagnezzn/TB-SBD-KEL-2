@@ -15,7 +15,7 @@ class AdminController extends Controller
         $totalKelas = Course::count();
         $totalSiswa = User::where('role', 'student')->count();
         
-        // FAKTANYA: Load relasi langsung ke user dan course di dashboard admin
+        // Menggunakan Eager Loading untuk efisiensi memori dashboard
         $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
 
         return view('admin.dashboard', compact(
@@ -33,7 +33,9 @@ class AdminController extends Controller
         $totalSiswa = User::where('role', 'student')->count();
         $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
 
-        $courses = Course::with('user')->orderBy('created_at', 'desc')->get();
+        // FAKTA PERBAIKAN: Wajib diganti Paginate agar server tidak jebol memuat 4.002 data kelas sekaligus
+        $courses = Course::with('user')->orderBy('created_at', 'desc')->paginate(10);
+        
         return view('admin.courses', compact(
             'courses', 
             'totalPendapatan', 
@@ -59,7 +61,6 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    // FAKTANYA: Fungsi Transaksi diperbaiki total agar memanggil relasi baru secara langsung
     public function transactions()
     {
         $payments = Payment::with(['user', 'course'])
@@ -96,7 +97,6 @@ class AdminController extends Controller
 
     public function detailTransaksi($id)
     {
-        // FAKTANYA: Load relasi langsung untuk kebutuhan halaman detail invoice admin
         $transaksi = Payment::with(['user', 'course'])->findOrFail($id);
         return view('admin.transaksi-detail', compact('transaksi'));
     }

@@ -1,420 +1,311 @@
 @extends('layouts.app')
+
 @section('content') 
-    <div class="relative bg-[#e5e7eb] overflow-hidden">
-        <div class="max-w-[1340px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center min-h-[450px]">
-            
-            <!-- Sisi Kiri: Teks -->
-            <div class="w-full md:w-1/2 py-12 md:py-0 z-10">
-                <h1 class="text-[40px] md:text-[52px] font-bold text-[#2d2f31] leading-tight font-serif">
-                    Mengajarlah <br> bersama kami
-                </h1>
-                <p class="mt-4 text-lg text-[#2d2f31] max-w-sm">
-                    Jadilah instruktur dan ubah hidup — termasuk hidup Anda sendiri
-                </p>
-                
-                <a href="{{ route('instructor.courses.create') }}" 
-                    class="inline-block mt-8 rounded-xl border bg-purple-800 text-white px-16 py-2 font-bold hover:bg-purple-600 transition shadow-sm text-center min-w-[350px]">
-                    Memulai
-                </a>
-            </div>
 
-            <!-- Sisi Kanan: Gambar -->
-            <div class="w-full md:w-1/2 relative flex justify-end items-end h-full">
-                <img src="{{ asset('mengejar.png') }}" 
-                     alt="Instruktur Idemy" 
-                     class="w-full h-auto max-h-[500px] object-cover object-top">
-            </div>
+{{-- 1. HERO SECTION UTAMA (DIAMANKAN ALUR AKSESNYA) --}}
+<div class="relative bg-[#f8f9fa] overflow-hidden py-16 border-b border-gray-100">
+    <div class="max-w-[1340px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center min-h-[460px] gap-12">
+        
+        {{-- Sisi Kiri: Teks Informasi --}}
+        <div class="w-full md:w-1/2 py-12 md:py-0 z-10 space-y-6">
+            <p class="text-[#a435f0] font-black text-xs uppercase tracking-widest bg-purple-50 px-3 py-1 rounded inline-block border border-purple-100">Portal Kemitraan Pengajar</p>
+            <h1 class="text-[40px] md:text-[52px] font-extrabold text-[#2d2f31] leading-none tracking-tight">
+                Mengajarlah <br> bersama kami
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-sm font-medium leading-relaxed">
+                Jadilah instruktur resmi Idemy dan ubah hidup — termasuk hidup Anda sendiri melalui kontribusi ilmu.
+            </p>
+            
+            {{-- FAKTA PERBAIKAN: Diarahkan ke gerbang konfirmasi upgrade role pengajar demi menghindari eror 403 --}}
+            <a href="{{ route('mengajar') }}" 
+                class="inline-block bg-[#5624d0] text-white px-12 py-4 font-bold hover:bg-[#4c1da7] transition shadow-lg text-center text-xs uppercase tracking-widest min-w-[300px] rounded-xl active:scale-95 cursor-pointer">
+                Memulai Langkah Pengajuan
+            </a>
+        </div>
+
+        {{-- Sisi Kanan: Gambar Representasi --}}
+        <div class="w-full md:w-1/2 relative flex justify-end items-end h-full">
+            <img src="{{ asset('mengejar.png') }}" 
+                 alt="Instruktur Idemy" 
+                 class="w-full h-auto max-h-[480px] object-cover object-top rounded-2xl shadow-xl border border-gray-50"
+                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80';">
         </div>
     </div>
+</div>
     
-    <div class="max-w-[1340px] mx-auto pt-10 pb-12 px-6 lg:px-10">
-        <h2 class="text-[28px] md:text-[36px] font-bold text-center text-[#2d2f31] mb-8 font-serif tracking-tight leading-tight">
-            Begitu banyak alasan untuk memulai
-        </h2>
+{{-- 2. SEKSI TIGA PILAR MANFAAT INSENTIF --}}
+<div class="max-w-[1340px] mx-auto pt-20 pb-24 px-6 lg:px-10">
+    <h2 class="text-[28px] md:text-[36px] font-extrabold text-center text-[#2d2f31] mb-16 tracking-tight leading-none">
+        Begitu banyak alasan untuk memulai
+    </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 justify-center text-center max-w-[1100px] mx-auto">
-            <div class="flex flex-col items-center">
-                <div class="h-[80px] flex items-center justify-center mb-4">
-                    <img src="{{ asset('ajari.png') }}" class="w-24 h-24 object-contain">
-                </div>
-                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Ajari Jalan Anda</h3>
-                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                    Publikasikan kursus yang Anda inginkan, dengan cara yang Anda inginkan, dan selalu kontrol konten Anda sendiri.
-                </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 justify-center text-center max-w-[1100px] mx-auto">
+        {{-- Pilar 1 --}}
+        <div class="flex flex-col items-center space-y-3">
+            <div class="h-[90px] flex items-center justify-center mb-2">
+                <img src="{{ asset('ajari.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3426/3426222.png'">
             </div>
+            <h3 class="text-base font-bold text-[#2d2f31]">Ajari Jalan Anda</h3>
+            <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
+                Publikasikan kursus yang Anda inginkan, dengan cara yang Anda inginkan, dan selalu kontrol konten Anda sendiri.
+            </p>
+        </div>
 
-            <div class="flex flex-col items-center">
-                <div class="h-[80px] flex items-center justify-center mb-4">
-                    <img src="{{ asset('inspirasi.png') }}" class="w-24 h-24 object-contain">
-                </div>
-                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Inspirasi orang yang ingin belajar</h3>
-                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                    Ajarkan yang Anda ketahui dan bantu orang yang ingin belajar menjelajahi minat mereka, mendapatkan skill baru.
-                </p>
+        {{-- Pilar 2 --}}
+        <div class="flex flex-col items-center space-y-3">
+            <div class="h-[90px] flex items-center justify-center mb-2">
+                <img src="{{ asset('inspirasi.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2085/2085290.png'">
             </div>
+            <h3 class="text-base font-bold text-[#2d2f31]">Inspirasi Siswa</h3>
+            <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
+                Ajarkan yang Anda ketahui dan bantu orang yang ingin belajar menjelajahi minat mereka, mendapatkan skill baru.
+            </p>
+        </div>
 
-            <div class="flex flex-col items-center">
-                <div class="h-[80px] flex items-center justify-center mb-4">
-                    <img src="{{ asset('hadiah.png') }}" class="w-24 h-24 object-contain">
-                </div>
-                <h3 class="text-[15px] font-bold mb-2 text-[#2d2f31]">Dapatkan hadiah</h3>
-                <p class="text-[#2d2f31] text-[13px] leading-relaxed max-w-[220px] opacity-90">
-                    Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran berbayar.
-                </p>
+        {{-- Pilar 3 --}}
+        <div class="flex flex-col items-center space-y-3">
+            <div class="h-[90px] flex items-center justify-center mb-2">
+                <img src="{{ asset('hadiah.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
             </div>
+            <h3 class="text-base font-bold text-[#2d2f31]">Dapatkan Imbalan</h3>
+            <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
+                Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran siswa berbayar.
+            </p>
         </div>
     </div>
+</div>
 
-
-<!--Teks kotak ungu -->
-<section class="w-full bg-[#5624d0] py-16">
-    <!-- Container untuk membatasi lebar maksimal konten di tengah -->
+{{-- 3. BANNER UNGU METRIK DATA COUNTER --}}
+<section class="w-full bg-[#5624d0] py-16 shadow-lg shadow-purple-900/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Pembagian Grid: 2 kolom di HP, 5 kolom di PC/Laptop -->
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center text-white">
-            
-            <!-- Item 1 -->
-            <div class="flex flex-col items-center justify-center">
-                <h3 class="text-4xl md:text-5xl font-bold mb-2">80 Jt</h3>
-                <p class="text-sm md:text-base font-medium">Peserta</p>
+            <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">80 Jt</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Peserta</p>
             </div>
-
-            <!-- Item 2 -->
-            <div class="flex flex-col items-center justify-center">
-                <h3 class="text-4xl md:text-5xl font-bold mb-2">75+</h3>
-                <p class="text-sm md:text-base font-medium">Bahasa</p>
+            <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">75+</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Bahasa</p>
             </div>
-
-            <!-- Item 3 -->
-            <div class="flex flex-col items-center justify-center">
-                <h3 class="text-4xl md:text-5xl font-bold mb-2">1,1 M</h3>
-                <p class="text-sm md:text-base font-medium">Pendaftaran</p>
+            <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">1,1 M</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Pendaftaran</p>
             </div>
-
-            <!-- Item 4 -->
-            <div class="flex flex-col items-center justify-center">
-                <h3 class="text-4xl md:text-5xl font-bold mb-2">180+</h3>
-                <p class="text-sm md:text-base font-medium">Negara</p>
+            <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">180+</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Negara</p>
             </div>
-
-            <!-- Item 5 -->
             <div class="flex flex-col items-center justify-center col-span-2 md:col-span-1">
-                <h3 class="text-4xl md:text-5xl font-bold mb-2">17.200+</h3>
-                <p class="text-sm md:text-base font-medium">Pelanggan Enterprise</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">17K+</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Mitra Enterprise</p>
             </div>
-
         </div>
     </div>
 </section>
 
-<!--Section Cara Anda Memulai-->
-<section class="max-w-7xl mx-auto px-4 py-16">
-    <!-- Judul Utama -->
-    <h2 class="text-4xl font-bold text-center text-[#2d2f31] mb-12">Cara memulai</h2>
+{{-- 4. SECTION METODE PEMBELAJARAN (TAB INTERAKTIF) --}}
+<section class="max-w-7xl mx-auto px-4 py-24">
+    <h2 class="text-4xl font-extrabold text-center text-[#2d2f31] mb-12 tracking-tight">Cara memulai langkah pengajaran</h2>
 
-    <!-- Bagian Tombol Tab -->
-    <div class="flex flex-wrap justify-center gap-x-8 border-b border-gray-300 mb-12">
-        <button id="tab-btn-1" onclick="changeTab(1)" class="tab-btn pb-4 text-xl font-bold text-[#2d2f31] border-b-4 border-[#2d2f31] transition-all">Rencanakan kurikulum Anda</button>
-        <button id="tab-btn-2" onclick="changeTab(2)" class="tab-btn pb-4 text-xl font-bold text-gray-500 border-b-4 border-transparent hover:text-[#2d2f31] transition-all">Rekam video Anda</button>
-        <button id="tab-btn-3" onclick="changeTab(3)" class="tab-btn pb-4 text-xl font-bold text-gray-500 border-b-4 border-transparent hover:text-[#2d2f31] transition-all">Luncurkan kursus Anda</button>
+    {{-- Tombol Tab --}}
+    <div class="flex flex-wrap justify-center gap-x-8 border-b border-gray-200 mb-16">
+        <button id="tab-btn-1" onclick="changeTab(1)" class="tab-btn pb-4 text-base font-bold text-[#2d2f31] border-b-4 border-[#2d2f31] transition-all cursor-pointer">Rencanakan kurikulum</button>
+        <button id="tab-btn-2" onclick="changeTab(2)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">Rekam video pembelajaran</button>
+        <button id="tab-btn-3" onclick="changeTab(3)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">Luncurkan kursus</button>
     </div>
 
-    <!-- Wadah Utama Konten -->
-    <div class="relative">
-        
-        <!-- =========================== TAB 1 =========================== -->
+    {{-- Wadah Konten Tab --}}
+    <div class="relative max-w-5xl mx-auto">
+        {{-- CONTENT TAB 1 --}}
         <div id="tab-content-1" class="tab-content block animate-fade-in">
-            <!-- Pakai justify-center biar mereka kumpul di tengah, gap buat ngatur jaraknya -->
-            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-x-12 lg:gap-x-24">
-                
-                <!-- Sisi Kiri: Teks -->
-                <div class="w-full md:w-5/12 lg:w-4/12">
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-4">Anda memulai dengan semangat dan pengetahuan. Kemudian pilihlah topik menjanjikan dengan bantu alat Wawasan Pasar kami.</p>
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-6">Cara Anda mengajar — apa yang Anda bawa saat mengajar — terserah Anda.</p>
-                    <h3 class="font-bold text-xl text-[#2d2f31] mb-2">Cara kami membantu Anda</h3>
-                    <p class="text-gray-700 text-[17px] leading-relaxed">Kami menawarkan banyak sumber daya untuk cara membuat kursus pertama. Selain itu, dasbor instruktur dan halaman kurikulum kami akan membantu Anda menyusun rencana.</p>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                <div class="w-full md:w-1/2 space-y-4">
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Anda memulai dengan semangat dan pengetahuan. Kemudian pilihlah topik menjanjikan dengan bantuan utilitas Wawasan Pasar kami.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Cara Anda mengajar — apa yang Anda bawa saat mengajar — terserah pada kreasi tersendiri.</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Kami menawarkan banyak sumber daya panduan pembuatan kursus pertama. Selain itu, dasbor instruktur dan halaman kurikulum kami akan membantu Anda menyusun rencana matang.</p>
                 </div>
-
-                <!-- Sisi Kanan: Gambar -->
-                <div class="w-full md:w-auto">
-                    <img src="{{ asset('rencanakankurikulum.png') }}" alt="Ilustrasi Perencanaan" class="max-w-[350px] md:max-w-[400px] w-full object-contain drop-shadow-sm">
+                <div class="w-full md:w-1/2 flex justify-end">
+                    <img src="{{ asset('rencanakankurikulum.png') }}" alt="Perencanaan" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500&q=80'">
                 </div>
             </div>
         </div>
 
-        <!-- =========================== TAB 2 =========================== -->
+        {{-- CONTENT TAB 2 --}}
         <div id="tab-content-2" class="tab-content hidden animate-fade-in">
-            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-x-12 lg:gap-x-24">
-                <div class="w-full md:w-5/12 lg:w-4/12">
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-4">Gunakan alat dasar seperti smartphone atau kamera DSLR. Tambahkan mikrofon yang bagus dan Anda siap memulai.</p>
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-6">Jika Anda tidak nyaman berada di depan kamera, cukup ambil gambar layar. Apa pun cara yang Anda pilih, kami merekomendasikan video berdurasi dua jam atau lebih untuk kursus berbayar.</p>
-                    <h3 class="font-bold text-xl text-[#2d2f31] mb-2">Cara kami membantu Anda</h3>
-                    <p class="text-gray-700 text-[17px] leading-relaxed">Tim dukungan kami tersedia untuk membantu Anda di sepanjang proses dan menyediakan masukan mengenai video tes.</p>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                <div class="w-full md:w-1/2 space-y-4">
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Gunakan alat dasar seperti smartphone atau kamera DSLR. Tambahkan mikrofon yang bagus dan Anda siap memulai langkah awal perekaman.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Jika Anda tidak nyaman berada di depan kamera, cukup ambil rekaman aktivitas gambar layar. Apa pun caranya, kami merekomendasikan total durasi video dua jam atau lebih untuk standar materi premium.</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Tim dukungan instansi tersedia penuh untuk membantu Anda di sepanjang proses peninjauan berkas video uji coba.</p>
                 </div>
-                <div class="w-full md:w-auto">
-                    <img src="{{ asset('rekamvideo.png') }}" alt="Ilustrasi Rekaman Video" class="max-w-[350px] md:max-w-[400px] w-full object-contain drop-shadow-sm">
+                <div class="w-full md:w-1/2 flex justify-end">
+                    <img src="{{ asset('rekamvideo.png') }}" alt="Rekaman Video" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&q=80'">
                 </div>
             </div>
         </div>
 
-        <!-- =========================== TAB 3 =========================== -->
+        {{-- CONTENT TAB 3 --}}
         <div id="tab-content-3" class="tab-content hidden animate-fade-in">
-            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-x-12 lg:gap-x-24">
-                <div class="w-full md:w-5/12 lg:w-4/12">
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-4">Kumpulkan peringkat dan ulasan dengan mempromosikan kursus Anda melalui media sosial dan jaringan profesional Anda.</p>
-                    <p class="text-gray-700 text-[17px] leading-relaxed mb-6">Kursus Anda akan dapat ditemukan di marketplace kami, tempat Anda mendapatkan penghasilan dari setiap pendaftaran berbayar.</p>
-                    <h3 class="font-bold text-xl text-[#2d2f31] mb-2">Cara kami membantu Anda</h3>
-                    <p class="text-gray-700 text-[17px] leading-relaxed">Alat kupon kustom kami memungkinkan Anda menawarkan insentif pendaftaran sekaligus mendorong lalu lintas promosi global ke kursus. Ada lebih banyak lagi peluang untuk kursus yang dipilih untuk Udemy Business.</p>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                <div class="w-full md:w-1/2 space-y-4">
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Kumpulkan peringkat dan ulasan positif dengan mempromosikan kursus Anda melalui media sosial dan jaringan profesional Anda.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">Kursus Anda akan dapat ditemukan di marketplace kami, tempat Anda mendapatkan hak bagi hasil penghasilan dari setiap pendaftaran kelas berbayar.</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Alat pembuatan kupon kustom memungkinkan Anda menawarkan insentif potongan pendaftaran sekaligus mendorong konversi lalu lintas promosi global.</p>
                 </div>
-                <div class="w-full md:w-auto">
-                    <img src="{{ asset('lumcurkankursus.png') }}" alt="Ilustrasi Peluncuran" class="max-w-[350px] md:max-w-[400px] w-full object-contain drop-shadow-sm">
+                <div class="w-full md:w-1/2 flex justify-end">
+                    <img src="{{ asset('lumcurkankursus.png') }}" alt="Peluncuran" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80'">
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-<script>
-    function changeTab(tabIndex) {
-        document.querySelectorAll('.tab-content').forEach(function(content) {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-        });
-        document.getElementById('tab-content-' + tabIndex).classList.remove('hidden');
-        document.getElementById('tab-content-' + tabIndex).classList.add('block');
 
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.classList.remove('text-[#2d2f31]', 'border-[#2d2f31]');
-            btn.classList.add('text-gray-500', 'border-transparent');
-        });
-
-        let activeBtn = document.getElementById('tab-btn-' + tabIndex);
-        activeBtn.classList.remove('text-gray-500', 'border-transparent');
-        activeBtn.classList.add('text-[#2d2f31]', 'border-[#2d2f31]');
-    }
-</script>
-
-<style>
-    .animate-fade-in {
-        animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    function changeTab(tabIndex) {
-        document.querySelectorAll('.tab-content').forEach(function(content) {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-        });
-
-        document.getElementById('tab-content-' + tabIndex).classList.remove('hidden');
-        document.getElementById('tab-content-' + tabIndex).classList.add('block');
-
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.classList.remove('text-[#2d2f31]', 'border-[#2d2f31]');
-            btn.classList.add('text-gray-500', 'border-transparent');
-        });
-
-        let activeBtn = document.getElementById('tab-btn-' + tabIndex);
-        activeBtn.classList.remove('text-gray-500', 'border-transparent');
-        activeBtn.classList.add('text-[#2d2f31]', 'border-[#2d2f31]');
-    }
-</script>
-
-<style>
-    .animate-fade-in {
-        animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    function changeTab(tabIndex) {
-        document.querySelectorAll('.tab-content').forEach(function(content) {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-        });
-
-        document.getElementById('tab-content-' + tabIndex).classList.remove('hidden');
-        document.getElementById('tab-content-' + tabIndex).classList.add('block');
-
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.classList.remove('text-[#2d2f31]', 'border-[#2d2f31]');
-            btn.classList.add('text-gray-500', 'border-transparent');
-        });
-
-        let activeBtn = document.getElementById('tab-btn-' + tabIndex);
-        activeBtn.classList.remove('text-gray-500', 'border-transparent');
-        activeBtn.classList.add('text-[#2d2f31]', 'border-[#2d2f31]');
-    }
-</script>
-
-<style>
-    .animate-fade-in {
-        animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<!-- Script JavaScript -->
-<script>
-    function changeTab(tabIndex) {
-        // 1. Sembunyikan semua blok konten (teks & gambar di dalamnya)
-        document.querySelectorAll('.tab-content').forEach(function(content) {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-        });
-
-        // 2. Tampilkan blok konten yang sesuai
-        document.getElementById('tab-content-' + tabIndex).classList.remove('hidden');
-        document.getElementById('tab-content-' + tabIndex).classList.add('block');
-
-        // 3. Reset gaya semua tombol tab
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.classList.remove('text-[#2d2f31]', 'border-[#2d2f31]');
-            btn.classList.add('text-gray-500', 'border-transparent');
-        });
-
-        // 4. Beri gaya aktif pada tombol yang diklik
-        let activeBtn = document.getElementById('tab-btn-' + tabIndex);
-        activeBtn.classList.remove('text-gray-500', 'border-transparent');
-        activeBtn.classList.add('text-[#2d2f31]', 'border-[#2d2f31]');
-    }
-</script>
-
-<!-- CSS Animasi -->
-<style>
-    .animate-fade-in {
-        animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<!--pengajar-->
-<!-- Bagian Background Luar -->
-<section class="bg-gray-100 py-16 w-full">
-    <!-- Container Utama (Membatasi lebar maksimal agar di tengah) -->
-    <div class="max-w-5xl mx-auto px-4 relative">
-        
-        <!-- Wadah Slider (Membatasi area yang terlihat) -->
-        <div class="overflow-hidden relative">
-            
-            <!-- 'Rel' Slider (Yang akan digeser ke kiri/kanan oleh JavaScript) -->
+{{-- 5. SLIDER REVIEW TESTIMONI PENGALAMAN INSPIRATIF --}}
+<section class="bg-gray-50 border-t border-b border-gray-100 py-20 w-full">
+    <div class="max-w-5xl mx-auto px-6 relative">
+        <div class="overflow-hidden relative rounded-2xl bg-white border p-6 md:p-10 shadow-sm">
             <div id="slider-track" class="flex transition-transform duration-500 ease-in-out w-full">
                 
-                <!-- ================= SLIDE 1 ================= -->
-                <div class="min-w-full flex flex-col md:flex-row items-center gap-10 px-4 md:px-12">
-                    <!-- Foto -->
-                    <div class="w-full md:w-1/2 flex justify-center md:justify-end">
-                        <img src="{{ asset('frank.png') }}" alt="Orang 1" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full md:rounded-none">
+                {{-- Slide Frank Kane --}}
+                <div class="min-w-full flex flex-col md:flex-row items-center gap-12 px-2">
+                    <div class="w-full md:w-2/5 flex justify-center">
+                        <img src="{{ asset('frank.png') }}" alt="Frank Kane" class="w-56 h-56 object-cover rounded-full shadow-md border-4 border-gray-50" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80'">
                     </div>
-                    <!-- Teks -->
-                    <div class="w-full md:w-1/2">
-                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
-                            “Saya bangga mengetahui pekerjaan saya membantu orang-orang di seluruh dunia meningkatkan karier mereka dan mengembangkan banyak hal hebat. Meski menjadi instruktur purnawaktu sangat melelahkan, profesi ini memungkinkan Anda bekerja kapan pun, di mana pun, dan bagaimana pun Anda ingin.”
+                    <div class="w-full md:w-3/5 space-y-4">
+                        <p class="text-gray-600 text-base leading-relaxed italic font-medium">
+                            “Saya bangga mengetahui pekerjaan saya membantu orang-orang di seluruh dunia meningkatkan karier mereka. Meski menjadi instruktur purnawaktu sangat melelahkan, profesi ini memungkinkan Anda bekerja kapan pun, di mana pun, dan bagaimana pun Anda ingin.”
                         </p>
-                        <h4 class="font-bold text-[#2d2f31]">Frank Kane</h4>
-                        <p class="text-gray-500 text-sm">Sertifikasi Ilmu Data & TI</p>
+                        <div>
+                            <h4 class="font-extrabold text-[#2d2f31] text-sm">Frank Kane</h4>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Sertifikasi Ilmu Data & TI</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ================= SLIDE 2 ================= -->
-                <div class="min-w-full flex flex-col md:flex-row items-center gap-10 px-4 md:px-12">
-                    <!-- Foto -->
-                    <div class="w-full md:w-1/2 flex justify-center md:justify-end">
-                        <img src="{{ asset('paulo.png') }}" alt="Orang 2" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full md:rounded-none">
+                {{-- Slide Paulo Dichone --}}
+                <div class="min-w-full flex flex-col md:flex-row items-center gap-12 px-2">
+                    <div class="w-full md:w-2/5 flex justify-center">
+                        <img src="{{ asset('paulo.png') }}" alt="Paulo Dichone" class="w-56 h-56 object-cover rounded-full shadow-md border-4 border-gray-50" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80'">
                     </div>
-                    <!-- Teks -->
-                    <div class="w-full md:w-1/2">
-                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
-                            "“Udemy telah mengubah hidup saya. Bersama Udemy, saya dapat mengikuti passion saya dan menjadi guru. Saya sangat gembira melihat peserta saya berhasil dan mendengar mereka mengatakan mereka telah belajar lebih banyak, lebih cepat, dari kursus saya dibandingkan yang mereka pelajari di kuliah. Ini benar-benar membuat hati saya hangat.”
+                    <div class="w-full md:w-3/5 space-y-4">
+                        <p class="text-gray-600 text-base leading-relaxed italic font-medium">
+                            “Idemy telah mengubah hidup saya. Bersama platform ini, saya dapat mengikuti passion saya dan menjadi guru. Saya sangat gembira melihat peserta saya berhasil dan mendengar mereka mengatakan mereka telah belajar lebih banyak dan cepat.”
                         </p>
-                        <h4 class="font-bold text-[#2d2f31]">Paulo Dichone</h4>
-                        <p class="text-gray-500 text-sm">Pengembang (Spesialisasi Android)</p>
+                        <div>
+                            <h4 class="font-extrabold text-[#2d2f31] text-sm">Paulo Dichone</h4>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Pengembang Android Specialist</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ================= SLIDE 3 ================= -->
-                <div class="min-w-full flex flex-col md:flex-row items-center gap-10 px-4 md:px-12">
-                    <!-- Foto -->
-                    <div class="w-full md:w-1/2 flex justify-center md:justify-end">
-                        <img src="{{ asset('deborah.png') }}" alt="Orang 3" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full md:rounded-none">
+                {{-- Slide Deborah Grayson --}}
+                <div class="min-w-full flex flex-col md:flex-row items-center gap-12 px-2">
+                    <div class="w-full md:w-2/5 flex justify-center">
+                        <img src="{{ asset('deborah.png') }}" alt="Deborah" class="w-56 h-56 object-cover rounded-full shadow-md border-4 border-gray-50" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80'">
                     </div>
-                    <!-- Teks -->
-                    <div class="w-full md:w-1/2">
-                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
-                            “Mengajar di Udemy telah memberi saya dua elemen penting: peluang untuk menjangkau lebih banyak peserta daripada yang bisa jangkau sendiri dan pendapatan ekstra yang stabil.”
+                    <div class="w-full md:w-3/5 space-y-4">
+                        <p class="text-gray-600 text-base leading-relaxed italic font-medium">
+                            “Mengajar di platform Idemy telah memberi saya dua elemen penting: peluang emas untuk menjangkau lebih banyak peserta berskala global secara masif, dan perolehan pendapatan ekstra bulanan yang stabil.”
                         </p>
-                        <h4 class="font-bold text-[#2d2f31]">Deborah Grayson Riege</h4>
-                        <p class="text-gray-500 text-sm">Kepemimpinan, Komunikasi</p>
+                        <div>
+                            <h4 class="font-extrabold text-[#2d2f31] text-sm">Deborah Grayson Riege</h4>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Pakar Kepemimpinan & Komunikasi</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Tombol Panah Kiri -->
-        <button id="btn-prev" onclick="geserKiri()" class="absolute left-0 md:left-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-[0_2px_4px_rgba(0,0,0,0.2)] hover:bg-gray-50 transition-all hidden flex items-center justify-center">
-            <!-- Ikon Panah Kiri -->
-            <svg class="w-6 h-6 text-[#2d2f31]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        {{-- Navigasi Tombol Slider Kontrol Pas --}}
+        <button id="btn-prev" onclick="geserKiri()" class="absolute left-1 top-1/2 -translate-y-1/2 bg-white rounded-full w-12 h-12 shadow-md hover:bg-gray-50 transition-all hidden items-center justify-center border cursor-pointer">
+            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path></svg>
         </button>
-
-        <!-- Tombol Panah Kanan -->
-        <button id="btn-next" onclick="geserKanan()" class="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-[0_2px_4px_rgba(0,0,0,0.2)] hover:bg-gray-50 transition-all flex items-center justify-center">
-            <!-- Ikon Panah Kanan -->
-            <svg class="w-6 h-6 text-[#2d2f31]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        <button id="btn-next" onclick="geserKanan()" class="absolute right-1 top-1/2 -translate-y-1/2 bg-white rounded-full w-12 h-12 shadow-md hover:bg-gray-50 transition-all flex items-center justify-center border cursor-pointer">
+            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
         </button>
-
     </div>
 </section>
 
-<!-- Script JavaScript untuk Logika Slider -->
-<script>
-    let slideSaatIni = 0; // Mulai dari slide pertama (index 0)
-    const totalSlide = 3; // Karena kita punya 3 slide
+{{-- 6. LAYANAN BANTUAN MATERI INTEGRAL (RE-STRUCTURED GRID) --}}
+{{-- FAKTA PERBAIKAN: Layout diatur ulang menggunakan format flex 2 pilar yang bersih agar tidak bertabrakan --}}
+<section class="w-full bg-white py-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+            
+            {{-- Blok Informasi --}}
+            <div class="w-full md:w-7/12 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#2d2f31] tracking-tight leading-tight">
+                    Anda tidak perlu melakukannya sendiri
+                </h2>
+                <p class="text-gray-600 text-base leading-relaxed font-medium">
+                    <span class="font-bold text-gray-900 border-b-2 border-purple-100">Tim Dukungan Instruktur</span> kami selalu siap mendampingi Anda untuk menjawab pertanyaan teknis dan mengulas kelayakan video pengajuan. Sementara itu, fasilitas <span class="font-bold text-gray-900 border-b-2 border-purple-100">Teaching Center</span> kami menyediakan banyak sumber daya pedoman modul kurikulum berkualitas tinggi untuk mempermudah pengerjaan silabus kelompok Anda.
+                </p>
+                <div class="pt-2">
+                    <a href="#" class="text-[#a435f0] font-black text-xs uppercase tracking-widest hover:text-purple-900 transition-all border-b-2 border-[#a435f0] pb-1 inline-block">
+                        Pelajari panduan selengkapnya
+                    </a>
+                </div>
+            </div>
 
+            {{-- Blok Gambar Penjepit Sisi Kanan --}}
+            <div class="w-full md:w-5/12 flex justify-end shrink-0">
+                <img src="{{ asset('anukanan.png') }}" alt="Support Team" class="max-w-[340px] md:max-w-[420px] w-full object-contain rounded-xl" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500&q=80';">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- ==================== CENTRALIZED SCRIPT ENGINE ==================== --}}
+<script>
+    // SISTEM 1: LOGIKA KONTROL TAB INTERAKTIF
+    function changeTab(tabIndex) {
+        document.querySelectorAll('.tab-content').forEach(function(content) {
+            content.classList.remove('block');
+            content.classList.add('hidden');
+        });
+        document.getElementById('tab-content-' + tabIndex).classList.remove('hidden');
+        document.getElementById('tab-content-' + tabIndex).classList.add('block');
+
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.classList.remove('text-[#2d2f31]', 'border-[#2d2f31]');
+            btn.classList.add('text-gray-400', 'border-transparent');
+        });
+
+        let activeBtn = document.getElementById('tab-btn-' + tabIndex);
+        activeBtn.classList.remove('text-gray-400', 'border-transparent');
+        activeBtn.classList.add('text-[#2d2f31]', 'border-[#2d2f31]');
+    }
+
+    // SISTEM 2: LOGIKA KONTROL SLIDER TESTIMONI
+    let slideSaatIni = 0;
+    const totalSlide = 3;
     const track = document.getElementById('slider-track');
     const btnKiri = document.getElementById('btn-prev');
     const btnKanan = document.getElementById('btn-next');
 
     function perbaruiSlider() {
-        // 1. Menggeser "rel" (track) sesuai slide saat ini
-        // Jika slideSaatIni = 0 -> geser 0%
-        // Jika slideSaatIni = 1 -> geser -100% (bergeser 1 layar penuh ke kiri)
-        // Jika slideSaatIni = 2 -> geser -200%
-        track.style.transform = `translateX(-${slideSaatIni * 100}%)`;
-
-        // 2. Logika Menyembunyikan/Menampilkan Panah
-        if (slideSaatIni === 0) {
-            // Slide 1: Kiri hilang, Kanan muncul
-            btnKiri.classList.add('hidden');
-            btnKanan.classList.remove('hidden');
-        } else if (slideSaatIni === totalSlide - 1) {
-            // Slide 3 (Terakhir): Kiri muncul, Kanan hilang
-            btnKiri.classList.remove('hidden');
-            btnKanan.classList.add('hidden');
-        } else {
-            // Slide 2 (Tengah): Kiri dan Kanan muncul
-            btnKiri.classList.remove('hidden');
-            btnKanan.classList.remove('hidden');
+        if(track) {
+            track.style.transform = `translateX(-${slideSaatIni * 100}%)`;
+            if (slideSaatIni === 0) {
+                btnKiri.classList.add('hidden');
+                btnKiri.classList.remove('flex');
+                btnKanan.classList.remove('hidden');
+            } else if (slideSaatIni === totalSlide - 1) {
+                btnKiri.classList.remove('hidden');
+                btnKiri.classList.add('flex');
+                btnKanan.classList.add('hidden');
+            } else {
+                btnKiri.classList.remove('hidden');
+                btnKiri.classList.add('flex');
+                btnKanan.classList.remove('hidden');
+            }
         }
     }
 
-    // Fungsi jika panah kanan dipencet
     function geserKanan() {
         if (slideSaatIni < totalSlide - 1) {
             slideSaatIni++;
@@ -422,54 +313,21 @@
         }
     }
 
-    // Fungsi jika panah kiri dipencet
     function geserKiri() {
         if (slideSaatIni > 0) {
             slideSaatIni--;
             perbaruiSlider();
         }
     }
-
-    // Jalankan fungsi saat halaman pertama kali dimuat
-    perbaruiSlider();
 </script>
 
-<!-- Section: Anda tidak perlu melakukannya sendiri -->
-<section class="w-full bg-white py-16 overflow-hidden">
-    <!-- Pake max-w-full biar gambar bisa bener-bener mentok ke pinggir layar -->
-    <div class="max-w-full mx-auto px-4 lg:px-10">
-        
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-10">
-            
-            <!-- Gambar Kiri (Gedein max-w nya) -->
-            <div class="w-full md:w-auto flex justify-start">
-                <img src="{{ asset('anukiri.png') }}" alt="Support Left" class="max-w-[300px] lg:max-w-[450px] w-full object-contain">
-            </div>
-
-            <!-- Area Teks Tengah (Heading + Paragraf jadi satu biar deketan) -->
-            <div class="w-full md:max-w-xl lg:max-w-2xl text-center flex flex-col items-center">
-                <!-- Heading satu baris dan deket ke bawah -->
-                <h2 class="text-3xl md:text-[40px] font-bold text-[#2d2f31] leading-tight mb-4 whitespace-nowrap">
-                    Anda tidak perlu melakukannya sendiri
-                </h2>
-                
-                <p class="text-[#2d2f31] text-[18px] leading-relaxed mb-6">
-                    <span class="font-bold">Tim Dukungan Instruktur</span> kami hadir untuk menjawab pertanyaan Anda dan mengulas video tes, sedangkan <span class="font-bold text-black">Teaching Center</span> kami akan memberi Anda banyak sumber daya untuk membantu Anda melalui proses. Dapatkan juga dukungan instruktur berpengalaman di <span class="font-bold text-black">komunitas online</span> kami.
-                </p>
-                
-                <div class="mt-2">
-                    <a href="#" class="text-[#a435f0] font-bold hover:text-[#8710d8] transition-all border-b-2 border-[#a435f0] pb-1 inline-block">
-                        Perlu detail lainnya sebelum memulai? Pelajari selengkapnya.
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gambar Kanan (Gedein max-w nya) -->
-            <div class="w-full md:w-auto flex justify-end">
-                <img src="{{ asset('anukanan.png') }}" alt="Support Right" class="max-w-[300px] lg:max-w-[450px] w-full object-contain">
-            </div>
-
-        </div>
-    </div>
-</section>
+{{-- CENTRALIZED CUSTOM ANIMATION STYLES --}}
+<style>
+    [x-cloak] { display: none !important; }
+    .animate-fade-in { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 @endsection

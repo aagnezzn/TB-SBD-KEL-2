@@ -10,72 +10,83 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function filterByCategory($slug) 
-{
-    // 1. Cari kategori berdasarkan slug (misal: 'ilmu-data')
-    $category = Category::where('slug', $slug)->with('children')->firstOrFail();
-    
-    // 2. Ambil semua ID: ID kategori ini sendiri + ID semua anak-anaknya (topik populer)
-    $categoryIds = $category->children->pluck('id')->push($category->id);
-    
-    // 3. Cari kursus yang masuk dalam daftar ID tadi
-    $courses = Course::whereIn('category_id', $categoryIds)->paginate(12);
+    /**
+     * FAKTA FIX 404: Mengubah pencarian dari berbasis Slug ke berbasis ID Kategori
+     * Agar sinkron dengan parameter numerik ID yang dikirim oleh welcome.blade.php
+     */
+    public function filterByCategory($id) 
+    {
+        // 1. Ambil data kategori berdasarkan ID langsung dari database riil CSV kelompokmu
+        $category = Category::with('children')->findOrFail($id);
+        
+        // 2. Kumpulkan semua ID yang kemungkinan terikat (ID Kategori Induk + ID Anak sub-kategorinya jika ada)
+        $categoryIds = $category->children->pluck('id')->push($category->id)->toArray();
+        
+        // 3. Tarik data kursus dengan teknik adaptif agar melahap data relasi CSV induk maupun anak
+        $courses = Course::where(function($query) use ($categoryIds, $category) {
+                $query->whereIn('category_id', $categoryIds)
+                      ->orWhereHas('category', function($subQuery) use ($category) {
+                          $subQuery->where('parent_id', $category->id);
+                      });
+            })
+            ->with('user') // Eager load data akun instruktur kelas
+            ->withAvg('reviews', 'rating') // Kalkulasi rerata rating langsung di level DB MySQL
+            ->withCount('reviews') // Hitung total ulasan langsung di level DB MySQL
+            ->latest()
+            ->paginate(12)
+            ->withQueryString();
 
-    // 4. Kirim data ke view
-    return view('courses.index', compact('courses', 'category'));
-}
+        // 4. Salurkan data ke berkas view category.blade.php
+        return view('category', compact('courses', 'category'));
+    }
+
     public function search(Request $request)
     {
-        // 1. Ambil input dan BERSIHKAN spasi
         $keyword = trim($request->input('query'));
 
-        // 2. Jika kotak pencarian kosong, balikkan
         if (empty($keyword)) {
             return redirect()->back();
         }
 
-        // 3. Paksa kata kunci jadi huruf kecil
         $lowerKeyword = strtolower($keyword);
 
-        // 4. Proses pencarian ke database
         $courses = Course::where(function($query) use ($lowerKeyword) {
-                // Cari di judul
                 $query->whereRaw('LOWER(title) LIKE ?', ["%{$lowerKeyword}%"])
-                      // atau cari di deskripsi
                       ->orWhereRaw('LOWER(description) LIKE ?', ["%{$lowerKeyword}%"]);
             })
-            // atau cari berdasarkan nama instruktur
             ->orWhereHas('user', function($query) use ($lowerKeyword) {
                 $query->whereRaw('LOWER(name) LIKE ?', ["%{$lowerKeyword}%"]);
             })
-            ->with(['user', 'category', 'reviews']) 
-            ->get();
+            ->with(['user', 'category']) 
+            ->withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->paginate(12)
+            ->withQueryString();
 
         return view('search-results', compact('courses', 'keyword'));
     }
 
-   public function index()
+    public function index()
     {
-        // 1. Ambil data keranjang 
         $cartItems = Cart::where('user_id', Auth::id())
                         ->with('course.user')
                         ->get();
 
-        // 2. Ambil 20 kursus 
-        $courses = Course::with(['user', 'category', 'reviews'])
+        $courses = Course::with(['user', 'category'])
+                         ->withAvg('reviews', 'rating')
+                         ->withCount('reviews')
                          ->inRandomOrder() 
                          ->limit(20) 
                          ->get(); 
 
-        // 3. Kirim kedua data ke view
         return view('keranjang', compact('cartItems', 'courses'));
     }
-public function show($id)
-{
-    $course = Course::with(['lessons', 'reviews.user', 'enrollments'])
-        ->findOrFail($id);
 
-    return view('course-detail', compact('course'));
+    public function show($id)
+    {
+        $course = Course::with(['lessons', 'reviews.user', 'enrollments'])
+            ->findOrFail($id);
+
+        return view('course-detail', compact('course'));
+    }
 }
-}
-    

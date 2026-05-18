@@ -268,8 +268,13 @@
                 <p class="text-center text-slate-600 font-medium text-base mb-8 tracking-wide">{{ __('welcome.Dipercaya') }}</p>
                 <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
                     <img src="{{ asset('vw.png') }}" class="h-16 w-auto grayscale opacity-60" alt="VW">
-                    <img src="{{ asset('samsung.png') }}" class="h-16 w-auto grayscale opacity-60" alt="Samsung">
+                    <img src="{{ asset('samsung.png') }}" class="h-32 w-auto grayscale opacity-60" alt="Samsung">
                     <img src="{{ asset('cisco.png') }}" class="h-12 w-auto grayscale opacity-60" alt="Cisco">
+                    <img src="{{ asset('vimeo.png') }}" class="h-12 w-auto grayscale opacity-60" alt="Vimeo">
+                    <img src="{{ asset('pg.png') }}" class="h-16 w-auto grayscale opacity-60" alt="P&G">
+                    <img src="{{ asset('hpe.png') }}" class="h-16 w-auto grayscale opacity-60" alt="HPE">
+                    <img src="{{ asset('citi.png') }}" class="h-16 w-auto grayscale opacity-60" alt="Citi">
+                    <img src="{{ asset('ericsson.png') }}" class="h-16 w-auto grayscale opacity-60" alt="Ericsson">
                 </div>
             </div>
         </section>

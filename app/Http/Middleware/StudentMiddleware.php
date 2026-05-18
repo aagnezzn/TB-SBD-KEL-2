@@ -11,23 +11,23 @@ class StudentMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
      */
-   public function handle(Request $request, Closure $next): Response
-{
-    if (Auth::check() && in_array(Auth::user()->role, ['admin', 'instructor'])) {
-        $role = Auth::user()->role;
-        Auth::logout();
+    public function handle(Request $request, Closure $next): Response
+    {
+        // FAKTA PERBAIKAN: Jika yang masuk adalah Admin atau Instruktur, jangan di-logout! 
+        // Cukup amankan rute dengan mengarahkan mereka ke rumah (dashboard) mereka masing-masing.
+        if (Auth::check()) {
+            $role = Auth::user()->role;
 
-        // Memberikan pesan spesifik berdasarkan role
-        $pesan = ($role === 'admin') 
-            ? 'Akun Admin tidak bisa login di sini. Silakan gunakan Portal Admin.' 
-            : 'Akun Instruktur tidak bisa login di sini. Silakan gunakan Portal Instruktur.';
+            if ($role === 'admin') {
+                return redirect()->route('admin.dashboard')->with('info', 'Anda mendeteksi rute student. Dialihkan otomatis ke Dashboard Admin.');
+            }
 
-        return redirect()->route('login')->with('error', $pesan);
+            if ($role === 'instructor') {
+                return redirect()->route('instructor.dashboard')->with('info', 'Anda mendeteksi rute student. Dialihkan otomatis ke Dashboard Instruktur.');
+            }
+        }
+
+        return $next($request);
     }
-
-    return $next($request);
-}
 }

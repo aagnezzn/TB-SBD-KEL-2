@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReviewFactory extends Factory
 {
+    protected $model = Review::class;
+
     public function definition(): array
     {
         $pembuka = ['Materi kelas sangat', 'Penjelasan mentor benar-benar', 'Modul kelas ini tergolong', 'Materi yang dibawakan sangat'];
@@ -18,11 +20,17 @@ class ReviewFactory extends Factory
         $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
         $suffix = ' (' . $this->faker->word() . ' ' . rand(100, 999) . ')';
 
-        $course = Course::inRandomOrder()->first();
-        $courseId = $course ? $course->id : Course::factory()->create()->id;
+        // WAJIB ambil kursus yang sudah ada
+        $courseId = Course::inRandomOrder()->value('id');
+        if (!$courseId) {
+            $courseId = Course::factory()->create()->id;
+        }
 
-        $student = User::where('role', 'student')->inRandomOrder()->first();
-        $studentId = $student ? $student->id : User::factory()->create(['role' => 'student'])->id;
+        // WAJIB ambil siswa yang sudah ada
+        $studentId = User::where('role', 'student')->inRandomOrder()->value('id');
+        if (!$studentId) {
+            $studentId = User::factory()->create(['role' => 'student'])->id;
+        }
 
         return [
             'course_id' => $courseId,

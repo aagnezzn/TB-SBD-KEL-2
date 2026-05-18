@@ -27,17 +27,13 @@ use App\Http\Controllers\AccountController;
 */
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('/search', [CourseController::class, 'search'])->name('search');
-Route::get('/category/{slug}', [CourseController::class, 'filterByCategory'])->name('category.show');
+Route::get('/category/{id}', [CourseController::class, 'filterByCategory'])->name('category.show');
 
-Route::get('/course/{id}', function ($id) {
-    $course = \App\Models\Course::findOrFail($id); 
-    return view('course-detail', compact('course'));
-})->name('course.show');
+// FAKTA PERBAIKAN 1: Dialihkan langsung ke CourseController@show agar memuat Eager Loading materi & review riil CSV!
+Route::get('/course/{id}', [CourseController::class, 'show'])->name('course.show');
 
 Route::get('/berlangganan', [FAQController::class, 'index']);
-Route::get('/mengajar-di-idemy', function () {
-    return view('mengajar');
-})->name('mengajar');
+Route::get('/mengajar-di-idemy', [InstructorController::class, 'showConfirmation'])->name('mengajar');
 
 // Auth Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -55,7 +51,7 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
-// Localization
+// Localization (Multilingual)
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['id', 'en', 'es'])) {
         session()->put('locale', $locale);
@@ -65,7 +61,7 @@ Route::get('lang/{locale}', function ($locale) {
 
 /*
 |--------------------------------------------------------------------------
-| 2. AREA AUTH UMUM (Hanya Butuh Login)
+| 2. AREA AUTH UMUM (Hanya Butuh Login Global)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
@@ -74,13 +70,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
-    // JEMBATAN INSTRUKTUR
+    // Jembatan Pendaftaran Akun Instruktur Baru
     Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
     Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
     Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
 
-    // Pengaturan Akun
+    // Pengaturan Akun & Biodata Profil 1:1
     Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.index');
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
@@ -92,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 3. AREA SISWA (Middleware 'student')
+| 3. AREA SISWA (Middleware 'student' - Proteksi Sesi)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'student'])->group(function () {
@@ -113,7 +109,7 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 4. AREA INSTRUCTOR (Middleware 'instructor')
+| 4. AREA INSTRUCTOR (Middleware 'instructor' - Pengajar)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function () {
@@ -129,7 +125,7 @@ Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function 
 
 /*
 |--------------------------------------------------------------------------
-| 5. AREA ADMIN (Middleware 'admin')
+| 5. AREA ADMIN (Middleware 'admin' - Kontrol Sistem Utama)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -140,7 +136,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/courses/delete/{id}', [AdminController::class, 'deleteCourse'])->name('admin.courses.delete');
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-    
-    // FAKTANYA: Prefix '/admin' dibuang dari string URL karena sudah diwakili oleh grup prefix utama!
     Route::get('/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
 });

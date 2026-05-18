@@ -12,18 +12,18 @@
     @include('admin.sidebar')
 
     <main class="flex-1 flex flex-col h-screen overflow-y-auto">
-        <header class="h-16 bg-white border-b border-white/20 flex items-center justify-between px-8 shrink-0 shadow-md">
-            <h2 class="text-xl font-bold text-black">Dashboard</h2>
-            <div class="flex items-center gap-6">
-                <span class="text-sm font-semibold text-white/90">Halo, Admin!</span>
-                <form action="{{ route('logout') }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" class="text-sm font-bold text-red-500 hover:text-red-400 flex items-center gap-2">
-                        <i class="fas fa-sign-out-alt"></i> Keluar
-                    </button>
-                </form>
-            </div>
-        </header>
+       <header class="h-16 bg-white border-b border-[#d1d7dc] flex items-center justify-between px-8 shrink-0 shadow-sm">
+    <h2 class="text-xl font-bold text-black">Dashboard</h2>
+    <div class="flex items-center gap-6">
+        <span class="text-sm font-semibold text-gray-700">Halo, Admin!</span>
+        <form action="{{ route('logout') }}" method="POST" class="inline">
+            @csrf
+            <button type="submit" class="text-sm font-bold text-red-500 hover:text-red-400 flex items-center gap-2">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </button>
+        </form>
+    </div>
+</header>
 
         <div class="p-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

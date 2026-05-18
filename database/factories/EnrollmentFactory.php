@@ -7,25 +7,29 @@ use App\Models\User;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Enrollment>
- */
 class EnrollmentFactory extends Factory
 {
+    protected $model = Enrollment::class;
+
     public function definition(): array
     {
-        // FIX: Proteksi null pointer. Jika student/course kosong, sistem akan meng-generate otomatis lewat factory pendukung
-        $student = User::where('role', 'student')->inRandomOrder()->first();
-        $studentId = $student ? $student->id : User::factory()->create(['role' => 'student'])->id;
+        // WAJIB cari student yang sudah ada dari UserSeeder
+        $studentId = User::where('role', 'student')->inRandomOrder()->value('id');
+        if (!$studentId) {
+            $studentId = User::factory()->create(['role' => 'student'])->id;
+        }
 
-        $course = Course::inRandomOrder()->first();
-        $courseId = $course ? $course->id : Course::factory()->create()->id;
+        // WAJIB cari kursus yang sudah di-import dari CSV
+        $courseId = Course::inRandomOrder()->value('id');
+        if (!$courseId) {
+            $courseId = Course::factory()->create()->id;
+        }
 
         return [
             'user_id' => $studentId,
             'course_id' => $courseId,
-            'status' => fake()->randomElement(['active', 'completed', 'dropped']),
-            'enrolled_at' => fake()->dateTimeBetween('-1 year', 'now'),
+            'status' => $this->faker->randomElement(['active', 'completed', 'dropped']),
+            'enrolled_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
