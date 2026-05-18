@@ -9,9 +9,6 @@
         <h1 class="text-3xl font-black text-gray-900 tracking-tight capitalize">
             Topik Pembelajaran: <span class="text-purple-700">"{{ $category->name }}"</span>
         </h1>
-        <p class="text-gray-500 text-sm mt-1 font-medium">
-            Menampilkan data kursus hasil seleksi filter kategori.
-        </p>
     </div>
 
     {{-- 2. LOGIKA KONDISIONAL CHECK KURSUS (AMANKAN DARI EROR BLADE) --}}

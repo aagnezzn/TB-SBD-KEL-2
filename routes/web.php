@@ -27,9 +27,11 @@ use App\Http\Controllers\AccountController;
 */
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('/search', [CourseController::class, 'search'])->name('search');
+
+// FAKTA AMAN: Parameter tetap {id} agar fleksibel menangkap Angka ID maupun Teks Slug dari semua halaman depan!
 Route::get('/category/{id}', [CourseController::class, 'filterByCategory'])->name('category.show');
 
-// FAKTA PERBAIKAN 1: Dialihkan langsung ke CourseController@show agar memuat Eager Loading materi & review riil CSV!
+// Dialihkan langsung ke CourseController@show agar memuat Eager Loading materi & review riil CSV!
 Route::get('/course/{id}', [CourseController::class, 'show'])->name('course.show');
 
 Route::get('/berlangganan', [FAQController::class, 'index']);

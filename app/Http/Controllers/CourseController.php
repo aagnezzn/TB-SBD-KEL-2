@@ -10,36 +10,48 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    /**
-     * FAKTA FIX 404: Mengubah pencarian dari berbasis Slug ke berbasis ID Kategori
-     * Agar sinkron dengan parameter numerik ID yang dikirim oleh welcome.blade.php
-     */
-    public function filterByCategory($id) 
+    public function filterByCategory($idOrSlug) 
     {
-        // 1. Ambil data kategori berdasarkan ID langsung dari database riil CSV kelompokmu
-        $category = Category::with('children')->findOrFail($id);
+        // 1. Ambil data kategori berdasarkan ID (Angka) atau Slug (Teks) secara adaptif
+        if (is_numeric($idOrSlug)) {
+            $category = Category::with('children.children')->findOrFail($idOrSlug);
+        } else {
+            $decodedSlug = urldecode($idOrSlug);
+            $category = Category::where('slug', $decodedSlug)
+                                ->orWhere('slug', 'LIKE', '%' . $decodedSlug . '%')
+                                ->with('children.children')
+                                ->firstOrFail();
+        }
         
-        // 2. Kumpulkan semua ID yang kemungkinan terikat (ID Kategori Induk + ID Anak sub-kategorinya jika ada)
-        $categoryIds = $category->children->pluck('id')->push($category->id)->toArray();
+        // 2. FAKTA FIX: Ambil ID kategori ini, ID anak-anaknya, DAN ID cucu-cucu kategori di bawahnya
+        $categoryIds = collect([$category->id]);
+
+        foreach ($category->children as $child) {
+            $categoryIds->push($child->id);
+            // Ambil semua ID topik populer tingkat 3 (cucu kategori) tempat kursus CSV bernaung
+            if ($child->children) {
+                $categoryIds = $categoryIds->merge($child->children->pluck('id'));
+            }
+        }
+
+        $allCategoryIds = $categoryIds->unique()->toArray();
         
-        // 3. Tarik data kursus dengan teknik adaptif agar melahap data relasi CSV induk maupun anak
-        $courses = Course::where(function($query) use ($categoryIds, $category) {
-                $query->whereIn('category_id', $categoryIds)
-                      ->orWhereHas('category', function($subQuery) use ($category) {
-                          $subQuery->where('parent_id', $category->id);
-                      });
-            })
+        // 3. Tarik data kursus yang memiliki category_id COCOK dengan semua tumpukan array ID di atas
+        $courses = Course::whereIn('category_id', $allCategoryIds)
             ->with('user') // Eager load data akun instruktur kelas
-            ->withAvg('reviews', 'rating') // Kalkulasi rerata rating langsung di level DB MySQL
-            ->withCount('reviews') // Hitung total ulasan langsung di level DB MySQL
+            ->withAvg('reviews', 'rating') // Kalkulasi rerata rating langsung dari database MySQL
+            ->withCount('reviews') // Hitung total ulasan langsung dari database MySQL
             ->latest()
             ->paginate(12)
             ->withQueryString();
 
-        // 4. Salurkan data ke berkas view category.blade.php
+        // 4. Salurkan data murni ke berkas view category.blade.php
         return view('category', compact('courses', 'category'));
     }
 
+    /**
+     * FITUR PENCARIAN GLOBAL (SEARCH BAR)
+     */
     public function search(Request $request)
     {
         $keyword = trim($request->input('query'));
@@ -66,6 +78,9 @@ class CourseController extends Controller
         return view('search-results', compact('courses', 'keyword'));
     }
 
+    /**
+     * FUNGSI INDEX KERANJANG BELANJA
+     */
     public function index()
     {
         $cartItems = Cart::where('user_id', Auth::id())
@@ -82,6 +97,9 @@ class CourseController extends Controller
         return view('keranjang', compact('cartItems', 'courses'));
     }
 
+    /**
+     * FUNGSI DETAIL KURSUS
+     */
     public function show($id)
     {
         $course = Course::with(['lessons', 'reviews.user', 'enrollments'])
