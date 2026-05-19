@@ -111,7 +111,7 @@ class CategoryController extends Controller
         return view('welcome', compact(
             'navCategories', 
             'categories', 
-            'categoriesData', 
+            'topics', 
             'recommendedCourses', 
             'popularCourses',
             'cartItems'

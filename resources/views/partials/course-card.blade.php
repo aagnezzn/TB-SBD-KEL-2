@@ -4,10 +4,10 @@
         
         {{-- Wadah Thumbnail Gambar Kursus --}}
         <div class="aspect-video w-full bg-gray-100 overflow-hidden rounded-t-lg border-b border-gray-200">
-            <img src="{{ asset('storage/' . $course->image_url) }}" 
-                 alt="{{ $course->title }}"
-                 class="w-full h-full object-cover mb-2"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
+            <img src="{{ $course->image_url }}" 
+                alt="{{ $course->title }}" 
+                class="w-full h-full object-cover mb-2 rounded-t-lg"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=640&q=80';">
         </div>
              
         {{-- Konten Informasi Kelas --}}
