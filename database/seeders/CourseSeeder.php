@@ -47,20 +47,22 @@ class CourseSeeder extends Seeder
         while (($row = fgetcsv($open, 2000, $delimiter)) !== FALSE) {
             if (count($row) < 11) continue;
 
-            // FAKTANYA: Ambil string nama Subject dari file CSV di indeks ke-10
-            $csvCatName = trim($row[10]);
+            // FAKTANYA: Ambil string nama Subject dari file CSV di indeks ke-10, bersihkan dari koma sampah
+            $rawCatName = trim($row[10]);
+            $csvCatName = trim(explode(',', $rawCatName)[0]); 
             
             // 1. Cari Kategori Level 2 (Sub-Kategori) yang namanya klop dengan CSV
             $parentCategory = $categories->whereNotNull('parent_id')->first(function ($cat) use ($csvCatName) {
-                return strtolower($cat->name) === strtolower($csvCatName);
+                // Perbandingan toleran terhadap huruf besar/kecil
+                return strcasecmp(trim($cat->name), $csvCatName) === 0;
             });
 
             if ($parentCategory) {
-                // 2. FAKTANYA: Cari anak-anak Level 3 di bawahnya secara acak (HTML & CSS, JavaScript, dll)
-                $subCategory = $categories->where('parent_id', $parentCategory->id)->random(1)->first();
+                // 2. FAKTANYA: Cari anak-anak Level 3 di bawahnya
+                $children = $categories->where('parent_id', $parentCategory->id);
                 
-                // Jika memiliki anak di Level 3, gunakan ID-nya. Jika tidak, gunakan ID Level 2.
-                $category = $subCategory ? $subCategory : $parentCategory;
+                // Jika memiliki anak (Level 3), gunakan secara acak. Jika tidak, gunakan Level 2.
+                $category = $children->isNotEmpty() ? $children->random() : $parentCategory;
             } else {
                 // Fallback darurat jika ada typo kata di dalam file CSV
                 $category = $categories->whereNotNull('parent_id')->first() ?? $categories->first();
@@ -73,15 +75,13 @@ class CourseSeeder extends Seeder
             if (strtolower($rawPrice) === 'free' || $rawPrice === '0' || empty($rawPrice)) {
                 $coursePrice = 0;
             } else {
-                // Menghilangkan simbol dolar dan spasi, lalu ambil angka depannya
                 $cleanPrice = preg_replace('/[^\d]/', '', str_replace(',00', '', $rawPrice));
                 
                 // FAKTANYA: WAJIB DIKALIKAN 15000 AGAR NOMINAL MENJADI RUPIAH DI DATABASE
                 $coursePrice = intval($cleanPrice) * 15000;
                 
-                // Jika hasil konversi aneh atau nol, beri harga default acak standar Rupiah
                 if ($coursePrice <= 0) {
-                    $coursePrice = array_rand([150000 => 1, 250000 => 1, 350000 => 1, 450000 => 1]);
+                    $coursePrice = 250000; // Harga default aman
                 }
             }
 
@@ -100,8 +100,8 @@ class CourseSeeder extends Seeder
                 'instructor_id'     => $instructorId,
                 'price'             => $coursePrice,
                 'status'            => 'active',
-                'subscribers_count' => $csvSubscribersCount, // Mengisi kolom statistik tabel courses
-                'reviews_count'     => $csvReviewsCount,     // Mengisi kolom statistik tabel courses
+                'subscribers_count' => $csvSubscribersCount,
+                'reviews_count'     => $csvReviewsCount,
             ]);
 
             // Insert data materi (lessons) secara massal
@@ -118,18 +118,15 @@ class CourseSeeder extends Seeder
             }
             DB::table('lessons')->insert($lessons);
 
-            // Hidrasi data transaksi mahasiswa (enrollments, payments, reviews) untuk fungsionalitas sistem web
+            // Hidrasi data transaksi mahasiswa
             if (!empty($studentIds)) {
-                // Batasi jumlah maksimal sampel record relasi agar database tidak overcapacity
-                $enrollCount = min($csvSubscribersCount, count($studentIds), 15); 
+                $enrollCount = min($csvSubscribersCount > 0 ? $csvSubscribersCount : 5, count($studentIds), 10); 
                 $reviewCount = min($csvReviewsCount, $enrollCount); 
 
-                // Ambil sejumlah siswa acak sesuai hasil kuota sampel batas aman
-                $chosenEnrollStudents = (array) array_rand($studentIds, $enrollCount);
+                $chosenEnrollStudents = (array) array_rand(array_flip($studentIds), $enrollCount);
                 
                 $payments = [];
-                foreach ($chosenEnrollStudents as $studentIndex) {
-                    $studentId = $studentIds[$studentIndex];
+                foreach ($chosenEnrollStudents as $studentId) {
                     $enrolledAt = now()->subDays(rand(1, 30));
 
                     DB::table('enrollments')->insert([
@@ -157,16 +154,13 @@ class CourseSeeder extends Seeder
                 }
 
                 if ($reviewCount > 0) {
-                    $chosenReviewKeys = (array) array_rand($chosenEnrollStudents, $reviewCount);
+                    $chosenReviewKeys = array_rand($chosenEnrollStudents, min($reviewCount, count($chosenEnrollStudents)));
+                    $chosenReviewStudents = is_array($chosenReviewKeys) ? array_intersect_key($chosenEnrollStudents, array_flip($chosenReviewKeys)) : [$chosenEnrollStudents[$chosenReviewKeys]];
+                    
                     $reviews = [];
-
-                    foreach ($chosenReviewKeys as $key) {
-                        $studentIndex = $chosenEnrollStudents[$key];
-                        $studentId = $studentIds[$studentIndex];
+                    foreach ($chosenReviewStudents as $studentId) {
                         $enrolledAt = now()->subDays(rand(1, 15));
-
-                        $textKustom = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
-                        $finalComment = $textKustom . ' (' . $uniqueWords[array_rand($uniqueWords)] . ' ' . rand(100, 999) . ')';
+                        $finalComment = $pembuka[array_rand($pembuka)] . $inti[array_rand($inti)] . $penutup[array_rand($penutup)];
 
                         $reviews[] = [
                             'user_id'    => $studentId,
