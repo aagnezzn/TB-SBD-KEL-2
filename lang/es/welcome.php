@@ -24,7 +24,7 @@ return [
     'Bergabung' => 'Únete a otros para cambiar sus vidas a través del aprendizaje',
     
     // welcome login
-    'Jumpa' => 'Nos vemos de nuevo,',
+    'Jumpa' => 'Hola de nuevo,',
     'Tambahkan' => 'Agregar trabajo e intereses',
     'Apa' => 'Qué aprender a continuación',
     'Direkomendasikan' => 'Recomendado para ti',

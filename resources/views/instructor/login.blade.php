@@ -8,8 +8,8 @@
             <div class="flex justify-center mb-4 text-blue-600">
                 <i class="fas fa-chalkboard-teacher text-5xl"></i>
             </div>
-            <h1 class="font-bold text-2xl text-[#1c1d27]">Portal Instruktur Idemy</h1>
-            <p class="text-sm text-gray-600">Masuk untuk mengelola kursus dan siswa Anda</p>
+            <h1 class="font-bold text-2xl text-[#1c1d27]"> {{__('login.Instruktur')}}</h1>
+            <p class="text-sm text-gray-600">{{__('login.untuk')}}</p>
         </div>
 
         @if(session('error'))

@@ -13,7 +13,7 @@
         <div class="w-full max-w-[400px]">
             
             <h1 class="text-center font-bold text-[28px] leading-tight mb-8 text-[#1c1d27]">
-                Daftar dan mulai belajar
+                {{__('login.Daftar dan')}}
             </h1>
 
             <!-- Nampilin pesan error kalau validasi gagal -->
@@ -33,32 +33,32 @@
                 
                 <!-- Input Nama -->
                 <div class="mb-4">
-                    <input type="text" name="name" placeholder="Nama Lengkap" required value="{{ old('name') }}"
+                    <input type="text" name="name" placeholder="{{__('login.Nama Lengkap')}}" required value="{{ old('name') }}"
                         class="w-full border border-black px-4 py-4 font-bold text-[#1c1d27] placeholder-gray-500 focus:outline-none focus:ring-0">
                 </div>
 
                 <!-- Input Email -->
                 <div class="mb-4">
-                    <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}"
+                    <input type="email" name="email" placeholder="{{ __('login.Email') }}" required value="{{ old('email') }}"
                         class="w-full border border-black px-4 py-4 font-bold text-[#1c1d27] placeholder-gray-500 focus:outline-none focus:ring-0">
                 </div>
 
                 <!-- Input Password -->
                 <div class="mb-6">
-                    <input type="password" name="password" placeholder="Password" required
+                    <input type="password" name="password" placeholder="{{ __('login.Password') }}" required
                         class="w-full border border-black px-4 py-4 font-bold text-[#1c1d27] placeholder-gray-500 focus:outline-none focus:ring-0">
                 </div>
 
                 <!-- Tombol Submit -->
                 <button type="submit" class="w-full bg-[#a435f0] text-white font-bold py-4 hover:bg-[#8710d8] transition">
-                    Daftar
+                   {{__('login.Daftar') }}
                 </button>
             </form>
 
             <div class="text-center text-[15px] mt-6 border-t border-gray-200">
                 <div class="py-5 flex justify-center gap-1">
-                    <span class="text-[#1c1d27]">Sudah punya akun?</span>
-                    <a href="{{ route('login') }}" class="text-[#a435f0] font-bold hover:text-[#8710d8] underline underline-offset-4">Login</a>
+                    <span class="text-[#1c1d27]">{{__('login.Sudah')}}</span>
+                    <a href="{{ route('login') }}" class="text-[#a435f0] font-bold hover:text-[#8710d8] underline underline-offset-4">{{__('login.masuk') }}</a>
                 </div>
             </div>
 
