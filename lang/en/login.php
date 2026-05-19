@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // Login Siswa
     'Login' => 'Login to continue your learning journey',
     'masuk' => 'Login',
     'Lupa' => 'Forgot Password',
@@ -10,14 +11,20 @@ return [
     'Password' => 'Password',
     'Daftar' => 'Register',
 
-    //register
+    // Register
     'Daftar dan' => 'Register and start learning',
     'Nama Lengkap' => 'Full Name',
     'Sudah' => 'Already have an account?',
+    
+    // Admin Portal
     'Portal' => 'Idemy Admin Portal',
-    'Masukkan' =>  'Enter administrator-only credentials',
+    'Masukkan' => 'Enter administrator-only credentials',
     'Email Admin' => 'Admin Email',
     'Bukan' => 'Not an Admin? Return to Student Login',
-    'Instruktur' => 'Udemy Instructor Portal',
-    'untuk' => 'Sign in to manage your courses and students',
+    
+    // Instructor Portal (LENGKAP)
+    'Instruktur' => 'Idemy Instructor Portal',
+    'untuk' => 'Log in using a dedicated instructor account to manage courses',
+    'Email Instruktur' => 'Instructor Email',
+    'Bukan Instruktur' => 'Not an Instructor? Return to Student Login',
 ];

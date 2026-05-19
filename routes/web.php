@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 // Import Semua Controller 
-use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
@@ -34,8 +34,7 @@ Route::get('/category/{id}', [CourseController::class, 'filterByCategory'])->nam
 // Dialihkan langsung ke CourseController@show agar memuat Eager Loading materi & review riil CSV!
 Route::get('/course/{id}', [CourseController::class, 'show'])->name('course.show');
 
-Route::get('/berlangganan', [FAQController::class, 'index']);
-Route::get('/mengajar-di-idemy', [InstructorController::class, 'showConfirmation'])->name('mengajar');
+Route::get('/mengajar-di-idemy', [InstructorController::class, 'showLandingPage'])->name('mengajar');
 
 // Auth Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -98,6 +97,7 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
     Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
+    Route::get('/berlangganan', [SubscriptionController::class, 'index'])->name('berlangganan');
     Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])->name('subscribe.start');
 
     Route::get('/my-learning', [LearningController::class, 'index'])->name('learning.index');

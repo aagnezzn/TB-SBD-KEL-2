@@ -26,7 +26,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#a435f0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                 </svg>
-                                <span class="text-[14px]">Edit profil</span>
+                                <span class="text-[14px]">{{ __('account.edit_profile') }}</span>
                             </a>
                         @endif
                     </div>
@@ -34,7 +34,7 @@
                     <div class="space-y-1">
                         <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ $user->name }}</h1>
                         <p class="text-base font-bold text-slate-600">
-                            {{ $user->profile->headline ?? 'Belum menulis rangkuman kompetensi profesi' }}
+                            {{ $user->profile->headline ?? __('account.no_headline_yet') }}
                         </p>
                     </div>
 
@@ -66,7 +66,6 @@
                                     }
                                 @endphp
                                 
-                                {{-- FAKTA PERBAIKAN: Mengecek khusus tipe website agar menggunakan kelas solid 'fas fa-globe' --}}
                                 <a href="{{ $url }}" target="_blank" class="text-gray-400 hover:text-[#a435f0] transition-colors text-lg inline-flex items-center justify-center">
                                     <i class="{{ $field === 'website' ? 'fas' : 'fab' }} fa-{{ $icon }}"></i>
                                 </a>
@@ -75,9 +74,9 @@
                     </div>
 
                     <div class="mt-6">
-                        <h2 class="text-lg font-black text-slate-900 mb-3">Tentang saya</h2>
+                        <h2 class="text-lg font-black text-slate-900 mb-3">{{ __('account.about_me') }}</h2>
                         <div class="text-slate-700 leading-relaxed text-sm font-medium">
-                            {!! nl2br(e($user->profile->bio ?? 'User ini belum menulis biografi publik.')) !!}
+                            {!! nl2br(e($user->profile->bio ?? __('account.no_bio_yet'))) !!}
                         </div>
                     </div>
                 </div>

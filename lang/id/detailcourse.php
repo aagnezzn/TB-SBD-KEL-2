@@ -1,0 +1,47 @@
+<?php
+
+return [
+   'siswa' => 'Siswa',
+   'dibuat' => 'Dibuat oleh :',
+   'yg_dipelajari' => 'Apa yang akan Anda pelajari',
+   'dipelajari1' => '✓ Kurikulum standar industri.',
+   'dipelajari2' => '✓ Pemahaman konsep dari awal',
+   'dipelajari3' => '✓ Latihan langsung dengan studi kasus.',
+   'dipelajari4' => '✓ Akses materi kapan saja.',
+   'konten'    => 'Konten Kursus',
+   'kurikulum' => 'Kurikulum Dasar',
+   'kuliah'    => 'pelajaran',
+   'pratinjau' => 'Pratinjau',
+   'add_cart'  => 'Masukkan ke keranjang',
+   'add_wishlist' => 'Tambah ke Wishlist',
+   'garansi'   => 'Garansi uang kembali 30 hari',
+   'mencakup'  => 'Kursus ini mencakup:',
+   '1'         => '✓ Video sesuai permintaan',
+   '2'         => '✓ Akses penuh seumur hidup',
+   '3'         => '✓ Akses di ponsel dan TV',
+   '4'         => '✓ Sertifikat penyelesaian',
+   'give_rating' => 'Beri Penilaian & Ulasan',
+   'give_review' => 'Berikan ulasan Anda',
+   'rating'    => 'Penilaian',
+   'rating5'   => 'Sangat Bagus',
+   'rating4'   => 'Bagus',
+   'rating3'   => 'Cukup',
+   'rating2'   => 'Buruk',
+   'rating1'   => 'Sangat Buruk',
+   'review'    =>'Ulasan',
+   'review_placeholder' => 'Apa pendapat Anda tentang kursus ini?',
+   'kirim'  => 'Kirim Ulasan',
+   'batal'  => 'Batal',
+   'peringkat_kursus' => 'Peringkat Kursus',
+   'peringkat' => 'Peringkat',
+
+   //my learning dan wishlist
+   'learning_kosong' => 'Sepertinya belum ada kursus di sini.',
+   'cari'            => 'Cari kursus sekarang',
+   'my_learning'     => 'Pembelajaran Saya',
+   'all_courses'     => 'Semua Kursus',
+   'wishlist'        => 'Daftar Keinginan',
+   'berhasil'        => 'Berhasil',
+   '25%'             => '25% SELESAI'
+
+];

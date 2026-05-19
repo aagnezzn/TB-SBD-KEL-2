@@ -27,17 +27,17 @@ return [
     'cart_empty'       => 'Keranjang Anda kosong.',
     'keep_shopping'    => 'Terus belanja',
     'total'            => 'Total',
-    'checkout'         => 'Selesaikan Pembayaran',
+    'buka'             => 'Buka keranjang',
     
     // User Profile Dropdown
-    'public_profile'   => 'Profil Publik',
-    'edit_profile'     => 'Edit Profil',
-    'account_settings' => 'Pengaturan Akun',
-    'payment_methods'  => 'Metode Pembayaran',
-    'purchase_history' => 'Riwayat Pembelian',
-    'notifications'    => 'Pemberitahuan',
-    'messages'         => 'Pesan',
-    'help'             => 'Bantuan dan Dukungan',
+    'my_learning'   => 'Pembelajaran saya',
+    'my_cart'       => 'Keranjang saya',
+    'wishlist'      => 'Daftar Keinginan',
+    'teach'         => 'Mengajar di Idemy',
+    'account_settings' => 'Pengaturan akun',
+    'payment_history'  => 'Riwayat Pembayaran',
+    'subscriptions' => 'Langganan',
+    'logout'        => 'Keluar',
     
     // Footer & Miscellaneous
     'about_us'         => 'Tentang Kami',
@@ -46,7 +46,7 @@ return [
     'privacy_policy'   => 'Kebijakan Privasi',
     'cookie_settings'  => 'Pengaturan Cookie',
     'get_the_app'      => 'Dapatkan Aplikasi',
-    'explore_title' => 'Jelajahi skill dan sertifikasi teratas',
+    'explore_title' => 'Jelajahi semua kursus kami',
     'view_all' => 'Lihat semua',
     'about' => 'Tentang',
     'about_us' => 'Tentang kami',
@@ -56,5 +56,7 @@ return [
     'privacy' => 'Kebijakan privasi',
     'terms' => 'Persyaratan',
     'Pengaturan cookie' => 'Pengaturan cookie',
+
+
 
 ];

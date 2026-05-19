@@ -21,9 +21,9 @@
                     @endfor
                 </div>
                 <span class="text-[#c0c4fc] underline">({{ $totalReviews }} rating)</span>
-                <span>{{ number_format($course->enrollments->count(), 0, ',', '.') }} siswa</span>
+                <span>{{ number_format($course->enrollments->count(), 0, ',', '.') }} {{ __('detailcourse.siswa') }}</span>
             </div>
-            <p class="text-sm">Dibuat oleh <a href="#" class="text-[#c0c4fc] underline">{{ $course->user->name ?? 'Instruktur' }}</a></p>
+            <p class="text-sm">{{ __('detailcourse.dibuat') }}  {{ $course->user->name ?? 'Instruktur' }}</a></p>
         </div>
         
         {{-- Sidebar Kartu Putih --}}
@@ -40,26 +40,26 @@
             <form action="{{ route('cart.add', $course->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3 rounded">
-                    Tambahkan ke keranjang
+                    {{ __('detailcourse.add_cart') }}
                 </button>
             </form>
 
             <form action="{{ route('wishlist.add', $course->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full border border-black py-3 font-bold hover:bg-gray-100 transition rounded">
-                    Masukkan ke Daftar Keinginan
+                    {{ __('detailcourse.add_wishlist') }}
                 </button>
             </form>
             
-            <div class="text-xs text-center text-gray-600 mb-6">Jaminan uang kembali 30 hari</div>
+            <div class="text-xs text-center text-gray-600 mb-6">{{ __('detailcourse.garansi') }}</div>
             
             <div class="text-sm">
-                <div class="font-bold mb-2">Kursus ini mencakup:</div>
+                <div class="font-bold mb-2">{{ __('detailcourse.mencakup') }}</div>
                 <ul class="space-y-2 text-gray-700">
-                    <li>✓ Video sesuai permintaan</li>
-                    <li>✓ Akses seumur hidup penuh</li>
-                    <li>✓ Akses di perangkat seluler dan TV</li>
-                    <li>✓ Sertifikat penyelesaian</li>
+                    <li>{{ __('detailcourse.1') }}</li>
+                    <li>{{ __('detailcourse.2') }}</li>
+                    <li>{{ __('detailcourse.3') }}</li>
+                    <li>{{ __('detailcourse.4') }}</li>
                 </ul>
             </div>
         </div>
@@ -70,25 +70,25 @@
 <div class="max-w-[1340px] mx-auto px-4 py-8">
     <div class="md:w-2/3 lg:w-3/5">
         <div class="border border-gray-200 p-6 mb-8">
-            <h2 class="text-xl font-bold mb-4 text-gray-900">Apa yang akan Anda pelajari</h2>
+            <h2 class="text-xl font-bold mb-4 text-gray-900">{{ __('detailcourse.yg_dipelajari') }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
-                <div>✓ Kurikulum standar industri.</div>
-                <div>✓ Pemahaman konsep dari nol.</div>
-                <div>✓ Praktek langsung dengan studi kasus.</div>
-                <div>✓ Akses materi kapan saja.</div>
+                <div>{{ __('detailcourse.dipelajari1') }}</div>
+                <div>{{ __('detailcourse.dipelajari2') }}</div>
+                <div>{{ __('detailcourse.dipelajari3') }}</div>
+                <div>{{ __('detailcourse.dipelajari4') }}</div>
             </div>
         </div>
 
-        <h2 class="text-xl font-bold mb-4 text-gray-900">Konten Kursus</h2>
+        <h2 class="text-xl font-bold mb-4 text-gray-900">{{ __('detailcourse.konten') }}</h2>
         <div class="border border-gray-200 mb-8 text-sm">
             <div class="bg-gray-50 p-4 border-b border-gray-200 font-bold flex justify-between text-gray-900">
-                <span>Kurikulum Dasar</span>
-                <span class="text-gray-600 font-normal">{{ $course->lessons->count() }} kuliah</span>
+                <span>{{ __('detailcourse.kurikulum') }}</span>
+                <span class="text-gray-600 font-normal">{{ $course->lessons->count() }} {{ __('detailcourse.kuliah') }}</span>
             </div>
             @forelse($course->lessons as $lesson)
                 <div class="p-4 flex justify-between items-center text-gray-700 border-b border-gray-200 last:border-b-0">
                     <span>📄 {{ $lesson->title }}</span>
-                    <span class="text-[#a435f0] text-xs font-bold cursor-pointer underline">Pratinjau</span>
+                    <span class="text-[#a435f0] text-xs font-bold cursor-pointer underline">{{ __('detailcourse.pratinjau') }}</span>
                 </div>
             @empty
                 <div class="p-4 text-gray-500 italic">Belum ada materi untuk kursus ini.</div>
@@ -99,38 +99,38 @@
         <div class="mt-12 border-t border-gray-200 pt-10">
             <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2">
                 <span class="text-[#f69c08]">★</span> 
-                {{ number_format($avgRating, 1) }} Peringkat Kursus 
-                <span class="text-gray-400 text-base">• {{ $totalReviews }} Peringkat</span>   
+                {{ number_format($avgRating, 1) }} {{ __('detailcourse.peringkat_kursus') }}
+                <span class="text-gray-400 text-base">• {{ $totalReviews }} {{ __('detailcourse.peringkat') }}</span>   
             </h2>
 
             <button onclick="toggleReviewForm()" class="mb-6 bg-purple-600 text-white px-4 py-2 font-bold hover:bg-purple-800 transition rounded-sm">
-                Beri Rating & Ulasan
+                {{ __('detailcourse.give_rating') }}
             </button>
 
             <div id="review-form-container" class="hidden mb-10 p-6 border border-gray-200 bg-gray-50 rounded-lg">
-                <h3 class="text-lg font-bold mb-4">Berikan Ulasan Anda</h3>
+                <h3 class="text-lg font-bold mb-4">{{ __('detailcourse.give_review') }}</h3>
                 <form action="{{ route('reviews.store', $course->id) }}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <label class="block font-bold mb-1">Rating</label>
+                        <label class="block font-bold mb-1">{{ __('detailcourse.rating') }}</label>
                         <select name="rating" class="w-full border border-gray-300 p-2 rounded" required>
-                            <option value="5">5 - Sangat Bagus</option>
-                            <option value="4">4 - Bagus</option>
-                            <option value="3">3 - Cukup</option>
-                            <option value="2">2 - Buruk</option>
-                            <option value="1">1 - Sangat Buruk</option>
+                            <option value="5">{{ __('detailcourse.rating5') }}</option>
+                            <option value="4">{{ __('detailcourse.rating4') }}</option>
+                            <option value="3">{{ __('detailcourse.rating4') }}</option>
+                            <option value="2">{{ __('detailcourse.rating2') }}</option>
+                            <option value="1">{{ __('detailcourse.rating1') }}</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="block font-bold mb-1">Ulasan</label>
-                        <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="Apa pendapatmu tentang kursus ini?" required></textarea>
+                        <label class="block font-bold mb-1">{{ __('detailcourse.review') }}</label>
+                        <textarea name="comment" rows="4" class="w-full border border-gray-300 p-2 rounded" placeholder="{{ __('detailcourse.review_placeholder') }}" required></textarea>
                     </div>
                     <div class="flex gap-2">
                         <button type="submit" class="bg-[#a435f0] text-white px-6 py-2 font-bold hover:bg-[#8710d8] transition">
-                            Kirim Ulasan
+                            {{ __('detailcourse.kirim') }}
                         </button>
                         <button type="button" onclick="toggleReviewForm()" class="border border-black px-6 py-2 font-bold hover:bg-gray-200 transition">
-                            Batal
+                            {{ __('detailcourse.batal') }}
                         </button>
                     </div>
                 </form>

@@ -14,7 +14,7 @@
                             <i class="fas fa-check text-xs"></i>
                         </div>
                         <div>
-                            <p class="font-bold text-sm leading-none">Berhasil!</p>
+                            <p class="font-bold text-sm leading-none">{{ __('detailcourse.berhasil') }}</p>
                             <p class="text-sm mt-1 opacity-90">{{ session('success') }}</p>
                         </div>
                     </div>
@@ -25,16 +25,16 @@
             </div>
         @endif
 
-        <h1 class="text-4xl font-bold text-white mb-10">My learning</h1>
+        <h1 class="text-4xl font-bold text-white mb-10">{{ __('detailcourse.my_learning') }}</h1>
         
         <nav class="flex space-x-8">
             <a href="{{ route('learning.index', ['tab' => 'all']) }}" 
                class="{{ !request('tab') || request('tab') == 'all' ? 'border-white text-white' : 'border-transparent text-gray-400 hover:text-white' }} py-3 px-1 border-b-4 font-bold text-sm transition">
-                All courses
+                {{ __('detailcourse.all_courses') }}
             </a>
             <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" 
                class="{{ request('tab') == 'wishlist' ? 'border-white text-white' : 'border-transparent text-gray-400 hover:text-white' }} py-3 px-1 border-b-4 font-bold text-sm transition">
-                Wishlist
+                {{ __('detailcourse.wishlist') }}
             </a>
         </nav>
     </div>
@@ -68,7 +68,7 @@
                             <h3 class="font-bold text-gray-900 text-sm mb-1 h-10 overflow-hidden line-clamp-2 hover:text-purple-700 transition">
                                 {{ $course->title }}
                             </h3>
-                            <p class="text-[11px] text-gray-500 mb-4">Oleh {{ $course->user->name ?? 'Instructor' }}</p>
+                            <p class="text-[11px] text-gray-500 mb-4">{{ __('detailcourse.dibuat') }} {{ $course->user->name ?? 'Instructor' }}</p>
                     </a> {{-- Penutup Bungkus Anchor Atas --}}
                         
                         <div class="mt-auto pt-2">
@@ -78,7 +78,7 @@
                                     <form action="{{ route('wishlist.move-to-cart', $course->id) }}" method="POST" class="m-0">
                                         @csrf
                                         <button class="w-full mt-3 bg-purple-600 py-2.5 text-white text-xs font-bold hover:bg-purple-800 transition cursor-pointer">
-                                            Tambahkan ke keranjang
+                                            {{ __('detailcourse.add_cart') }}
                                         </button>
                                     </form>
                                 </div>
@@ -87,7 +87,7 @@
                                 <div class="w-full bg-gray-200 h-1 mb-2 rounded-full">
                                     <div class="bg-purple-600 h-1 rounded-full" style="width: 25%"></div>
                                 </div>
-                                <span class="text-[10px] text-gray-600 font-bold uppercase tracking-tight">25% SELESAI</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase tracking-tight">{{ __('detailcourse.25%') }}</span>
                             @endif
                         </div>
                     </div>
@@ -96,9 +96,9 @@
         </div>
     @else
         <div class="text-center py-24 border border-dashed border-gray-200 rounded-lg">
-            <p class="text-gray-500 text-lg mb-6">Sepertinya belum ada kursus di sini.</p>
+            <p class="text-gray-500 text-lg mb-6">{{ __('detailcourse.learning_kosong') }}</p>
             <a href="/" class="bg-[#a435f0] text-white px-8 py-3 font-bold hover:bg-[#8710d8] transition shadow-md">
-                Cari kursus sekarang
+                {{ __('detailcourse.cari') }}
             </a>
         </div>
     @endif

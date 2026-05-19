@@ -2,18 +2,18 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4 py-12 min-h-[60vh]">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">Purchase history</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">{{ __('kc.history') }}</h1>
 
     <div class="bg-white border border-gray-200 rounded-sm overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="border-b border-gray-200 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                        <th class="px-6 py-4">Course</th>
-                        <th class="px-6 py-4">Date</th>
-                        <th class="px-6 py-4">Total price</th>
-                        <th class="px-6 py-4">Payment method</th>
-                        <th class="px-6 py-4">Status</th>
+                        <th class="px-6 py-4">{{ __('kc.course') }}</th>
+                        <th class="px-6 py-4">{{ __('kc.date') }}</th>
+                        <th class="px-6 py-4">{{ __('kc.total_price') }}</th>
+                        <th class="px-6 py-4">{{ __('kc.payment_method') }}</th>
+                        <th class="px-6 py-4">{{ __('kc.status') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">

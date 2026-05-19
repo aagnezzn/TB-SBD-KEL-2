@@ -13,4 +13,9 @@ class SubscriptionController extends Controller
         return redirect()->route('cart.index')
             ->with('success', 'Selamat datang! Silakan lanjutkan langganan Anda.');
     }
+
+    public function index()
+    {
+        return view('berlangganan');
+    }
 }

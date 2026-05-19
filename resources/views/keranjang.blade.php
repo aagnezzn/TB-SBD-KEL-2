@@ -8,15 +8,15 @@
 
 <div class="max-w-7xl mx-auto px-6 py-12 mt-10 text-[#1c1d1f] font-sans">
     
-    <h1 class="text-3xl font-black tracking-tight text-gray-900 mb-8">Keranjang Belanja</h1>
+    <h1 class="text-3xl font-black tracking-tight text-gray-900 mb-8">{{ __('kc.keranjang') }}</h1>
 
     @if($cartItems->isEmpty())
         {{-- Tampilan State Jika Keranjang Belanja Kosong --}}
         <div class="text-center py-16 border border-dashed rounded-2xl bg-white p-8 max-w-2xl mx-auto shadow-sm">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">Keranjang Anda kosong</h2>
-            <p class="text-gray-500 text-sm max-w-md mx-auto mb-6">Mari ubah itu. Saatnya mempelajari beberapa skill baru untuk membangun masa depan dan karir dunia kerja Anda.</p>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">{{ __('kc.kosong') }}</h2>
+            <p class="text-gray-500 text-sm max-w-md mx-auto mb-6">{{ __('kc.ubah') }}</p>
             <a href="/" class="inline-block bg-[#a435f0] text-white px-8 py-3.5 font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-[#8710d8] transition-all shadow-md active:scale-95 no-underline">
-                Jelajahi Kursus Sekarang
+                {{ __('kc.jelajahi') }}
             </a>
         </div>
     @else
@@ -26,7 +26,7 @@
             {{-- SISI KIRI: Daftar Item yang Berhasil Dimasukkan ke Keranjang --}}
             <div class="w-full lg:w-2/3 flex flex-col">
                 <p class="font-bold text-sm text-gray-700 border-b border-gray-200 pb-3 mb-6">
-                    {{ $cartItems->count() }} Kursus dalam Keranjang
+                    {{ $cartItems->count() }} {{ __('kc.kursus_dlm_cart') }}
                 </p>
                 
                 <div class="flex flex-col space-y-6">
@@ -48,7 +48,7 @@
                                         {{ $item->course->title }}
                                     </h3>
                                 </a>
-                                <p class="text-xs text-gray-500 m-0">Oleh {{ $item->course->user->name ?? 'Instruktur Idemy' }}</p>
+                                <p class="text-xs text-gray-500 m-0">{{ __('detailcourse.dibuat') }} {{ $item->course->user->name ?? 'Instruktur Idemy' }}</p>
                             </div>
                             
                             {{-- Tombol Aksi Hapus Item dari Sesi Database --}}
@@ -57,7 +57,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-xs font-bold text-red-600 hover:text-red-800 transition-colors bg-transparent border-none p-0 cursor-pointer">
-                                        Hapus dari Keranjang
+                                        {{ __('kc.hapus') }}
                                     </button>
                                 </form>
                             </div>
@@ -77,12 +77,12 @@
             {{-- SISI KANAN: Kotak Invoice Ringkasan Pembayaran Total --}}
             <div class="w-full lg:w-1/3 lg:sticky lg:top-24">
                 <div class="p-6 border border-gray-200 rounded-xl bg-gray-50 shadow-sm">
-                    <p class="text-gray-500 font-bold text-xs uppercase tracking-wider mb-1">Total Biaya:</p>
+                    <p class="text-gray-500 font-bold text-xs uppercase tracking-wider mb-1">Total</p>
                     <p class="text-3xl font-black text-gray-900 mb-6">
                         Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}
                     </p>
                     <a href="{{ route('checkout') }}" class="w-full bg-[#a435f0] text-white py-3.5 font-bold rounded-lg block text-center no-underline hover:bg-[#8710d8] transition-all shadow-md active:scale-95 text-sm tracking-wide">
-                        Lanjutkan ke Checkout
+                        {{ __('kc.co') }}
                     </a>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
     {{-- 3. SLIDER SEKSI: PEMBELAJAR MELIHAT (REKOMENDASI KURSUS LAIN) --}}
     <div class="mt-20 border-t border-gray-200 pt-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Siswa juga melihat kursus ini</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ __('kc.siswa_liat') }}</h2>
 
         <div class="relative group">
             {{-- Tombol Geser Kiri Slider --}}

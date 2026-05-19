@@ -8,18 +8,17 @@
         
         {{-- Sisi Kiri: Teks Informasi --}}
         <div class="w-full md:w-1/2 py-12 md:py-0 z-10 space-y-6">
-            <p class="text-[#a435f0] font-black text-xs uppercase tracking-widest bg-purple-50 px-3 py-1 rounded inline-block border border-purple-100">Portal Kemitraan Pengajar</p>
+            <p class="text-[#a435f0] font-black text-xs uppercase tracking-widest bg-purple-50 px-3 py-1 rounded inline-block border border-purple-100">{{ __('teach.hero_label') }}</p>
             <h1 class="text-[40px] md:text-[52px] font-extrabold text-[#2d2f31] leading-none tracking-tight">
-                Mengajarlah <br> bersama kami
+                {!! __('teach.hero_title') !!}
             </h1>
             <p class="mt-4 text-lg text-gray-600 max-w-sm font-medium leading-relaxed">
-                Jadilah instruktur resmi Idemy dan ubah hidup — termasuk hidup Anda sendiri melalui kontribusi ilmu.
+                {{ __('teach.hero_subtitle') }}
             </p>
             
-            {{-- FAKTA PERBAIKAN: Diarahkan ke gerbang konfirmasi upgrade role pengajar demi menghindari eror 403 --}}
-            <a href="{{ route('mengajar') }}" 
+            <a href="{{ route('instructor.courses.create') }}" 
                 class="inline-block bg-[#5624d0] text-white px-12 py-4 font-bold hover:bg-[#4c1da7] transition shadow-lg text-center text-xs uppercase tracking-widest min-w-[300px] rounded-xl active:scale-95 cursor-pointer">
-                Memulai Langkah Pengajuan
+                {{ __('teach.btn_start') }}
             </a>
         </div>
 
@@ -36,7 +35,7 @@
 {{-- 2. SEKSI TIGA PILAR MANFAAT INSENTIF --}}
 <div class="max-w-[1340px] mx-auto pt-20 pb-24 px-6 lg:px-10">
     <h2 class="text-[28px] md:text-[36px] font-extrabold text-center text-[#2d2f31] mb-16 tracking-tight leading-none">
-        Begitu banyak alasan untuk memulai
+        {{ __('teach.reasons_title') }}
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-16 justify-center text-center max-w-[1100px] mx-auto">
@@ -45,9 +44,9 @@
             <div class="h-[90px] flex items-center justify-center mb-2">
                 <img src="{{ asset('ajari.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3426/3426222.png'">
             </div>
-            <h3 class="text-base font-bold text-[#2d2f31]">Ajari Jalan Anda</h3>
+            <h3 class="text-base font-bold text-[#2d2f31]">{{ __('teach.reason_1_title') }}</h3>
             <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
-                Publikasikan kursus yang Anda inginkan, dengan cara yang Anda inginkan, dan selalu kontrol konten Anda sendiri.
+                {{ __('teach.reason_1_desc') }}
             </p>
         </div>
 
@@ -56,9 +55,9 @@
             <div class="h-[90px] flex items-center justify-center mb-2">
                 <img src="{{ asset('inspirasi.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2085/2085290.png'">
             </div>
-            <h3 class="text-base font-bold text-[#2d2f31]">Inspirasi Siswa</h3>
+            <h3 class="text-base font-bold text-[#2d2f31]">{{ __('teach.reason_2_title') }}</h3>
             <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
-                Ajarkan yang Anda ketahui dan bantu orang yang ingin belajar menjelajahi minat mereka, mendapatkan skill baru.
+                {{ __('teach.reason_2_desc') }}
             </p>
         </div>
 
@@ -67,9 +66,9 @@
             <div class="h-[90px] flex items-center justify-center mb-2">
                 <img src="{{ asset('hadiah.png') }}" class="w-20 h-20 object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
             </div>
-            <h3 class="text-base font-bold text-[#2d2f31]">Dapatkan Imbalan</h3>
+            <h3 class="text-base font-bold text-[#2d2f31]">{{ __('teach.reason_3_title') }}</h3>
             <p class="text-gray-500 text-sm leading-relaxed max-w-[260px] font-medium">
-                Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran siswa berbayar.
+                {{ __('teach.reason_3_desc') }}
             </p>
         </div>
     </div>
@@ -80,24 +79,24 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center text-white">
             <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
-                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">80 Jt</h3>
-                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Peserta</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">{{ __('teach.stat_students_val') }}</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">{{ __('teach.stat_students_lbl') }}</p>
             </div>
             <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
-                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">75+</h3>
-                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Bahasa</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">{{ __('teach.stat_langs_val') }}</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">{{ __('teach.stat_langs_lbl') }}</p>
             </div>
             <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
-                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">1,1 M</h3>
-                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Pendaftaran</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">{{ __('teach.stat_enrolls_val') }}</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">{{ __('teach.stat_enrolls_lbl') }}</p>
             </div>
             <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0">
-                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">180+</h3>
-                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Negara</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">{{ __('teach.stat_countries_val') }}</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">{{ __('teach.stat_countries_lbl') }}</p>
             </div>
             <div class="flex flex-col items-center justify-center col-span-2 md:col-span-1">
-                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">17K+</h3>
-                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">Mitra Enterprise</p>
+                <h3 class="text-4xl md:text-5xl font-black mb-1 tracking-tight">{{ __('teach.stat_enterprise_val') }}</h3>
+                <p class="text-xs font-bold uppercase text-purple-200 tracking-wider">{{ __('teach.stat_enterprise_lbl') }}</p>
             </div>
         </div>
     </div>
@@ -105,13 +104,13 @@
 
 {{-- 4. SECTION METODE PEMBELAJARAN (TAB INTERAKTIF) --}}
 <section class="max-w-7xl mx-auto px-4 py-24">
-    <h2 class="text-4xl font-extrabold text-center text-[#2d2f31] mb-12 tracking-tight">Cara memulai langkah pengajaran</h2>
+    <h2 class="text-4xl font-extrabold text-center text-[#2d2f31] mb-12 tracking-tight">{{ __('teach.steps_title') }}</h2>
 
     {{-- Tombol Tab --}}
     <div class="flex flex-wrap justify-center gap-x-8 border-b border-gray-200 mb-16">
-        <button id="tab-btn-1" onclick="changeTab(1)" class="tab-btn pb-4 text-base font-bold text-[#2d2f31] border-b-4 border-[#2d2f31] transition-all cursor-pointer">Rencanakan kurikulum</button>
-        <button id="tab-btn-2" onclick="changeTab(2)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">Rekam video pembelajaran</button>
-        <button id="tab-btn-3" onclick="changeTab(3)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">Luncurkan kursus</button>
+        <button id="tab-btn-1" onclick="changeTab(1)" class="tab-btn pb-4 text-base font-bold text-[#2d2f31] border-b-4 border-[#2d2f31] transition-all cursor-pointer">{{ __('teach.tab_1') }}</button>
+        <button id="tab-btn-2" onclick="changeTab(2)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">{{ __('teach.tab_2') }}</button>
+        <button id="tab-btn-3" onclick="changeTab(3)" class="tab-btn pb-4 text-base font-bold text-gray-400 border-b-4 border-transparent hover:text-[#2d2f31] transition-all cursor-pointer">{{ __('teach.tab_3') }}</button>
     </div>
 
     {{-- Wadah Konten Tab --}}
@@ -120,10 +119,10 @@
         <div id="tab-content-1" class="tab-content block animate-fade-in">
             <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
                 <div class="w-full md:w-1/2 space-y-4">
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Anda memulai dengan semangat dan pengetahuan. Kemudian pilihlah topik menjanjikan dengan bantuan utilitas Wawasan Pasar kami.</p>
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Cara Anda mengajar — apa yang Anda bawa saat mengajar — terserah pada kreasi tersendiri.</p>
-                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Kami menawarkan banyak sumber daya panduan pembuatan kursus pertama. Selain itu, dasbor instruktur dan halaman kurikulum kami akan membantu Anda menyusun rencana matang.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_1_p1') }}</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_1_p2') }}</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> {{ __('teach.help_title') }}</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">{{ __('teach.tab_1_p3') }}</p>
                 </div>
                 <div class="w-full md:w-1/2 flex justify-end">
                     <img src="{{ asset('rencanakankurikulum.png') }}" alt="Perencanaan" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500&q=80'">
@@ -135,10 +134,10 @@
         <div id="tab-content-2" class="tab-content hidden animate-fade-in">
             <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
                 <div class="w-full md:w-1/2 space-y-4">
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Gunakan alat dasar seperti smartphone atau kamera DSLR. Tambahkan mikrofon yang bagus dan Anda siap memulai langkah awal perekaman.</p>
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Jika Anda tidak nyaman berada di depan kamera, cukup ambil rekaman aktivitas gambar layar. Apa pun caranya, kami merekomendasikan total durasi video dua jam atau lebih untuk standar materi premium.</p>
-                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Tim dukungan instansi tersedia penuh untuk membantu Anda di sepanjang proses peninjauan berkas video uji coba.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_2_p1') }}</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_2_p2') }}</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> {{ __('teach.help_title') }}</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">{{ __('teach.tab_2_p3') }}</p>
                 </div>
                 <div class="w-full md:w-1/2 flex justify-end">
                     <img src="{{ asset('rekamvideo.png') }}" alt="Rekaman Video" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&q=80'">
@@ -150,10 +149,10 @@
         <div id="tab-content-3" class="tab-content hidden animate-fade-in">
             <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
                 <div class="w-full md:w-1/2 space-y-4">
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Kumpulkan peringkat dan ulasan positif dengan mempromosikan kursus Anda melalui media sosial dan jaringan profesional Anda.</p>
-                    <p class="text-gray-600 text-base leading-relaxed font-medium">Kursus Anda akan dapat ditemukan di marketplace kami, tempat Anda mendapatkan hak bagi hasil penghasilan dari setiap pendaftaran kelas berbayar.</p>
-                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> Cara kami membantu Anda</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed font-medium">Alat pembuatan kupon kustom memungkinkan Anda menawarkan insentif potongan pendaftaran sekaligus mendorong konversi lalu lintas promosi global.</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_3_p1') }}</p>
+                    <p class="text-gray-600 text-base leading-relaxed font-medium">{{ __('teach.tab_3_p2') }}</p>
+                    <h3 class="font-bold text-lg text-[#2d2f31] pt-2 flex items-center gap-2 text-purple-700"><i class="fas fa-info-circle"></i> {{ __('teach.help_title') }}</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-medium">{{ __('teach.tab_3_p3') }}</p>
                 </div>
                 <div class="w-full md:w-1/2 flex justify-end">
                     <img src="{{ asset('lumcurkankursus.png') }}" alt="Peluncuran" class="max-w-[380px] w-full object-contain rounded-xl shadow-md border" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80'">
@@ -176,11 +175,11 @@
                     </div>
                     <div class="w-full md:w-3/5 space-y-4">
                         <p class="text-gray-600 text-base leading-relaxed italic font-medium">
-                            “Saya bangga mengetahui pekerjaan saya membantu orang-orang di seluruh dunia meningkatkan karier mereka. Meski menjadi instruktur purnawaktu sangat melelahkan, profesi ini memungkinkan Anda bekerja kapan pun, di mana pun, dan bagaimana pun Anda ingin.”
+                            {{ __('teach.frank_quote') }}
                         </p>
                         <div>
                             <h4 class="font-extrabold text-[#2d2f31] text-sm">Frank Kane</h4>
-                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Sertifikasi Ilmu Data & TI</p>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">{{ __('teach.frank_role') }}</p>
                         </div>
                     </div>
                 </div>
@@ -192,11 +191,11 @@
                     </div>
                     <div class="w-full md:w-3/5 space-y-4">
                         <p class="text-gray-600 text-base leading-relaxed italic font-medium">
-                            “Idemy telah mengubah hidup saya. Bersama platform ini, saya dapat mengikuti passion saya dan menjadi guru. Saya sangat gembira melihat peserta saya berhasil dan mendengar mereka mengatakan mereka telah belajar lebih banyak dan cepat.”
+                            {{ __('teach.paulo_quote') }}
                         </p>
                         <div>
                             <h4 class="font-extrabold text-[#2d2f31] text-sm">Paulo Dichone</h4>
-                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Pengembang Android Specialist</p>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">{{ __('teach.paulo_role') }}</p>
                         </div>
                     </div>
                 </div>
@@ -208,11 +207,11 @@
                     </div>
                     <div class="w-full md:w-3/5 space-y-4">
                         <p class="text-gray-600 text-base leading-relaxed italic font-medium">
-                            “Mengajar di platform Idemy telah memberi saya dua elemen penting: peluang emas untuk menjangkau lebih banyak peserta berskala global secara masif, dan perolehan pendapatan ekstra bulanan yang stabil.”
+                            {{ __('teach.deborah_quote') }}
                         </p>
                         <div>
                             <h4 class="font-extrabold text-[#2d2f31] text-sm">Deborah Grayson Riege</h4>
-                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">Pakar Kepemimpinan & Komunikasi</p>
+                            <p class="text-gray-400 text-xs font-bold uppercase tracking-wider mt-0.5">{{ __('teach.deborah_role') }}</p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +229,6 @@
 </section>
 
 {{-- 6. LAYANAN BANTUAN MATERI INTEGRAL (RE-STRUCTURED GRID) --}}
-{{-- FAKTA PERBAIKAN: Layout diatur ulang menggunakan format flex 2 pilar yang bersih agar tidak bertabrakan --}}
 <section class="w-full bg-white py-24 overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-16">
@@ -238,14 +236,14 @@
             {{-- Blok Informasi --}}
             <div class="w-full md:w-7/12 space-y-4">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-[#2d2f31] tracking-tight leading-tight">
-                    Anda tidak perlu melakukannya sendiri
+                    {{ __('teach.support_title') }}
                 </h2>
                 <p class="text-gray-600 text-base leading-relaxed font-medium">
-                    <span class="font-bold text-gray-900 border-b-2 border-purple-100">Tim Dukungan Instruktur</span> kami selalu siap mendampingi Anda untuk menjawab pertanyaan teknis dan mengulas kelayakan video pengajuan. Sementara itu, fasilitas <span class="font-bold text-gray-900 border-b-2 border-purple-100">Teaching Center</span> kami menyediakan banyak sumber daya pedoman modul kurikulum berkualitas tinggi untuk mempermudah pengerjaan silabus kelompok Anda.
+                    <span class="font-bold text-gray-900 border-b-2 border-purple-100">{{ __('teach.support_p1_part1') }}</span>{{ __('teach.support_p1_part2') }}<span class="font-bold text-gray-900 border-b-2 border-purple-100">{{ __('teach.support_p1_part3') }}</span>{{ __('teach.support_p1_part4') }}
                 </p>
                 <div class="pt-2">
                     <a href="#" class="text-[#a435f0] font-black text-xs uppercase tracking-widest hover:text-purple-900 transition-all border-b-2 border-[#a435f0] pb-1 inline-block">
-                        Pelajari panduan selengkapnya
+                        {{ __('teach.support_link') }}
                     </a>
                 </div>
             </div>

@@ -23,20 +23,20 @@
             <input type="hidden" name="from_portal" value="1">
             <input type="hidden" name="portal_type" value="instructor">
             <div>
-                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Email Instruktur</label>
+                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">{{__('login.Email Instruktur')}}</label>
                 <input type="email" name="email" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
             </div>
             <div>
-                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">Password</label>
+                <label class="block text-xs font-bold mb-1 uppercase text-gray-500">{{ __('login.Password') }}</label>
                 <input type="password" name="password" required class="w-full border border-gray-800 p-3 text-sm focus:outline-none">
                 </div>
                 <button type="submit" class="w-full bg-[#a435f0] text-white font-bold py-3 hover:bg-purple-800 transition-colors">
-                Masuk
+                {{ __('login.masuk') }}
             </button>
         </form>
 
       <div class="mt-6 text-center">
-            <a href="/login" class="text-sm text-[#a435f0] hover:underline">Bukan Instruktur? Kembali ke Login Siswa</a>
+            <a href="/login" class="text-sm text-[#a435f0] hover:underline">{{ __('login.Bukan Instruktur') }}</a>
         </div>
     </div>
 </div>

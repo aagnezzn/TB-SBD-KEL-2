@@ -231,4 +231,10 @@ class InstructorController extends Controller
         $user->update(['role' => 'instructor']);
         return redirect()->route('instructor.dashboard')->with('success', 'Selamat! Anda sekarang adalah Instruktur.');
     }
+
+    // Tambahkan/pastikan method ini ada di InstructorController.php
+    public function showLandingPage()
+    {
+        return view('mengajar');
+    }
 }

@@ -36,8 +36,13 @@ class CategoryController extends Controller
         ];
 
         // Memuat topik beserta kursus, instruktur, dan reviews untuk halaman dalam
+        // FIX: Tambahkan withAvg di relasi courses
         $topics = Category::whereIn('name', $targetTopicNames)
-                            ->with(['courses.user', 'courses.reviews.user'])
+                            ->with(['courses' => function($query) {
+                                $query->with(['user', 'reviews.user'])
+                                      ->withAvg('reviews', 'rating')
+                                      ->withCount('reviews');
+                            }])
                             ->get()
                             ->unique('name');
 
@@ -47,49 +52,50 @@ class CategoryController extends Controller
             $courses = $topic->courses;
 
             if ($courses->isEmpty()) {
-                $subCategoryIds = $topic->children->pluck('id');
-                $courses = Course::whereIn('category_id', $subCategoryIds)->with(['user', 'reviews.user'])->get();
+                continue;
             }
 
-            if ($courses->isNotEmpty()) {
-                $categoriesData[$topic->id] = [
-                    'name' => $topic->name,
-                    'slug' => $topic->slug,
-                    'courses' => $courses->take(10)
-                ];
-            }
+            $categoriesData[$topic->id] = [
+                'name' => $topic->name,
+                'slug' => $topic->slug,
+                'courses' => $courses->take(10)
+            ];
         }
 
-        // database fallback untuk data tab dashboard
+        // Jika data kategori berdasarkan target topik kosong, gunakan kategori yang ada
         if (empty($categoriesData)) {
-            $fallbackCategories = Category::has('courses')
-                                    ->with(['courses' => function($query) {
-                                        $query->whereHas('user')->with(['user', 'reviews.user']);
-                                    }])
-                                    ->get()
-                                    ->unique('name')
-                                    ->take(6);
-                                    
+            $fallbackCategories = Category::whereHas('courses')->take(4)->get();
             foreach ($fallbackCategories as $fallback) {
+                // FIX: Tambahkan withAvg disini juga
                 $categoriesData[$fallback->id] = [
                     'name' => $fallback->name,
                     'slug' => $fallback->slug,
-                    'courses' => $fallback->courses()->whereHas('user')->with(['user', 'reviews.user'])->take(10)->get()
+                    'courses' => $fallback->courses()->whereHas('user')
+                                          ->with(['user', 'reviews.user'])
+                                          ->withAvg('reviews', 'rating') 
+                                          ->withCount('reviews')
+                                          ->take(10)->get()
                 ];
             }
         }
 
         // 2. Ambil dari ulasan untuk kursus rekomendasi sama populer 
+        // FIX: Tambahkan withAvg('reviews', 'rating')
         $recommendedCourses = Course::whereHas('user')
                                     ->with(['category', 'user', 'reviews.user'])
+                                    ->withAvg('reviews', 'rating')
+                                    ->withCount('reviews')
                                     ->latest()
                                     ->take(5)
                                     ->get();
 
+        // FIX: Tambahkan withAvg('reviews', 'rating')
         $popularCourses = Course::whereHas('user')
                                 ->with(['category', 'user', 'reviews.user'])
                                 ->withCount('reviews')
+                                ->withAvg('reviews', 'rating')
                                 ->orderBy('reviews_count', 'desc')
+                                ->withCount('reviews')
                                 ->take(5)
                                 ->get();
 

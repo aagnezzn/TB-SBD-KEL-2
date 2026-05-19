@@ -9,7 +9,7 @@
 
     <a href="{{ route('cart.index') }}"
        class="text-[#a435f0] font-bold text-sm hover:text-[#8710d8] transition-colors no-underline">
-        Batal
+        {{ __('kc.batal') }}
     </a>
 </nav>
 
@@ -23,21 +23,21 @@
                 
                 {{-- Alamat & Metode Pembayaran --}}
                 <div class="w-full lg:w-[65%]">
-                    <h1 class="text-3xl font-bold mb-8">Checkout</h1>
+                    <h1 class="text-3xl font-bold mb-8">{{ __('kc.co') }}</h1>
                     
-                    <h2 class="text-xl font-bold mb-4">Alamat penagihan</h2>
+                    <h2 class="text-xl font-bold mb-4">{{ __('kc.alamat_co') }}</h2>
                     <div class="bg-white border border-[#d1d7dc] p-6 mb-8 rounded-sm shadow-sm">
-                        <label class="block text-sm font-bold mb-2">Negara</label>
+                        <label class="block text-sm font-bold mb-2">{{ __('kc.negara_co') }}</</label>
                         <select class="w-full md:w-1/2 border border-[#1c1d1f] p-3 focus:outline-none bg-white cursor-pointer">
                             <option>Indonesia</option>
                             <option>Malaysia</option>
                             <option>Singapura</option>
                             <option>Brunei</option>
                         </select>
-                        <p class="text-xs text-[#6a6f73] mt-3">Idemy diwajibkan oleh hukum untuk menagih pajak transaksi yang berlaku di wilayah Anda.</p>
+                        <p class="text-xs text-[#6a6f73] mt-3">{{ __('kc.hukum') }}</p>
                     </div>
 
-                    <h2 class="text-xl font-bold mb-4">Metode pembayaran</h2>
+                    <h2 class="text-xl font-bold mb-4">{{ __('kc.method') }}</h2>
                     <div class="border border-[#d1d7dc] rounded-sm overflow-hidden shadow-sm bg-white">
                         <label class="flex items-center justify-between p-4 border-b border-[#d1d7dc] bg-white cursor-pointer hover:bg-[#f7f9fa] transition">
                             <div class="flex items-center gap-3">
@@ -58,7 +58,7 @@
                         <label class="flex items-center justify-between p-4 bg-white cursor-pointer hover:bg-[#f7f9fa] transition">
                             <div class="flex items-center gap-3">
                             <input type="radio" name="payment_method" value="Transfer Bank" class="w-4 h-4 accent-[#a435f0] cursor-pointer">
-                            <span class="font-bold text-sm">Transfer Bank</span>
+                            <span class="font-bold text-sm">{{ __('kc.bank') }}</span>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.5M4.5 21V10.5M2.25 21h19.5M3 10.5h18M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
@@ -70,7 +70,7 @@
                 {{-- KOLOM KANAN: Ringkasan Pesanan (Sticky Samping) --}}
                 <div class="w-full lg:w-[35%] lg:sticky lg:top-28 z-20">
                     <div class="bg-white border border-[#d1d7dc] p-6 shadow-sm rounded-sm">
-                        <h3 class="text-lg font-bold mb-4">Ringkasan pesanan</h3>
+                        <h3 class="text-lg font-bold mb-4">{{ __('kc.order_summary') }}</h3>
 
                         <div class="max-h-[240px] overflow-y-auto pr-1 hide-scrollbar mb-4">
                             @foreach($cartItems as $item)
@@ -94,7 +94,7 @@
 
                         <div class="mt-4 pt-4 border-t border-[#d1d7dc]">
                             <div class="flex justify-between text-sm mb-2 text-[#6a6f73]">
-                                <span>Harga asli:</span>
+                                <span>{{ __('kc.harga_asli') }}</span>
                                 <span>Rp{{ number_format($total, 0, ',', '.') }}</span>
                             </div>
 
@@ -107,11 +107,11 @@
 
                             <button type="submit"
                                 class="w-full bg-[#a435f0] hover:bg-[#8710d8] text-white py-4 font-bold text-lg transition-colors mb-4 shadow-md rounded-none cursor-pointer block text-center">
-                                Selesaikan Pembayaran
+                                {{ __('kc.selesaikan') }}
                             </button>
 
                             <p class="text-[10px] text-center text-[#6a6f73] m-0">
-                                Jaminan Uang Kembali 30 Hari • Akses Seumur Hidup
+                                {{ __('kc.anu') }}
                             </p>
                         </div>
                     </div>

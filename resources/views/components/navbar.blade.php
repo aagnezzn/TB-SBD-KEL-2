@@ -108,19 +108,19 @@
                                             {{ $item->course->title }}
                                         </h4>
                                     </a>
-                                    <p class="text-[11px] text-gray-500 mt-1">Oleh {{ $item->course->user->name ?? 'Instructor' }}</p>
+                                    <p class="text-[11px] text-gray-500 mt-1">{{ __('detailcourse.dibuat') }} {{ $item->course->user->name ?? 'Instructor' }}</p>
                                     <p class="text-[14px] font-extrabold text-gray-900 mt-1">Rp{{ number_format($item->course->price, 0, ',', '.') }}</p>
                                     <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-[11px] font-bold text-purple-700 hover:underline">Hapus</button>
+                                        <button type="submit" class="text-[11px] font-bold text-purple-700 hover:underline">{{ __('kc.hapus') }}</button>
                                     </form>
                                 </div>
                             </div>
                         @empty
                             <div class="py-10 text-center">
-                                <p class="text-gray-500 text-sm font-medium">Keranjang Anda kosong</p>
-                                <a href="/" class="text-purple-700 font-bold text-sm hover:underline mt-2 inline-block">Mulai belanja</a>
+                                <p class="text-gray-500 text-sm font-medium">{{ __('menu.cart_empty') }}</</p>
+                                <a href="/" class="text-purple-700 font-bold text-sm hover:underline mt-2 inline-block">{{ __('menu.keep_shopping') }}</a>
                             </div>
                         @endforelse
                     </div>
@@ -128,13 +128,13 @@
                     @if($cartItems->isNotEmpty())
                         <div class="p-5 bg-gray-50 border-t border-gray-100">
                             <div class="flex justify-between items-center mb-4">
-                                <span class="text-gray-600 font-bold">Total:</span>
+                                <span class="text-gray-600 font-bold">{{ __('menu.total') }}</span>
                                 <span class="text-xl font-black text-gray-900">
                                     Rp{{ number_format($cartItems->sum(fn($i) => $i->course->price), 0, ',', '.') }}
                                 </span>
                             </div>
                             <a href="{{ route('cart.index') }}" class="block w-full bg-gray-900 text-white text-center py-3 font-bold rounded-lg hover:bg-gray-800 transition shadow-md">
-                                Buka Keranjang
+                                {{ __('menu.buka') }}
                             </a>
                         </div>
                     @endif
@@ -181,28 +181,28 @@
                 </div>
 
                 <div class="py-2 border-b">
-                    <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pembelajaran saya</a>
+                    <a href="{{ route('learning.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.my_learning') }}</a>
                     <a href="{{ route('cart.index') }}" class="flex justify-between items-center px-4 py-2 text-gray-700 hover:text-purple-700">
-                        <span>Keranjang saya</span>
+                        <span>{{ __('menu.my_cart') }}</span>
                         @if($cartCount > 0)
                             <span class="bg-[#a435f0] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $cartCount }}</span>
                         @endif
                     </a>
-                    <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Daftar Keinginan</a>
-                    <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Mengajar di Idemy</a>
+                    <a href="{{ route('learning.index', ['tab' => 'wishlist']) }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.wishlist') }}</a>
+                    <a href="{{ route('mengajar') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.teach') }}</a>
                 </div>
 
                 <div class="py-2 border-b">
-                    <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Pengaturan akun</a>
-                    <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Riwayat Pembayaran</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:text-purple-700">Langganan</a>
+                    <a href="{{ route('account.index') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.account_settings') }}</a>
+                    <a href="{{ route('purchase.history') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.payment_history') }}</a>
+                    <a href="{{ route('berlangganan') }}" class="block px-4 py-2 text-gray-700 hover:text-purple-700">{{ __('menu.subscriptions') }}</a>
                 </div>
 
                 <div class="py-2">
                     <form action="{{ route('logout') }}" method="POST" class="m-0">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:text-purple-700 transition cursor-pointer">
-                            Keluar
+                            {{ __('menu.logout') }}
                         </button>
                     </form>
                 </div>
