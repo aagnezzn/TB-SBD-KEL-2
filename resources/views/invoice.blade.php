@@ -35,10 +35,15 @@
             </p>
         </div>
 
-        <a href="{{ route('transaction.success', ['id' => $payment->id]) }}" 
-           class="block w-full bg-[#a435f0] hover:bg-[#8710d8] text-white py-4 font-bold text-lg rounded shadow-md transition-all text-center">
+        @if($payment->status === 'pending')
+    <form action="{{ route('checkout.confirm', $payment->id) }}" method="POST" class="w-full">
+        @csrf
+        <button type="submit" 
+            class="block w-full bg-[#a435f0] hover:bg-[#8710d8] text-white py-4 font-bold text-lg rounded shadow-md transition-all text-center cursor-pointer active:scale-95">
             Cek Status Pembayaran
-        </a>
+        </button>
+    </form>
+    @endif
 
         <p class="mt-6 text-[11px] text-gray-400">ID Transaksi: #IDM-{{ str_pad($payment->id, 6, '0', STR_PAD_LEFT) }}</p>
 

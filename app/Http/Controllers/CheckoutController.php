@@ -34,39 +34,29 @@ class CheckoutController extends Controller
             return redirect()->back()->with('error', 'Keranjang kosong!');
         }
 
-        $now = Carbon::now();
         $lastPaymentId = null;
 
         // Database Transaction memastikan konsistensi data relasional
-        DB::transaction(function () use ($cartItems, $now, $request, &$lastPaymentId) {
+        DB::transaction(function () use ($cartItems, $request, &$lastPaymentId) {
             foreach ($cartItems as $item) {
-                // 1. Buat Pendaftaran Mandiri (Tanpa mengikat payment)
-                Enrollment::create([
-                    'user_id'     => Auth::id(),
-                    'course_id'   => $item->course_id, 
-                    'status'      => 'active', // Langsung aktif karena default di up() adalah success
-                    'enrolled_at' => $now,
+                
+                $payment = Payment::create([
+                'user_id'        => Auth::id(),
+                'course_id'      => $item->course_id,
+                'amount'         => $item->course->price, 
+                'payment_method' => $request->payment_method ?? 'Transfer Bank',
+                'status'         => 'pending', // UBAH KE PENDING
+                'paid_at'        => null,      // Kosongkan karena belum bayar
                 ]);
 
-                // 2. Buat Catatan Pembayaran Mandiri (Menggunakan user_id dan course_id sesuai migration barumu)
-                $payment = Payment::create([
-                    'user_id'        => Auth::id(),
-                    'course_id'      => $item->course_id,
-                    'amount'         => $item->course->price, 
-                    'payment_method' => $request->payment_method ?? 'Transfer Bank',
-                    'status'         => 'success', // Sesuai default value di migration baru kamu
-                    'paid_at'        => $now,
-                ]);
 
                 $lastPaymentId = $payment->id;
             }
 
-            // 3. Destruksi data keranjang belanja setelah checkout sukses
             Cart::where('user_id', Auth::id())->delete();
         });
 
-        return redirect()->route('checkout.invoice', ['id' => $lastPaymentId])
-                         ->with('success', 'Pesanan berhasil dibuat, silakan selesaikan pembayaran.');
+        return redirect()->route('checkout.invoice', ['id' => $lastPaymentId]);
     }
 
     public function invoice($id)
@@ -82,4 +72,25 @@ class CheckoutController extends Controller
         return redirect()->route('learning.index')
                          ->with('success', 'Pembayaran berhasil dikonfirmasi! Selamat belajar.');
     }
+
+    public function confirmPayment($id)
+{
+    $payment = Payment::findOrFail($id);
+
+    // Update status payment
+    $payment->update([
+        'status' => 'success',
+        'paid_at' => Carbon::now(),
+    ]);
+
+    // Sekarang baru buat Enrollment-nya!
+    Enrollment::create([
+        'user_id'     => $payment->user_id,
+        'course_id'   => $payment->course_id,
+        'status'      => 'active',
+        'enrolled_at' => Carbon::now(),
+    ]);
+
+    return redirect()->route('transaction.success', ['id' => $payment->id]);
+}
 }

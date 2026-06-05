@@ -1,6 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('status'))
+    <div x-data="{ show: true }" 
+         x-init="setTimeout(() => show = false, 5000)" 
+         x-show="show"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-90"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-300"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-90"
+         class="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+         
+        {{-- Backdrop Gelap --}}
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+        {{-- Box Pop-up --}}
+        <div class="relative bg-white p-8 rounded-2xl shadow-2xl border border-green-100 max-w-sm w-full text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-2xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Verifikasi Berhasil!</h3>
+            <p class="text-gray-600 text-sm">
+                {{ session('status') }}
+            </p>
+            <button @click="show = false" class="mt-6 w-full bg-gray-900 text-white py-2 rounded-lg font-bold text-sm hover:bg-gray-800 transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+@endif
 <style>
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

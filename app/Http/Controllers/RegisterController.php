@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User; // Panggil model User buat insert data
 use Illuminate\Support\Facades\Auth; // Panggil Auth buat auto-login
 use Illuminate\Support\Facades\Hash; // Panggil Hash buat enkripsi password
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -36,10 +37,12 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        event(new Registered($user));
+
         //auto login
         Auth::login($user);
 
         // Arahkan ke halaman utama
-        return redirect()->intended('/');
+        return redirect('/email/verify');
     }
 }

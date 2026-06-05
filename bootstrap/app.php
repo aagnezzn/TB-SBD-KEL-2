@@ -22,9 +22,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'instructor' => \App\Http\Middleware\InstructorMiddleware::class,
             'student' => \App\Http\Middleware\StudentMiddleware::class,
+            'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         ]);
 
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+        

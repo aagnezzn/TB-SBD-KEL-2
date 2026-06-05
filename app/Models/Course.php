@@ -95,4 +95,19 @@ class Course extends Model
     {
         return $this->hasMany(Wishlist::class, 'course_id');
     }
+
+    /**
+     * VIRTUAL ATTRIBUTES UNTUK INTEGRASI DATA SCRAPING & REAL-TIME
+     */
+    public function getTotalReviewsAttribute()
+    {
+        $baseReviews = isset($this->attributes['reviews_count']) ? $this->attributes['reviews_count'] : 0;
+        return $baseReviews + $this->reviews()->count();
+    }
+
+    public function getTotalSubscribersAttribute()
+    {
+        $baseSubscribers = isset($this->attributes['subscribers_count']) ? $this->attributes['subscribers_count'] : 0;
+        return $baseSubscribers + $this->enrollments()->count();
+    }
 }

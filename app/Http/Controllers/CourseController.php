@@ -104,7 +104,10 @@ class CourseController extends Controller
     {
         $course = Course::with(['lessons', 'reviews.user', 'enrollments'])
             ->findOrFail($id);
-
-        return view('course-detail', compact('course'));
+$isEnrolled = false;
+    if (Auth::check()) {
+        $isEnrolled = $course->enrollments()->where('user_id', Auth::id())->exists();
+    }
+        return view('course-detail', compact('course', 'isEnrolled'));
     }
 }

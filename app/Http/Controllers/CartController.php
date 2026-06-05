@@ -10,6 +10,15 @@ class CartController extends Controller
 {
     public function addToCart($course_id)
     {
+        // 1. TAMBAHKAN VALIDASI INI: Cek apakah user sudah punya Enrollment (sudah beli)
+    $alreadyEnrolled = \App\Models\Enrollment::where('user_id', Auth::id())
+                                             ->where('course_id', $course_id)
+                                             ->exists();
+
+    if ($alreadyEnrolled) {
+        return redirect()->back()->with('error', 'Anda sudah memiliki kursus ini!');
+    }
+    
         // Cek apakah kursus sudah ada di keranjang user ini
         $exists = Cart::where('user_id', Auth::id())
                       ->where('course_id', $course_id)

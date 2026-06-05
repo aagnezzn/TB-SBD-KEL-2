@@ -14,14 +14,14 @@
                     $totalReviews = $course->reviews->count();
                 @endphp
 
-                <span class="text-[#f69c08] font-bold">{{ number_format($avgRating, 1) }}</span>
-                <div class="flex text-[#f69c08] space-x-0.5">
-                    @for($i = 1; $i <= 5; $i++)
-                        {{ $i <= round($avgRating) ? '★' : '☆' }}
-                    @endfor
-                </div>
-                <span class="text-[#c0c4fc] underline">({{ $totalReviews }} rating)</span>
-                <span>{{ number_format($course->enrollments->count(), 0, ',', '.') }} {{ __('detailcourse.siswa') }}</span>
+                <span class="text-[#f69c08] font-bold">{{ number_format($course->reviews->avg('rating') ?? 0, 1) }}</span>
+<div class="flex text-[#f69c08] space-x-0.5">
+    @for($i = 1; $i <= 5; $i++)
+        {{ $i <= round($course->reviews->avg('rating') ?? 0) ? '★' : '☆' }}
+    @endfor
+</div>
+<span class="text-[#c0c4fc] underline">({{ $course->total_reviews }} rating)</span>
+<span>{{ number_format($course->total_subscribers, 0, ',', '.') }} {{ __('detailcourse.siswa') }}</span>
             </div>
             <p class="text-sm">{{ __('detailcourse.dibuat') }}  {{ $course->user->name ?? 'Instruktur' }}</a></p>
         </div>
@@ -37,12 +37,12 @@
                  
             <div class="text-3xl font-bold mb-4">Rp {{ number_format($course->price, 0, ',', '.') }}</div>
             
-            <form action="{{ route('cart.add', $course->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3 rounded">
-                    {{ __('detailcourse.add_cart') }}
-                </button>
-            </form>
+           <form action="{{ route('cart.add', $course->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="w-full bg-[#a435f0] text-white py-3 font-bold hover:bg-[#8710d8] transition mb-3 rounded">
+            {{ __('detailcourse.add_cart') }}
+        </button>
+    </form>
 
             <form action="{{ route('wishlist.add', $course->id) }}" method="POST">
                 @csrf

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Import Semua Controller 
 use App\Http\Controllers\CartController;
@@ -27,16 +28,11 @@ use App\Http\Controllers\AccountController;
 */
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('/search', [CourseController::class, 'search'])->name('search');
-
-// FAKTA AMAN: Parameter tetap {id} agar fleksibel menangkap Angka ID maupun Teks Slug dari semua halaman depan!
 Route::get('/category/{id}', [CourseController::class, 'filterByCategory'])->name('category.show');
-
-// Dialihkan langsung ke CourseController@show agar memuat Eager Loading materi & review riil CSV!
 Route::get('/course/{id}', [CourseController::class, 'show'])->name('course.show');
-
 Route::get('/mengajar-di-idemy', [InstructorController::class, 'showLandingPage'])->name('mengajar');
 
-// Auth Routes
+// Auth Routes (Login/Register tidak boleh pakai middleware verified agar bisa diakses orang baru)
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -52,6 +48,20 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/')->with('status', 'Email berhasil diverifikasi! Selamat datang di Idemy.');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email'); // Pastikan kamu membuat file view ini
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Link verifikasi telah dikirim ulang!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 // Localization (Multilingual)
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['id', 'en', 'es'])) {
@@ -62,22 +72,19 @@ Route::get('lang/{locale}', function ($locale) {
 
 /*
 |--------------------------------------------------------------------------
-| 2. AREA AUTH UMUM (Hanya Butuh Login Global)
+| 2. AREA AUTH UMUM (Ditambah 'verified')
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
-    // Keranjang
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{course_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
-    // Jembatan Pendaftaran Akun Instruktur Baru
     Route::get('/buat-kursus', [InstructorController::class, 'createCourse'])->name('instructor.courses.create');
     Route::post('/simpan-kursus', [InstructorController::class, 'storeCourse'])->name('instructor.courses.store');
     Route::get('/konfirmasi-instruktur', [InstructorController::class, 'showConfirmation'])->name('instructor.confirmation');
     Route::post('/upgrade-instructor', [InstructorController::class, 'upgradeRole'])->name('instructor.upgrade');
 
-    // Pengaturan Akun & Biodata Profil 1:1
     Route::get('/pengaturan-akun', [AccountController::class, 'index'])->name('account.index');
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::patch('/account/email', [AccountController::class, 'updateEmail'])->name('account.email.update');
@@ -89,12 +96,13 @@ Route::middleware(['auth'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 3. AREA SISWA (Middleware 'student' - Proteksi Sesi)
+| 3. AREA SISWA (Ditambah 'verified')
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'student'])->group(function () {
+Route::middleware(['auth', 'student', 'verified'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/checkout/confirm/{id}', [CheckoutController::class, 'confirmPayment'])->name('checkout.confirm');
     Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
     Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
     Route::get('/berlangganan', [SubscriptionController::class, 'index'])->name('berlangganan');
@@ -111,10 +119,10 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| 4. AREA INSTRUCTOR (Middleware 'instructor' - Pengajar)
+| 4. AREA INSTRUCTOR (Ditambah 'verified')
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function () {
+Route::middleware(['auth', 'instructor', 'verified'])->prefix('instructor')->group(function () {
     Route::get('/dashboard', [InstructorController::class, 'index'])->name('instructor.dashboard');
     Route::get('/my-courses', [InstructorController::class, 'myCourses'])->name('instructor.courses.index');
     Route::get('/course/{id}/manage', [InstructorController::class, 'manageCourse'])->name('instructor.courses.manage');
@@ -127,10 +135,10 @@ Route::middleware(['auth', 'instructor'])->prefix('instructor')->group(function 
 
 /*
 |--------------------------------------------------------------------------
-| 5. AREA ADMIN (Middleware 'admin' - Kontrol Sistem Utama)
+| 5. AREA ADMIN (Ditambah 'verified')
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/courses', [AdminController::class, 'courses'])->name('admin.courses');
     Route::get('/courses/edit/{id}', [AdminController::class, 'editCourse'])->name('admin.courses.edit');

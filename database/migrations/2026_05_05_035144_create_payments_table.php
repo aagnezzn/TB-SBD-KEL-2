@@ -19,8 +19,8 @@ return new class extends Migration
         
         $table->integer('amount'); // Nominal pembayaran
         $table->string('payment_method'); // Misal: 'Bank Transfer', 'E-Wallet'
-        $table->enum('status', ['pending', 'success', 'failed'])->default('success');
-        $table->timestamp('paid_at')->useCurrent();
+        $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
+        $table->timestamp('paid_at')->nullable();
         $table->timestamps();
     });
     }
