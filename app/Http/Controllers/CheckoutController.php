@@ -29,36 +29,30 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $cartItems = Cart::where('user_id', Auth::id())->with('course')->get();
+        if ($cartItems->isEmpty()) return redirect()->back()->with('error', 'Keranjang kosong!');
 
-        if ($cartItems->isEmpty()) {
-            return redirect()->back()->with('error', 'Keranjang kosong!');
-        }
+        $paymentIds = []; // 1. Buat array untuk menampung ID
 
-        $lastPaymentId = null;
-
-        // Database Transaction memastikan konsistensi data relasional
-        DB::transaction(function () use ($cartItems, $request, &$lastPaymentId) {
+        DB::transaction(function () use ($cartItems, $request, &$paymentIds) {
             foreach ($cartItems as $item) {
-                
                 $payment = Payment::create([
-                'user_id'        => Auth::id(),
-                'course_id'      => $item->course_id,
-                'amount'         => $item->course->price, 
-                'payment_method' => $request->payment_method ?? 'Transfer Bank',
-                'status'         => 'pending', // UBAH KE PENDING
-                'paid_at'        => null,      // Kosongkan karena belum bayar
+                    'user_id'        => Auth::id(),
+                    'course_id'      => $item->course_id,
+                    'amount'         => $item->course->price, 
+                    'payment_method' => $request->payment_method ?? 'Transfer Bank',
+                    'status'         => 'pending', 
+                    'paid_at'        => null, 
                 ]);
-
-
-                $lastPaymentId = $payment->id;
+                $paymentIds[] = $payment->id; // 2. Kumpulkan semua ID
             }
-
             Cart::where('user_id', Auth::id())->delete();
         });
 
-        return redirect()->route('checkout.invoice', ['id' => $lastPaymentId]);
-    }
+        // 3. Simpan ID ke Session agar Invoice tahu apa yang harus dibayar
+        session(['pending_payment_ids' => $paymentIds]);
 
+        return redirect()->route('checkout.invoice.batch');
+    }
     public function invoice($id)
     {
         // FAKTANYA: Relasi diubah langsung memanggil course, bukan lewat enrollment lagi
@@ -73,24 +67,36 @@ class CheckoutController extends Controller
                          ->with('success', 'Pembayaran berhasil dikonfirmasi! Selamat belajar.');
     }
 
-    public function confirmPayment($id)
-{
-    $payment = Payment::findOrFail($id);
+    public function confirmAll()
+    {
+        $ids = session('pending_payment_ids');
+        $payments = Payment::whereIn('id', $ids)->get();
 
-    // Update status payment
-    $payment->update([
-        'status' => 'success',
-        'paid_at' => Carbon::now(),
-    ]);
+        DB::transaction(function () use ($payments) {
+            foreach ($payments as $payment) {
+                $payment->update(['status' => 'success', 'paid_at' => Carbon::now()]);
+                
+                Enrollment::firstOrCreate([
+                    'user_id'   => $payment->user_id,
+                    'course_id' => $payment->course_id,
+                ], [
+                    'status'      => 'active',
+                    'enrolled_at' => Carbon::now(),
+                ]);
+            }
+        });
 
-    // Sekarang baru buat Enrollment-nya!
-    Enrollment::create([
-        'user_id'     => $payment->user_id,
-        'course_id'   => $payment->course_id,
-        'status'      => 'active',
-        'enrolled_at' => Carbon::now(),
-    ]);
+        session()->forget('pending_payment_ids');
+        return redirect()->route('learning.index')->with('success', 'Semua kursus berhasil diaktifkan!');
+    }
 
-    return redirect()->route('transaction.success', ['id' => $payment->id]);
-}
+public function invoiceBatch()
+    {
+        $ids = session('pending_payment_ids');
+        if (!$ids) return redirect()->route('checkout')->with('error', 'Sesi pembayaran berakhir.');
+
+        // Ambil SEMUA pembayaran yang pending untuk user ini
+        $payments = Payment::with('course')->whereIn('id', $ids)->get();
+        return view('invoice', compact('payments'));
+    }
 }

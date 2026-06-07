@@ -102,8 +102,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'student', 'verified'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::post('/checkout/confirm/{id}', [CheckoutController::class, 'confirmPayment'])->name('checkout.confirm');
-    Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
+Route::get('/checkout/invoice', [CheckoutController::class, 'invoiceBatch'])->name('checkout.invoice.batch');
+Route::post('/checkout/confirm-all', [CheckoutController::class, 'confirmAll'])->name('checkout.confirm.all');
     Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
     Route::get('/berlangganan', [SubscriptionController::class, 'index'])->name('berlangganan');
     Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])->name('subscribe.start');
