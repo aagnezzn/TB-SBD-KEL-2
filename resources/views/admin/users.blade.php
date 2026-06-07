@@ -53,7 +53,10 @@
                             <tr>
                                 <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Pengguna</th>
                                 <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Email</th>
-                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Role</th> <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Terdaftar</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Role</th> 
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73] text-center">Status</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73]">Terdaftar</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-wider text-[#6a6f73] text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-[#d1d7dc]">
@@ -78,9 +81,47 @@
                                         <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-gray-200 text-gray-700 uppercase">STUDENT</span>
                                     @endif
                                 </td>
+                                <td class="px-6 py-4 text-center">
+                                    @if($user->is_suspended)
+                                        <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-red-100 text-red-700 uppercase">
+                                            <i class="fas fa-ban mr-1"></i> SUSPEND
+                                        </span>
+                                    @else
+                                        <span class="inline-block px-2 py-1 rounded text-[10px] font-black bg-green-100 text-green-700 uppercase">
+                                            <i class="fas fa-check-circle mr-1"></i> AKTIF
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4 text-sm text-[#6a6f73]">
+                                    {{ $user->created_at->format('d M Y') }}
+                                </td>
 
                                 <td class="px-6 py-4 text-sm text-[#6a6f73]">
                                     {{ $user->created_at->format('d M Y') }}
+                                </td>
+
+                                
+                                <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <form action="{{ route('admin.users.suspend', $user->id) }}" method="POST" onsubmit="return confirm('Ubah status suspend pengguna ini?')">
+                                        @csrf
+                                        @method('PATCH')
+                                            <button type="submit" 
+                                                class="px-3 py-1.5 rounded text-[11px] font-bold transition-colors whitespace-nowrap flex items-center 
+                                                {{ $user->is_suspended ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                                                <i class="fas {{ $user->is_suspended ? 'fa-unlock' : 'fa-ban' }} mr-1"></i> 
+                                                {{ $user->is_suspended ? 'Buka Suspend' : 'Suspend' }}
+                                            </button>
+                                        </form>
+
+                                        <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pengguna {{ $user->name }} permanen?')">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit" class="bg-red-100 text-red-700 hover:bg-red-200 px-3 py-1.5 rounded text-[11px] font-bold transition-colors whitespace-nowrap flex items-center">
+                                                <i class="fas fa-trash mr-1"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @empty

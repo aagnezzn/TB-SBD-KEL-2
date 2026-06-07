@@ -17,16 +17,16 @@ return [
     'reason_3_desc' => 'Perluas jaringan profesional Anda, bangun keahlian Anda, dan dapatkan uang untuk setiap pendaftaran siswa berbayar.',
 
     // Metrik
-    'stat_students_val' => '80 Jt',
+    'stat_students_val' => '500+',
     'stat_students_lbl' => 'Peserta',
-    'stat_langs_val' => '75+',
-    'stat_langs_lbl' => 'Bahasa',
-    'stat_enrolls_val' => '1,1 M',
+    'stat_langs_val' => '55 Ribu+',
+    'stat_langs_lbl' => 'Ulasan',
+    'stat_enrolls_val' => '50 Ribu+',
     'stat_enrolls_lbl' => 'Pendaftaran',
-    'stat_countries_val' => '180+',
+    'stat_countries_val' => '5',
     'stat_countries_lbl' => 'Negara',
-    'stat_enterprise_val' => '17K+',
-    'stat_enterprise_lbl' => 'Mitra Enterprise',
+    'stat_enterprise_val' => '200+',
+    'stat_enterprise_lbl' => 'Instruktur Berpengalaman',
 
     // Tab Pembelajaran
     'steps_title' => 'Cara memulai langkah pengajaran',
@@ -61,5 +61,4 @@ return [
     'support_p1_part2' => ' kami selalu siap mendampingi Anda untuk menjawab pertanyaan teknis dan mengulas kelayakan video pengajuan. Sementara itu, fasilitas ',
     'support_p1_part3' => 'Teaching Center',
     'support_p1_part4' => ' kami menyediakan banyak sumber daya pedoman modul kurikulum berkualitas tinggi untuk mempermudah pengerjaan silabus kelompok Anda.',
-    'support_link' => 'Pelajari panduan selengkapnya',
 ];

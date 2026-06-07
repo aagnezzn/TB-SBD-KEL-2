@@ -17,16 +17,17 @@ return [
     'reason_3_desc' => 'Expand your professional network, build your expertise, and earn money on each paid enrollment.',
 
     // Metrik (Jt = Millions, M = Billions in Indonesian context, translating appropriately)
-    'stat_students_val' => '80M',
-    'stat_students_lbl' => 'Learners',
-    'stat_langs_val' => '75+',
-    'stat_langs_lbl' => 'Languages',
-    'stat_enrolls_val' => '1.1B',
+    'stat_students_val' => '500+',
+    'stat_students_lbl' => 'Students',
+    'stat_langs_val' => '55K+',
+    'stat_langs_lbl' => 'Reviews',
+    'stat_enrolls_val' => '50K+',
     'stat_enrolls_lbl' => 'Enrollments',
-    'stat_countries_val' => '180+',
+    'stat_countries_val' => '5',
     'stat_countries_lbl' => 'Countries',
-    'stat_enterprise_val' => '17K+',
-    'stat_enterprise_lbl' => 'Enterprise Partners',
+    'stat_enterprise_val' => '200+',
+    'stat_enterprise_lbl' => 'Experienced Instructor',
+
 
     // Tab Pembelajaran
     'steps_title' => 'How to begin',
@@ -61,5 +62,4 @@ return [
     'support_p1_part2' => ' is here to answer your questions and review your test video, while our ',
     'support_p1_part3' => 'Teaching Center',
     'support_p1_part4' => ' gives you plenty of resources to help you through the process.',
-    'support_link' => 'Read our complete guide',
 ];

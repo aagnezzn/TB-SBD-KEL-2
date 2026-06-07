@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment; 
 use App\Models\Course;  
 use App\Models\User;    
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -99,5 +100,32 @@ class AdminController extends Controller
     {
         $transaksi = Payment::with(['user', 'course'])->findOrFail($id);
         return view('admin.transaksi-detail', compact('transaksi'));
+    }
+
+    public function suspendUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        if (auth()->id() === $user->id) {
+            return redirect()->route('admin.users')->with('error', 'Tidak bisa mensuspend akun admin Anda sendiri!');
+        }
+
+        $user->is_suspended = !$user->is_suspended;
+        $user->save();
+
+        $pesan = $user->is_suspended ? 'Akun pengguna berhasil disuspend!' : 'Suspend berhasil dicabut, pengguna aktif kembali!';
+        return redirect()->route('admin.users')->with('success', $pesan);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        if (auth()->id() === $user->id) {
+            return redirect()->route('admin.users')->with('error', 'Tidak bisa menghapus akun admin Anda sendiri!');
+        }
+
+        $user->delete();
+        return redirect()->route('admin.users')->with('success', 'Pengguna berhasil dihapus permanen!');
     }
 }

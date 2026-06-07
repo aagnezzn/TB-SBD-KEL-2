@@ -3,7 +3,7 @@
 return [
     'Tambahkan pekerjaan dan minat' => 'Add jobs and interests',
     'Bangun skill yang diminati' => 'Build skills you care about',
-    'Dapatkan' => 'Get access to 26,000 courses from real-world experts',
+    'Dapatkan' => 'Get access to 4000 courses from real-world experts',
     'Dapatkan paket personal' => 'Get a personalized plan',
     'Pelajari AI' => 'Learn AI',
     'Pelajari skill' => 'Learn important skills related to career and life',

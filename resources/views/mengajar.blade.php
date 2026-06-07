@@ -241,11 +241,6 @@
                 <p class="text-gray-600 text-base leading-relaxed font-medium">
                     <span class="font-bold text-gray-900 border-b-2 border-purple-100">{{ __('teach.support_p1_part1') }}</span>{{ __('teach.support_p1_part2') }}<span class="font-bold text-gray-900 border-b-2 border-purple-100">{{ __('teach.support_p1_part3') }}</span>{{ __('teach.support_p1_part4') }}
                 </p>
-                <div class="pt-2">
-                    <a href="#" class="text-[#a435f0] font-black text-xs uppercase tracking-widest hover:text-purple-900 transition-all border-b-2 border-[#a435f0] pb-1 inline-block">
-                        {{ __('teach.support_link') }}
-                    </a>
-                </div>
             </div>
 
             {{-- Blok Gambar Penjepit Sisi Kanan --}}

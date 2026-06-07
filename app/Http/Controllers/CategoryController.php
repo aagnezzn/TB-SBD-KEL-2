@@ -89,7 +89,7 @@ class CategoryController extends Controller
                                     ->take(5)
                                     ->get();
 
-        // FIX: Tambahkan withAvg('reviews', 'rating')
+        // Tambahkan withAvg('reviews', 'rating')
         $popularCourses = Course::whereHas('user')
                                 ->with(['category', 'user', 'reviews.user'])
                                 ->withCount('reviews')

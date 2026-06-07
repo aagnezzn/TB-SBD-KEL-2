@@ -3,7 +3,7 @@
 return [
     'Tambahkan pekerjaan dan minat' => 'Tambahkan pekerjaan dan minat',
     'Bangun skill yang diminati' => 'Bangun skill yang diminati',
-    'Dapatkan' => 'Dapatkan akses ke 26.000 kursus dari para ahli dunia nyata',
+    'Dapatkan' => 'Dapatkan akses ke 4000 kursus dari para ahli dunia nyata',
     'Dapatkan paket personal' => 'Dapatkan paket personal',
     'Pelajari AI' => 'Pelajari AI',
     'Pelajari skill' => 'Pelajari skill penting terkait karier dan kehidupan',

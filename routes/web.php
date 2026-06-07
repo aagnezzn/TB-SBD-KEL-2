@@ -102,8 +102,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'student', 'verified'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::get('/checkout/invoice', [CheckoutController::class, 'invoiceBatch'])->name('checkout.invoice.batch');
-Route::post('/checkout/confirm-all', [CheckoutController::class, 'confirmAll'])->name('checkout.confirm.all');
+    Route::get('/checkout/invoice', [CheckoutController::class, 'invoiceBatch'])->name('checkout.invoice.batch');
+    Route::post('/checkout/confirm-all', [CheckoutController::class, 'confirmAll'])->name('checkout.confirm.all');
     Route::get('/payment/success/{id}', [CheckoutController::class, 'success'])->name('transaction.success');
     Route::get('/berlangganan', [SubscriptionController::class, 'index'])->name('berlangganan');
     Route::get('/subscribe-now', [SubscriptionController::class, 'startSubscription'])->name('subscribe.start');
@@ -147,4 +147,6 @@ Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->group(functio
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
+    Route::patch('/admin/users/{id}/suspend', [App\Http\Controllers\AdminController::class, 'suspendUser'])->name('admin.users.suspend');
+    Route::delete('/admin/users/{id}/delete', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('admin.users.delete');
 });

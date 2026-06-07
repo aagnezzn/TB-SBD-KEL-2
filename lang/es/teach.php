@@ -17,16 +17,17 @@ return [
     'reason_3_desc' => 'Amplía tu red profesional, desarrolla tu experiencia y gana dinero por cada inscripción paga.',
 
     // Metrik
-    'stat_students_val' => '80 M',
-    'stat_students_lbl' => 'Estudiantes',
-    'stat_langs_val' => '75+',
-    'stat_langs_lbl' => 'Idiomas',
-    'stat_enrolls_val' => '1.100 M', // 1,1 Milyar = 1,100 Millones
-    'stat_enrolls_lbl' => 'Inscripciones',
-    'stat_countries_val' => '180+',
-    'stat_countries_lbl' => 'Países',
-    'stat_enterprise_val' => '17K+',
-    'stat_enterprise_lbl' => 'Empresas Asociadas',
+    'stat_students_val' => '500+',
+    'stat_students_lbl' => 'Partícipe',
+    'stat_langs_val' => '55 Mil+',
+    'stat_langs_lbl' => 'Revisar',
+    'stat_enrolls_val' => '50 Mil+',
+    'stat_enrolls_lbl' => 'Reseñas',
+    'stat_countries_val' => '5',
+    'stat_countries_lbl' => 'País',
+    'stat_enterprise_val' => '200+',
+    'stat_enterprise_lbl' => 'Instructor experimentado',
+
 
     // Tab Pembelajaran
     'steps_title' => 'Cómo empezar',
@@ -61,5 +62,4 @@ return [
     'support_p1_part2' => ' está aquí para responder a tus preguntas y revisar tu video de prueba, mientras que nuestro ',
     'support_p1_part3' => 'Teaching Center',
     'support_p1_part4' => ' te brinda muchos recursos para ayudarte en el proceso.',
-    'support_link' => 'Lee nuestra guía completa',
 ];

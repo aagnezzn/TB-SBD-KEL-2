@@ -3,7 +3,7 @@
 return [
     'Tambahkan pekerjaan dan minat' => 'Agregar trabajo y intereses',
     'Bangun skill yang diminati' => 'Construye habilidades que te interesan',
-    'Dapatkan' => 'Obtén acceso a 26.000 cursos de expertos del mundo real',
+    'Dapatkan' => 'Obtén acceso a 4000 cursos de expertos del mundo real',
     'Dapatkan paket personal' => 'Obtén un paquete personalizado',
     'Pelajari AI' => 'Aprende IA',
     'Pelajari skill' => 'Aprende habilidades importantes relacionadas con la carrera y la vida',
