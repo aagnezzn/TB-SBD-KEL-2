@@ -95,7 +95,7 @@ class CourseSeeder extends Seeder
             $course = Course::create([
                 'title'             => trim($row[1]),
                 'description'       => 'Pelajari keahlian baru secara komprehensif mengenai ' . trim($row[1]) . '. Kelas dirancang terstruktur untuk semua level tingkatan.',
-                'image_url'         => 'https://loremflickr.com/640/360/computer,office/all?lock=' . md5($randomSeedId),
+                'image_url'             => $this->getRandomUnsplashImage(),
                 'category_id'       => $category->id,
                 'instructor_id'     => $instructorId,
                 'price'             => $coursePrice,
@@ -179,4 +179,18 @@ class CourseSeeder extends Seeder
         }
         fclose($open);
     }
+
+    private function getRandomUnsplashImage()
+    {
+        $images = [
+            'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=640&q=80',
+            'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=640&q=80',
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=640&q=80',
+            'https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=640&q=80',
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=640&q=80',
+            'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=640&q=80',
+        ];
+        return $images[array_rand($images)];
+    }
+    
 }
