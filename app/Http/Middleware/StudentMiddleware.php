@@ -14,23 +14,21 @@ class StudentMiddleware
      */
     public function handle(Request $request, Closure $next): Response
 {
-    // 1. Jika belum login, tendang ke login
     if (!Auth::check()) {
         return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
     }
 
-    // 2. Jika sudah login, cek rolenya
-    $role = Auth::user()->role;
+    $user = Auth::user();
 
-    if ($role === 'admin') {
-        return redirect()->route('admin.dashboard')->with('info', 'Anda Admin, dialihkan ke dashboard.');
+    // Jika bukan student, oper mereka ke tempat yang benar
+    if ($user->role !== 'student') {
+        return match ($user->role) {
+            'admin'      => redirect()->route('admin.dashboard'),
+            'instructor' => redirect()->route('instructor.dashboard'),
+            default      => redirect()->route('login'),
+        };
     }
 
-    if ($role === 'instructor') {
-        return redirect()->route('instructor.dashboard')->with('info', 'Anda Instruktur, dialihkan ke dashboard.');
-    }
-
-    // 3. Jika rolenya adalah 'student', baru izinkan akses
     return $next($request);
 }
 }

@@ -14,8 +14,7 @@ class AdminMiddleware
     if (Auth::check() && Auth::user()->role === 'admin') {
         return $next($request);
     }
-
-    // Jika bukan admin, diarahkan ke login admin
-    return redirect()->route('admin.login')->with('error', 'Akses Admin Ditolak!');
+    // Arahkan ke login utama, bukan portal spesifik
+    return redirect()->route('login')->with('error', 'Akses Admin Ditolak!');
 }
 }

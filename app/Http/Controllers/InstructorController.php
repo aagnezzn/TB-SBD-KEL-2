@@ -148,15 +148,27 @@ class InstructorController extends Controller
 }
 
     public function addLesson(Request $request, $id)
-    {
-        Lesson::create([
-            'course_id' => $id,
-            'title' => $request->title,
-            'content' => $request->content,
-            'duration' => $request->duration ?? 0,
-        ]);
-        return back()->with('success', 'Materi ditambahkan!');
-    }
+{
+    // Cek kepemilikan kursus
+    $course = Course::where('id', $id)
+                    ->where('instructor_id', Auth::id())
+                    ->firstOrFail();
+
+    $request->validate([
+        'title'    => 'required|string|max:255',
+        'content'  => 'required',
+        'duration' => 'nullable|numeric'
+    ]);
+
+    Lesson::create([
+        'course_id' => $course->id,
+        'title'     => $request->title,
+        'content'   => $request->content,
+        'duration'  => $request->duration ?? 0,
+    ]);
+
+    return back()->with('success', 'Materi berhasil ditambahkan!');
+}
 
     // 8. Daftar Siswa 
     public function myStudents()
@@ -179,45 +191,47 @@ class InstructorController extends Controller
 
     // 9. Performa Statistik Grafik Pendapatan
    public function performance()
-    {
-        $user = Auth::user();
-        $courses = Course::where('instructor_id', $user->id)->get();
-        $courseIds = $courses->pluck('id');
+{
+    $user = Auth::user();
+    $courseIds = Course::where('instructor_id', $user->id)->pluck('id');
 
-        // FAKTANYA: Hitung total langsung dari data payments baru
-        $totalEarnings = Payment::whereIn('course_id', $courseIds)->where('status', 'success')->sum('amount');
-        $totalEnrollments = Enrollment::whereIn('course_id', $courseIds)->count();
-        $averageRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
+    $totalEarnings = Payment::whereIn('course_id', $courseIds)->where('status', 'success')->sum('amount');
+    $totalEnrollments = Enrollment::whereIn('course_id', $courseIds)->count();
+    $averageRating = \App\Models\Review::whereIn('course_id', $courseIds)->avg('rating') ?? 0;
 
-        $chartData = [];
+    // Ambil data pembayaran 7 hari terakhir sekaligus (Optimasi Query)
+    $payments = Payment::whereIn('course_id', $courseIds)
+        ->where('status', 'success')
+        ->where('created_at', '>=', now()->subDays(7))
+        ->get()
+        ->groupBy(function($date) {
+            return $date->created_at->format('Y-m-d');
+        });
+
+    $chartData = [];
+    for ($i = 6; $i >= 0; $i--) {
+        $date = now()->subDays($i)->format('Y-m-d');
+        $dayIncome = isset($payments[$date]) ? $payments[$date]->sum('amount') : 0;
         
-        for ($i = 6; $i >= 0; $i--) {
-            $date = now()->subDays($i);
-            
-            // FAKTANYA: Query grafik mingguan diubah murni mendeteksi course_id langsung pada payments
-            $dayIncome = Payment::whereIn('course_id', $courseIds)
-            ->where('status', 'success')
-            ->whereDate('created_at', $date->toDateString())
-            ->sum('amount');
+        $maxScale = 2000000; 
+        $heightPercentage = $dayIncome > 0 ? min(($dayIncome / $maxScale) * 100, 100) : 0;
 
-            $maxScale = 2000000; 
-            $heightPercentage = $dayIncome > 0 ? min(($dayIncome / $maxScale) * 100, 100) : 0;
+        $chartData[] = [
+            'day'     => now()->subDays($i)->isoFormat('ddd'),
+            'income'  => $dayIncome,
+            'height'  => $heightPercentage
+        ];
+    }
 
-            $chartData[] = [
-                'day'    => $date->isoFormat('ddd'), 
-                'income' => $dayIncome,
-                'height' => $heightPercentage
-            ];
-        }
-
-        $data = [
+    return view('instructor.performance', [
+        'data' => [
             'total_earnings'    => $totalEarnings,
             'total_enrollments' => $totalEnrollments,
             'avg_rating'        => round($averageRating, 1),
-        ];
-
-        return view('instructor.performance', compact('data', 'chartData'));
-    }
+        ],
+        'chartData' => $chartData
+    ]);
+}
 
     // Merender halaman konfirmasi lama
     public function showConfirmation() {
@@ -225,14 +239,18 @@ class InstructorController extends Controller
     }
 
     // 10. Upgrade Role
-    public function upgradeRole()
-    {
-        $user = Auth::user();
-        $user->update(['role' => 'instructor']);
-        return redirect()->route('instructor.dashboard')->with('success', 'Selamat! Anda sekarang adalah Instruktur.');
+   public function upgradeRole()
+{
+    $user = Auth::user();
+    if ($user->role !== 'student') {
+        return redirect()->back()->with('error', 'Akses ditolak atau Anda sudah menjadi instruktur.');
     }
+    
+    $user->update(['role' => 'instructor']);
+    return redirect()->route('instructor.dashboard')->with('success', 'Selamat! Anda sekarang adalah Instruktur.');
+}
 
-    // Tambahkan/pastikan method ini ada di InstructorController.php
+    
     public function showLandingPage()
     {
         return view('mengajar');

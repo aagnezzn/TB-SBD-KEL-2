@@ -41,17 +41,13 @@
             </form>
 
             <div class="text-center mt-4">
-                <span class="text-[14px]"><a href="#" class="text-[#a435f0] font-bold underline">{{__('login.Lupa') }}</a></span>
-            </div>
-
-            <div class="mt-6 text-center text-sm border-t pt-4">
-                <p class="text-black">{{__('login.Punya') }}
-                    <a href="/admin/login" class="text-[#a435f0] font-semibold hover:underline">Admin</a> 
-                    <span class="mx-1 text-gray-300">|</span>
-                    <a href="/instructor/login" class="text-[#a435f0] font-semibold hover:underline">Instructor</a>
-                </p>
-            </div>
-
+    <span class="text-[14px]">
+        <a href="{{ route('password.request') }}" class="text-[#a435f0] font-bold underline">
+            {{__('login.Lupa') }}
+        </a>
+    </span>
+</div>
+            
             <div class="mt-8 text-center text-[15px] border-t border-gray-200 pt-5">
                 <span class="text-[#1c1d27]">{{__('login.Tidak') }} </span>
                 <a href="/register" class="text-[#a435f0] font-bold hover:text-[#8710d8] underline underline-offset-4 ml-1">{{__('login.Daftar') }}</a>

@@ -38,8 +38,15 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
-Route::get('/instructor/login', [InstructorController::class, 'showLogin'])->name('instructor.login');
-Route::get('/admin/login', function () { return view('admin.login'); })->name('admin.login');
+Route::get('/forgot-password', [LoginController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [LoginController::class, 'sendResetLink'])->name('password.email');
+
+// Rute untuk form reset password (yang muncul setelah user klik link di email)
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();
@@ -147,6 +154,6 @@ Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->group(functio
     Route::get('/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/transaksi/{id}', [AdminController::class, 'detailTransaksi'])->name('admin.transaksi.detail');
-    Route::patch('/admin/users/{id}/suspend', [App\Http\Controllers\AdminController::class, 'suspendUser'])->name('admin.users.suspend');
-    Route::delete('/admin/users/{id}/delete', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::patch('/users/{id}/suspend', [App\Http\Controllers\AdminController::class, 'suspendUser'])->name('admin.users.suspend');
+    Route::delete('/users/{id}/delete', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('admin.users.delete');
 });

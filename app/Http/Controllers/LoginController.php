@@ -4,65 +4,80 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use App\Models\User;
 
 class LoginController extends Controller
 {
+
     public function showLoginForm()
-        {
-            return view('login'); 
-        }
+    {
+        return view('login'); 
+    }
 
     public function login(Request $request)
-        {
-            $credentials = $request->validate([
-                'email' => 'required|email',
-                'password' => 'required'
-            ]);
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                $user = Auth::user();
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
-                //Ambil data asal portal (dari hidden input di Blade)
-                $lewatPortal = $request->has('from_portal');
-                $tipePortal = $request->input('portal_type'); // 'admin' atau 'instructor'
-
-            // kalo yang masuk bukan admin
-            if ($lewatPortal && $tipePortal === 'admin' && $user->role !== 'admin') {
+            // KEAMANAN: Cek apakah akun disuspend
+            if ($user->is_suspended) {
                 Auth::logout();
-                return redirect()->route('admin.login')->with('error', 'Akses Ditolak! Ini portal khusus Admin.');
+                return back()->with('error', 'Akun Anda sedang disuspend.');
             }
 
-            // kalo yg masuk bukan akun instructor
-            if ($lewatPortal && $tipePortal === 'instructor' && $user->role !== 'instructor') {
-                Auth::logout();
-                return redirect()->route('instructor.login')->with('error', 'Akses Ditolak! Ini portal khusus Instruktur.');
-            }
+            $request->session()->regenerate();
 
-            // admin dan instructor ga bisa masuk dari laman utama
-            if (!$lewatPortal && in_array($user->role, ['admin', 'instructor'])) {
-                $roleUser = $user->role;
-                Auth::logout();
-
-                $pesan = ($roleUser === 'admin') 
-                    ? 'Akun Admin terdeteksi. Silakan gunakan Portal Login Admin.' 
-                    : 'Akun Instruktur terdeteksi. Silakan gunakan Portal Login Instruktur.';
-
-                return redirect()->route('login')->with('error', $pesan);
-            }
-
-            // 5. REDIRECT AKHIR (Jika semua validasi lolos)
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
-            } 
-            
-            if ($user->role === 'instructor') {
-                return redirect()->route('instructor.dashboard');
-            }
-
-            return redirect()->intended('/'); 
+            // SELEKSI ROLE (Satu pintu masuk)
+            return match ($user->role) {
+                'admin'      => redirect()->intended('/admin/dashboard'),
+                'instructor' => redirect()->intended('/instructor/dashboard'),
+                default      => redirect()->intended('/'),
+            };
         }
 
         return back()->with('error', 'Email atau password salah.');
     }
+
+    public function showLinkRequestForm()
+{
+    return view('auth.forgot-password');
+}
+
+   public function sendResetLink(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
+
+    // Menggunakan sistem bawaan Laravel untuk mengirim link reset
+    $status = Password::sendResetLink($request->only('email'));
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with('success', 'Tautan reset password telah dikirim ke email Anda.')
+        : back()->with('error', 'Gagal mengirim tautan reset password.');
+}
+
+public function resetPassword(Request $request)
+{
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|confirmed|min:8',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill(['password' => bcrypt($password)])->save();
+        }
+    );
+
+    return $status === Password::PASSWORD_RESET
+        ? redirect('/login')->with('success', 'Password berhasil diubah! Silakan login kembali.')
+        : back()->with('error', 'Token reset tidak valid atau sudah kedaluwarsa.');
+}
 }

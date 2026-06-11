@@ -95,12 +95,7 @@
                                 <td class="px-6 py-4 text-sm text-[#6a6f73]">
                                     {{ $user->created_at->format('d M Y') }}
                                 </td>
-
-                                <td class="px-6 py-4 text-sm text-[#6a6f73]">
-                                    {{ $user->created_at->format('d M Y') }}
-                                </td>
-
-                                
+ 
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center gap-2">
                                         <form action="{{ route('admin.users.suspend', $user->id) }}" method="POST" onsubmit="return confirm('Ubah status suspend pengguna ini?')">

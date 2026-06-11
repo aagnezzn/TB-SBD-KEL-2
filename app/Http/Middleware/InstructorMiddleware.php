@@ -19,8 +19,7 @@ class InstructorMiddleware
     if (Auth::check() && Auth::user()->role === 'instructor') {
         return $next($request);
     }
-
-    // Jika bukan instructor, diarahkan ke login instructor
-    return redirect()->route('instructor.login')->with('error', 'Halaman khusus Instruktur!');
+    // Arahkan ke login utama
+    return redirect()->route('login')->with('error', 'Akses Instruktur Ditolak!');
 }
 }

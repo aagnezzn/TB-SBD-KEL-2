@@ -10,40 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    private function getDashboardStats()
+    {
+        return [
+            'totalPendapatan' => Payment::where('status', 'success')->sum('amount'),
+            'totalKelas'      => Course::count(),
+            'totalSiswa'      => User::where('role', 'student')->count(),
+            'transaksiTerbaru'=> Payment::with(['user', 'course'])->latest()->take(5)->get()
+        ];
+    }
+
     public function index()
     {
-        $totalPendapatan = Payment::where('status', 'success')->sum('amount');
-        $totalKelas = Course::count();
-        $totalSiswa = User::where('role', 'student')->count();
-        
-        // Menggunakan Eager Loading untuk efisiensi memori dashboard
-        $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
-
-        return view('admin.dashboard', compact(
-            'totalPendapatan', 
-            'totalKelas', 
-            'totalSiswa', 
-            'transaksiTerbaru'
-        ));
+        $stats = $this->getDashboardStats();
+        return view('admin.dashboard', $stats);
     }
 
     public function courses()
     {
-        $totalPendapatan = Payment::where('status', 'success')->sum('amount');
-        $totalKelas = Course::count();
-        $totalSiswa = User::where('role', 'student')->count();
-        $transaksiTerbaru = Payment::with(['user', 'course'])->latest()->take(5)->get();
-
-        // FAKTA PERBAIKAN: Wajib diganti Paginate agar server tidak jebol memuat 4.002 data kelas sekaligus
+        $stats = $this->getDashboardStats();
         $courses = Course::with('user')->orderBy('created_at', 'desc')->paginate(10);
         
-        return view('admin.courses', compact(
-            'courses', 
-            'totalPendapatan', 
-            'totalKelas', 
-            'totalSiswa', 
-            'transaksiTerbaru'
-        ));
+        return view('admin.courses', array_merge($stats, ['courses' => $courses]));
     }
 
     public function users(Request $request)
@@ -110,6 +98,7 @@ class AdminController extends Controller
             return redirect()->route('admin.users')->with('error', 'Tidak bisa mensuspend akun admin Anda sendiri!');
         }
 
+        // Toggle boolean is_suspended
         $user->is_suspended = !$user->is_suspended;
         $user->save();
 
@@ -120,7 +109,6 @@ class AdminController extends Controller
     public function deleteUser($id)
     {
         $user = User::findOrFail($id);
-
         if (auth()->id() === $user->id) {
             return redirect()->route('admin.users')->with('error', 'Tidak bisa menghapus akun admin Anda sendiri!');
         }
