@@ -52,10 +52,10 @@
 
                 {{-- KOLOM 2: JELAJAHI IDEMY --}}
                 <div>
-                    <h3 class="text-white font-bold text-base mb-4">Jelajahi Idemy</h3>
+                    <h3 class="text-white font-bold text-base mb-4">{{ __('menu.explore') }}</h3>
                     <ul class="space-y-2 text-sm leading-snug text-gray-400">
-                        <li><a href="{{ route('mengajar') }}" class="hover:underline hover:text-purple-400 transition">Mengajar di Idemy</a></li>
-                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">Paket dan Harga</a></li>
+                        <li><a href="{{ route('mengajar') }}" class="hover:underline hover:text-purple-400 transition">{{ __('menu.teach_on_idemy') }}</a></li>
+                        <li><a href="#" class="hover:underline hover:text-purple-400 transition">{{ __('menu.Telusuri') }}</a></li>
                     </ul>
                 </div>
 
